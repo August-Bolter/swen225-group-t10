@@ -8,8 +8,8 @@ import java.io.*;
  * Level images are available from https://strategywiki.org/wiki/Chip%27s_Challenge/Levels_1-20#Level_1:_LESSON_1.
  * All levels are 32x32.
  */
-class ArrayToJSON {
-    private static final String TEXT_FILENAME = "Level-1.txt";
+class TextToJSON {
+    private static final String TEXT_FILENAME = "Level-1.json";
 
     /**
      * Converts the text file to a JSON file
@@ -35,7 +35,7 @@ class ArrayToJSON {
             int row = 0;
             String line;
 
-            while ((line = in.readLine()) != null)  {
+            while (!(line = in.readLine()).equals(""))  {
                 row++;
 
                 String[] rowTiles = line.split(" ");
@@ -56,6 +56,8 @@ class ArrayToJSON {
                 throw new Error("Wrong number of rows " + TEXT_FILENAME + ". There are " + row + ", there should be exactly 32.");
             }
 
+
+
             // Write the end of the JSON file
             out.print("\t}\n}");
 
@@ -67,7 +69,5 @@ class ArrayToJSON {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 }
