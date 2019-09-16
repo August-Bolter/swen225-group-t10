@@ -1,14 +1,14 @@
 package Application;
 
 import Maze.Board;
-import Maze.Pokeball;
+import Maze.Chip;
 import Maze.Tile;
 
 import java.util.*;
 
 public class Main {
     private Timer timeRemaining = new Timer(); //Level timer
-    private List<Pokeball> allPokeballs = new ArrayList<Pokeball>();
+    private List<Chip> allChips = new ArrayList<Chip>();
     private int originalNumberOfPokeballs;
     private Player player;
     private Board board;
@@ -24,17 +24,17 @@ public class Main {
     }
 
     private void createPokeballs() {
-        allPokeballs.add(new Pokeball(12, 10));
-        allPokeballs.add(new Pokeball(18, 10));
-        allPokeballs.add(new Pokeball(10, 13));
-        allPokeballs.add(new Pokeball(10, 15));
-        allPokeballs.add(new Pokeball(13, 14));
-        allPokeballs.add(new Pokeball(17, 14));
-        allPokeballs.add(new Pokeball(20, 13));
-        allPokeballs.add(new Pokeball(20, 15));
-        allPokeballs.add(new Pokeball(15, 16));
-        allPokeballs.add(new Pokeball(14, 19));
-        allPokeballs.add(new Pokeball(16, 19));
+        allChips.add(new Chip(12, 10));
+        allChips.add(new Chip(18, 10));
+        allChips.add(new Chip(10, 13));
+        allChips.add(new Chip(10, 15));
+        allChips.add(new Chip(13, 14));
+        allChips.add(new Chip(17, 14));
+        allChips.add(new Chip(20, 13));
+        allChips.add(new Chip(20, 15));
+        allChips.add(new Chip(15, 16));
+        allChips.add(new Chip(14, 19));
+        allChips.add(new Chip(16, 19));
     }
 
     private boolean doMove(String direction){
