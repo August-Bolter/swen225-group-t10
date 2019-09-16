@@ -14,9 +14,13 @@ public class Main {
     private Board board;
 
 
+
     private void setup() {
         timer(5);
-        createPokeballs();
+        createPokeballs(); //Probably don't need this
+        board.setup();
+
+
     }
 
     private void createPokeballs() {
@@ -42,6 +46,8 @@ public class Main {
         }
         return false;
     }
+
+
 
 
 
