@@ -2,7 +2,7 @@ package Maze;
 
 import java.util.Objects;
 
-public class Tile {
+public abstract class Tile {
 
     private int row;
     private int col;
@@ -27,6 +27,22 @@ public class Tile {
         Tile tile = (Tile) o;
         return getRow() == tile.getRow() &&
                 getCol() == tile.getCol();
+    }
+
+    private boolean isWalkable(){
+        if (this instanceof Wall){
+            return false;
+        }
+        if (this instanceof Door){
+            Door door = (Door) this;
+            if (door.isLocked()){
+                return false;
+            } else {
+                return true;
+            }
+        }
+        //TODO: implement logic for other tiles that cannot be walked on
+        return true;
     }
 
 }
