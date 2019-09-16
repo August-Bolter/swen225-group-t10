@@ -6,7 +6,7 @@ import Maze.Tile;
 import java.util.*;
 
 public class Main {
-    private Timer timeRemaining = new Timer();
+    private Timer timeRemaining = new Timer(); //Level timer
     private List<Pokeball> allPokeballs = new ArrayList<Pokeball>();
 
 
