@@ -2,7 +2,7 @@ package Maze;
 
 import java.util.Objects;
 
-public class Tile {
+public abstract class Tile {
 
     private int row;
     private int col;
