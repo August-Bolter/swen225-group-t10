@@ -1,6 +1,7 @@
 package Application;
 
 import Maze.Board;
+import Maze.Player;
 import Maze.Pokeball;
 import Maze.Tile;
 
@@ -19,6 +20,7 @@ public class Main {
         timer(5);
         createPokeballs(); //Probably don't need this
         board.setup();
+        player.setCurrentPos(3, 5);
 
 
     }
@@ -38,7 +40,7 @@ public class Main {
     }
 
     private boolean doMove(String direction){
-        Tile currentPos = player.getCurrentPosition();
+        Tile currentPos = player.getCurrentPos();
         Tile desiredTile = board.getTileAtPosition(currentPos, direction);
         if (desiredTile.isWalkable()){
             player.setCurrentPosition(desiredTile);
