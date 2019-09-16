@@ -30,11 +30,11 @@ public abstract class Tile {
     }
 
     private boolean isWalkable(){
-        if (this instanceof Wall){
+        if (this instanceof WallTile){
             return false;
         }
-        if (this instanceof Door){
-            Door door = (Door) this;
+        if (this instanceof DoorTile){
+            DoorTile door = (DoorTile) this;
             if (door.isLocked()){
                 return false;
             } else {
