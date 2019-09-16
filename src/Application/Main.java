@@ -33,12 +33,14 @@ public class Main {
         allPokeballs.add(new Pokeball(16, 19));
     }
 
-    private void doMove(String direction){
+    private boolean doMove(String direction){
         Tile currentPos = player.getCurrentPosition();
         Tile desiredTile = board.getTileAtPosition(currentPos, direction);
         if (desiredTile.isWalkable()){
             player.setCurrentPosition(desiredTile);
+            return true;
         }
+        return false;
     }
 
 
