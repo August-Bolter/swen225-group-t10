@@ -1,8 +1,6 @@
 package Application;
 
-import Maze.Board;
-import Maze.Chip;
-import Maze.Tile;
+import Maze.*;
 
 import java.util.*;
 
