@@ -14,5 +14,11 @@ public class Player {
         this.currentPos = startingPos;
     }
 
+    public Tile getCurrentPos() {
+        return currentPos;
+    }
 
+    public void setCurrentPos(Tile currentPos) {
+        this.currentPos = currentPos;
+    }
 }

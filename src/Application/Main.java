@@ -14,6 +14,7 @@ public class Main {
     private Board board;
 
 
+
     private void setup() {
         timer(5);
         createPokeballs(); //Probably don't need this
