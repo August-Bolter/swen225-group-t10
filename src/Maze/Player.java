@@ -4,11 +4,10 @@ import java.util.List;
 
 /**
  * Player class: This is the main player which the user moves to play the game
- *
  */
 public class Player {
-    Tile currentPos;
-    List<Item> inventory;
+    private Tile currentPos;
+    private List<Item> inventory;
 
     Player(Tile startingPos){
         this.currentPos = startingPos;
