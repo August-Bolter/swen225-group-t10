@@ -36,10 +36,10 @@ public class Main {
     }
 
     private boolean doMove(String direction){
-        Tile currentPos = player.getCurrentPosition();
+        Tile currentPos = player.getCurrentPos();
         Tile desiredTile = board.getTileAtPosition(currentPos, direction);
         if (desiredTile.isWalkable()){
-            player.setCurrentPosition(desiredTile);
+            player.setCurrentPos(desiredTile);
             return true;
         }
         return false;

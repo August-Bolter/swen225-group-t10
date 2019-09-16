@@ -21,4 +21,8 @@ public class Board {
     public Tile[][] getBoard() {
         return board;
     }
+
+    public Tile getTileAtPosition(Tile currentPos, String direction) {
+        return null; //Replace this with actual code
+    }
 }
