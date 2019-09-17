@@ -21,16 +21,6 @@ public abstract class Tile {
         this.items = new ArrayList<>();
     }
 
-    /** Creates a tile with an item on it
-     * @param row The row (in regards to the board) of the tile
-     * @param col The column (in regards to the board) of the tile */
-    public Tile(int row, int col, Item item){
-        this.row = row;
-        this.col = col;
-        this.items = new ArrayList<>();
-        items.add(item);
-    }
-
     /** Gets the row of the tile */
     public int getRow() {
         return row;

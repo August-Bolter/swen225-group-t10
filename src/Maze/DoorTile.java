@@ -6,14 +6,14 @@ import java.awt.*;
  * the player can access other parts of the map. */
 
 public class DoorTile extends Tile {
-    private Color color; //The color of the door. The color can be blue, green, red or yellow
+    private String color; //The color of the door. The color can be blue, green, red or yellow
     private boolean isLocked; //Whether the door is locked
     /** Creates a door tile with a pre-defined color.
      * @param row The row (in regards to the board) of the door
      * @param col The column (in regards to the board) of the door
      * @param color The pre-defined color of the board
      * */
-    public DoorTile(int row, int col, Color color) {
+    public DoorTile(int row, int col, String color) {
         super(row, col);
         this.color = color;
         this.isLocked = true; //The door by default (i.e. when created) is locked.

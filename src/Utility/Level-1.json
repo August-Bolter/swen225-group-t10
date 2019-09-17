@@ -6,8 +6,22 @@
         {
             "type" : "WallTile",
             "row" : 5,
-            "col" : 8,
-            "item" : "null"
+            "col" : 8
+        },
+        {
+            "type" : "DoorTile",
+            "row" : 1,
+            "col" : 3,
+            "extra" : "Green"
+        },
+        {
+            "type" : "FreeTile",
+            "row" : 3,
+            "col" : 6,
+            "item" : {
+                "type" : "Key",
+                "extra" : "Green"
+            }
         }
     ]
 }

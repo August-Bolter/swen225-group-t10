@@ -50,27 +50,46 @@ public class LoadJSON {
             for (JsonValue tileValue : tilesArray) {
                 JsonObject tileObject = tileValue.asJsonObject();
 
+                // Compulsory parameters for every tile
+                String tileClassName = tileObject.getString("type");
                 int row = tileObject.getInt("row");
                 int col = tileObject.getInt("col");
-                String tileClassName = tileObject.getString("type");
-                String itemClassName = tileObject.getString("item");
+
+                // Optional parameters
+                Item item = null;
+                String extra = null, itemExtra = null;
+
+                if (tileObject.containsKey("item")) {
+                    JsonObject itemObject = tileObject.get("item").asJsonObject();
+                    String itemClassName = itemObject.getString("type");
+
+                    if (itemObject.containsKey("extra")) {
+                        itemExtra = itemObject.getString("extra");
+                    }
+
+                    item = createItem(itemClassName, row, col, itemExtra);
+                }
+
+                if (tileObject.containsKey("extra"))
+                    extra = tileObject.getString("extra");
 
                 try {
-                    Class<?> clazz = Class.forName("Maze."+tileClassName);
+                    Class<?> clazz = Class.forName("Maze." + tileClassName);
                     Tile tile;
                     Constructor<?> constructor;
 
-                    if (itemClassName.equals("null")) {
+                    // Create tile
+                    if (extra == null) {
                         constructor = clazz.getConstructor(Integer.TYPE, Integer.TYPE);
-                        tile = (Tile) constructor.newInstance(row,col);
+                        tile = (Tile) constructor.newInstance(row, col);
                     } else {
-                        Class<?> itemClazz = Class.forName("Maze."+itemClassName);
-                        Constructor<?> itemConstructor = itemClazz.getConstructor(Integer.TYPE, Integer.TYPE);
-                        Item item = (Item) itemConstructor.newInstance(row, col);
-
-                        constructor = clazz.getConstructor(Integer.TYPE, Integer.TYPE, Item.class);
-                        tile = (Tile) constructor.newInstance(row, col, item);
+                        constructor = clazz.getConstructor(Integer.TYPE, Integer.TYPE, String.class);
+                        tile = (Tile) constructor.newInstance(row, col, extra);
                     }
+
+                    // Add item if necessary
+                    if (item != null)
+                        tile.addItem(item);
 
                     levelArray[row][col] = tile;
 
@@ -93,4 +112,34 @@ public class LoadJSON {
 
         return new LevelBoard(title, chips, timeLimit, levelArray);
     }
+
+
+    private static Item createItem(String itemClassName, int row, int col, String extra) {
+        Item item = null;
+        try {
+            Class<?> itemClazz = Class.forName("Maze."+itemClassName);
+
+            if (extra == null) {
+                Constructor<?> itemConstructor = itemClazz.getConstructor(Integer.TYPE, Integer.TYPE);
+                item = (Item) itemConstructor.newInstance(row, col);
+            } else {
+                Constructor<?> itemConstructor = itemClazz.getConstructor(Integer.TYPE, Integer.TYPE, String.class);
+                item = (Item) itemConstructor.newInstance(row, col, extra);
+            }
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
+        return item;
+    }
+
 }
