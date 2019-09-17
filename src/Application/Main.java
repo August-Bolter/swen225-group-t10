@@ -9,7 +9,7 @@ public class Main {
     private List<Chip> allChips = new ArrayList<Chip>();
     private int originalNumberOfPokeballs;
     private Player player;
-    private Board board;
+    private Board board = new Board();
 
 
 

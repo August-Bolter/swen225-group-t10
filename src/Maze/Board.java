@@ -1,6 +1,8 @@
 package Maze;
 
 
+import Persistence.LoadJSON;
+
 import java.awt.*;
 
 public class Board {
@@ -8,11 +10,13 @@ public class Board {
     private Tile[][] board = new Tile[32][32];
 
     public void setup(){
-        for (int i = 0; i < SIZE; i++) {
+        /*for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
                 board[i][j] = new FreeTile(i,j);
             }
-        }
+        }*/
+
+        board = LoadJSON.loadLevelFromJSON(1);
     }
     public Tile[][] getBoard() {
         return board;
