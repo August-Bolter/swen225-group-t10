@@ -3,7 +3,7 @@ package Render;
 import javax.swing.*;
 
 public class BoardPanel extends JPanel {
-    MainFrame frame;
+    private MainFrame frame;
 
     public BoardPanel(MainFrame frame) {
         this.frame = frame;
