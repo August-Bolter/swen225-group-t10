@@ -3,10 +3,13 @@ package Persistence;
 import Maze.FreeTile;
 import Maze.Tile;
 
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import javax.json.*;
+
 
 public class LoadJSON {
 
@@ -24,7 +27,7 @@ public class LoadJSON {
             JsonReader reader = Json.createReader(in);
 
             JsonObject tiles = reader.readObject();
-            System.out.println(tiles.getString("wall"));
+            System.out.println(tiles.get("tiles").getValueType());
 
         } catch (FileNotFoundException e) {
             throw new Error("Level-" + level + ".json not found");
