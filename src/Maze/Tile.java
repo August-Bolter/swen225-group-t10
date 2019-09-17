@@ -1,6 +1,8 @@
 package Maze;
 
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /** An abstract class representing a tile in the game. This abstract class is extended by concrete classes like DoorTile,
  * ExitTile etc. The board is made up of tiles (with items on some of the tiles). */
@@ -8,6 +10,7 @@ public abstract class Tile {
 
     private int row;
     private int col;
+    private List<Item> items;
 
     /** Creates a tile
      * @param row The row (in regards to the board) of the tile
@@ -15,6 +18,17 @@ public abstract class Tile {
     public Tile(int row, int col){
         this.row = row;
         this.col = col;
+        this.items = new ArrayList<>();
+    }
+
+    /** Creates a tile with an item on it
+     * @param row The row (in regards to the board) of the tile
+     * @param col The column (in regards to the board) of the tile */
+    public Tile(int row, int col, Item item){
+        this.row = row;
+        this.col = col;
+        this.items = new ArrayList<>();
+        items.add(item);
     }
 
     /** Gets the row of the tile */
@@ -25,6 +39,29 @@ public abstract class Tile {
     /** Gets the column of the tile */
     public int getCol() {
         return col;
+    }
+
+    /**
+     * @return the list of items on this tile
+     */
+    public List<Item> getItems() {
+        return Collections.unmodifiableList(items);
+    }
+
+    /**
+     * Adds a new item to this tile
+     * @param item the item to add
+     */
+    public void addItem(Item item) {
+        items.add(item);
+    }
+
+    /**
+     * Removes a new item from this tile
+     * @param item the item to removes
+     */
+    public void removeItem(Item item) {
+        items.remove(item);
     }
 
     /** Checks if an Object is the same as (equals) this tile.

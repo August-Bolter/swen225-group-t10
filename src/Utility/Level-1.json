@@ -1,24 +1,13 @@
 {
-    "tiles": {
-        "wall": {
-            "fromRow": 8,
-            "fromCol": 10,
-            "toRow": 8,
-            "toCol": 14
-        },
-
-        "wall": {
-            "fromRow": 8,
-            "fromCol": 16,
-            "toRow": 8,
-            "toCol": 20
-        },
-
-        "wall": {
-            "fromRow": 9,
-            "fromCol": 10,
-            "toRow": 10,
-            "toCol": 10
+    "title" : "Lesson 1",
+    "chips" : 11,
+    "timeLimit" : 100,
+    "tiles" : [
+        {
+            "type" : "WallTile",
+            "row" : 5,
+            "col" : 8,
+            "item" : "null"
         }
-    }
+    ]
 }

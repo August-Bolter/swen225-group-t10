@@ -1,6 +1,7 @@
 package Application;
 
 import Maze.*;
+import Persistence.LoadJSON;
 
 import java.util.*;
 
@@ -9,16 +10,14 @@ public class Main {
     private List<Chip> allChips = new ArrayList<Chip>();
     private int originalNumberOfPokeballs;
     private Player player;
-    private Board board = new Board();
+    private LevelBoard levelBoard;
 
 
 
     private void setup() {
         timer(5);
         createPokeballs(); //Probably don't need this
-        board.setup();
-
-
+        levelBoard = LoadJSON.loadLevelFromJSON(1);
     }
 
     private void createPokeballs() {
@@ -37,16 +36,13 @@ public class Main {
 
     private boolean doMove(String direction){
         Tile currentPos = player.getCurrentPos();
-        Tile desiredTile = board.getTileAtPosition(currentPos, direction);
+        Tile desiredTile = levelBoard.getTileAtPosition(currentPos, direction);
         if (desiredTile.isWalkable()){
             player.setCurrentPos(desiredTile);
             return true;
         }
         return false;
     }
-
-
-
 
 
     /**
