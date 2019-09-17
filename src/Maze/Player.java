@@ -29,4 +29,12 @@ public class Player {
     public void setCurrentPos(Tile currentPos) {
         this.currentPos = currentPos;
     }
+
+    /**
+     * Adds a new item into the inventory (list)
+     * @param newItem
+     */
+    public void setInventory(Item newItem){
+        inventory.add(newItem);
+    }
 }
