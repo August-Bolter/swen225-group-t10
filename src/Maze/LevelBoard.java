@@ -8,6 +8,8 @@ import java.awt.*;
 public class LevelBoard {
     private static final int SIZE = 32;
 
+    public enum Direction {LEFT, RIGHT, UP, DOWN}
+
     public final String title;
     public final int totalChips, timeLimit;
 
@@ -22,7 +24,7 @@ public class LevelBoard {
         // TESTING
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++)
-                System.out.println("[" + i + "," + j + "], " + board[i][j].getClass().toString() + " with item " + board[i][j].getItems().size());
+                System.out.println("[" + i + "," + j + "], " + board[i][j].getClass().toString() + " with " + board[i][j].getItems().size() + " items");
         }
 
         System.out.println(board[3][6].getItems().get(0).getClass() + ", " + board[3][6].getItems().get(0).getRow());
@@ -33,7 +35,36 @@ public class LevelBoard {
         return board;
     }
 
-    public Tile getTileAtPosition(Tile currentPos, String direction) {
-        return null; //Replace this with actual code
+    /**
+     * Gets the tile at a given direction from a given position.
+     * @param currentPos the given position
+     * @param direction the direction from the given position
+     * @return the tile at the direction
+     */
+    public Tile getTileAtPosition(Tile currentPos, Direction direction) {
+        switch (direction) {
+            case LEFT:
+                if (currentPos.getCol() > 0)
+                    return board[currentPos.getRow()][currentPos.getCol()-1];
+                else
+                    return null;
+            case RIGHT:
+                if (currentPos.getCol() < board.length)
+                    return board[currentPos.getRow()][currentPos.getCol()+1];
+                else
+                    return null;
+            case UP:
+                if (currentPos.getRow() > 0)
+                    return board[currentPos.getRow()-1][currentPos.getCol()];
+                else
+                    return null;
+            case DOWN:
+                if (currentPos.getCol() < board[0].length)
+                    return board[currentPos.getRow()+1][currentPos.getCol()];
+                else
+                    return null;
+            default:
+                return null;
+        }
     }
 }
