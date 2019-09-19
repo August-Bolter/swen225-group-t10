@@ -19,13 +19,8 @@ public class DoorTile extends Tile {
         this.isLocked = true; //The door by default (i.e. when created) is locked.
     }
 
-    /** Returns whether the door is locked.
-     * @return a boolean representing if the door is locked
-     * */
-    public boolean isLocked() {
-        return isLocked;
-    }
 
+    //getter and setter methods
     /** Locks/unlocks the door.
      * @param locked a boolean representing if the door is getting locked
      * */
@@ -33,8 +28,20 @@ public class DoorTile extends Tile {
         isLocked = locked;
     }
 
+
+    /**
+     * Returns whether a door is unlocked and therefore it can be walked through
+     * @return a boolean representing if the door is unlocked and therefore can be walked through
+     */
     @Override
-    public boolean isWalkable() {
-        return !isLocked; //Players can walk through the door if it isn't locked.
+    public boolean isWalkable() { return !isLocked;}
+
+    /** Returns whether the door is locked.
+     * @return a boolean representing if the door is locked
+     * */
+    public boolean isLocked() {
+        return isLocked;
     }
+
+
 }

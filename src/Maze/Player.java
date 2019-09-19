@@ -34,7 +34,8 @@ public class Player {
      * Adds a new item into the inventory (list)
      * @param newItem
      */
-    public void setInventory(Item newItem){
+    public void addInventory(Item newItem){
         inventory.add(newItem);
     }
+
 }

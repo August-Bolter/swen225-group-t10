@@ -11,6 +11,12 @@ public class FreeTile extends Tile {
         super(row, col);
     }
 
+    //unique setter method to this class
+
+    /** Method that checks whether the area is a place the player can walk on
+     * Player can always walk on freetiles
+     * @return true
+     */
     @Override
     public boolean isWalkable() {
         return true;

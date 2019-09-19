@@ -11,9 +11,16 @@ public class WallTile extends Tile {
         super(row, col);
     }
 
+    //unique setter method to this class
+
+    /**
+     * Method that checks whether the area is a place the player can walk on
+     * Player can't walk on walls
+     * @return false
+     */
     @Override
     public boolean isWalkable() {
-        return false; //Players can't walk onto walls
+        return false;
     }
 
 }

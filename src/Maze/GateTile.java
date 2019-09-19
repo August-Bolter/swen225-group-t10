@@ -2,7 +2,8 @@ package Maze;
 
 /** Represents a gate tile in the game. A gate tile (exit lock) behaves like a wall (player can't pass through it or interact
  * with it) if the player doesn't have all the chips in the level. Once they have all the chips the player can pass through
- * it. */
+ * it.
+ */
 public class GateTile extends Tile {
     private boolean isPassable; //Representing whether the player can pass through the gate
 
@@ -16,6 +17,7 @@ public class GateTile extends Tile {
         isPassable = false;
     }
 
+    //start of setter and getter methods
     @Override
     public boolean isWalkable() {
         return isPassable;

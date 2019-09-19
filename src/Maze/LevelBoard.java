@@ -8,10 +8,11 @@ import java.awt.*;
 public class LevelBoard {
     private static final int SIZE = 32;
 
-    public enum Direction {LEFT, RIGHT, UP, DOWN}
+    //these used to public and I changed them to private and used getter and setter methods  - is this okay?
+    private final String title;
 
-    public final String title;
-    public final int totalChips, timeLimit;
+    private enum Direction {LEFT, RIGHT, UP, DOWN}
+    private final int totalChips, timeLimit;
 
     private Tile[][] board;
 
@@ -67,4 +68,32 @@ public class LevelBoard {
                 return null;
         }
     }
+
+
+    //getter and setter methods
+
+    /**
+     * Method that gets the total number of chips
+     * @return number of chips
+     */
+    public int getTotalChips() {
+        return totalChips;
+    }
+
+    /**
+     * Method that gets the timelimit
+     * @return the timeLimit
+     */
+    public int getTimeLimit() {
+        return timeLimit;
+    }
+
+    /**
+     * Method that gets the title
+     * @return title
+     */
+    public String getTitle() {
+        return title;
+    }
+
 }
