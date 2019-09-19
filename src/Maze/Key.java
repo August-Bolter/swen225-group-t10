@@ -16,9 +16,25 @@ public class Key extends Item {
     }
 
     /**
+     * Checks if the door and key is a macthign colour
+     * @return true if matches, false if doesn't match
+     */
+    public boolean isMatchingColour(String colour){
+        if(this.color.equals(colour)){
+            return true;
+        }
+        return false;
+    }
+
+    //getter and setter methods
+
+    /**
+     * Doors can only be opened by a key that is the matching colour. We need to check if it is matching
      * @return the key's color
      */
     public String getColor() {
         return color;
     }
+
+
 }
