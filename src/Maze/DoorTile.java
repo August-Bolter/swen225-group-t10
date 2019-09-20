@@ -8,6 +8,7 @@ import java.awt.*;
 public class DoorTile extends Tile {
     private String color; //The color of the door. The color can be blue, green, red or yellow
     private boolean isLocked; //Whether the door is locked
+
     /** Creates a door tile with a pre-defined color.
      * @param row The row (in regards to the board) of the door
      * @param col The column (in regards to the board) of the door

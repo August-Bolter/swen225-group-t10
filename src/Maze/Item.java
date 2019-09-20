@@ -46,7 +46,14 @@ public abstract class Item {
     }
 
     /**
-     * Method to interact with the Item
+     * Sets the item's row number
+     * @param rowNum
      */
-    public abstract void interact();
+    public void setRow(int rowNum){ this.row = rowNum;}
+
+    /**
+     * Sets the item's col number
+     * @param colNum
+     */
+    public void setCol(int colNum){this.col = colNum;}
 }
