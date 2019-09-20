@@ -24,6 +24,9 @@ public class Main {
         frame = new MainFrame(this);
     }
 
+    /**
+     * Method to initalise pokeballs in their correct positions
+     */
     private void createPokeballs() {
         allChips.add(new Chip(12, 10));
         allChips.add(new Chip(18, 10));
