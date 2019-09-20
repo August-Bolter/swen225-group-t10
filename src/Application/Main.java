@@ -2,7 +2,6 @@ package Application;
 
 import Maze.*;
 import Persistence.LoadJSON;
-import Render.MainFrame;
 
 import java.util.*;
 
@@ -12,16 +11,13 @@ public class Main {
     private int originalNumberOfPokeballs;
     private Player player;
     private LevelBoard levelBoard;
-    private boolean gameover = false;
-    private MainFrame frame;
+
 
 
     private void setup() {
-        timer(100);
+        timer(5);
         createPokeballs(); //Probably don't need this
         levelBoard = LoadJSON.loadLevelFromJSON(1);
-
-        frame = new MainFrame(this);
     }
 
     /**
@@ -41,25 +37,16 @@ public class Main {
         allChips.add(new Chip(16, 19));
     }
 
-    private boolean doMove(LevelBoard.Direction direction){
+    private boolean doMove(String direction){
         Tile currentPos = player.getCurrentPos();
         Tile desiredTile = levelBoard.getTileAtPosition(currentPos, direction);
-        if (desiredTile != null && desiredTile.isWalkable()) {
+        if (desiredTile.isWalkable()){
             player.setCurrentPos(desiredTile);
-            desiredTile.interact();
-            for (Item item : desiredTile.getItems()){
-                item.interact();
-            }
             return true;
         }
         return false;
     }
 
-    private void run(){
-        while (!gameover){
-            //Render.updateGUI, and other stuff we need to update
-        }
-    }
 
     /**
      * A timer method. Will print game over after a certain amount of time.
@@ -71,18 +58,10 @@ public class Main {
             @Override
             public void run() {
                 System.out.println("-------game over---------");
-                gameover = true;
             }
         }, seconds*1000);
     }
 
-    public MainFrame getFrame() {
-        return frame;
-    }
-
-    public LevelBoard getLevelBoard() {
-        return levelBoard;
-    }
 
     public static void main(String[] args) {
         System.out.println("espeon is the best Eevee evo");
