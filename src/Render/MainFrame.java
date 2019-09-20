@@ -19,10 +19,20 @@ public class MainFrame extends JFrame {
     }
 
     public void addBoardPanel(){
-        BoardPanel boardpanel = new BoardPanel(game.getLevelBoard().getBoard());
+        BoardPanel boardpanel = new BoardPanel(this, game.getLevelBoard().getBoard());
         add(boardpanel, FlowLayout.CENTER);
 
         repaint();
+    }
+
+    /**
+     * It will go into persistence and by getting the name of the tile.
+     * This will get passed to the board which will store it in a map for fast recovery
+     * @param name name of the tile you want an image for
+     * @return Image of the tile that you need for the board
+     */
+    public Image getImage(String name) {
+        return null; // FIXME
     }
 
     @Override
