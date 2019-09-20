@@ -68,8 +68,13 @@ public abstract class Tile {
                 getCol() == tile.getCol();
     }
 
-    /** An abstract class which determines if a tile is walkable.
+    /** An abstract method which determines if a tile is walkable.
      * @return Whether the tile is walkable */
     public abstract boolean isWalkable();
+
+    /**
+     * Method to interact with the tile
+     */
+    public abstract void interact();
 
 }

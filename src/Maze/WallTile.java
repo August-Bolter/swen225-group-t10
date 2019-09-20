@@ -23,4 +23,12 @@ public class WallTile extends Tile {
         return false;
     }
 
+    /**
+     * Player should not be able to interact with a Free Tile
+     */
+    @Override
+    public void interact() {
+        //Leave this unimplemented
+    }
+
 }

@@ -37,6 +37,11 @@ public class DoorTile extends Tile {
     @Override
     public boolean isWalkable() { return !isLocked;}
 
+    @Override
+    public void interact() {
+        //TODO: need to implement door being able to interact with Player
+    }
+
     /** Returns whether the door is locked.
      * @return a boolean representing if the door is locked
      * */

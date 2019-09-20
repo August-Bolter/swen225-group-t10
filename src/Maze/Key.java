@@ -37,4 +37,8 @@ public class Key extends Item {
     }
 
 
+
+    public void interact() {
+        //TODO: need to implement key item being able to interact with Player
+    }
 }
