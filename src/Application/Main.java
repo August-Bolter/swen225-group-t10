@@ -2,6 +2,7 @@ package Application;
 
 import Maze.*;
 import Persistence.LoadJSON;
+import Render.MainFrame;
 
 import java.util.*;
 
@@ -11,6 +12,7 @@ public class Main {
     private int originalNumberOfPokeballs;
     private Player player;
     private LevelBoard levelBoard;
+    private MainFrame frame;
 
 
 
@@ -18,6 +20,8 @@ public class Main {
         timer(5);
         createPokeballs(); //Probably don't need this
         levelBoard = LoadJSON.loadLevelFromJSON(1);
+
+        frame = new MainFrame(this); // Setup the gui and make it visible
     }
 
     private void createPokeballs() {
