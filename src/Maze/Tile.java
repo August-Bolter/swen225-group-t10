@@ -1,48 +1,75 @@
 package Maze;
 
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
+/** An abstract class representing a tile in the game. This abstract class is extended by concrete classes like DoorTile,
+ * ExitTile etc. The board is made up of tiles (with items on some of the tiles). */
 public abstract class Tile {
 
     private int row;
     private int col;
+    private List<Item> items;
 
+    /** Creates a tile
+     * @param row The row (in regards to the board) of the tile
+     * @param col The column (in regards to the board) of the tile */
     public Tile(int row, int col){
         this.row = row;
         this.col = col;
+        this.items = new ArrayList<>();
     }
 
+    /** Gets the row of the tile */
     public int getRow() {
         return row;
     }
 
+    /** Gets the column of the tile */
     public int getCol() {
         return col;
     }
 
+    /**
+     * @return the list of items on this tile
+     */
+    public List<Item> getItems() {
+        return Collections.unmodifiableList(items);
+    }
+
+    /**
+     * Adds a new item to this tile
+     * @param item the item to add
+     */
+    public void addItem(Item item) {
+        items.add(item);
+    }
+
+    /**
+     * Removes a new item from this tile
+     * @param item the item to removes
+     */
+    public void removeItem(Item item) {
+        items.remove(item);
+    }
+
+    /** Checks if an Object is the same as (equals) this tile.
+     * @param o The object that the tile is being compared to
+     * @return Whether the object is the same as the tile
+     * */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Tile)) return false;
         Tile tile = (Tile) o;
+        /* If the tile is in the same location as 'this' (this tile) then they are the same tile. */
         return getRow() == tile.getRow() &&
                 getCol() == tile.getCol();
     }
 
-    private boolean isWalkable(){
-        if (this instanceof Wall){
-            return false;
-        }
-        if (this instanceof Door){
-            Door door = (Door) this;
-            if (door.isLocked()){
-                return false;
-            } else {
-                return true;
-            }
-        }
-        //TODO: implement logic for other tiles that cannot be walked on
-        return true;
-    }
+    /** An abstract class which determines if a tile is walkable.
+     * @return Whether the tile is walkable */
+    public abstract boolean isWalkable();
 
 }
