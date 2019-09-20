@@ -11,7 +11,7 @@ public class LevelBoard {
     //these used to public and I changed them to private and used getter and setter methods  - is this okay?
     private final String title;
 
-    private enum Direction {LEFT, RIGHT, UP, DOWN}
+    public enum Direction {LEFT, RIGHT, UP, DOWN}
     private final int totalChips, timeLimit;
 
     private Tile[][] board;

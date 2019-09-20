@@ -34,16 +34,21 @@ public class Main {
         allChips.add(new Chip(16, 19));
     }
 
-    private boolean doMove(String direction){
+    private boolean doMove(LevelBoard.Direction direction){
         Tile currentPos = player.getCurrentPos();
         Tile desiredTile = levelBoard.getTileAtPosition(currentPos, direction);
-        if (desiredTile.isWalkable()){
-            player.setCurrentPos(desiredTile);
-            return true;
+        if (desiredTile != null) {
+            if (desiredTile.isWalkable()) {
+                player.setCurrentPos(desiredTile);
+                desiredTile.interact();
+                for (Item item : desiredTile.getItems()){
+                    item.interact();
+                }
+                return true;
+            }
         }
         return false;
     }
-
 
     /**
      * A timer method. Will print game over after a certain amount of time.

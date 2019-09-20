@@ -13,5 +13,10 @@ public class Chip extends Item {
         super(row, col);
     }
 
+    @Override
+    public void interact() {
+        //TODO: need to implement chip tile being able to interact with Player
+    }
+
 
 }

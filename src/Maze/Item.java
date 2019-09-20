@@ -56,4 +56,11 @@ public abstract class Item {
      * @param colNum
      */
     public void setCol(int colNum){this.col = colNum;}
+
+    /**
+     * Method to interact with the tile
+     */
+    public abstract void interact();
+
+
 }
