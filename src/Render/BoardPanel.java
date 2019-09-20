@@ -24,6 +24,11 @@ public class BoardPanel extends JPanel {
         redraw();
     }
 
+    /**
+     * Creates the map of images corresponding to image names
+     * Currently uses the class name for the key and image name
+     * TODO names are bad because they're currently maze.freetile, I want to remove the first bit
+     */
     public void setup() {
         imageMap = new HashMap<>();
 
