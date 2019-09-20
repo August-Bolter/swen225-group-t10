@@ -12,7 +12,7 @@ public class MainFrame extends JFrame {
         this.game = game;
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setLayout(new FlowLayout());
+        setLayout(new BorderLayout());
         addBoardPanel();
 
         repaint();
@@ -20,7 +20,7 @@ public class MainFrame extends JFrame {
 
     public void addBoardPanel(){
         BoardPanel boardpanel = new BoardPanel(this, game.getLevelBoard().getBoard());
-        add(boardpanel, FlowLayout.CENTER);
+        add(boardpanel, BorderLayout.NORTH);
 
         repaint();
     }
