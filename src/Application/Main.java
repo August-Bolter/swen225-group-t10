@@ -6,24 +6,29 @@ import Render.MainFrame;
 
 import java.util.*;
 
-public class Main {
+public class Main extends java.util.TimerTask {
     private Timer timeRemaining = new Timer(); //Level timer
+    private Timer gameloop;
+    private boolean gameover = false;
     private List<Chip> allChips = new ArrayList<Chip>();
     private int originalNumberOfPokeballs;
     private Player player;
     private LevelBoard levelBoard;
-    private boolean gameover = false;
     private MainFrame frame;
 
 
     private void setup() {
+        gameloop = new Timer();
+        gameloop.schedule();
         timer(100);
         createPokeballs(); //Probably don't need this
         levelBoard = LoadJSON.loadLevelFromJSON(1);
-
         frame = new MainFrame(this);
     }
 
+    /**
+     * Method to initalise pokeballs in their correct positions
+     */
     private void createPokeballs() {
         allChips.add(new Chip(12, 10));
         allChips.add(new Chip(18, 10));
@@ -52,7 +57,7 @@ public class Main {
         return false;
     }
 
-    private void run(){
+    public void run(){
         while (!gameover){
             //Render.updateGUI, and other stuff we need to update
         }
