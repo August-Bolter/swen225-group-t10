@@ -7,10 +7,11 @@ import java.util.List;
  */
 public class Player {
     private Tile currentPos;
-    private List<Item> inventory;
+    private Item[] inventory;
 
     public Player(Tile startingPos){
         this.currentPos = startingPos;
+        this.inventory = new Item[8];
     }
 
     //Start of getter and setter methods
@@ -35,7 +36,12 @@ public class Player {
      * @param newItem
      */
     public void addInventory(Item newItem){
-        inventory.add(newItem);
+        for (int i = 0; i < inventory.length; i++)
+            if (inventory[i] == null)
+                inventory[i] = newItem;
+
+
+        throw new InventoryException("The player's inventory is full");
     }
 
 }
