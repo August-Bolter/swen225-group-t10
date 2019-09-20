@@ -44,4 +44,9 @@ public abstract class Item {
     public int getRow(){
         return row;
     }
+
+    /**
+     * Method to interact with the Item
+     */
+    public abstract void interact();
 }

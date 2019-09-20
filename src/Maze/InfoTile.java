@@ -25,4 +25,9 @@ public class InfoTile extends Tile {
     public boolean isWalkable() {
         return true;
     }
+
+    @Override
+    public void interact() {
+        //TODO: need to implement info tile being able to interact with Player
+    }
 }

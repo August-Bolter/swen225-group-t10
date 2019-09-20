@@ -23,6 +23,11 @@ public class GateTile extends Tile {
         return isPassable;
     }
 
+    @Override
+    public void interact() {
+        //TODO: need to implement gate being able to interact with Player
+    }
+
     /** Returns if the player can pass through the gate
      * @return a boolean representing if the player can pass through the gate
      * */

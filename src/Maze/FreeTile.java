@@ -21,4 +21,9 @@ public class FreeTile extends Tile {
     public boolean isWalkable() {
         return true;
     }
+
+    @Override
+    public void interact() {
+        //Leave this unimplemented
+    }
 }

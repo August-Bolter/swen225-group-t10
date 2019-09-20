@@ -23,4 +23,9 @@ public class WallTile extends Tile {
         return false;
     }
 
+    @Override
+    public void interact() {
+        //Leave this unimplemented
+    }
+
 }

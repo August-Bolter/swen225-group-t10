@@ -17,4 +17,9 @@ public class ExitTile extends Tile {
     public boolean isWalkable() {
         return true;
     }
+
+    @Override
+    public void interact() {
+        //TODO: need to implement exit tile being able to interact with Player
+    }
 }
