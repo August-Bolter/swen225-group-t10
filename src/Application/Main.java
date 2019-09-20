@@ -2,6 +2,7 @@ package Application;
 
 import Maze.*;
 import Persistence.LoadJSON;
+import Render.MainFrame;
 
 import java.util.*;
 
@@ -12,13 +13,15 @@ public class Main {
     private Player player;
     private LevelBoard levelBoard;
     private boolean gameover = false;
-
+    private MainFrame frame;
 
 
     private void setup() {
         timer(100);
         createPokeballs(); //Probably don't need this
         levelBoard = LoadJSON.loadLevelFromJSON(1);
+
+        frame = new MainFrame(this);
     }
 
     private void createPokeballs() {
@@ -70,6 +73,13 @@ public class Main {
         }, seconds*1000);
     }
 
+    public MainFrame getFrame() {
+        return frame;
+    }
+
+    public LevelBoard getLevelBoard() {
+        return levelBoard;
+    }
 
     public static void main(String[] args) {
         System.out.println("espeon is the best Eevee evo");
