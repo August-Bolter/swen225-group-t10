@@ -2,7 +2,6 @@ package Application;
 
 import Maze.*;
 import Persistence.LoadJSON;
-import Render.MainFrame;
 
 import java.util.*;
 
@@ -12,16 +11,14 @@ public class Main {
     private int originalNumberOfPokeballs;
     private Player player;
     private LevelBoard levelBoard;
-    private MainFrame frame;
+    private boolean gameover = false;
 
 
 
     private void setup() {
-        timer(5);
+        timer(100);
         createPokeballs(); //Probably don't need this
         levelBoard = LoadJSON.loadLevelFromJSON(1);
-
-        frame = new MainFrame(this); // Setup the gui and make it visible
     }
 
     private void createPokeballs() {
@@ -52,6 +49,12 @@ public class Main {
         return false;
     }
 
+    private void run(){
+        while (!gameover){
+            //Render.updateGUI, and other stuff we need to update
+        }
+    }
+
     /**
      * A timer method. Will print game over after a certain amount of time.
      * Used to measure how long the player is taking for each level.
@@ -62,13 +65,11 @@ public class Main {
             @Override
             public void run() {
                 System.out.println("-------game over---------");
+                gameover = true;
             }
         }, seconds*1000);
     }
 
-    public LevelBoard getLevelBoard(){
-        return levelBoard;
-    }
 
     public static void main(String[] args) {
         System.out.println("espeon is the best Eevee evo");
