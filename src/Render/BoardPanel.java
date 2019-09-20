@@ -1,12 +1,19 @@
 package Render;
 
+import Maze.Tile;
+
 import javax.swing.*;
 
 public class BoardPanel extends JPanel {
-    private MainFrame frame;
+    private Tile[][] board;
+    private JPanel[][] boardJPanels;
 
-    public BoardPanel(MainFrame frame) {
-        this.frame = frame;
+    public BoardPanel(Tile[][] board) {
+        this.board = board;
+    }
+
+    public void setup() {
+
     }
 
     @Override

@@ -59,6 +59,9 @@ public class Main {
         }, seconds*1000);
     }
 
+    public LevelBoard getLevelBoard(){
+        return levelBoard;
+    }
 
     public static void main(String[] args) {
         System.out.println("espeon is the best Eevee evo");
