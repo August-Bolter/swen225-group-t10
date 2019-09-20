@@ -11,8 +11,6 @@ public class ExitTile extends Tile {
         super(row, col);
     }
 
-    //unique setter method to this class
-
     @Override
     public boolean isWalkable() {
         return true;

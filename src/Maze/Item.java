@@ -44,4 +44,16 @@ public abstract class Item {
     public int getRow(){
         return row;
     }
+
+    /**
+     * Sets the item's row number
+     * @param rowNum
+     */
+    public void setRow(int rowNum){ this.row = rowNum;}
+
+    /**
+     * Sets the item's col number
+     * @param colNum
+     */
+    public void setCol(int colNum){this.col = colNum;}
 }
