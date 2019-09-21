@@ -19,7 +19,7 @@ public class Main extends java.util.TimerTask {
 
     private void setup() {
         gameloop = new Timer();
-        gameloop.schedule();
+        //gameloop.schedule();
         timer(100);
         createPokeballs(); //Probably don't need this
         levelBoard = LoadJSON.loadLevelFromJSON(1);
