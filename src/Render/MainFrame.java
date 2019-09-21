@@ -8,6 +8,7 @@ import java.awt.*;
 public class MainFrame extends JFrame {
     private Main game;
     private JPanel outerpanel;
+    private BoardPanel boardpanel;
 
     public MainFrame(Main game){
         super("Chip's Challenge");
@@ -21,16 +22,16 @@ public class MainFrame extends JFrame {
         setContentPane(outerpanel);
         addBoardPanel();
 
-        repaint();
-    }
-
-    public void addBoardPanel(){
-        BoardPanel boardpanel = new BoardPanel(game.getLevelBoard().getBoard());
-        outerpanel.add(boardpanel, BorderLayout.NORTH);
-
+//        Tile t = boardpanel.board[0][0];
+//        outerpanel.add(new JLabel(new ImageIcon(t.getImage())));
         pack();
         setVisible(true);
         repaint();
+    }
+
+    private void addBoardPanel(){
+        boardpanel = new BoardPanel(game.getLevelBoard().getBoard());
+        outerpanel.add(boardpanel);
     }
 
 //    /**

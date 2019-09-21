@@ -15,8 +15,9 @@ public class TilePanel extends JPanel {
         this.tile = tile;
     }
 
+
     public void paint(Graphics g) {
-        super.paintComponent(g);
+        super.paint(g);
 
         image = new JLabel(new ImageIcon(tile.getImage()));
         add(image);

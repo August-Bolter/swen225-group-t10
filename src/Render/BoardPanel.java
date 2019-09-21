@@ -6,8 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class BoardPanel extends JPanel {
-    private Tile[][] board;
-    private TilePanel[][] boardLabels;
+    public Tile[][] board;
+    public TilePanel[][] boardLabels;
 
     public BoardPanel(Tile[][] board) {
         setLayout(new GridLayout(board.length, board[0].length));
