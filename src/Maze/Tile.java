@@ -9,13 +9,13 @@ import java.util.List;
 /** An abstract class representing a tile in the game. This abstract class is extended by concrete classes like DoorTile,
  * ExitTile etc. The board is made up of tiles (with items on some of the tiles). */
 public abstract class Tile {
-
+    public static final String PATH = "Resources/floor/";
     private int row;
     private int col;
     private List<Item> items;
     protected Main main;
 
-    /** Creates a tile
+    /** Creates a tile.
      * @param row The row (in regards to the board) of the tile
      * @param col The column (in regards to the board) of the tile */
     public Tile(int row, int col){
@@ -42,7 +42,7 @@ public abstract class Tile {
     }
 
     /**
-     * Adds a new item to this tile
+     * Adds a new item to this tile.
      * @param item the item to add
      */
     public void addItem(Item item) {
@@ -50,7 +50,7 @@ public abstract class Tile {
     }
 
     /**
-     * Removes a new item from this tile
+     * Removes a new item from this tile.
      * @param item the item to removes
      */
     public void removeItem(Item item) {
@@ -80,7 +80,7 @@ public abstract class Tile {
     public abstract boolean isWalkable();
 
     /**
-     * Method to interact with the tile
+     * Method to interact with the tile.
      */
     public abstract void interact();
 

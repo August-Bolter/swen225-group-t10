@@ -1,7 +1,6 @@
 package Render;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class InfoPanel extends JPanel {
 
@@ -16,19 +15,6 @@ public class InfoPanel extends JPanel {
     public InfoPanel() {
 
     }
-
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-
-
-    }
-
-    //Maybe could implement the info panel with something like this
-    //public static void showHints(String info) {
-    //    Create JPanel
-    //    With JLabel(info)
-    // }
-
 
     @Override
     public void repaint() {
