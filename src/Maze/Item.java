@@ -1,5 +1,7 @@
 package Maze;
 
+import Application.Main;
+
 /**
  * Abstract class for Item - this will be implemented by all inventory items (keys, chips). Items are on top of tiles.
  */
@@ -7,6 +9,7 @@ package Maze;
 public abstract class Item {
     private int row;
     private int col;
+    protected Main main;
 
     /** Creates an item.
      * @param row The row (in regards to the board) of the item
@@ -63,4 +66,7 @@ public abstract class Item {
     public abstract void interact();
 
 
+    public void setMain(Main main) {
+        this.main = main;
+    }
 }

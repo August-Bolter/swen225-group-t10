@@ -48,6 +48,8 @@ public class DoorTile extends Tile {
     @Override
     public void interact() {
         //TODO: need to implement door being able to interact with Player
+        main.getLevelBoard().replaceWithEmptyTile(this);
+
     }
 
     /** Returns whether the door is locked.
