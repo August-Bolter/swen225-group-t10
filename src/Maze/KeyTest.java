@@ -18,8 +18,24 @@ public class KeyTest {
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 
+    /**
+     * Tests when the door and key are matching
+     */
     @org.junit.Test
     public void isMatchingColour() {
+        Key k = new Key(0, 0, "Blue");
+        DoorTile d = new DoorTile(2, 2, "Blue");
+        assertTrue(k.isMatchingColour(d));
+    }
+
+    /**
+     * Tests when the door and key are not matching
+     */
+    @org.junit.Test
+    public void isNotMatchingColour() {
+        Key k = new Key(0, 0, "Blue");
+        DoorTile d = new DoorTile(2, 2, "Green");
+        assertFalse(k.isMatchingColour(d));
     }
 
     @org.junit.Test

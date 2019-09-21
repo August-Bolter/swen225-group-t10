@@ -35,7 +35,7 @@ public class Player {
      * Adds a new item into the inventory (list)
      * @param newItem
      */
-    public void addInventory(Item newItem){
+    public void addInventory(Item newItem) throws InventoryException {
         for (int i = 0; i < inventory.length; i++) {
             if (inventory[i] == null)
                 inventory[i] = newItem;
