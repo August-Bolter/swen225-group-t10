@@ -85,6 +85,18 @@ public abstract class Item {
      */
     public abstract void interact();
 
+    /**
+     * Check's if an object equals an Item
+     * @return Represents if the two objects are equal
+     * */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o.getClass() != this.getClass()) return false;
+        Item i = (Item) o;
+        if (i.getRow() != this.getRow() || i.getCol() != this.getCol()) return false;
+        return true;
+    }
 
     public void setMain(Main main) {
         this.main = main;

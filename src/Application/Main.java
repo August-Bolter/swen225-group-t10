@@ -124,5 +124,7 @@ public class Main {
         }
     }
 
-
+    public Player getPlayer() {
+        return player;
+    }
 }

@@ -43,4 +43,8 @@ public class Player {
         throw new InventoryException("The player's inventory is full");
     }
 
+    public Item[] getInventory() {
+        return inventory;
+    }
+
 }
