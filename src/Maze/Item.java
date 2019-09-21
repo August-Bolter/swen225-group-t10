@@ -61,6 +61,15 @@ public abstract class Item {
     public void setCol(int colNum){this.col = colNum;}
 
     /**
+     * Get's the tile associated with the item
+     * @return The associated tile
+     * */
+    public Tile getTile() {
+        Tile[][] tiles = main.getLevelBoard().getBoard();
+        return tiles[row][col];
+    }
+
+    /**
      * Method to interact with the tile
      */
     public abstract void interact();
