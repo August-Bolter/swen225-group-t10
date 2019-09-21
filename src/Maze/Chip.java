@@ -28,6 +28,14 @@ public class Chip extends Item {
                 tile.removeItem(i);
             }
         }
+
+        //Add chip to players inventory
+        try {
+            main.getPlayer().addInventory(this);
+        }
+        catch(InventoryException e) {
+            e.printStackTrace();
+        }
     }
 
 }
