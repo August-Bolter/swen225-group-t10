@@ -1,13 +1,15 @@
 package Maze;
 
-import Application.Main;
-
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 /** Represents a door in the game. Doors can be unlocked using a key with the same color as the door. By unlocking the door
  * the player can access other parts of the map. */
 
 public class DoorTile extends Tile {
+    private static final String DOOR = "Door";
     private String color; //The color of the door. The color can be blue, green, red or yellow
     private boolean isWalkable; //Whether the door is locked
 
@@ -75,6 +77,19 @@ public class DoorTile extends Tile {
                     isWalkable = true;
                 }
             }
+        }
+    }
+
+    /**
+     * Paints the item in the tile on top of each tile.
+     */
+    public Image getImage() {
+        String path = PATH+color+DOOR + ".png";
+
+        try {
+            return ImageIO.read(new File(path));
+        } catch (IOException e) {
+            throw new Error(path+"\nThe image failed to load:" + e);
         }
     }
 

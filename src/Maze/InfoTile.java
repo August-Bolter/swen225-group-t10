@@ -29,7 +29,5 @@ public class InfoTile extends Tile {
     @Override
     public void interact() {
         //TODO: need to implement info tile being able to interact with Player
-        //Should call a method in Render which shows a JPanel containing the relevant info.
-        //Something like InfoPanel.showHint(getInfo());
     }
 }

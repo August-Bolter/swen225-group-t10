@@ -30,6 +30,10 @@ public class GateTile extends Tile {
             setPassable(true);
         }
 
+        if (isPassable){
+            main.getLevelBoard().replaceWithEmptyTile(this);
+        }
+
     }
 
     /** Sets the 'passability' of the gate (i.e. can a player pass through it or not).

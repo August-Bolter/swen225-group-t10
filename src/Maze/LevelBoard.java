@@ -31,7 +31,7 @@ public class LevelBoard {
             }
         }
 
-        System.out.println(board[3][6].getItems().get(0).getClass() + ", " + board[3][6].getItems().get(0).getRow());
+//        System.out.println(board[3][6].getItems().get(0).getClass() + ", " + board[3][6].getItems().get(0).getRow());
     }
 
 
