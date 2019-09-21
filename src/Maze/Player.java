@@ -6,11 +6,29 @@ package Maze;
 public class Player extends Item {
     private Tile currentPos;
     private Item[] inventory;
+    private enum Direction {UP, DOWN, RIGHT, LEFT};
+    private Direction direction;
 
     public Player(int row, int col) {
         super(row, col);
         //this.currentPos = startingPos;
         this.inventory = new Item[8];
+        direction = Direction.DOWN;
+    }
+
+    public void setDirection(LevelBoard.Direction d) {
+        if (d == LevelBoard.Direction.LEFT) {
+            direction = Direction.LEFT;
+        }
+        else if (d == LevelBoard.Direction.RIGHT) {
+            direction = Direction.RIGHT;
+        }
+        else if (d == LevelBoard.Direction.UP) {
+            direction = Direction.UP;
+        }
+        else if (d == LevelBoard.Direction.DOWN) {
+            direction = Direction.DOWN;
+        }
     }
 
     //Start of getter and setter methods
