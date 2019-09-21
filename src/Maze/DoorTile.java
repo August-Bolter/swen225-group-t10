@@ -42,6 +42,11 @@ public class DoorTile extends Tile {
         //TODO: need to implement door being able to interact with Player
     }
 
+    @Override
+    public void paint(Graphics g) {
+        // TODO
+    }
+
     /** Returns whether the door is locked.
      * @return a boolean representing if the door is locked
      * */

@@ -1,5 +1,6 @@
 package Maze;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -76,5 +77,11 @@ public abstract class Tile {
      * Method to interact with the tile
      */
     public abstract void interact();
+
+    /**
+     * Paints the item in the tile on top of each tile
+     * @param g should be the JPanel you're painting on top of
+     */
+    public abstract void paint(Graphics g);
 
 }

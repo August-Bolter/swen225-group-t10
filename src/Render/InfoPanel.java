@@ -1,7 +1,6 @@
 package Render;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class InfoPanel extends JPanel {
 
@@ -16,13 +15,6 @@ public class InfoPanel extends JPanel {
     public InfoPanel() {
 
     }
-
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-
-
-    }
-
 
     @Override
     public void repaint() {

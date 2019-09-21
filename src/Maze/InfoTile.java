@@ -1,5 +1,7 @@
 package Maze;
 
+import java.awt.*;
+
 /** Represents an info tile. An info tile is similar to a free tile but when a player steps onto it helpful information (help
  * text) will be displayed. */
 public class InfoTile extends Tile {
@@ -29,5 +31,10 @@ public class InfoTile extends Tile {
     @Override
     public void interact() {
         //TODO: need to implement info tile being able to interact with Player
+    }
+
+    @Override
+    public void paint(Graphics g) {
+        //TODO
     }
 }

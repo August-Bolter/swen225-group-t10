@@ -1,5 +1,7 @@
 package Maze;
 
+import java.awt.*;
+
 /** Represents an exit tile in the game. When a player steps on an exit tile the level ends (as they have completed the level)
  *  and the new level is loaded in. */
 public class ExitTile extends Tile {
@@ -19,5 +21,10 @@ public class ExitTile extends Tile {
     @Override
     public void interact() {
         //TODO: need to implement exit tile being able to interact with Player
+    }
+
+    @Override
+    public void paint(Graphics g) {
+        //TODO
     }
 }
