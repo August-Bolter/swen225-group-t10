@@ -11,6 +11,7 @@ public class TilePanel extends JPanel {
 //    private static final int SIZE = 32;
 
     public TilePanel(Tile tile) {
+//        setPreferredSize(new Dimension());
         setLayout(new FlowLayout(FlowLayout.CENTER));
         this.tile = tile;
     }
@@ -18,6 +19,7 @@ public class TilePanel extends JPanel {
 
     public void paint(Graphics g) {
         super.paint(g);
+        removeAll();
 
         image = new JLabel(new ImageIcon(tile.getImage()));
         add(image);

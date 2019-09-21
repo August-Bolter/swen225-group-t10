@@ -46,8 +46,9 @@ public class BoardPanel extends JPanel {
      * Each image will be stored in a map with the class name as the key
      */
     public void redraw() {
-        for (int row = 0; row < DISPLAY_SIZE; row++) {
-            for (int col = 0; col < DISPLAY_SIZE; col++) {
+//        removeAll();
+        for (int row = 16; row < 16+DISPLAY_SIZE; row++) {
+            for (int col = 16; col < 16+DISPLAY_SIZE; col++) {
                 boardLabels[row][col] = new TilePanel(board[row][col]); // Makes the label, gives it the image for the tile
 //                boardLabels[row][col].setBackground(Color.BLUE);
 //                Graphics g = boardLabels[row][col].getGraphics();

@@ -1,7 +1,6 @@
 package Maze;
 
-import Application.Main;
-
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
@@ -78,6 +77,19 @@ public class DoorTile extends Tile {
                     isWalkable = true;
                 }
             }
+        }
+    }
+
+    /**
+     * Paints the item in the tile on top of each tile.
+     */
+    public Image getImage() {
+        String path = PATH+color+DOOR + ".png";
+
+        try {
+            return ImageIO.read(new File(path));
+        } catch (IOException e) {
+            throw new Error(path+"\nThe image failed to load:" + e);
         }
     }
 
