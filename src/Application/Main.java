@@ -22,7 +22,11 @@ public class Main {
 
     private void setup() {
         gameloop = new Timer();
+
+        //gameloop.schedule();
+
         gameloop.schedule(new GameLoop(), 0, 1000 / 60); //New timer at 60fps, the timing mechanism
+
         timer(100);
         createPokeballs(); //Probably don't need this
         levelBoard = LoadJSON.loadLevelFromJSON(1);
@@ -56,8 +60,10 @@ public class Main {
     private boolean doMove(LevelBoard.Direction direction){
         Tile currentPos = player.getCurrentPos();
         Tile desiredTile = levelBoard.getTileAtPosition(currentPos, direction);
-        if (desiredTile != null && desiredTile.isWalkable()) {
-            player.setCurrentPos(desiredTile);
+        if (desiredTile != null) {
+            if (desiredTile.isWalkable()) {
+                player.setCurrentPos(desiredTile);
+            }
             desiredTile.interact();
             for (Item item : desiredTile.getItems()){
                 item.interact();
