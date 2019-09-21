@@ -1,7 +1,5 @@
 package Maze;
 
-import java.util.List;
-
 /**
  * Player class: This is the main player which the user moves to play the game.
  */
@@ -41,7 +39,7 @@ public class Player {
                 inventory[i] = newItem;
 
 
-        throw new InventoryException("The player's inventory is full");
+//        throw new InventoryException("The player's inventory is full");
     }
 
 }

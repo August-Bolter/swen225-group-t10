@@ -19,7 +19,7 @@ public class MainFrame extends JFrame {
     }
 
     public void addBoardPanel(){
-        BoardPanel boardpanel = new BoardPanel(this, game.getLevelBoard().getBoard());
+        BoardPanel boardpanel = new BoardPanel(game.getLevelBoard().getBoard());
         add(boardpanel, BorderLayout.NORTH);
 
         repaint();

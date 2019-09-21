@@ -1,7 +1,5 @@
 package Maze;
 
-import java.awt.*;
-
 /** Represents a door in the game. Doors can be unlocked using a key with the same color as the door. By unlocking the door
  * the player can access other parts of the map. */
 
@@ -40,11 +38,6 @@ public class DoorTile extends Tile {
     @Override
     public void interact() {
         //TODO: need to implement door being able to interact with Player
-    }
-
-    @Override
-    public void paint(Graphics g) {
-        // TODO
     }
 
     /** Returns whether the door is locked.

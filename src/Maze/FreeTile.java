@@ -1,7 +1,5 @@
 package Maze;
 
-import java.awt.*;
-
 /** Represents a free space (free tile) in the game. All free tiles can be moved onto by the player. Objects can also be pushed
  * onto/off free tiles. They may hold items as well. */
 public class FreeTile extends Tile {
@@ -28,10 +26,5 @@ public class FreeTile extends Tile {
     @Override
     public void interact() {
         //Leave this unimplemented
-    }
-
-    @Override
-    public void paint(Graphics g) {
-        //TODO
     }
 }

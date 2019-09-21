@@ -1,6 +1,9 @@
 package Maze;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -8,12 +11,12 @@ import java.util.List;
 /** An abstract class representing a tile in the game. This abstract class is extended by concrete classes like DoorTile,
  * ExitTile etc. The board is made up of tiles (with items on some of the tiles). */
 public abstract class Tile {
-
+    private static final String PATH = "Resources/floor/";
     private int row;
     private int col;
     private List<Item> items;
 
-    /** Creates a tile
+    /** Creates a tile.
      * @param row The row (in regards to the board) of the tile
      * @param col The column (in regards to the board) of the tile */
     public Tile(int row, int col){
@@ -40,7 +43,7 @@ public abstract class Tile {
     }
 
     /**
-     * Adds a new item to this tile
+     * Adds a new item to this tile.
      * @param item the item to add
      */
     public void addItem(Item item) {
@@ -48,7 +51,7 @@ public abstract class Tile {
     }
 
     /**
-     * Removes a new item from this tile
+     * Removes a new item from this tile.
      * @param item the item to removes
      */
     public void removeItem(Item item) {
@@ -74,14 +77,20 @@ public abstract class Tile {
     public abstract boolean isWalkable();
 
     /**
-     * Method to interact with the tile
+     * Method to interact with the tile.
      */
     public abstract void interact();
 
     /**
-     * Paints the item in the tile on top of each tile
-     * @param g should be the JPanel you're painting on top of
+     * Paints the item in the tile on top of each tile.
      */
-    public abstract void paint(Graphics g);
+    public Image getImage() {
+        String tileName = getClass().getName().substring(5);
+        try {
+            return ImageIO.read(new File(PATH+tileName));
+        } catch (IOException e) {
+            throw new Error("The image failed to load:" + e);
+        }
+    }
 
 }
