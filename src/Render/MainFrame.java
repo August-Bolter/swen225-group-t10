@@ -22,24 +22,18 @@ public class MainFrame extends JFrame {
         BoardPanel boardpanel = new BoardPanel(game.getLevelBoard().getBoard());
         add(boardpanel, BorderLayout.NORTH);
 
+        pack();
+        setVisible(true);
         repaint();
     }
 
-    /**
-     * It will go into persistence and by getting the name of the tile.
-     * This will get passed to the board which will store it in a map for fast recovery
-     * @param name name of the tile you want an image for
-     * @return Image of the tile that you need for the board
-     */
-    public Image getImage(String name) {
-        return null; // FIXME
-    }
-
-    @Override
-    public void repaint() {
-        super.repaint();
-
-        pack();
-        setVisible(true);
-    }
+//    /**
+//     * It will go into persistence and by getting the name of the tile.
+//     * This will get passed to the board which will store it in a map for fast recovery
+//     * @param name name of the tile you want an image for
+//     * @return Image of the tile that you need for the board
+//     */
+//    public Image getImage(String name) {
+//        return null; // FIXME
+//    }
 }

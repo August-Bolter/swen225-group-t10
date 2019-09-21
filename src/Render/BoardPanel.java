@@ -48,14 +48,16 @@ public class BoardPanel extends JPanel {
         for (int row = 0; row < board.length; row++) {
             for (int col = 0; col < board[0].length; col++) {
                 boardLabels[row][col] = new TilePanel(board[row][col]); // Makes the label, gives it the image for the tile
-                Graphics g = boardLabels[row][col].getGraphics(); // putting it's own graphics in
-                boardLabels[row][col].paintComponents(g); // new ImageIcon(tileImage)
+//                boardLabels[row][col].setBackground(Color.BLUE);
+//                Graphics g = boardLabels[row][col].getGraphics();
+//                if (g == null) { throw new RuntimeException("you know why..."); }
+//                boardLabels[row][col].paint(g);
                 add(boardLabels[row][col]);
             }
 
         }
 
-
+        repaint();
     }
 
     @Override
