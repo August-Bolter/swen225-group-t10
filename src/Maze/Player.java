@@ -5,12 +5,13 @@ import java.util.List;
 /**
  * Player class: This is the main player which the user moves to play the game.
  */
-public class Player {
+public class Player extends Item {
     private Tile currentPos;
     private Item[] inventory;
 
-    public Player(Tile startingPos){
-        this.currentPos = startingPos;
+    public Player(int row, int col) {
+        super(row, col);
+        //this.currentPos = startingPos;
         this.inventory = new Item[8];
     }
 
@@ -55,4 +56,8 @@ public class Player {
         return inventory;
     }
 
+    @Override
+    public void interact() {
+
+    }
 }
