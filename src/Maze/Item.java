@@ -110,11 +110,7 @@ public abstract class Item {
     public Image getImage() {
         String itemName = getClass().getName().substring(5);
         String path = PATH;
-
         try {
-            if (this instanceof Player) {
-                path = "resource/player/";
-            }
             return ImageIO.read(new File(path+itemName+".png"));
         } catch (IOException e) {
             throw new Error(path+itemName+"\nThe image failed to load:" + e);

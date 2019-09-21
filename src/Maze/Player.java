@@ -1,5 +1,10 @@
 package Maze;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+
 /**
  * Player class: This is the main player which the user moves to play the game.
  */
@@ -75,5 +80,15 @@ public class Player extends Item {
     @Override
     public void interact() {
 
+    }
+
+    public Image getImage() {
+        String path = "Resources/player/"+direction.toString().toLowerCase()+".png";
+
+        try {
+            return ImageIO.read(new File(path));
+        } catch (IOException e) {
+            throw new Error(path+"\nThe file failed to load: " + e);
+        }
     }
 }

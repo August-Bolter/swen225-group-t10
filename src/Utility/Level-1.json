@@ -485,13 +485,10 @@
 			"col" : 12
 		},
 		{
-			"type" : "FreeTile",
+			"type" : "DoorTile",
 			"row" : 17,
 			"col" : 13,
-			"item" : {
-				"type" : "Key",
-				"extra" : "yellow"
-			}
+			"extra" : "yellow"
 		},
 		{
 			"type" : "WallTile",
@@ -499,13 +496,10 @@
 			"col" : 14
 		},
 		{
-			"type" : "FreeTile",
+			"type" : "DoorTile",
 			"row" : 17,
 			"col" : 15,
-			"item" : {
-				"type" : "Key",
-				"extra" : "yellow"
-			}
+			"extra" : "yellow"
 		},
 		{
 			"type" : "WallTile",

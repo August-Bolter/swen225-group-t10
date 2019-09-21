@@ -24,7 +24,10 @@ public class TilePanel extends JPanel {
         image = new JLabel(new ImageIcon(tile.getImage()));
         add(image);
         setVisible(true);
-//        g.drawImage(tile.getImage(), SIZE, SIZE, this);
+        if (tile.hasItem())
+            g.drawImage(tile.getItems().get(0).getImage(), 0, 0, this);
 
     }
+
+
 }

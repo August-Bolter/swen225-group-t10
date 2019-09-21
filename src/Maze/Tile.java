@@ -97,6 +97,10 @@ public abstract class Tile {
      */
     public abstract void interact();
 
+    public boolean hasItem() {
+        return !items.isEmpty();
+    }
+
     public void setMain(Main main) {
         this.main = main;
     }
