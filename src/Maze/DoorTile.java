@@ -67,7 +67,6 @@ public class DoorTile extends Tile {
                 Key k = (Key) i;
                 if (k.getColor() == color) {
                     isWalkable = true;
-
                 }
             }
         }

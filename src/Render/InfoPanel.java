@@ -23,6 +23,12 @@ public class InfoPanel extends JPanel {
 
     }
 
+    //Maybe could implement the info panel with something like this
+    //public static void showHints(String info) {
+    //    Create JPanel
+    //    With JLabel(info)
+    // }
+
 
     @Override
     public void repaint() {
