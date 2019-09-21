@@ -29,6 +29,14 @@ public class DoorTile extends Tile {
         isLocked = locked;
     }
 
+    /**
+     * Gets the colour of the door
+     * @return colour of the door
+     */
+    public String getColor(){
+        return color;
+    }
+
 
     /**
      * Returns whether a door is unlocked and therefore it can be walked through

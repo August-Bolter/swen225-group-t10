@@ -36,11 +36,10 @@ public class Player {
      * @param newItem
      */
     public void addInventory(Item newItem) throws InventoryException {
-        for (int i = 0; i < inventory.length; i++)
+        for (int i = 0; i < inventory.length; i++) {
             if (inventory[i] == null)
                 inventory[i] = newItem;
-
-
+        }
         throw new InventoryException("The player's inventory is full");
     }
 

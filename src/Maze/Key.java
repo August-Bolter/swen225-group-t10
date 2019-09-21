@@ -19,10 +19,10 @@ public class Key extends Item {
      * Checks if the door and key is a macthign colour
      * @return true if matches, false if doesn't match
      */
-    public boolean isMatchingColour(String colour){
-        if(this.color.equals(colour)){
-            return true;
-        }
+    public boolean isMatchingColour(DoorTile d){
+            if (d.getColor().equals(color)) {
+                return true;
+            }
         return false;
     }
 
