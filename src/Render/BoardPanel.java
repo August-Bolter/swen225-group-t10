@@ -59,9 +59,4 @@ public class BoardPanel extends JPanel {
 
         repaint();
     }
-
-    @Override
-    public void repaint() {
-        super.repaint();
-    }
 }

@@ -7,12 +7,18 @@ import java.awt.*;
 
 public class MainFrame extends JFrame {
     private Main game;
+    private JPanel outerpanel;
 
     public MainFrame(Main game){
+        super("Chip's Challenge");
         this.game = game;
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
+        outerpanel = new JPanel();
+        outerpanel.setLayout(new GridLayout(1,1));
+
+        setContentPane(outerpanel);
         addBoardPanel();
 
         repaint();
@@ -20,7 +26,7 @@ public class MainFrame extends JFrame {
 
     public void addBoardPanel(){
         BoardPanel boardpanel = new BoardPanel(game.getLevelBoard().getBoard());
-        add(boardpanel, BorderLayout.NORTH);
+        outerpanel.add(boardpanel, BorderLayout.NORTH);
 
         pack();
         setVisible(true);
