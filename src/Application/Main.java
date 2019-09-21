@@ -6,12 +6,15 @@ import Render.MainFrame;
 
 import java.util.*;
 
-public class Main extends java.util.TimerTask {
+public class Main {
     private Timer timeRemaining = new Timer(); //Level timer
-    private Timer gameloop;
-    private boolean gameover = false;
+    private Timer gameloop; //Timer object to ensure the game updates at a constant rate, regardless of the computer the game is running on
+    private boolean gameover = false; //boolean the checks if the player has lost 3 levels
+
     private List<Chip> allChips = new ArrayList<Chip>();
-    private int originalNumberOfPokeballs;
+    private int chipsRemaining;
+
+
     private Player player;
     private LevelBoard levelBoard;
     private MainFrame frame;
@@ -19,15 +22,21 @@ public class Main extends java.util.TimerTask {
 
     private void setup() {
         gameloop = new Timer();
-        gameloop.schedule();
+
+        //gameloop.schedule();
+
+        gameloop.schedule(new GameLoop(), 0, 1000 / 60); //New timer at 60fps, the timing mechanism
+
         timer(100);
         createPokeballs(); //Probably don't need this
         levelBoard = LoadJSON.loadLevelFromJSON(1);
+        levelBoard.setMain(this);
         frame = new MainFrame(this);
+        chipsRemaining = levelBoard.getTotalChips();
     }
 
     /**
-     * Method to initalise pokeballs in their correct positions
+     * Method to initalise pokeballs in their correct positions.
      */
     private void createPokeballs() {
         allChips.add(new Chip(12, 10));
@@ -51,21 +60,17 @@ public class Main extends java.util.TimerTask {
     private boolean doMove(LevelBoard.Direction direction){
         Tile currentPos = player.getCurrentPos();
         Tile desiredTile = levelBoard.getTileAtPosition(currentPos, direction);
-        if (desiredTile != null && desiredTile.isWalkable()) {
-            player.setCurrentPos(desiredTile);
+        if (desiredTile != null) {
             desiredTile.interact();
             for (Item item : desiredTile.getItems()){
                 item.interact();
             }
+            if (desiredTile.isWalkable()) {
+                player.setCurrentPos(desiredTile);
+            }
             return true;
         }
         return false;
-    }
-
-    public void run(){
-        while (!gameover){
-            //Render.updateGUI, and other stuff we need to update
-        }
     }
 
     /**
@@ -91,11 +96,35 @@ public class Main extends java.util.TimerTask {
         return levelBoard;
     }
 
+    public void decrementChipsRemaining(){
+        if (chipsRemaining > 0) {
+            chipsRemaining--;
+        }
+    }
+
+    public boolean allChipsCollected(){
+        return chipsRemaining == 0;
+    }
+
     public static void main(String[] args) {
         System.out.println("espeon is the best Eevee evo");
         Main game = new Main();
         game.setup();
     }
 
+    private class GameLoop extends java.util.TimerTask{
 
+        @Override
+        public void run() {
+            //gameupdates
+            //render
+            if (!gameover){
+                gameloop.cancel();
+            }
+        }
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
 }

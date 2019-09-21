@@ -1,9 +1,7 @@
 package Maze;
 
 
-import Persistence.LoadJSON;
-
-import java.awt.*;
+import Application.Main;
 
 public class LevelBoard {
     private static final int SIZE = 32;
@@ -11,8 +9,12 @@ public class LevelBoard {
     //these used to public and I changed them to private and used getter and setter methods  - is this okay?
     private final String title;
 
+
+
     public enum Direction {LEFT, RIGHT, UP, DOWN}
-    private final int totalChips, timeLimit;
+    private int totalChips, timeLimit;
+
+    private Main main;
 
     private Tile[][] board;
 
@@ -24,8 +26,9 @@ public class LevelBoard {
 
         // TESTING
         for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[i].length; j++)
+            for (int j = 0; j < board[i].length; j++) {
                 System.out.println("[" + i + "," + j + "], " + board[i][j].getClass().toString() + " with " + board[i][j].getItems().size() + " items");
+            }
         }
 
         System.out.println(board[3][6].getItems().get(0).getClass() + ", " + board[3][6].getItems().get(0).getRow());
@@ -69,6 +72,28 @@ public class LevelBoard {
         }
     }
 
+    public void linkTilesAndItemsToMain(){
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                board[i][j].setMain(main);
+                for (Item item : board[i][j].getItems()){
+                    item.setMain(main);
+                }
+            }
+        }
+    }
+
+    public void replaceWithEmptyTile(Tile tile){
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                if (board[i][j].equals(tile)){
+                    board[i][j] = new FreeTile(tile.getRow(), tile.getCol());
+                }
+            }
+        }
+    }
+
+
 
     //getter and setter methods
 
@@ -95,5 +120,11 @@ public class LevelBoard {
     public String getTitle() {
         return title;
     }
+
+    public void setMain(Main main) {
+        this.main = main;
+        linkTilesAndItemsToMain();
+    }
+
 
 }

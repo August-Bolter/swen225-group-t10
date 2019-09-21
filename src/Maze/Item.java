@@ -1,5 +1,7 @@
 package Maze;
 
+import Application.Main;
+
 /**
  * Abstract class for Item - this will be implemented by all inventory items (keys, chips). Items are on top of tiles.
  */
@@ -7,6 +9,8 @@ package Maze;
 public abstract class Item {
     private int row;
     private int col;
+    protected Main main;
+    private boolean inInventory;
 
     /** Creates an item.
      * @param row The row (in regards to the board) of the item
@@ -14,8 +18,8 @@ public abstract class Item {
     public Item(int row, int col) {
         this.row = row;
         this.col = col;
+        inInventory = false;
     }
-
 
     //Start of getter and setter methods
 
@@ -58,9 +62,43 @@ public abstract class Item {
     public void setCol(int colNum){this.col = colNum;}
 
     /**
+     * Get's the tile associated with the item
+     * @return The associated tile
+     * */
+    public Tile getTile() {
+        if (inInventory) {
+            return null;
+        }
+        Tile[][] tiles = main.getLevelBoard().getBoard();
+        return tiles[row][col];
+    }
+
+    /**
+     * Set's the item to be out of/into the players inventory.
+     * */
+    public void setInInventory(boolean inInventory) {
+        this.inInventory = inInventory;
+    }
+
+    /**
      * Method to interact with the tile
      */
     public abstract void interact();
 
+    /**
+     * Check's if an object equals an Item
+     * @return Represents if the two objects are equal
+     * */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o.getClass() != this.getClass()) return false;
+        Item i = (Item) o;
+        if (i.getRow() != this.getRow() || i.getCol() != this.getCol()) return false;
+        return true;
+    }
 
+    public void setMain(Main main) {
+        this.main = main;
+    }
 }
