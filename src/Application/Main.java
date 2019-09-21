@@ -22,7 +22,11 @@ public class Main {
 
     private void setup() {
         gameloop = new Timer();
+
+        //gameloop.schedule();
+
         gameloop.schedule(new GameLoop(), 0, 1000 / 60); //New timer at 60fps, the timing mechanism
+
         timer(100);
         createPokeballs(); //Probably don't need this
         levelBoard = LoadJSON.loadLevelFromJSON(1);
