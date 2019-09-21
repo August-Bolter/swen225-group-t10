@@ -64,6 +64,7 @@ public class Main {
             desiredTile.interact();
             if (desiredTile.isWalkable()) {
                 player.setCurrentPos(desiredTile);
+                player.setDirection(direction);
             }
             for (Item item : desiredTile.getItems()){
                 item.interact();
