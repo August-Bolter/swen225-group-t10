@@ -65,7 +65,6 @@ public class DoorTile extends Tile {
                 }
             }
         }
-
     }
 
     public void setWalkable() {
