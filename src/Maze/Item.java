@@ -10,6 +10,7 @@ public abstract class Item {
     private int row;
     private int col;
     protected Main main;
+    private boolean inInventory;
 
     /** Creates an item.
      * @param row The row (in regards to the board) of the item
@@ -17,8 +18,8 @@ public abstract class Item {
     public Item(int row, int col) {
         this.row = row;
         this.col = col;
+        inInventory = false;
     }
-
 
     //Start of getter and setter methods
 
@@ -65,8 +66,18 @@ public abstract class Item {
      * @return The associated tile
      * */
     public Tile getTile() {
+        if (inInventory) {
+            return null;
+        }
         Tile[][] tiles = main.getLevelBoard().getBoard();
         return tiles[row][col];
+    }
+
+    /**
+     * Set's the item to be out of/into the players inventory.
+     * */
+    public void setInInventory(boolean inInventory) {
+        this.inInventory = inInventory;
     }
 
     /**
