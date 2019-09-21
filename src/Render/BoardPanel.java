@@ -47,9 +47,10 @@ public class BoardPanel extends JPanel {
      */
     public void redraw() {
 //        removeAll();
-        for (int row = 0; row < 32; row++) {
-            for (int col = 0; col < 32; col++) {
+        for (int row = 10; row < 10 + DISPLAY_SIZE; row++) {
+            for (int col = 10; col < 10 + DISPLAY_SIZE; col++) {
                 boardLabels[row][col] = new TilePanel(board[row][col]); // Makes the label, gives it the image for the tile
+                // TODO tell the items when they're visible and when they're not
 //                boardLabels[row][col].setBackground(Color.BLUE);
 //                Graphics g = boardLabels[row][col].getGraphics();
 //                if (g == null) { throw new RuntimeException("you know why..."); }
