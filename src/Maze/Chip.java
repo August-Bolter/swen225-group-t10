@@ -20,7 +20,14 @@ public class Chip extends Item {
     public void interact() {
         //TODO: need to implement chip tile being able to interact with Player
         main.decrementChipsRemaining();
-        
+
+        //remove chip from tile
+        Tile tile = getTile();
+        for (Item i : tile.getItems()){
+            if (i.equals(this)){
+                tile.removeItem(i);
+            }
+        }
     }
 
 }
