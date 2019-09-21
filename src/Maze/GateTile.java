@@ -32,13 +32,6 @@ public class GateTile extends Tile {
 
     }
 
-    /** Returns if the player can pass through the gate
-     * @return a boolean representing if the player can pass through the gate
-     * */
-    public boolean isPassable() {
-        return isPassable;
-    }
-
     /** Sets the 'passability' of the gate (i.e. can a player pass through it or not).
      * @param passable The boolean representing the 'passability' of the gate.
      * */

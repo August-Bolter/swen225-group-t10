@@ -60,12 +60,4 @@ public class DoorTile extends Tile {
 
     }
 
-    /** Returns whether the door is locked.
-     * @return a boolean representing if the door is locked
-     * */
-    public boolean isLocked() {
-        return isLocked;
-    }
-
-
 }
