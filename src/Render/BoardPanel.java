@@ -10,8 +10,8 @@ public class BoardPanel extends JPanel {
     private TilePanel[][] boardLabels;
 
     public BoardPanel(Tile[][] board) {
+        setLayout(new GridLayout(board.length, board[0].length));
         this.board = board;
-
         boardLabels = new TilePanel[board.length][board[0].length];
 
 //        setup();
@@ -50,6 +50,7 @@ public class BoardPanel extends JPanel {
                 boardLabels[row][col] = new TilePanel(board[row][col]); // Makes the label, gives it the image for the tile
                 Graphics g = boardLabels[row][col].getGraphics(); // putting it's own graphics in
                 boardLabels[row][col].paintComponents(g); // new ImageIcon(tileImage)
+                add(boardLabels[row][col]);
             }
 
         }

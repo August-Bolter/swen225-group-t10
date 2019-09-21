@@ -11,7 +11,7 @@ import java.util.List;
 /** An abstract class representing a tile in the game. This abstract class is extended by concrete classes like DoorTile,
  * ExitTile etc. The board is made up of tiles (with items on some of the tiles). */
 public abstract class Tile {
-    private static final String PATH = "Resources/floor/";
+    public static final String PATH = "Resources/floor/";
     private int row;
     private int col;
     private List<Item> items;
@@ -86,10 +86,11 @@ public abstract class Tile {
      */
     public Image getImage() {
         String tileName = getClass().getName().substring(5);
+
         try {
-            return ImageIO.read(new File(PATH+tileName));
+            return ImageIO.read(new File(PATH+tileName+".png"));
         } catch (IOException e) {
-            throw new Error("The image failed to load:" + e);
+            throw new Error(PATH+tileName+"\nThe image failed to load:" + e);
         }
     }
 
