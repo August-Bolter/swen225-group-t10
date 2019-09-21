@@ -61,12 +61,12 @@ public class Main {
         Tile currentPos = player.getCurrentPos();
         Tile desiredTile = levelBoard.getTileAtPosition(currentPos, direction);
         if (desiredTile != null) {
+            if (desiredTile.isWalkable()) {
+                player.setCurrentPos(desiredTile);
+            }
             desiredTile.interact();
             for (Item item : desiredTile.getItems()){
                 item.interact();
-            }
-            if (desiredTile.isWalkable()) {
-                player.setCurrentPos(desiredTile);
             }
             return true;
         }
