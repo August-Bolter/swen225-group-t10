@@ -1,5 +1,5 @@
 package Application;
-
+/*
 import Maze.Player;
 import Maze.Tile;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -12,12 +12,9 @@ import org.junit.runner.RunWith;
 
 import java.lang.reflect.Method;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.*;*/
 
-/**
- * Testcases for the methods located in the main method
- */
-
+/*
 @RunWith(Arquillian.class)
 public class MainTest {
     @Deployment
@@ -32,6 +29,7 @@ public class MainTest {
      * Tests a valid move
      * @return
      */
+/*
     @org.junit.Test
     public void doValidMove() {
         //get class get methods
@@ -49,9 +47,12 @@ public class MainTest {
      * Tests an invalid move
      * @return
      */
+/*
     @org.junit.Test
     public void doInValidMove() {
 
     }
 
-}
+}*/
+
+public class MainTest {}

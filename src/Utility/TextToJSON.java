@@ -28,9 +28,10 @@ class TextToJSON {
         try {
             BufferedReader in = new BufferedReader(new FileReader("src/Utility/" + TEXT_FILENAME));
             PrintStream out = new PrintStream(jsonFile);
+            StringBuilder builder = new StringBuilder();
 
             // Write the start of the JSON file
-            out.print("{\n\t\"title\": \"Lesson 1\",\n" +
+            builder.append("{\n\t\"title\": \"Lesson 1\",\n" +
                     "\t\"chips\": 11,\n" +
                     "\t\"timeLimit\" : 100,\n" +
                     "\t\"tiles\" : [\n");
@@ -39,31 +40,34 @@ class TextToJSON {
             String line;
 
             while ((line = in.readLine()) != null)  {
-
                 char[] rowTiles = line.toCharArray();
 
                 if (rowTiles.length != 32)
                     throw new Error("Row " + row + " has " + rowTiles.length + " tiles when it should have exactly 32.");
 
                 for (int i = 0; i < rowTiles.length; i++) {
-                    String type = "", extra = null;
+                    String type = "", extra = null, item = null, itemExtra = null;
 
                     if (rowTiles[i] == '_') {
                         continue;
                     } else if (rowTiles[i] == 'x') {
                         type = "WallTile";
                     } else if (rowTiles[i] == 'r') {
-                        type = "Key";
-                        extra = "red";
+                        type = "FreeTile";
+                        item = "Key";
+                        itemExtra = "red";
                     } else if (rowTiles[i] == 'g') {
-                        type = "Key";
-                        extra = "green";
+                        type = "FreeTile";
+                        item = "Key";
+                        itemExtra = "green";
                     } else if (rowTiles[i] == 'b') {
-                        type = "Key";
-                        extra = "blue";
+                        type = "FreeTile";
+                        item = "Key";
+                        itemExtra = "blue";
                     } else if (rowTiles[i] == 'y') {
-                        type = "Key";
-                        extra = "yellow";
+                        type = "FreeTile";
+                        item = "Key";
+                        itemExtra = "yellow";
                     } else if (rowTiles[i] == 'e') {
                         type = "DoorTile";
                         extra = "blue";
@@ -76,36 +80,62 @@ class TextToJSON {
                     } else if (rowTiles[i] == 'd') {
                         type = "DoorTile";
                         extra = "red";
+                    } else if (rowTiles[i] == 'o') {
+                        type = "FreeTile";
+                        item = "Chip";
+                    } else if (rowTiles[i] == 'E') {
+                        type = "ExitTile";
+                    } else if (rowTiles[i] == 'L') {
+                        type = "GateTile";
+                    } else if (rowTiles[i] == 'I') {
+                        type = "InfoTile";
+                        extra = "Hint: Collect chips to get past the chip socket. Use keys to open doors.";
+                    } else if (rowTiles[i] == 'C') {
+                        type = "FreeTile";
+                        item = "Player";
                     } else {
                         System.out.println("Missing character " + rowTiles[i]);
                     }
 
-                    out.print("\t{\n\t\t\"type\" : \""+ type +"\",\n" +
-                            "\t\t\"row\" : " + row + ",\n" +
-                            "\t\t\"col\" : " + i +
-                            ((extra == null)?
-                                    "\n\t},\n":
-                                    ",\n\t\t\"extra\" : \"" + extra + "\"\n\t},\n"));
+
+                    // Print to JSON
+                    builder.append("\t\t{\n\t\t\t\"type\" : \""+ type +"\",\n" +
+                            "\t\t\t\"row\" : " + row + ",\n" +
+                            "\t\t\t\"col\" : " + i);
+
+                    if (extra != null) {
+                        builder.append(",\n\t\t\t\"extra\" : \"" + extra + "\"");
+                    }
+
+                    if (item != null) {
+                        builder.append(",\n\t\t\t\"item\" : {\n\t\t\t\t\"type\" : \"" + item + "\"");
+
+                        if (itemExtra != null) {
+                            builder.append(",\n\t\t\t\t\"extra\" : \"" + itemExtra + "\"" );
+                        }
+
+                        builder.append("\n\t\t\t}");
+                    }
+
+                    builder.append("\n\t\t},\n");
+
                 }
-
-
-
 
                 row++;
             }
 
-           /* if (row != 32) {
+            if (row != 32) {
                 jsonFile.delete();
                 throw new Error("Wrong number of rows " + TEXT_FILENAME + ". There are " + row + ", there should be exactly 32.");
             }
 
-
-
             // Write the end of the JSON file
-            out.print("\t}\n}");
+            builder.setLength(builder.length() - 2);
+            builder.append("\n\t]\n}");
+            out.print(builder.toString());
 
             in.close();
-            out.close();*/
+            out.close();
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
