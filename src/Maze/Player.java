@@ -43,6 +43,14 @@ public class Player {
         throw new InventoryException("The player's inventory is full");
     }
 
+    public void removeItemFromInventory(Item item){
+        for (int i = 0; i < inventory.length; i++) {
+            if (inventory[i].equals(item)) {
+                inventory[i] = null;
+            }
+        }
+    }
+
     public Item[] getInventory() {
         return inventory;
     }

@@ -50,22 +50,28 @@ public class DoorTile extends Tile {
     @Override
     public void interact() {
         //TODO: need to implement door being able to interact with Player
-        //if (Main.player.getInventory has Key of same colour){
-            //isLocked = false
-        //}
         setWalkable();
+
         if (isWalkable()) {
             main.getLevelBoard().replaceWithEmptyTile(this);
-            //Remove key from players inventory
-        }
 
+            //Remove key from players inventory
+            for (Item i : main.getPlayer().getInventory()) {
+                if (i instanceof Key) {
+                    Key k = (Key) i;
+                    if (k.getColor().equals(color)) {
+                        main.getPlayer().removeItemFromInventory(k);
+                    }
+                }
+            }
+        }
     }
 
     public void setWalkable() {
         for (Item i : main.getPlayer().getInventory()) {
             if (i instanceof Key) {
                 Key k = (Key) i;
-                if (k.getColor() == color) {
+                if (k.getColor().equals(color)) {
                     isWalkable = true;
                 }
             }
