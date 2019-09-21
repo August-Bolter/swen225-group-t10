@@ -2,6 +2,11 @@ package Maze;
 
 import Application.Main;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+
 /**
  * Abstract class for Item - this will be implemented by all inventory items (keys, chips). Items are on top of tiles.
  */
@@ -11,6 +16,7 @@ public abstract class Item {
     private int col;
     protected Main main;
     private boolean inInventory;
+    public static final String PATH = "Resources/items/";
 
     /** Creates an item.
      * @param row The row (in regards to the board) of the item
@@ -96,6 +102,23 @@ public abstract class Item {
         Item i = (Item) o;
         if (i.getRow() != this.getRow() || i.getCol() != this.getCol()) return false;
         return true;
+    }
+
+    /**
+     * Paints the item in the tile on top of each tile.
+     */
+    public Image getImage() {
+        String itemName = getClass().getName().substring(5);
+        String path = PATH;
+
+        try {
+            if (this instanceof Player) {
+                path = "resource/player/";
+            }
+            return ImageIO.read(new File(path+itemName+".png"));
+        } catch (IOException e) {
+            throw new Error(path+itemName+"\nThe image failed to load:" + e);
+        }
     }
 
     public void setMain(Main main) {
