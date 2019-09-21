@@ -48,6 +48,11 @@ public class Main {
         allChips.add(new Chip(16, 19));
     }
 
+    /**
+     * Method that is called when you want to move in a direction
+     * @param direction
+     * @return true is move is valid else false
+     */
     private boolean doMove(LevelBoard.Direction direction){
         Tile currentPos = player.getCurrentPos();
         Tile desiredTile = levelBoard.getTileAtPosition(currentPos, direction);
