@@ -33,13 +33,24 @@ public class Player {
      * Adds a new item into the inventory (list)
      * @param newItem
      */
-    public void addInventory(Item newItem){
-        for (int i = 0; i < inventory.length; i++)
+    public void addInventory(Item newItem) throws InventoryException {
+        for (int i = 0; i < inventory.length; i++) {
             if (inventory[i] == null)
                 inventory[i] = newItem;
+        }
+        throw new InventoryException("The player's inventory is full");
+    }
 
+    public void removeItemFromInventory(Item item){
+        for (int i = 0; i < inventory.length; i++) {
+            if (inventory[i].equals(item)) {
+                inventory[i] = null;
+            }
+        }
+    }
 
-//        throw new InventoryException("The player's inventory is full");
+    public Item[] getInventory() {
+        return inventory;
     }
 
 }

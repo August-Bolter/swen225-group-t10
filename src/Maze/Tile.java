@@ -1,9 +1,7 @@
 package Maze;
 
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.io.File;
-import java.io.IOException;
+import Application.Main;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -15,6 +13,7 @@ public abstract class Tile {
     private int row;
     private int col;
     private List<Item> items;
+    protected Main main;
 
     /** Creates a tile.
      * @param row The row (in regards to the board) of the tile
@@ -58,6 +57,10 @@ public abstract class Tile {
         items.remove(item);
     }
 
+
+
+
+
     /** Checks if an Object is the same as (equals) this tile.
      * @param o The object that the tile is being compared to
      * @return Whether the object is the same as the tile
@@ -81,17 +84,7 @@ public abstract class Tile {
      */
     public abstract void interact();
 
-    /**
-     * Paints the item in the tile on top of each tile.
-     */
-    public Image getImage() {
-        String tileName = getClass().getName().substring(5);
-
-        try {
-            return ImageIO.read(new File(PATH+tileName+".png"));
-        } catch (IOException e) {
-            throw new Error(PATH+tileName+"\nThe image failed to load:" + e);
-        }
+    public void setMain(Main main) {
+        this.main = main;
     }
-
 }

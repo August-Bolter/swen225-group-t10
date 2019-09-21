@@ -19,10 +19,10 @@ public class Key extends Item {
      * Checks if the door and key is a macthign colour
      * @return true if matches, false if doesn't match
      */
-    public boolean isMatchingColour(String colour){
-        if(this.color.equals(colour)){
-            return true;
-        }
+    public boolean isMatchingColour(DoorTile d){
+            if (d.getColor().equals(color)) {
+                return true;
+            }
         return false;
     }
 
@@ -40,5 +40,21 @@ public class Key extends Item {
 
     public void interact() {
         //TODO: need to implement key item being able to interact with Player
+
+        //remove key from tile
+        Tile tile = getTile();
+        for (Item i : tile.getItems()){
+            if (i.equals(this)){
+                tile.removeItem(i);
+            }
+        }
+
+        //Add chip to players inventory
+        try {
+            main.getPlayer().addInventory(this);
+        }
+        catch(InventoryException e) {
+            e.printStackTrace();
+        }
     }
 }
