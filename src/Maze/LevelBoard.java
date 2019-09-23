@@ -23,15 +23,6 @@ public class LevelBoard {
         this.totalChips = totalChips;
         this.timeLimit = timeLimit;
         this.board = board;
-
-        // TESTING
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[i].length; j++) {
-                System.out.println("[" + i + "," + j + "], " + board[i][j].getClass().toString() + " with " + board[i][j].getItems().size() + " items");
-            }
-        }
-
-//        System.out.println(board[3][6].getItems().get(0).getClass() + ", " + board[3][6].getItems().get(0).getRow());
     }
 
 
