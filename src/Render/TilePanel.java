@@ -12,14 +12,14 @@ public class TilePanel extends JPanel {
 
     public TilePanel(Tile tile) {
 //        setPreferredSize(new Dimension());
-        setLayout(new FlowLayout(FlowLayout.CENTER));
+//        setLayout(new FlowLayout(FlowLayout.CENTER));
         this.tile = tile;
     }
 
 
     public void paint(Graphics g) {
         super.paint(g);
-        removeAll();
+//        getComponent(0);
         if(tile.getImage() == null) throw new RuntimeException(tile.getClass().getName() + "Tile image was null");
         image = new JLabel(new ImageIcon(tile.getImage()));
         add(image);

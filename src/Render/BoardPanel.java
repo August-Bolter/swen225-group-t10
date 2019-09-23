@@ -1,5 +1,6 @@
 package Render;
 
+import Maze.Player;
 import Maze.Tile;
 
 import javax.swing.*;
@@ -9,15 +10,20 @@ public class BoardPanel extends JPanel {
     public Tile[][] board;
     public TilePanel[][] boardLabels;
     public static final int DISPLAY_SIZE = 9;
+    public Player player;
 
-    public BoardPanel(Tile[][] board) {
-        setLayout(new GridLayout(32, 32));
+
+    public BoardPanel(Tile[][] board, Player player) {
+        setLayout(new GridLayout(DISPLAY_SIZE, DISPLAY_SIZE));
         this.board = board;
         boardLabels = new TilePanel[board.length][board[0].length];
+        int playerRow = player.getCurrentPos().getRow();
+        int playerCol = player.getCurrentPos().getCol();
 
 //        setup();
-        for (int row = 0; row < 32; row++) {
-            for (int col = 0; col < 32; col++) {
+        // FIXME need to add minimums and maximums!!
+        for (int row = playerRow - 4; row < playerRow - 4 + DISPLAY_SIZE; row++) {
+            for (int col = playerCol - 4; col < playerCol - 4 + DISPLAY_SIZE; col++) {
                 boardLabels[row][col] = new TilePanel(board[row][col]); // Makes the label, gives it the image for the tile
                 // TODO tell the items when they're visible and when they're not
 //                boardLabels[row][col].setBackground(Color.BLUE);
