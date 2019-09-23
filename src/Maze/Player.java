@@ -69,8 +69,10 @@ public class Player extends Item {
      */
     public void addInventory(Item newItem) throws InventoryException {
         for (int i = 0; i < inventory.length; i++) {
-            if (inventory[i] == null)
+            if (inventory[i] == null) {
                 inventory[i] = newItem;
+                return;
+            }
         }
         throw new InventoryException("The player's inventory is full");
     }

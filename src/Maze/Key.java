@@ -47,12 +47,7 @@ public class Key extends Item {
         //TODO: need to implement key item being able to interact with Player
 
         //remove key from tile
-        Tile tile = getTile();
-        for (Item i : tile.getItems()){
-            if (i.equals(this)){
-                tile.removeItem(i);
-            }
-        }
+        getTile().removeItem(this);
 
         //Add chip to players inventory
         try {

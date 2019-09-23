@@ -71,6 +71,7 @@ public class MainFrame extends JFrame implements KeyListener {
         }
 
         game.doMove(direction);
+        repaint();
     }
 
     @Override

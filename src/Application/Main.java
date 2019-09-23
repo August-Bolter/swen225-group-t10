@@ -51,12 +51,15 @@ public class Main {
         if (desiredTile != null) {
             desiredTile.interact();
             if (desiredTile.isWalkable()) {
+                currentPos.removeItem(player);
+                desiredTile.addItem(player);
                 player.setCurrentPos(desiredTile);
             }
             player.setDirection(direction);
             for (Item item : desiredTile.getItems()){
                 item.interact();
             }
+            System.out.println(player.getCurrentPos().getRow() + ", " + player.getCurrentPos().getCol());
             return true;
         }
         return false;
