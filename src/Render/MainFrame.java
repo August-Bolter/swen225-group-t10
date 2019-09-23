@@ -71,6 +71,7 @@ public class MainFrame extends JFrame implements KeyListener {
         }
 
         game.doMove(direction);
+        boardpanel.redraw(); // TODO should be in the game loop
     }
 
     @Override

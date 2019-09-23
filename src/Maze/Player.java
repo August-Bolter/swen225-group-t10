@@ -13,10 +13,12 @@ public class Player extends Item {
     private Item[] inventory;
     private enum Direction {UP, DOWN, RIGHT, LEFT};
     private Direction direction;
+    private int row, col;
 
     public Player(int row, int col) {
         super(row, col);
-        //this.currentPos = startingPos;
+        this.row = row;
+        this.col = col;
         this.inventory = new Item[8];
         direction = Direction.DOWN;
     }
@@ -36,6 +38,7 @@ public class Player extends Item {
         }
     }
 
+
     //Start of getter and setter methods
     /**
      * fetches the current position of the Player.
@@ -54,13 +57,22 @@ public class Player extends Item {
     }
 
     /**
+     * Sets the current position of the player by getting a tile from the board
+     */
+    public void setCurrentPos() {
+        this.currentPos = main.getLevelBoard().getBoard()[row][col];
+    }
+
+    /**
      * Adds a new item into the inventory (list)
      * @param newItem
      */
     public void addInventory(Item newItem) throws InventoryException {
         for (int i = 0; i < inventory.length; i++) {
-            if (inventory[i] == null)
+            if (inventory[i] == null) {
                 inventory[i] = newItem;
+                return;
+            }
         }
         throw new InventoryException("The player's inventory is full");
     }

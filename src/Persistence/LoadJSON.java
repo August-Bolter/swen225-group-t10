@@ -132,6 +132,7 @@ public class LoadJSON {
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
+            System.out.println("Trying to create " + itemClassName + ", " + row + ", " + col);
             e.printStackTrace();
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
