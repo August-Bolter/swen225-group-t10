@@ -20,7 +20,7 @@ public class TilePanel extends JPanel {
     public void paint(Graphics g) {
         super.paint(g);
         removeAll();
-        if(tile.getImage() == null) throw new RuntimeException(tile.getClass().getName() + "Tile image was null");
+        if(tile.getImage() == null) throw new RuntimeException(tile.getClass().getName() + " image was null");
         image = new JLabel(new ImageIcon(tile.getImage()));
         add(image);
         setVisible(true);

@@ -1,6 +1,8 @@
 package Render;
 
 import Application.Main;
+import Maze.FreeTile;
+import Maze.Item;
 
 import javax.swing.*;
 import java.awt.*;
@@ -33,6 +35,21 @@ public class InfoPanel extends JPanel {
     }
 
     public void display() {
+        level = new JLabel("Level: " + game.getLevelBoard().getTitle());
+        time = new JLabel("Time Remaining: " + game.getTimeRemaining());
+        chips = new JLabel("Chips Remaining: " + game.getChipsRemaining());
+
+        Item[] invItems = game.getPlayer().getInventory();
+
+        // Makes an array of free tiles that hold the inventory items on top of them
+        for (int i = 0; i < invItems.length; i++) {
+            int row = i / 4 < 1 ? 0 : 1; // Inventory is 2 rows by 4 cols
+            int col = i % 4;
+            FreeTile t = new FreeTile(row, col);
+            t.addItem(invItems[i]);
+            inventory[i] = new TilePanel(t);
+        }
+
         setVisible(true);
     }
 
