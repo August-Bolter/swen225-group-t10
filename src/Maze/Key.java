@@ -42,27 +42,36 @@ public class Key extends Item {
     }
 
 
-
+    /**
+     * Method which lets the player interact with the key by removing it from the tile and adding to the inventory
+     */
     public void interact() {
-        //TODO: need to implement key item being able to interact with Player
 
+        Item itemToRemove = null;
         //remove key from tile
         Tile tile = getTile();
+     //   System.out.println("THIS IS THE TILE WE ARE ON " + tile.getRow() + tile.getCol());
         for (Item i : tile.getItems()){
             if (i.equals(this)){
-                tile.removeItem(i);
+                itemToRemove = i;
             }
         }
-
+        tile.removeItem(itemToRemove);
         //Add chip to players inventory
-        try {
-            main.getPlayer().addInventory(this);
-        }
-        catch(InventoryException e) {
-            e.printStackTrace();
-        }
+       // try {
+            main.getPlayer();
+            //main.getPlayer().addInventory(this);
+//        }
+//        catch(InventoryException e) {
+//            System.out.println("Error is " + e);
+//            e.printStackTrace();
+//        }
     }
 
+    /**
+     * Fetches the image associated with key
+     * @return Image of the key
+     */
     public Image getImage() {
         String path = PATH+color+ KEY + ".png";
 
