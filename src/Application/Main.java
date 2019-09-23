@@ -28,29 +28,17 @@ public class Main {
         gameloop.schedule(new GameLoop(), 0, 1000 / 60); //New timer at 60fps, the timing mechanism
 
         timer(100);
-        createPokeballs(); //Probably don't need this
+
         levelBoard = LoadJSON.loadLevelFromJSON(1);
+        levelBoard.setMain(this);
+        player = levelBoard.getPlayer();
+        player.setCurrentPos();
         levelBoard.setMain(this);
         frame = new MainFrame(this);
         chipsRemaining = levelBoard.getTotalChips();
     }
 
-    /**
-     * Method to initalise pokeballs in their correct positions.
-     */
-    private void createPokeballs() {
-        allChips.add(new Chip(12, 10));
-        allChips.add(new Chip(18, 10));
-        allChips.add(new Chip(10, 13));
-        allChips.add(new Chip(10, 15));
-        allChips.add(new Chip(13, 14));
-        allChips.add(new Chip(17, 14));
-        allChips.add(new Chip(20, 13));
-        allChips.add(new Chip(20, 15));
-        allChips.add(new Chip(15, 16));
-        allChips.add(new Chip(14, 19));
-        allChips.add(new Chip(16, 19));
-    }
+
 
     /**
      * Method that is called when you want to move in a direction
@@ -108,7 +96,6 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        System.out.println("espeon is the best Eevee evo");
         Main game = new Main();
         game.setup();
     }

@@ -13,10 +13,12 @@ public class Player extends Item {
     private Item[] inventory;
     private enum Direction {UP, DOWN, RIGHT, LEFT};
     private Direction direction;
+    private int row, col;
 
     public Player(int row, int col) {
         super(row, col);
-        //this.currentPos = startingPos;
+        this.row = row;
+        this.col = col;
         this.inventory = new Item[8];
         direction = Direction.DOWN;
     }
@@ -36,6 +38,7 @@ public class Player extends Item {
         }
     }
 
+
     //Start of getter and setter methods
     /**
      * fetches the current position of the Player.
@@ -51,6 +54,13 @@ public class Player extends Item {
      */
     public void setCurrentPos(Tile currentPos) {
         this.currentPos = currentPos;
+    }
+
+    /**
+     * Sets the current position of the player by getting a tile from the board
+     */
+    public void setCurrentPos() {
+        this.currentPos = main.getLevelBoard().getBoard()[row][col];
     }
 
     /**
