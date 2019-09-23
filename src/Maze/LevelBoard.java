@@ -23,15 +23,6 @@ public class LevelBoard {
         this.totalChips = totalChips;
         this.timeLimit = timeLimit;
         this.board = board;
-
-        // TESTING
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[i].length; j++) {
-                System.out.println("[" + i + "," + j + "], " + board[i][j].getClass().toString() + " with " + board[i][j].getItems().size() + " items");
-            }
-        }
-
-//        System.out.println(board[3][6].getItems().get(0).getClass() + ", " + board[3][6].getItems().get(0).getRow());
     }
 
 
@@ -72,7 +63,7 @@ public class LevelBoard {
         }
     }
 
-    public void linkTilesAndItemsToMain(){
+    public void linkTilesAndItemsToMain() {
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++) {
                 board[i][j].setMain(main);
@@ -124,6 +115,20 @@ public class LevelBoard {
     public void setMain(Main main) {
         this.main = main;
         linkTilesAndItemsToMain();
+    }
+
+    /**
+     * Returns the player currently on the board
+     */
+    public Player getPlayer() {
+        for (int row = 0; row < board.length; row++)
+            for (int col = 0; col < board[row].length; col++)
+                if (board[row][col].hasItem())
+                    for (Item item : board[row][col].getItems())
+                        if (item instanceof Player)
+                            return (Player) item;
+
+        return null;
     }
 
 
