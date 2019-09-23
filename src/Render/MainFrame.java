@@ -27,6 +27,12 @@ public class MainFrame extends JFrame implements KeyListener {
 
 //        Tile t = boardpanel.board[0][0];
 //        outerpanel.add(new JLabel(new ImageIcon(t.getImage())));
+
+        // Setup key listener
+        addKeyListener(this);
+        setFocusable(true);
+        requestFocus();
+
         pack();
         setVisible(true);
         repaint();
