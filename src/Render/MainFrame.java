@@ -25,9 +25,6 @@ public class MainFrame extends JFrame implements KeyListener {
         setContentPane(outerpanel);
         addBoardPanel();
 
-//        Tile t = boardpanel.board[0][0];
-//        outerpanel.add(new JLabel(new ImageIcon(t.getImage())));
-
         // Setup key listener
         addKeyListener(this);
         setFocusable(true);
@@ -39,7 +36,7 @@ public class MainFrame extends JFrame implements KeyListener {
     }
 
     private void addBoardPanel(){
-        boardpanel = new BoardPanel(game.getLevelBoard().getBoard());
+        boardpanel = new BoardPanel(game.getLevelBoard().getBoard(), game.getPlayer());
         outerpanel.add(boardpanel);
     }
 

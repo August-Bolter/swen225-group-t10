@@ -20,9 +20,11 @@ public class TilePanel extends JPanel {
     public void paint(Graphics g) {
         super.paint(g);
 //        getComponent(0);
+//        if (getComponent(0) != null) remove(0);
         if(tile.getImage() == null) throw new RuntimeException(tile.getClass().getName() + "Tile image was null");
         image = new JLabel(new ImageIcon(tile.getImage()));
         add(image);
+
         setVisible(true);
         if (tile.hasItem())
             g.drawImage(tile.getItems().get(0).getImage(), 0, 0, this); // FIXME currently only displaying the first item in the list
