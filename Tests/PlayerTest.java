@@ -6,6 +6,7 @@ class PlayerTest {
 
     @Test
     void setDirection() {
+        Player p = new PlayerTest();
     }
 
     @Test
