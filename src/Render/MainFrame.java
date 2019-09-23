@@ -1,11 +1,14 @@
 package Render;
 
 import Application.Main;
+import Maze.LevelBoard;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
-public class MainFrame extends JFrame {
+public class MainFrame extends JFrame implements KeyListener {
     private Main game;
     private JPanel outerpanel;
     private BoardPanel boardpanel;
@@ -32,6 +35,41 @@ public class MainFrame extends JFrame {
     private void addBoardPanel(){
         boardpanel = new BoardPanel(game.getLevelBoard().getBoard());
         outerpanel.add(boardpanel);
+    }
+
+    @Override
+    public void keyTyped(KeyEvent keyEvent) {
+        // Unimplemented
+    }
+
+    @Override
+    public void keyPressed(KeyEvent keyEvent) {
+        int keyCode = keyEvent.getKeyCode();
+        LevelBoard.Direction direction;
+
+        switch (keyCode) {
+            case KeyEvent.VK_W:
+                direction = LevelBoard.Direction.UP;
+                break;
+            case KeyEvent.VK_S:
+                direction = LevelBoard.Direction.DOWN;
+                break;
+            case KeyEvent.VK_A:
+                direction = LevelBoard.Direction.LEFT;
+                break;
+            case KeyEvent.VK_D:
+                direction = LevelBoard.Direction.RIGHT;
+                break;
+            default:
+                return;
+        }
+
+        game.doMove(direction);
+    }
+
+    @Override
+    public void keyReleased(KeyEvent keyEvent) {
+        // Unimplemented
     }
 
 //    /**

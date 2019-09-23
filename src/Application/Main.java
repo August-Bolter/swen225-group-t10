@@ -57,7 +57,7 @@ public class Main {
      * @param direction
      * @return true is move is valid else false
      */
-    private boolean doMove(LevelBoard.Direction direction){
+    public boolean doMove(LevelBoard.Direction direction){
         Tile currentPos = player.getCurrentPos();
         Tile desiredTile = levelBoard.getTileAtPosition(currentPos, direction);
         if (desiredTile != null) {
