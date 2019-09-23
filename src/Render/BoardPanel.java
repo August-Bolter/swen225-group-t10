@@ -16,8 +16,21 @@ public class BoardPanel extends JPanel {
         boardLabels = new TilePanel[board.length][board[0].length];
 
 //        setup();
+        for (int row = 0; row < 32; row++) {
+            for (int col = 0; col < 32; col++) {
+                boardLabels[row][col] = new TilePanel(board[row][col]); // Makes the label, gives it the image for the tile
+                // TODO tell the items when they're visible and when they're not
+//                boardLabels[row][col].setBackground(Color.BLUE);
+//                Graphics g = boardLabels[row][col].getGraphics();
+//                if (g == null) { throw new RuntimeException("you know why..."); }
+//                boardLabels[row][col].paint(g);
+                add(boardLabels[row][col]);
+            }
 
-        redraw();
+        }
+
+        repaint();
+
     }
 
 //    /**
@@ -45,21 +58,11 @@ public class BoardPanel extends JPanel {
      * Once setup is done
      * Each image will be stored in a map with the class name as the key
      */
-    public void redraw() {
-//        removeAll();
-        for (int row = 0; row < 32; row++) {
-            for (int col = 0; col < 32; col++) {
-                boardLabels[row][col] = new TilePanel(board[row][col]); // Makes the label, gives it the image for the tile
-                // TODO tell the items when they're visible and when they're not
-//                boardLabels[row][col].setBackground(Color.BLUE);
-//                Graphics g = boardLabels[row][col].getGraphics();
-//                if (g == null) { throw new RuntimeException("you know why..."); }
-//                boardLabels[row][col].paint(g);
-                add(boardLabels[row][col]);
-            }
 
-        }
-
-        repaint();
+    @Override
+    public void paint(Graphics g) {
+        for (int row = 0; row < 32; row++)
+            for (int col = 0; col < 32; col++)
+                boardLabels[row][col].paint(g);
     }
 }
