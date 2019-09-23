@@ -56,10 +56,9 @@ public class Main {
                 player.setCurrentPos(desiredTile);
             }
             player.setDirection(direction);
-            for (Item item : desiredTile.getItems()){
-                item.interact();
+            for (Iterator<Item> iterator = desiredTile.getItems().iterator(); iterator.hasNext();) {
+                iterator.next().interact();
             }
-            System.out.println(player.getCurrentPos().getRow() + ", " + player.getCurrentPos().getCol());
             return true;
         }
         return false;

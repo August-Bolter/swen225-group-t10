@@ -59,9 +59,8 @@ public abstract class Tile {
     public void removeItem(Item item) {
         for (Iterator<Item> iterator = items.iterator(); iterator.hasNext();) {
             Item i = iterator.next();
-            if (i.equals(item)) {
+            if (i.equals(item))
                 iterator.remove();
-            }
         }
     }
 
