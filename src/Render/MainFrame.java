@@ -88,6 +88,14 @@ public class MainFrame extends JFrame implements KeyListener {
         // Unimplemented
     }
 
+    /**
+     * Creates an info popup box
+     * @param info the information to display
+     */
+    public void displayInfo(String info) {
+        JOptionPane.showMessageDialog(this, info);
+    }
+
 //    /**
 //     * It will go into persistence and by getting the name of the tile.
 //     * This will get passed to the board which will store it in a map for fast recovery
