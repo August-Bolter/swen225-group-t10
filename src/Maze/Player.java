@@ -77,10 +77,20 @@ public class Player extends Item {
         throw new InventoryException("The player's inventory is full");
     }
 
+    // TODO remove testing method
+    public void printInventory() {
+        System.out.print("[");
+        for (int i = 0; i < inventory.length; i++) {
+            System.out.print(inventory[i] + ", ");
+        }
+        System.out.print("]\n");
+    }
+
     public void removeItemFromInventory(Item item){
         for (int i = 0; i < inventory.length; i++) {
-            if (inventory[i].equals(item)) {
+            if (inventory[i] != null && inventory[i].equals(item)) {
                 inventory[i] = null;
+                return;
             }
         }
     }
@@ -92,6 +102,12 @@ public class Player extends Item {
     @Override
     public void interact() {
 
+    }
+
+    public void move(Tile tileToMoveTo) {
+        currentPos.removeItem(this);
+        tileToMoveTo.addItem(this);
+        setCurrentPos(tileToMoveTo);
     }
 
     public Image getImage() {

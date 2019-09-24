@@ -51,9 +51,7 @@ public class Main {
         if (desiredTile != null) {
             desiredTile.interact();
             if (desiredTile.isWalkable()) {
-                currentPos.removeItem(player);
-                desiredTile.addItem(player);
-                player.setCurrentPos(desiredTile);
+                player.move(desiredTile);
             }
             player.setDirection(direction);
             for (Iterator<Item> iterator = desiredTile.getItems().iterator(); iterator.hasNext();) {

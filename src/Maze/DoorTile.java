@@ -47,12 +47,13 @@ public class DoorTile extends Tile {
      * @return a boolean representing if the door is unlocked and therefore can be walked through
      */
     @Override
-    public boolean isWalkable() { return !isWalkable;}
+    public boolean isWalkable() { return isWalkable;}
 
     @Override
     public void interact() {
         //TODO: need to implement door being able to interact with Player
         setWalkable();
+
 
         if (isWalkable()) {
             main.getLevelBoard().replaceWithEmptyTile(this);
@@ -63,9 +64,11 @@ public class DoorTile extends Tile {
                     Key k = (Key) i;
                     if (k.getColor().equals(color)) {
                         main.getPlayer().removeItemFromInventory(k);
+                        return;
                     }
                 }
             }
+
         }
     }
 

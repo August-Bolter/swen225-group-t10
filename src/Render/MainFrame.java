@@ -34,6 +34,7 @@ public class MainFrame extends JFrame implements KeyListener {
         pack();
         setVisible(true);
         repaint();
+        setResizable(false);
     }
 
     private void addBoardPanel() {
@@ -58,15 +59,19 @@ public class MainFrame extends JFrame implements KeyListener {
 
         switch (keyCode) {
             case KeyEvent.VK_W:
+            case KeyEvent.VK_UP:
                 direction = LevelBoard.Direction.UP;
                 break;
             case KeyEvent.VK_S:
+            case KeyEvent.VK_DOWN:
                 direction = LevelBoard.Direction.DOWN;
                 break;
             case KeyEvent.VK_A:
+            case KeyEvent.VK_LEFT:
                 direction = LevelBoard.Direction.LEFT;
                 break;
             case KeyEvent.VK_D:
+            case KeyEvent.VK_RIGHT:
                 direction = LevelBoard.Direction.RIGHT;
                 break;
             default:
@@ -81,6 +86,14 @@ public class MainFrame extends JFrame implements KeyListener {
     @Override
     public void keyReleased(KeyEvent keyEvent) {
         // Unimplemented
+    }
+
+    /**
+     * Creates an info popup box
+     * @param info the information to display
+     */
+    public void displayInfo(String info) {
+        JOptionPane.showMessageDialog(this, info);
     }
 
 //    /**

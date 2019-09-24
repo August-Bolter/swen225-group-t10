@@ -28,13 +28,7 @@ public class Chip extends Item {
         //remove chip from tile
         getTile().removeItem(this);
 
-        //Add chip to players inventory
-        try {
-            main.getPlayer().addInventory(this);
-        }
-        catch(InventoryException e) {
-            e.printStackTrace();
-        }
+        // TODO decrement total chips
     }
 
     public Image getImage() {
