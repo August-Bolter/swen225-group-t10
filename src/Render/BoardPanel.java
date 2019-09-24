@@ -1,5 +1,6 @@
 package Render;
 
+import Maze.Player;
 import Maze.Tile;
 
 import javax.swing.*;
@@ -9,13 +10,22 @@ public class BoardPanel extends JPanel {
     public Tile[][] board;
     public TilePanel[][] boardLabels;
     public static final int DISPLAY_SIZE = 9;
+    public Player player;
 
-    public BoardPanel(Tile[][] board) {
-        setLayout(new GridLayout(32, 32));
+
+    public BoardPanel(Tile[][] board, Player player) {
         this.board = board;
+        this.player = player;
         boardLabels = new TilePanel[board.length][board[0].length];
 
-//        setup();
+        setLayout(new GridLayout(DISPLAY_SIZE, DISPLAY_SIZE));
+
+        for (int row = 0; row < board.length; row++) {
+            for (int col = 0; col < board[0].length; col++) {
+                boardLabels[row][col] = new TilePanel(board[row][col]); // Makes the label, gives it the image for the tile
+            }
+
+        }
 
         redraw();
     }
@@ -40,26 +50,24 @@ public class BoardPanel extends JPanel {
 //    }
 
     /**
-     * FIXME
      * Goes through each tile in the array and gets the correct image for that tile
      * Once setup is done
      * Each image will be stored in a map with the class name as the key
      */
     public void redraw() {
-//        removeAll();
-        for (int row = 0; row < 32; row++) {
-            for (int col = 0; col < 32; col++) {
-                boardLabels[row][col] = new TilePanel(board[row][col]); // Makes the label, gives it the image for the tile
-                // TODO tell the items when they're visible and when they're not
-//                boardLabels[row][col].setBackground(Color.BLUE);
-//                Graphics g = boardLabels[row][col].getGraphics();
-//                if (g == null) { throw new RuntimeException("you know why..."); }
-//                boardLabels[row][col].paint(g);
+//        System.out.println("REDRAW IS CALLED");
+        removeAll();
+        revalidate();
+//        if (player == null) System.out.println("THE PLAYER IS NULL !!!!!!!!!!!!!!!!!!\n\n\n\n\n\n\n\n\n\n\n\n");
+        int playerRow = player.getCurrentPos().getRow();
+        int playerCol = player.getCurrentPos().getCol();
+
+        for (int row = playerRow - 4; row < playerRow - 4 + DISPLAY_SIZE; row++) {
+            for (int col = playerCol - 4; col < playerCol - 4 + DISPLAY_SIZE; col++) {
+                boardLabels[row][col].redraw();
                 add(boardLabels[row][col]);
             }
 
         }
-
-        repaint();
     }
 }
