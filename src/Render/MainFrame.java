@@ -96,7 +96,14 @@ public class MainFrame extends JFrame implements KeyListener {
         JOptionPane.showMessageDialog(this, info);
     }
 
-//    /**
+    /**
+     * @return the board panel
+     */
+    public BoardPanel getBoardPanel() {
+        return boardpanel;
+    }
+
+    //    /**
 //     * It will go into persistence and by getting the name of the tile.
 //     * This will get passed to the board which will store it in a map for fast recovery
 //     * @param name name of the tile you want an image for
