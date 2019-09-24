@@ -18,7 +18,7 @@ public class MainFrame extends JFrame implements KeyListener {
         this.game = game;
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setLayout(new BorderLayout());
+        setLayout(new GridLayout(1,1)); // FIXME currently only 1x1
         outerpanel = new JPanel();
         outerpanel.setLayout(new GridLayout(1,1));
 
@@ -68,7 +68,7 @@ public class MainFrame extends JFrame implements KeyListener {
         }
 
         game.doMove(direction);
-        boardpanel.repaint(); // TODO should be in the game loop
+        boardpanel.redraw(); // TODO should be in the game loop
     }
 
     @Override
@@ -83,6 +83,6 @@ public class MainFrame extends JFrame implements KeyListener {
 //     * @return Image of the tile that you need for the board
 //     */
 //    public Image getImage(String name) {
-//        return null; // FIXME
+//        return null;
 //    }
 }

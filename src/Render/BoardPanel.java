@@ -14,31 +14,20 @@ public class BoardPanel extends JPanel {
 
 
     public BoardPanel(Tile[][] board, Player player) {
-        setLayout(new GridLayout(DISPLAY_SIZE, DISPLAY_SIZE));
         this.board = board;
         this.player = player;
         boardLabels = new TilePanel[board.length][board[0].length];
 
-//        setup();
-        // FIXME need to add minimums and maximums!!
+        setLayout(new GridLayout(DISPLAY_SIZE, DISPLAY_SIZE));
+
         for (int row = 0; row < board.length; row++) {
             for (int col = 0; col < board[0].length; col++) {
                 boardLabels[row][col] = new TilePanel(board[row][col]); // Makes the label, gives it the image for the tile
-//                add(boardLabels[row][col]);
-
-
-
-                // TODO tell the items when they're visible and when they're not
-//                boardLabels[row][col].setBackground(Color.BLUE);
-//                Graphics g = boardLabels[row][col].getGraphics();
-//                if (g == null) { throw new RuntimeException("you know why..."); }
-//                boardLabels[row][col].paint(g);
             }
 
         }
-//        setSize(new Dimension(800, 800));
-        repaint();
 
+        redraw();
     }
 
 //    /**
@@ -65,20 +54,19 @@ public class BoardPanel extends JPanel {
      * Once setup is done
      * Each image will be stored in a map with the class name as the key
      */
-
-    @Override
-    public void paint(Graphics g) {
-        super.paint(g);
-
-        System.out.println("PAINT IS CALLED");
-//        removeAll();
+    public void redraw() {
+//        System.out.println("REDRAW IS CALLED");
+        removeAll();
+        revalidate();
+//        if (player == null) System.out.println("THE PLAYER IS NULL !!!!!!!!!!!!!!!!!!\n\n\n\n\n\n\n\n\n\n\n\n");
         int playerRow = player.getCurrentPos().getRow();
         int playerCol = player.getCurrentPos().getCol();
 
         for (int row = playerRow - 4; row < playerRow - 4 + DISPLAY_SIZE; row++) {
             for (int col = playerCol - 4; col < playerCol - 4 + DISPLAY_SIZE; col++) {
+                boardLabels[row][col].removeAll();
+                boardLabels[row][col].redraw();
                 add(boardLabels[row][col]);
-                boardLabels[row][col].paint(g);
             }
 
         }
