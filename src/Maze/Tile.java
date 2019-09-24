@@ -77,6 +77,15 @@ public abstract class Tile {
         }
     }
 
+    public boolean hasPlayer(){
+        for (Item i : items){
+            if (i instanceof Player){
+                return true;
+            }
+        }
+        return false;
+    }
+
     /** Checks if an Object is the same as (equals) this tile.
      * @param o The object that the tile is being compared to
      * @return Whether the object is the same as the tile

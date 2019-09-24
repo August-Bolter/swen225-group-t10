@@ -68,6 +68,7 @@ public class DoorTile extends Tile {
                     }
                 }
             }
+
         }
     }
 

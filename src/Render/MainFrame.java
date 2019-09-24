@@ -33,6 +33,7 @@ public class MainFrame extends JFrame implements KeyListener {
         pack();
         setVisible(true);
         repaint();
+        setResizable(false);
     }
 
     private void addBoardPanel(){
