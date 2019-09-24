@@ -51,7 +51,8 @@ public class Main {
         if (desiredTile != null) {
             desiredTile.interact();
             if (desiredTile.isWalkable()) {
-                player.move(desiredTile);
+                Tile newTile = levelBoard.getTileAtPosition(currentPos, direction);
+                player.move(newTile);
             }
             player.setDirection(direction);
             for (Iterator<Item> iterator = desiredTile.getItems().iterator(); iterator.hasNext();) {

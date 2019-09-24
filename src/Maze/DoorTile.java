@@ -72,6 +72,9 @@ public class DoorTile extends Tile {
         }
     }
 
+    /**
+     * Checks if the player has the correct key and if so unlock the door
+     */
     public void setWalkable() {
         for (Item i : main.getPlayer().getInventory()) {
             if (i instanceof Key) {

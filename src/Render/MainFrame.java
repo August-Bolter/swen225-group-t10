@@ -12,18 +12,19 @@ public class MainFrame extends JFrame implements KeyListener {
     private Main game;
     private JPanel outerpanel;
     private BoardPanel boardpanel;
+    private InfoPanel infoPanel;
 
     public MainFrame(Main game){
         super("Chip's Challenge");
         this.game = game;
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setLayout(new GridLayout(1,1)); // FIXME currently only 1x1
         outerpanel = new JPanel();
-        outerpanel.setLayout(new GridLayout(1,1));
+        outerpanel.setLayout(new GridLayout(1,2));
 
         setContentPane(outerpanel);
         addBoardPanel();
+        addInfoPanel();
 
         // Setup key listener
         addKeyListener(this);
@@ -36,16 +37,14 @@ public class MainFrame extends JFrame implements KeyListener {
         setResizable(false);
     }
 
-    private void addBoardPanel(){
+    private void addBoardPanel() {
         boardpanel = new BoardPanel(game.getLevelBoard().getBoard(), game.getPlayer());
         outerpanel.add(boardpanel);
     }
 
-    /**
-     * @return the board panel
-     */
-    public BoardPanel getBoardpanel() {
-        return boardpanel;
+    private void addInfoPanel() {
+        infoPanel = new InfoPanel(game);
+        outerpanel.add(infoPanel);
     }
 
     @Override
@@ -81,6 +80,7 @@ public class MainFrame extends JFrame implements KeyListener {
 
         game.doMove(direction);
         boardpanel.redraw(); // TODO should be in the game loop
+        infoPanel.redraw();
     }
 
     @Override
@@ -88,7 +88,22 @@ public class MainFrame extends JFrame implements KeyListener {
         // Unimplemented
     }
 
-//    /**
+    /**
+     * Creates an info popup box
+     * @param info the information to display
+     */
+    public void displayInfo(String info) {
+        JOptionPane.showMessageDialog(this, info);
+    }
+
+    /**
+     * @return the board panel
+     */
+    public BoardPanel getBoardPanel() {
+        return boardpanel;
+    }
+
+    //    /**
 //     * It will go into persistence and by getting the name of the tile.
 //     * This will get passed to the board which will store it in a map for fast recovery
 //     * @param name name of the tile you want an image for

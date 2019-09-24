@@ -71,8 +71,6 @@ public class Player extends Item {
         for (int i = 0; i < inventory.length; i++) {
             if (inventory[i] == null) {
                 inventory[i] = newItem;
-                // TODO remove testing
-                printInventory();
                 return;
             }
         }
@@ -92,7 +90,6 @@ public class Player extends Item {
         for (int i = 0; i < inventory.length; i++) {
             if (inventory[i] != null && inventory[i].equals(item)) {
                 inventory[i] = null;
-                printInventory();
                 return;
             }
         }
