@@ -59,15 +59,19 @@ public class MainFrame extends JFrame implements KeyListener {
 
         switch (keyCode) {
             case KeyEvent.VK_W:
+            case KeyEvent.VK_UP:
                 direction = LevelBoard.Direction.UP;
                 break;
             case KeyEvent.VK_S:
+            case KeyEvent.VK_DOWN:
                 direction = LevelBoard.Direction.DOWN;
                 break;
             case KeyEvent.VK_A:
+            case KeyEvent.VK_LEFT:
                 direction = LevelBoard.Direction.LEFT;
                 break;
             case KeyEvent.VK_D:
+            case KeyEvent.VK_RIGHT:
                 direction = LevelBoard.Direction.RIGHT;
                 break;
             default:

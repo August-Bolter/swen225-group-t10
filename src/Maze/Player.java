@@ -107,6 +107,12 @@ public class Player extends Item {
 
     }
 
+    public void move(Tile tileToMoveTo) {
+        currentPos.removeItem(this);
+        tileToMoveTo.addItem(this);
+        setCurrentPos(tileToMoveTo);
+    }
+
     public Image getImage() {
         String path = "Resources/player/"+direction.toString().toLowerCase()+".png";
 

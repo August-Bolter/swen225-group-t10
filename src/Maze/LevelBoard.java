@@ -76,7 +76,9 @@ public class LevelBoard {
 
     public void replaceWithEmptyTile(Tile tile){
         board[tile.getRow()][tile.getCol()] = new FreeTile(tile.getRow(), tile.getCol());
-        main.getFrame().getBoardpanel().updateBoard();
+        getPlayer().move(board[tile.getRow()][tile.getCol()]);
+        //board[tile.getRow()][tile.getCol()].addItem(getPlayer());
+        main.getFrame().getBoardpanel().updateBoard(); // TODO think about moving this
     }
 
 
