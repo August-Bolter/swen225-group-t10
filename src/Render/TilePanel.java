@@ -24,6 +24,10 @@ public class TilePanel extends JPanel {
         setVisible(true);
     }
 
+    public Tile getTile() {
+        return tile;
+    }
+
     @Override
     public void paint(Graphics g) {
         super.paint(g);

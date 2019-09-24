@@ -1,9 +1,11 @@
 package Render;
 
 import Application.Main;
+import Maze.FreeTile;
 import Maze.Item;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class InfoPanel extends JPanel {
     Main game;
@@ -11,7 +13,9 @@ public class InfoPanel extends JPanel {
     JLabel level;
     JLabel timeRemaining;
     JLabel chipsRemaining;
+    JPanel inventoryPanel;
 
+    TilePanel[] invPanels;
     Item[] inventory;
 
     /**
@@ -26,7 +30,27 @@ public class InfoPanel extends JPanel {
         this.game = game;
         inventory = game.getPlayer().getInventory();
 
+        setLayout(new GridLayout(4,1));
 
+        level = new JLabel("Level: " + game.getLevelBoard().getTitle());
+        timeRemaining = new JLabel("Time Remaining: " + game.getLevelBoard().getTimeLimit()); // FIXME Only gets the total time NOT current time
+        chipsRemaining = new JLabel("Chips Remaining: " + game.getLevelBoard().getTotalChips()); // FIXME Only gets the total chips NOT current chips
 
+        inventoryPanel = new JPanel(new GridLayout(2, 4));
+        invPanels = new TilePanel[inventory.length];
+        for (int i = 0; i < inventory.length; i++) {
+            int row = i / 4 >= 1 ? 1 : 0;
+            int col = i % 4;
+            invPanels[i] = new TilePanel(new FreeTile(row, col));
+            invPanels[i].getTile().addItem(inventory[i]); // FIXME I shouldn't be adding new tiles
+            inventoryPanel.add(invPanels[i]);
+        }
+
+        add(level);
+        add(timeRemaining);
+        add(chipsRemaining);
+        add(inventoryPanel);
+
+//        redraw();
     }
 }
