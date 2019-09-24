@@ -28,7 +28,6 @@ public class TilePanel extends JPanel {
     public void paint(Graphics g) {
         super.paint(g);
         if (tile.hasItem()) {
-            System.out.println("PAINT COMPONENT WAS REACHED");
             g.drawImage(tile.getItems().get(0).getImage(), 0, 0, this); // FIXME currently only displaying the first item in the list
         }
 
