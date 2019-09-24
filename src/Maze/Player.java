@@ -71,16 +71,29 @@ public class Player extends Item {
         for (int i = 0; i < inventory.length; i++) {
             if (inventory[i] == null) {
                 inventory[i] = newItem;
+                // TODO remove testing
+                printInventory();
                 return;
             }
         }
         throw new InventoryException("The player's inventory is full");
     }
 
+    // TODO remove testing method
+    public void printInventory() {
+        System.out.print("[");
+        for (int i = 0; i < inventory.length; i++) {
+            System.out.print(inventory[i] + ", ");
+        }
+        System.out.print("]\n");
+    }
+
     public void removeItemFromInventory(Item item){
         for (int i = 0; i < inventory.length; i++) {
-            if (inventory[i].equals(item)) {
+            if (inventory[i] != null && inventory[i].equals(item)) {
                 inventory[i] = null;
+                printInventory();
+                return;
             }
         }
     }

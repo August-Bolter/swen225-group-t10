@@ -67,4 +67,9 @@ public class Key extends Item {
             throw new Error(path+"\nThe image failed to load:" + e);
         }
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + " : " + color;
+    }
 }
