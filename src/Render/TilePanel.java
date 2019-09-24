@@ -1,5 +1,6 @@
 package Render;
 
+import Maze.Item;
 import Maze.Tile;
 
 import javax.swing.*;
@@ -24,14 +25,21 @@ public class TilePanel extends JPanel {
         setVisible(true);
     }
 
+    public Tile getTile() {
+        return tile;
+    }
+
     @Override
     public void paint(Graphics g) {
         super.paint(g);
         if (tile.hasItem()) {
-            g.drawImage(tile.getItems().get(0).getImage(), 0, 0, this); // FIXME currently only displaying the first item in the list
+            for (Item i : tile.getItems()) {
+//            if (tile.getItems().get(0) == null) throw new RuntimeException("WRONG ITEM!!");
+                if (i != null) {
+                    g.drawImage(i.getImage(), 0, 0, this); // FIXME currently only displaying the first item in the list
+                    break;
+                }
+            }
         }
-
     }
-
-
 }

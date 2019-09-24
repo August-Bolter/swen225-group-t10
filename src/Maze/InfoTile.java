@@ -28,6 +28,6 @@ public class InfoTile extends Tile {
 
     @Override
     public void interact() {
-        //TODO: need to implement info tile being able to interact with Player
+        main.getFrame().displayInfo(info);
     }
 }
