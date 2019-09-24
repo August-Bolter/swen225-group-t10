@@ -40,6 +40,13 @@ public class MainFrame extends JFrame implements KeyListener {
         outerpanel.add(boardpanel);
     }
 
+    /**
+     * @return the board panel
+     */
+    public BoardPanel getBoardpanel() {
+        return boardpanel;
+    }
+
     @Override
     public void keyTyped(KeyEvent keyEvent) {
         // Unimplemented
