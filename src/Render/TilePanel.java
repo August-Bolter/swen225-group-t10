@@ -15,6 +15,7 @@ public class TilePanel extends JPanel {
     }
 
     public void redraw() {
+        removeAll();
         if(tile.getImage() == null) throw new RuntimeException(tile.getClass().getName() + "Tile image was null");
 
         image = new JLabel(new ImageIcon(tile.getImage()));

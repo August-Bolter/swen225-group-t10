@@ -64,7 +64,6 @@ public class BoardPanel extends JPanel {
 
         for (int row = playerRow - 4; row < playerRow - 4 + DISPLAY_SIZE; row++) {
             for (int col = playerCol - 4; col < playerCol - 4 + DISPLAY_SIZE; col++) {
-                boardLabels[row][col].removeAll();
                 boardLabels[row][col].redraw();
                 add(boardLabels[row][col]);
             }
