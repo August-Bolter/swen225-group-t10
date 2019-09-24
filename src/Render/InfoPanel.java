@@ -38,19 +38,31 @@ public class InfoPanel extends JPanel {
 
         inventoryPanel = new JPanel(new GridLayout(2, 4));
         invPanels = new TilePanel[inventory.length];
+        redraw();
+    }
+
+    /**
+     * Only redraws the inventory
+     */
+    public void redraw() {
+        removeAll();
+        inventoryPanel.removeAll();
         for (int i = 0; i < inventory.length; i++) {
             int row = i / 4 >= 1 ? 1 : 0;
             int col = i % 4;
             invPanels[i] = new TilePanel(new FreeTile(row, col));
             invPanels[i].getTile().addItem(inventory[i]); // FIXME I shouldn't be adding new tiles
+//            invPanels[i].removeAll();
             inventoryPanel.add(invPanels[i]);
         }
-
+//        add(new JLabel(new ImageIcon(new FreeTile(0,0).getImage())));
         add(level);
         add(timeRemaining);
         add(chipsRemaining);
         add(inventoryPanel);
 
-//        redraw();
+        for (TilePanel tp : invPanels) {
+            tp.redraw();
+        }
     }
 }
