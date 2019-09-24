@@ -79,6 +79,8 @@ public class LevelBoard {
         board[tile.getRow()][tile.getCol()] = new FreeTile(tile.getRow(), tile.getCol());
         //getPlayer().move(board[tile.getRow()][tile.getCol()]);
         //board[tile.getRow()][tile.getCol()].addItem(getPlayer());
+        //getPlayer().setCurrentPos(board[tile.getRow()][tile.getCol()]);
+        //getPlayer().move(board[tile.getRow()][tile.getCol()]);
         main.getFrame().getBoardPanel().updateBoard(); // TODO think about moving this
 
     }
