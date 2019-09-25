@@ -1,6 +1,10 @@
+import Application.Main;
+import Maze.LevelBoard;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Method;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class MainTest {
@@ -12,23 +16,10 @@ public class MainTest {
     @Test
     public void doValidMove() {
         //get class get methods
-        Method[]  methodList = getClass().getDeclaredMethods();
-        for(Method m :methodList){
-            if(m.getName() == "doMove"){
-                Class c = m.getDeclaringClass();
-            }
-        }
+        Main main = new Main();
+        int playerRow = main.getPlayer().getRow();
+        int playerCol = main.getPlayer().getCol();
+        main.doMove(LevelBoard.Direction.LEFT);
+        assertTrue(main.getPlayer().getRow() == playerRow && main.getPlayer().getCol() == playerCol);
     }
-
-
-    /**
-     * Tests an invalid move
-     * @return
-     */
-
-    @Test
-    public void doInValidMove() {
-
-    }
-
 }
