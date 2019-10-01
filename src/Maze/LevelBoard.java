@@ -75,13 +75,14 @@ public class LevelBoard {
     }
 
     public void replaceWithEmptyTile(Tile tile){
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[i].length; j++) {
-                if (board[i][j].equals(tile)){
-                    board[i][j] = new FreeTile(tile.getRow(), tile.getCol());
-                }
-            }
-        }
+
+        board[tile.getRow()][tile.getCol()] = new FreeTile(tile.getRow(), tile.getCol());
+        //getPlayer().move(board[tile.getRow()][tile.getCol()]);
+        //board[tile.getRow()][tile.getCol()].addItem(getPlayer());
+        //getPlayer().setCurrentPos(board[tile.getRow()][tile.getCol()]);
+        //getPlayer().move(board[tile.getRow()][tile.getCol()]);
+        main.getFrame().getBoardPanel().updateBoard(); // TODO think about moving this
+
     }
 
 

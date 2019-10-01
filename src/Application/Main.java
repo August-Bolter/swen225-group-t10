@@ -19,6 +19,12 @@ public class Main {
     private LevelBoard levelBoard;
     private MainFrame frame;
 
+    /**
+     * Creates a new main and setups up the game
+     */
+    public Main() {
+        setup();
+    }
 
     private void setup() {
         gameloop = new Timer();
@@ -51,9 +57,8 @@ public class Main {
         if (desiredTile != null) {
             desiredTile.interact();
             if (desiredTile.isWalkable()) {
-                currentPos.removeItem(player);
-                desiredTile.addItem(player);
-                player.setCurrentPos(desiredTile);
+                Tile newTile = levelBoard.getTileAtPosition(currentPos, direction);
+                player.move(newTile);
             }
             player.setDirection(direction);
             for (Iterator<Item> iterator = desiredTile.getItems().iterator(); iterator.hasNext();) {
@@ -107,7 +112,7 @@ public class Main {
 
     public static void main(String[] args) {
         Main game = new Main();
-        game.setup();
+
     }
 
     private class GameLoop extends java.util.TimerTask{

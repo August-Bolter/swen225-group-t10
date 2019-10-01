@@ -44,15 +44,15 @@ public class Key extends Item {
 
 
     public void interact() {
-        //TODO: need to implement key item being able to interact with Player
-
         //remove key from tile
         Tile tile = getTile();
+        Item toRemove = null;
         for (Item i : tile.getItems()){
             if (i.equals(this)){
-                tile.removeItem(i);
+                toRemove = i;
             }
         }
+        tile.removeItem(toRemove);
 
         //Add chip to players inventory
         try {
@@ -71,5 +71,10 @@ public class Key extends Item {
         } catch (IOException e) {
             throw new Error(path+"\nThe image failed to load:" + e);
         }
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + " : " + color;
     }
 }

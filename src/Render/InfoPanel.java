@@ -8,15 +8,15 @@ import javax.swing.*;
 import java.awt.*;
 
 public class InfoPanel extends JPanel {
-    private Main game;
+    Main game;
 
-    private JLabel level;
-    private JLabel time;
-    private JLabel chips;
+    JLabel level;
+    JLabel timeRemaining;
+    JLabel chipsRemaining;
+    JPanel inventoryPanel;
 
-    private JPanel inventoryPanel;
-    private TilePanel[] inventory;
-
+    TilePanel[] invPanels;
+    Item[] inventory;
 
     /**
      * Info panel needs:
@@ -28,29 +28,41 @@ public class InfoPanel extends JPanel {
      */
     public InfoPanel(Main game) {
         this.game = game;
+        inventory = game.getPlayer().getInventory();
 
         setLayout(new GridLayout(4,1));
 
-        display();
-    }
-
-    public void display() {
         level = new JLabel("Level: " + game.getLevelBoard().getTitle());
-        time = new JLabel("Time Remaining: " + game.getTimeRemaining());
-        chips = new JLabel("Chips Remaining: " + game.getChipsRemaining());
+        timeRemaining = new JLabel("Time Remaining: " + game.getLevelBoard().getTimeLimit()); // FIXME Only gets the total time NOT current time
+        chipsRemaining = new JLabel("Chips Remaining: " + game.getLevelBoard().getTotalChips()); // FIXME Only gets the total chips NOT current chips
 
-        Item[] invItems = game.getPlayer().getInventory();
-
-        // Makes an array of free tiles that hold the inventory items on top of them
-        for (int i = 0; i < invItems.length; i++) {
-            int row = i / 4 < 1 ? 0 : 1; // Inventory is 2 rows by 4 cols
-            int col = i % 4;
-            FreeTile t = new FreeTile(row, col);
-            t.addItem(invItems[i]);
-            inventory[i] = new TilePanel(t);
-        }
-
-        setVisible(true);
+        inventoryPanel = new JPanel(new GridLayout(2, 4));
+        invPanels = new TilePanel[inventory.length];
+        redraw();
     }
 
+    /**
+     * Only redraws the inventory
+     */
+    public void redraw() {
+        removeAll();
+        inventoryPanel.removeAll();
+        for (int i = 0; i < inventory.length; i++) {
+            int row = i / 4 >= 1 ? 1 : 0;
+            int col = i % 4;
+            invPanels[i] = new TilePanel(new FreeTile(row, col));
+            invPanels[i].getTile().addItem(inventory[i]); // FIXME I shouldn't be adding new tiles
+//            invPanels[i].removeAll();
+            inventoryPanel.add(invPanels[i]);
+        }
+//        add(new JLabel(new ImageIcon(new FreeTile(0,0).getImage())));
+        add(level);
+        add(timeRemaining);
+        add(chipsRemaining);
+        add(inventoryPanel);
+
+        for (TilePanel tp : invPanels) {
+            tp.redraw();
+        }
+    }
 }

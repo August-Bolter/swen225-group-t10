@@ -430,6 +430,15 @@
 			"col" : 7
 		},
 		{
+			"type" : "FreeTile",
+			"row" : 16,
+			"col" : 9,
+			"item" : {
+				"type" : "Key",
+				"extra" : "green"
+			}
+		},
+		{
 			"type" : "DoorTile",
 			"row" : 16,
 			"col" : 11,

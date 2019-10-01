@@ -77,10 +77,20 @@ public class Player extends Item {
         throw new InventoryException("The player's inventory is full");
     }
 
+    // TODO remove testing method
+    public void printInventory() {
+        System.out.print("[");
+        for (int i = 0; i < inventory.length; i++) {
+            System.out.print(inventory[i] + ", ");
+        }
+        System.out.print("]\n");
+    }
+
     public void removeItemFromInventory(Item item){
         for (int i = 0; i < inventory.length; i++) {
-            if (inventory[i].equals(item)) {
+            if (inventory[i] != null && inventory[i].equals(item)) {
                 inventory[i] = null;
+                return;
             }
         }
     }
@@ -94,6 +104,14 @@ public class Player extends Item {
 
     }
 
+    public void move(Tile tileToMoveTo) {
+        currentPos.removeItem(this);
+        tileToMoveTo.addItem(this);
+        setCurrentPos(tileToMoveTo);
+        row = tileToMoveTo.getRow();
+        col = tileToMoveTo.getCol();
+    }
+
     public Image getImage() {
         String path = "Resources/player/"+direction.toString().toLowerCase()+".png";
 
@@ -102,5 +120,12 @@ public class Player extends Item {
         } catch (IOException e) {
             throw new Error(path+"\nThe file failed to load: " + e);
         }
+    }
+
+    /**
+     * @return the player's current direction
+     */
+    public Direction getDirection() {
+        return direction;
     }
 }
