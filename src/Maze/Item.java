@@ -69,16 +69,27 @@ public abstract class Item {
     public void setCol(int colNum){this.col = colNum;}
 
     /**
-     * Get's the tile associated with the item
+     * Gets the tile associated with the item
      * @return The associated tile
      * */
-    public Tile getTile() {
-        if (inInventory) {
+    public Tile getTile(){
+        if(inInventory){
+            System.out.println("THIS IS IN THE INVENTORY " + inInventory);
             return null;
         }
-        Tile[][] tiles = main.getLevelBoard().getBoard();
-        return tiles[row][col];
+       // Tile[][] t = main.getLevelBoard().getBoard();
+        Tile t = new FreeTile(row, col);
+        return t;
     }
+    //BEGINNING OF METHOD THAT AUGUST WROTE - REPLACE IF MINE IS NOT RIGHT
+//    public Tile getTile() {
+//        if (inInventory) {
+//            return null;
+//        }
+//        Tile[][] tiles = main.getLevelBoard().getBoard();
+//        System.out.println("TILE" + tiles[row][col]);
+//        return tiles[row][col];
+//    }
 
     /**
      * Set's the item to be out of/into the players inventory.
