@@ -1,52 +1,61 @@
-package Maze;
-/*
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.runner.RunWith;
 
-import static org.junit.Assert.*;
+import Maze.DoorTile;
+import Maze.Item;
+import Maze.Key;
+import Maze.Player;
+import org.junit.jupiter.api.Test;
 
-@RunWith(Arquillian.class)
-public class KeyTest {
-    @Deployment
-    public static JavaArchive createDeployment() {
-        return ShrinkWrap.create(JavaArchive.class)
-                .addClass(Key.class)
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
-    }
+import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * Series of tests for the Key class
+ */
+public class KeyTest{
 
     /**
      * Tests when the door and key are matching
      */
-/*
-    @org.junit.Test
+    @Test
     public void isMatchingColour() {
         Key k = new Key(0, 0, "Blue");
         DoorTile d = new DoorTile(2, 2, "Blue");
         assertTrue(k.isMatchingColour(d));
     }
-/*
+
     /**
      * Tests when the door and key are not matching
      */
-/*
-    @org.junit.Test
+
+    @Test
     public void isNotMatchingColour() {
         Key k = new Key(0, 0, "Blue");
         DoorTile d = new DoorTile(2, 2, "Green");
         assertFalse(k.isMatchingColour(d));
     }
-/*
-    @org.junit.Test
-    public void getColor() {
-    }
 
-    @org.junit.Test
+    /**
+     * Checks the when interacting with the key, it is removed from the tile and then added to the player's inventory
+     */
+    @Test
     public void interact() {
+        Key k = new Key(2, 2, "Red");
+        Player p = new Player(0, 0);
+   //     k.interact();
+//        for(Item i: p.getInventory()) {
+//            System.out.println(i);
+//        }
     }
-}*/
 
-public class KeyTest {}
+    /**
+     * Tests whether the correct colour returns
+     */
+    @Test
+    public void getColor() {
+        Key k = new Key(0, 0, "Blue");
+        k.getColor();
+        assertTrue(k.getColor().equals("Blue"));
+    }
+}
+
+
+

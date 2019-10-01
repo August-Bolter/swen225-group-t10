@@ -45,7 +45,14 @@ public class Key extends Item {
 
     public void interact() {
         //remove key from tile
-        getTile().removeItem(this);
+        Tile tile = getTile();
+        Item toRemove = null;
+        for (Item i : tile.getItems()){
+            if (i.equals(this)){
+                toRemove = i;
+            }
+        }
+        tile.removeItem(toRemove);
 
         //Add chip to players inventory
         try {
