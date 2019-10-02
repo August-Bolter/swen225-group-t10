@@ -108,8 +108,6 @@ public class Player extends Item {
         currentPos.removeItem(this);
         tileToMoveTo.addItem(this);
         setCurrentPos(tileToMoveTo);
-        row = tileToMoveTo.getRow();
-        col = tileToMoveTo.getCol();
     }
 
     public Image getImage() {
@@ -120,12 +118,5 @@ public class Player extends Item {
         } catch (IOException e) {
             throw new Error(path+"\nThe file failed to load: " + e);
         }
-    }
-
-    /**
-     * @return the player's current direction
-     */
-    public Direction getDirection() {
-        return direction;
     }
 }
