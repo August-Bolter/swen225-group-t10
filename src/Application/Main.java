@@ -19,12 +19,6 @@ public class Main {
     private LevelBoard levelBoard;
     private MainFrame frame;
 
-    /**
-     * Creates a new main and setups up the game
-     */
-    public Main() {
-        setup();
-    }
 
     private void setup() {
         gameloop = new Timer();
@@ -104,10 +98,10 @@ public class Main {
 
     public static void main(String[] args) {
         Main game = new Main();
-
+        game.setup();
     }
 
-    private class GameLoop extends java.util.TimerTask{
+    private class GameLoop extends TimerTask{
 
         @Override
         public void run() {

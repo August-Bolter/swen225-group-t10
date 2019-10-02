@@ -21,4 +21,5 @@ public class ExitTile extends Tile {
         //TODO: need to implement exit tile being able to interact with Player
         main.getFrame().displayInfo("Level 1 Complete");
     }
+
 }
