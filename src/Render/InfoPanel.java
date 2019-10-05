@@ -68,7 +68,7 @@ public class InfoPanel extends JPanel {
             int row = i / 4 >= 1 ? 1 : 0;
             int col = i % 4;
             invPanels[i] = new TilePanel(new FreeTile(row, col));
-            invPanels[i].getTile().addItem(inventory[i]); // FIXME I shouldn't be adding new tiles
+            invPanels[i].getTile().addItem(inventory[i]);
 //            invPanels[i].removeAll();
             inventoryPanel.add(invPanels[i]);
         }

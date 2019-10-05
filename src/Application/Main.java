@@ -87,10 +87,18 @@ public class Main {
         return levelBoard;
     }
 
+    public Timer getTimeRemaining() {
+        return timeRemaining;
+    }
+
     public void decrementChipsRemaining(){
         if (chipsRemaining > 0) {
             chipsRemaining--;
         }
+    }
+
+    public int getChipsRemaining() {
+        return chipsRemaining;
     }
 
     public boolean allChipsCollected(){
