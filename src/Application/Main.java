@@ -21,14 +21,6 @@ public class Main {
 
 
     private void setup() {
-        gameloop = new Timer();
-
-        //gameloop.schedule();
-
-        gameloop.schedule(new GameLoop(), 0, 1000 / 60); //New timer at 60fps, the timing mechanism
-
-        timer(100);
-
         levelBoard = LoadJSON.loadLevelFromJSON(2);
         levelBoard.setMain(this);
         player = levelBoard.getPlayer();
@@ -36,6 +28,8 @@ public class Main {
         levelBoard.setMain(this);
         frame = new MainFrame(this);
         chipsRemaining = levelBoard.getTotalChips();
+
+        timer(100);
     }
 
 
@@ -70,13 +64,17 @@ public class Main {
      * @param seconds
      */
     public void timer(int seconds){
-        timeRemaining.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                System.out.println("-------game over---------");
-                gameover = true;
+        long lastTick = System.nanoTime();
+        while (seconds > 0) {
+            long now = System.nanoTime();
+            if (now - lastTick > 1000000000) {
+                System.out.println("tick " + seconds);
+                lastTick = now;
+                seconds--;
             }
-        }, seconds*1000);
+        }
+
+        System.out.println("Out of time");
     }
 
     public MainFrame getFrame() {
@@ -102,17 +100,6 @@ public class Main {
         game.setup();
     }
 
-    private class GameLoop extends TimerTask{
-
-        @Override
-        public void run() {
-            //gameupdates
-            //render
-            if (!gameover){
-                gameloop.cancel();
-            }
-        }
-    }
 
     public Player getPlayer() {
         return player;
