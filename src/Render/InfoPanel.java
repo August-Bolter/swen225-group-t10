@@ -14,6 +14,7 @@ public class InfoPanel extends JPanel {
     JLabel timeRemaining;
     JLabel chipsRemaining;
     JPanel inventoryPanel;
+    int timeLeft, chipsLeft;
 
     TilePanel[] invPanels;
     Item[] inventory;
@@ -33,12 +34,28 @@ public class InfoPanel extends JPanel {
         setLayout(new GridLayout(4,1));
 
         level = new JLabel("Level: " + game.getLevelBoard().getTitle());
-        timeRemaining = new JLabel("Time Remaining: " + game.getLevelBoard().getTimeLimit()); // FIXME Only gets the total time NOT current time
-        chipsRemaining = new JLabel("Chips Remaining: " + game.getLevelBoard().getTotalChips()); // FIXME Only gets the total chips NOT current chips
+        timeRemaining = new JLabel("Time Remaining: " + game.getLevelBoard().getTimeLimit());
+        timeLeft = game.getLevelBoard().getTimeLimit();
+        chipsRemaining = new JLabel("Chips Remaining: " + game.getLevelBoard().getTotalChips());
+        chipsLeft = game.getLevelBoard().getTotalChips();
 
         inventoryPanel = new JPanel(new GridLayout(2, 4));
         invPanels = new TilePanel[inventory.length];
         redraw();
+    }
+
+    /**
+     * Reduces the timeLeft by one second
+     */
+    public void decrementTimeRemaining() {
+        timeRemaining.setText("Time Remaining: " + --timeLeft);
+    }
+
+    /**
+     * Reduces the chips left by one
+     */
+    public void decrementChipsRemaining() {
+        chipsRemaining.setText("Chips Remaining: " + --chipsLeft);
     }
 
     /**

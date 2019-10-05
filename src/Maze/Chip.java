@@ -22,13 +22,13 @@ public class Chip extends Item {
 
     @Override
     public void interact() {
-        //TODO: need to implement chip tile being able to interact with Player
         main.decrementChipsRemaining();
 
         //remove chip from tile
         getTile().removeItem(this);
 
-        // TODO decrement total chips
+        // Decrement chips left
+        main.getFrame().getInfoPanel().decrementChipsRemaining();
     }
 
     public Image getImage() {

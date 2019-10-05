@@ -103,6 +103,13 @@ public class MainFrame extends JFrame implements KeyListener {
         return boardpanel;
     }
 
+    /**
+     * @return the info panel
+     */
+    public InfoPanel getInfoPanel() {
+        return infoPanel;
+    }
+
     //    /**
 //     * It will go into persistence and by getting the name of the tile.
 //     * This will get passed to the board which will store it in a map for fast recovery

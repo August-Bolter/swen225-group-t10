@@ -29,7 +29,7 @@ public class Main {
         frame = new MainFrame(this);
         chipsRemaining = levelBoard.getTotalChips();
 
-        timer(100);
+        timer(levelBoard.getTimeLimit());
     }
 
 
@@ -59,22 +59,24 @@ public class Main {
     }
 
     /**
-     * A timer method. Will print game over after a certain amount of time.
-     * Used to measure how long the player is taking for each level.
-     * @param seconds
+     * Keeps track of the time left and is used to control enemies
+     * @param seconds the number of seconds until game over
      */
     public void timer(int seconds){
         long lastTick = System.nanoTime();
         while (seconds > 0) {
             long now = System.nanoTime();
             if (now - lastTick > 1000000000) {
-                System.out.println("tick " + seconds);
+                frame.getInfoPanel().decrementTimeRemaining();
+                //frame.getInfoPanel().updateIntegers();
+                //System.out.println("tick " + seconds);
                 lastTick = now;
                 seconds--;
             }
         }
 
         System.out.println("Out of time");
+        frame.displayInfo("Out of time");
     }
 
     public MainFrame getFrame() {
