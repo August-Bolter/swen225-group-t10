@@ -9,7 +9,7 @@ import java.io.*;
  * All levels are 32x32.
  */
 class TextToJSON {
-    private static final String TEXT_FILENAME = "Level-1.txt";
+    private static final String TEXT_FILENAME = "Level-2.txt";
 
     /**
      * Converts the text file to a JSON file
@@ -83,6 +83,11 @@ class TextToJSON {
                     } else if (rowTiles[i] == 'o') {
                         type = "FreeTile";
                         item = "Chip";
+                    } else if (rowTiles[i] == 'p') {
+                        type = "FreeTile";
+                        item = "Boots";
+                    } else if (rowTiles[i] == 'z') {
+                        type = "FireTile";
                     } else if (rowTiles[i] == 'E') {
                         type = "ExitTile";
                     } else if (rowTiles[i] == 'L') {

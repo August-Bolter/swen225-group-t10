@@ -41,11 +41,8 @@ public class Key extends Item {
         return color;
     }
 
-
-
+    @Override
     public void interact() {
-        //TODO: need to implement key item being able to interact with Player
-
         //remove key from tile
         getTile().removeItem(this);
 

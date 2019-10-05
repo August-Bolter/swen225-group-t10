@@ -57,11 +57,7 @@ public abstract class Tile {
      * @param item the item to removes
      */
     public void removeItem(Item item) {
-        for (Iterator<Item> iterator = items.iterator(); iterator.hasNext();) {
-            Item i = iterator.next();
-            if (i.equals(item))
-                iterator.remove();
-        }
+        items.removeIf(i -> i.equals(item));
     }
 
     /**
