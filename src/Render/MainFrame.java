@@ -20,7 +20,7 @@ public class MainFrame extends JFrame implements KeyListener {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         outerpanel = new JPanel();
-        outerpanel.setLayout(new GridLayout(1,2));
+        outerpanel.setLayout(new GridBagLayout());
 
         setContentPane(outerpanel);
         addBoardPanel();
