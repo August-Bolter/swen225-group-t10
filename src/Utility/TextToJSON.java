@@ -86,6 +86,12 @@ class TextToJSON {
                     } else if (rowTiles[i] == 'p') {
                         type = "FreeTile";
                         item = "Boots";
+                    } else if (rowTiles[i] == 's') {
+                        type = "TeleportTile";
+                        extra = "9,11";
+                    } else if (rowTiles[i] == 't') {
+                        type = "TeleportTile";
+                        extra = "20,16";
                     } else if (rowTiles[i] == 'z') {
                         type = "FireTile";
                     } else if (rowTiles[i] == 'E') {
@@ -94,7 +100,7 @@ class TextToJSON {
                         type = "GateTile";
                     } else if (rowTiles[i] == 'I') {
                         type = "InfoTile";
-                        extra = "Hint: Collect chips to get past the chip socket. Use keys to open doors.";
+                        extra = "Hint: You need special boots to walk on lava";
                     } else if (rowTiles[i] == 'C') {
                         type = "FreeTile";
                         item = "Player";

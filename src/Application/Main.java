@@ -29,7 +29,7 @@ public class Main {
 
         timer(100);
 
-        levelBoard = LoadJSON.loadLevelFromJSON(1);
+        levelBoard = LoadJSON.loadLevelFromJSON(2);
         levelBoard.setMain(this);
         player = levelBoard.getPlayer();
         player.setCurrentPos();
@@ -49,11 +49,12 @@ public class Main {
         Tile currentPos = player.getCurrentPos();
         Tile desiredTile = levelBoard.getTileAtPosition(currentPos, direction);
         if (desiredTile != null) {
-            desiredTile.interact();
+
             if (desiredTile.isWalkable()) {
                 Tile newTile = levelBoard.getTileAtPosition(currentPos, direction);
                 player.move(newTile);
             }
+            desiredTile.interact();
             player.setDirection(direction);
             for (Iterator<Item> iterator = desiredTile.getItems().iterator(); iterator.hasNext();) {
                 iterator.next().interact();
