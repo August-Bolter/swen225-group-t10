@@ -152,4 +152,8 @@ public class Player extends Item {
             throw new Error(path+"\nThe file failed to load: " + e);
         }
     }
+
+    public LevelBoard.Direction getDirection() {
+        return direction;
+    }
 }
