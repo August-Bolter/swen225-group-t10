@@ -84,6 +84,7 @@ public class MainFrame extends JFrame implements KeyListener {
             case KeyEvent.VK_S:
                 if (pressedKeys.contains(KeyEvent.VK_CONTROL)) {
                     SaveJSON.SaveGame(game.getLevelBoard());
+                    return;
                 }
             case KeyEvent.VK_DOWN:
                 direction = LevelBoard.Direction.DOWN;
