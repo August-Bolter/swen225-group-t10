@@ -1,7 +1,7 @@
 package Maze;
 
-public class Fireball extends RedEnemy {
-    public Fireball(int row, int col) {
+public class Fireblast extends RedEnemy {
+    public Fireblast(int row, int col) {
         super(row, col);
     }
 
