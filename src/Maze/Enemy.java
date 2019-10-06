@@ -67,6 +67,13 @@ public class Enemy extends Item {
         this.currentPos = currentPos;
     }
 
+    /**
+     * Sets the current position of the Enemy by getting a tile from the board
+     */
+    public void setCurrentPos() {
+        this.currentPos = main.getLevelBoard().getBoard()[row][col];
+    }
+
     @Override
     public void setRow(int row) {
         this.row = row;

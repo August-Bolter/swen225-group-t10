@@ -38,11 +38,11 @@ public class BlueEnemy extends Enemy {
 
     public void moveEnemy(){
         Tile desiredTile = main.getLevelBoard().getTileAtPosition(currentPos, direction);
-        if (!(desiredTile instanceof FreeTile)) {
+        while (!(desiredTile instanceof FreeTile) || desiredTile == null) {
             setDirection(getNextClockwiseDirection(direction));
+            desiredTile = main.getLevelBoard().getTileAtPosition(currentPos, direction);
         }
-        Tile newTile = main.getLevelBoard().getTileAtPosition(currentPos, direction);
-        doMove(newTile);
+        doMove(desiredTile);
     }
 
     public void interact() {

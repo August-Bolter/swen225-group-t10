@@ -82,7 +82,7 @@
 		{
 			"type" : "FreeTile",
 			"row" : 9,
-			"col" : 17,
+			"col" : 18,
 			"item" : {
 				"type" : "RedEnemy"
 			}
@@ -467,6 +467,14 @@
 			}
 		},
 		{
+			"type" : "FreeTile",
+			"row" : 15,
+			"col" : 20,
+			"item" : {
+				"type" : "BlueEnemy"
+			}
+		},
+		{
 			"type" : "WallTile",
 			"row" : 15,
 			"col" : 21
@@ -504,14 +512,6 @@
 			"row" : 16,
 			"col" : 17,
 			"extra" : "blue"
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 16,
-			"col" : 19,
-			"item" : {
-				"type" : "BlueEnemy"
-			}
 		},
 		{
 			"type" : "WallTile",

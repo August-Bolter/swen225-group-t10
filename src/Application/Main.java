@@ -4,6 +4,8 @@ import Maze.*;
 import Persistence.LoadJSON;
 import Render.MainFrame;
 
+import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -21,6 +23,7 @@ public class Main {
     private Player player;
     private LevelBoard levelBoard;
     private MainFrame frame;
+    private List<Enemy> enemies;
 
 
     private void setup() {
@@ -28,6 +31,10 @@ public class Main {
         levelBoard.setMain(this);
         player = levelBoard.getPlayer();
         player.setCurrentPos();
+        enemies = levelBoard.getEnemies();
+        for (Enemy e : enemies){
+            e.setCurrentPos();
+        }
         levelBoard.setMain(this);
         frame = new MainFrame(this);
         chipsRemaining = levelBoard.getTotalChips();
@@ -73,8 +80,32 @@ public class Main {
                 frame.getInfoPanel().decrementTimeRemaining();
                 //frame.getInfoPanel().updateIntegers();
                 //System.out.println("tick " + seconds);
+
+
+                for (Enemy e : enemies){
+                    if (e instanceof BlueEnemy){
+                        ((BlueEnemy) e).moveEnemy();
+                    }
+//                    if (e instanceof RedEnemy){
+//                        ((RedEnemy) e).shoot();
+//                    }
+                }
+
+//                frame.getBoardPanel().updateBoard();
                 lastTick = now;
                 seconds--;
+                //this.getFrame().getBoardPanel().redraw();
+//                try {
+//                    Robot r = new Robot();
+//                    int keycode = KeyEvent.VK_0;
+//                    r.keyPress(keycode);
+//                } catch (AWTException e) {
+//                    e.printStackTrace();
+//                }
+
+//                frame.keyPressed(new KeyEvent(new Button(), 1, 20, 1, 10, '0'));
+//                frame.getBoardPanel().redraw();
+//                frame.getInfoPanel().redraw();
             }
         }
 

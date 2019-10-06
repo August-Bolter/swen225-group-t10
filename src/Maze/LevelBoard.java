@@ -3,6 +3,9 @@ package Maze;
 
 import Application.Main;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LevelBoard {
     private static final int SIZE = 32;
 
@@ -132,5 +135,20 @@ public class LevelBoard {
         return null;
     }
 
+    public List<Enemy> getEnemies(){
+        List<Enemy> enemies = new ArrayList<>();
+        for (int row = 0; row < board.length; row++) {
+            for (int col = 0; col < board[row].length; col++) {
+                if (board[row][col].hasItem()) {
+                    for (Item item : board[row][col].getItems()) {
+                        if (item instanceof Enemy){
+                            enemies.add((Enemy)item);
+                        }
+                    }
+                }
+            }
+        }
+        return enemies;
+    }
 
 }

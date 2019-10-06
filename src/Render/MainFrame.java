@@ -23,7 +23,7 @@ public class MainFrame extends JFrame implements KeyListener {
         this.game = game;
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         outerpanel = new JPanel();
-        outerpanel.setLayout(new GridBagLayout());
+        outerpanel.setLayout(new GridLayout(1,2));
 
         setContentPane(outerpanel);
         addBoardPanel();
@@ -129,6 +129,12 @@ public class MainFrame extends JFrame implements KeyListener {
                 // Closes the pause dialog
                 System.out.println("ESC");
                 return;
+            case KeyEvent.VK_0:
+                System.out.println("WE DID IT BOYS");
+                boardpanel.redraw();
+                infoPanel.redraw();
+                return;
+
             default:
                 return;
         }
