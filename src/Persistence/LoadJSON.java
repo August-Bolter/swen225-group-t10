@@ -34,7 +34,12 @@ public class LoadJSON {
 
         try {
             // Open the JSON file
-            BufferedReader in = new BufferedReader(new FileReader("src/Utility/Level-" + level + ".json"));
+            BufferedReader in;
+            if (level > 0) {
+                in = new BufferedReader(new FileReader("src/Utility/Level-" + level + ".json"));
+            } else {
+                in = new BufferedReader(new FileReader("src/Utility/save.json"));
+            }
             JsonReader reader = Json.createReader(in);
 
             JsonObject levelObject = reader.readObject();

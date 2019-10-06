@@ -4,7 +4,10 @@ import Maze.*;
 import Persistence.LoadJSON;
 import Render.MainFrame;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Timer;
 
 public class Main {
     private Timer timeRemaining = new Timer(); //Level timer
@@ -21,21 +24,15 @@ public class Main {
 
 
     private void setup() {
-        gameloop = new Timer();
-
-        //gameloop.schedule();
-
-        gameloop.schedule(new GameLoop(), 0, 1000 / 60); //New timer at 60fps, the timing mechanism
-
-        timer(100);
-
-        levelBoard = LoadJSON.loadLevelFromJSON(1);
+        levelBoard = LoadJSON.loadLevelFromJSON(2);
         levelBoard.setMain(this);
         player = levelBoard.getPlayer();
         player.setCurrentPos();
         levelBoard.setMain(this);
         frame = new MainFrame(this);
         chipsRemaining = levelBoard.getTotalChips();
+
+        timer(levelBoard.getTimeLimit());
     }
 
 
@@ -49,11 +46,12 @@ public class Main {
         Tile currentPos = player.getCurrentPos();
         Tile desiredTile = levelBoard.getTileAtPosition(currentPos, direction);
         if (desiredTile != null) {
-            desiredTile.interact();
+
             if (desiredTile.isWalkable()) {
                 Tile newTile = levelBoard.getTileAtPosition(currentPos, direction);
                 player.move(newTile);
             }
+            desiredTile.interact();
             player.setDirection(direction);
             for (Iterator<Item> iterator = desiredTile.getItems().iterator(); iterator.hasNext();) {
                 iterator.next().interact();
@@ -64,18 +62,24 @@ public class Main {
     }
 
     /**
-     * A timer method. Will print game over after a certain amount of time.
-     * Used to measure how long the player is taking for each level.
-     * @param seconds
+     * Keeps track of the time left and is used to control enemies
+     * @param seconds the number of seconds until game over
      */
     public void timer(int seconds){
-        timeRemaining.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                System.out.println("-------game over---------");
-                gameover = true;
+        long lastTick = System.nanoTime();
+        while (seconds > 0) {
+            long now = System.nanoTime();
+            if (now - lastTick > 1000000000) {
+                frame.getInfoPanel().decrementTimeRemaining();
+                //frame.getInfoPanel().updateIntegers();
+                //System.out.println("tick " + seconds);
+                lastTick = now;
+                seconds--;
             }
-        }, seconds*1000);
+        }
+
+        System.out.println("Out of time");
+        frame.displayInfo("Out of time");
     }
 
     public MainFrame getFrame() {
@@ -86,10 +90,18 @@ public class Main {
         return levelBoard;
     }
 
+    public Timer getTimeRemaining() {
+        return timeRemaining;
+    }
+
     public void decrementChipsRemaining(){
         if (chipsRemaining > 0) {
             chipsRemaining--;
         }
+    }
+
+    public int getChipsRemaining() {
+        return chipsRemaining;
     }
 
     public boolean allChipsCollected(){
@@ -101,17 +113,6 @@ public class Main {
         game.setup();
     }
 
-    private class GameLoop extends TimerTask{
-
-        @Override
-        public void run() {
-            //gameupdates
-            //render
-            if (!gameover){
-                gameloop.cancel();
-            }
-        }
-    }
 
     public Player getPlayer() {
         return player;
