@@ -36,7 +36,9 @@ public class Enemy extends Item {
     @Override
     public Image getImage() {
         String itemName = getClass().getName().substring(5);
-        String path = "Resources/enemy/"+itemName+direction.toString().toLowerCase()+".png";
+        String dir = direction.toString().toUpperCase();
+        dir = dir.charAt(0) + dir.substring(1).toLowerCase();
+        String path = "Resources/enemy/"+itemName+dir+".png";
 
         try {
             return ImageIO.read(new File(path));
