@@ -19,7 +19,7 @@ public class DoorTile extends Tile {
      * @param color The pre-defined color of the board
      * */
     public DoorTile(int row, int col, String color) {
-        super(row, col);
+        super(row, col, color);
         this.color = color;
         this.isWalkable = false; //The door by default (i.e. when created) is locked.
     }

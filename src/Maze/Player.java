@@ -85,6 +85,10 @@ public class Player extends Item {
         System.out.print("]\n");
     }
 
+    /**
+     * Removes an item from the player's inventory
+     * @param item the item to remove
+     */
     public void removeItemFromInventory(Item item){
         for (int i = 0; i < inventory.length; i++) {
             if (inventory[i] != null && inventory[i].equals(item)) {
@@ -94,6 +98,24 @@ public class Player extends Item {
         }
     }
 
+    /**
+     * Check's if the player has a particular item in their inventory
+     * @param item the item to check
+     * @return true if the item is in the inventory, else if not
+     */
+    public boolean isInInventory(Item item) {
+        for (int i = 0; i < inventory.length; i++) {
+            if (inventory[i] != null && inventory[i].getClass().getName().equals(item.getClass().getName())) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @return the player's inventory
+     */
     public Item[] getInventory() {
         return inventory;
     }
@@ -103,19 +125,24 @@ public class Player extends Item {
      */
     @Override
     public void interact() {
-
+        // Intentionally unimplemented
     }
 
-    public LevelBoard.Direction getDirection() {
-        return direction;
-    }
-
+    /**
+     * Moves the player by updating their current tile
+     * @param tileToMoveTo the tile to move to
+     */
     public void move(Tile tileToMoveTo) {
         currentPos.removeItem(this);
         tileToMoveTo.addItem(this);
         setCurrentPos(tileToMoveTo);
     }
 
+    /**
+     * Gets the image representing the player
+     * Takes the player's current direction into account
+     * @return the image
+     */
     public Image getImage() {
         String path = "Resources/player/"+direction.toString().toLowerCase()+".png";
 

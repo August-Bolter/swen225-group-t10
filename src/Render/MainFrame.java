@@ -2,25 +2,28 @@ package Render;
 
 import Application.Main;
 import Maze.LevelBoard;
+import Persistence.SaveJSON;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.HashSet;
+import java.util.Set;
 
 public class MainFrame extends JFrame implements KeyListener {
     private Main game;
     private JPanel outerpanel;
     private BoardPanel boardpanel;
     private InfoPanel infoPanel;
+    private Set<Integer> pressedKeys;
 
     public MainFrame(Main game){
         super("Chip's Challenge");
         this.game = game;
-        setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         outerpanel = new JPanel();
-        outerpanel.setLayout(new GridLayout(1,2));
+        outerpanel.setLayout(new GridBagLayout());
 
         setContentPane(outerpanel);
         addBoardPanel();
@@ -31,10 +34,25 @@ public class MainFrame extends JFrame implements KeyListener {
         setFocusable(true);
         requestFocus();
 
+        createMenuBar();
+
         pack();
+        setLocationRelativeTo(null);
         setVisible(true);
         repaint();
         setResizable(false);
+
+        pressedKeys = new HashSet<>();
+    }
+
+    private void createMenuBar() {
+        JMenuBar menu = new JMenuBar();
+        JMenuItem settingsMenu = new JMenuItem("Settings");
+
+        menu.add(settingsMenu);
+//        menu.add();
+
+        setJMenuBar(menu);
     }
 
     private void addBoardPanel() {
@@ -55,6 +73,7 @@ public class MainFrame extends JFrame implements KeyListener {
     @Override
     public void keyPressed(KeyEvent keyEvent) {
         int keyCode = keyEvent.getKeyCode();
+        pressedKeys.add(keyCode);
         LevelBoard.Direction direction;
 
         switch (keyCode) {
@@ -63,6 +82,10 @@ public class MainFrame extends JFrame implements KeyListener {
                 direction = LevelBoard.Direction.UP;
                 break;
             case KeyEvent.VK_S:
+                if (pressedKeys.contains(KeyEvent.VK_CONTROL)) {
+                    SaveJSON.SaveGame(game.getLevelBoard());
+                    return;
+                }
             case KeyEvent.VK_DOWN:
                 direction = LevelBoard.Direction.DOWN;
                 break;
@@ -74,18 +97,50 @@ public class MainFrame extends JFrame implements KeyListener {
             case KeyEvent.VK_RIGHT:
                 direction = LevelBoard.Direction.RIGHT;
                 break;
+            case KeyEvent.VK_X:
+                if (pressedKeys.contains(KeyEvent.VK_CONTROL)) {
+                    int confirmed = JOptionPane.showConfirmDialog(null, "Exit Program?","EXIT",JOptionPane.YES_NO_OPTION);
+                    if(confirmed == JOptionPane.YES_OPTION) {
+                        System.exit(0);
+                    }
+                }
+                return;
+            case KeyEvent.VK_R:
+                // Resumes the game
+                System.out.println("CTRL R");
+                return;
+            case KeyEvent.VK_P:
+                // Starts a new game at level 1
+                System.out.println("CTRL P");
+                return;
+            case KeyEvent.VK_1:
+                // Starts level 1
+                System.out.println("CTRL 1");
+                return;
+            case KeyEvent.VK_2:
+                // Starts level 2
+                System.out.println("CTRL 2");
+                return;
+            case KeyEvent.VK_SPACE:
+                // Pauses the game
+                System.out.println("SPACE");
+                return;
+            case KeyEvent.VK_ESCAPE:
+                // Closes the pause dialog
+                System.out.println("ESC");
+                return;
             default:
                 return;
         }
 
         game.doMove(direction);
-        boardpanel.redraw(); // TODO should be in the game loop
+        boardpanel.redraw();
         infoPanel.redraw();
     }
 
     @Override
     public void keyReleased(KeyEvent keyEvent) {
-        // Unimplemented
+        pressedKeys.remove(keyEvent.getKeyCode());
     }
 
     /**
@@ -101,6 +156,13 @@ public class MainFrame extends JFrame implements KeyListener {
      */
     public BoardPanel getBoardPanel() {
         return boardpanel;
+    }
+
+    /**
+     * @return the info panel
+     */
+    public InfoPanel getInfoPanel() {
+        return infoPanel;
     }
 
     //    /**
