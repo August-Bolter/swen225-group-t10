@@ -28,6 +28,7 @@ public class Chip extends Item {
 
         // Decrement chips left
         main.getFrame().getInfoPanel().decrementChipsRemaining();
+        main.getLevelBoard().updateFields();
     }
 
     public Image getImage() {

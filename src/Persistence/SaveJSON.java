@@ -23,8 +23,8 @@ public class SaveJSON {
 
             // Write the start of the JSON file
             builder.append("{\n\t\"title\": \"Lesson 1\",\n" +
-                    "\t\"chips\": 11,\n" +
-                    "\t\"timeLimit\" : 100,\n" +
+                    "\t\"chips\": " + levelBoard.getTotalChips() + ",\n" +
+                    "\t\"timeLimit\" : " + levelBoard.getTimeLimit() + ",\n" +
                     "\t\"tiles\" : [\n");
 
             for (int row = 0; row < levelArray.length; row++) {
@@ -48,6 +48,19 @@ public class SaveJSON {
 
                     if (itemObj == null) {
                         itemExtra = null;
+                    } else if (itemObj instanceof Player) {
+                        itemExtra = "";
+                        Player player = (Player) itemObj;
+                        for (int i = 0; i < player.getInventory().length; i++) {
+                            if (player.getInventory()[i] == null) {
+                                itemExtra += "_,";
+                            } else {
+                                itemExtra += player.getInventory()[i].getClass().getName().split("\\.")[1] + "|" + ((player.getInventory()[i].getExtra() == null) ? "_" :  player.getInventory()[i].getExtra()) + ",";
+                            }
+                        }
+                        itemExtra = itemExtra.substring(0, itemExtra.length() - 1);
+                        System.out.println(itemExtra);
+
                     } else {
                         itemExtra = itemObj.getExtra();
                     }
