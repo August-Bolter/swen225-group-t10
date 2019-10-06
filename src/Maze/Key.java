@@ -16,7 +16,7 @@ public class Key extends Item {
      * @param col The column (in regards to the board) of the key.
      * @param color The color of the key. */
     public Key(int row, int col, String color) {
-        super(row, col);
+        super(row, col, color);
         this.color = color;
     }
 
