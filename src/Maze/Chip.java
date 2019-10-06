@@ -4,7 +4,6 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.Iterator;
 
 /** Represents a treasure (chip) in the game. This item can be picked up by the player. Once they have all the chips in the
  * level they can pass through the GateTile and finish the level by reaching the ExitTile. */

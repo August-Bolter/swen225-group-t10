@@ -15,6 +15,7 @@ import java.util.Objects;
 public abstract class Item {
     private int row;
     private int col;
+    private String extra;
     protected Main main;
     private boolean inInventory;
     public static final String PATH = "Resources/items/";
@@ -26,6 +27,18 @@ public abstract class Item {
         this.row = row;
         this.col = col;
         inInventory = false;
+    }
+
+    /**
+     * Creates an item with an extra
+     * @param row the row
+     * @param col the col
+     * @param extra the extra descriptor
+     */
+    public Item(int row, int col, String extra) {
+        this.row = row;
+        this.col = col;
+        this.extra = extra;
     }
 
     //Start of getter and setter methods
@@ -55,6 +68,11 @@ public abstract class Item {
     public int getRow(){
         return row;
     }
+
+    /**
+     * @return the extra descriptor
+     */
+    public String getExtra() { return extra; }
 
     /**
      * Sets the item's row number

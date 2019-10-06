@@ -1,6 +1,8 @@
 package Utility;
 
 
+import Persistence.SaveJSON;
+
 import java.io.*;
 
 /**
@@ -110,26 +112,7 @@ class TextToJSON {
 
 
                     // Print to JSON
-                    builder.append("\t\t{\n\t\t\t\"type\" : \""+ type +"\",\n" +
-                            "\t\t\t\"row\" : " + row + ",\n" +
-                            "\t\t\t\"col\" : " + i);
-
-                    if (extra != null) {
-                        builder.append(",\n\t\t\t\"extra\" : \"" + extra + "\"");
-                    }
-
-                    if (item != null) {
-                        builder.append(",\n\t\t\t\"item\" : {\n\t\t\t\t\"type\" : \"" + item + "\"");
-
-                        if (itemExtra != null) {
-                            builder.append(",\n\t\t\t\t\"extra\" : \"" + itemExtra + "\"" );
-                        }
-
-                        builder.append("\n\t\t\t}");
-                    }
-
-                    builder.append("\n\t\t},\n");
-
+                    builder.append(SaveJSON.tileAsJSON(type, extra, item, itemExtra, row, i));
                 }
 
                 row++;

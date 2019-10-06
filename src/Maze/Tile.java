@@ -6,7 +6,7 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /** An abstract class representing a tile in the game. This abstract class is extended by concrete classes like DoorTile,
@@ -15,6 +15,7 @@ public abstract class Tile {
     public static final String PATH = "Resources/floor/";
     private int row;
     private int col;
+    private String extra;
     private List<Item> items;
     protected Main main;
 
@@ -27,6 +28,13 @@ public abstract class Tile {
         this.items = new ArrayList<>();
     }
 
+    public Tile(int row, int col, String extra) {
+        this.row = row;
+        this.col = col;
+        this.extra = extra;
+        this.items = new ArrayList<>();
+    }
+
     /** Gets the row of the tile */
     public int getRow() {
         return row;
@@ -36,6 +44,11 @@ public abstract class Tile {
     public int getCol() {
         return col;
     }
+
+    /**
+     * @return the extra field, null if the tile doesn't have one
+     */
+    public String getExtra() { return extra; }
 
     /**
      * @return the list of items on this tile
