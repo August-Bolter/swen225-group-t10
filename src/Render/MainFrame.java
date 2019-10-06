@@ -83,7 +83,7 @@ public class MainFrame extends JFrame implements KeyListener {
                 break;
             case KeyEvent.VK_S:
                 if (pressedKeys.contains(KeyEvent.VK_CONTROL)) {
-                    SaveJSON.SaveGame(game.getLevelBoard());
+                    SaveJSON.SaveGame(game.getLevelBoard(), -1);
                     return;
                 }
             case KeyEvent.VK_DOWN:

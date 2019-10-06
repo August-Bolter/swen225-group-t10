@@ -12,10 +12,15 @@ public class SaveJSON {
     /**
      * Saves the current game state to a .JSON file
      */
-    public static void SaveGame(LevelBoard levelBoard) {
+    public static void SaveGame(LevelBoard levelBoard, int count) {
         Tile[][] levelArray = levelBoard.getBoard();
-
-        File jsonFile = new File("src/Utility/save.json");
+        File jsonFile;
+        if (count == -1) {
+            jsonFile = new File("src/Utility/save.json");
+        }
+        else {
+            jsonFile = new File("src/Utility/replay-" + count + ".json");
+        }
 
         try {
             PrintStream out = new PrintStream(jsonFile);

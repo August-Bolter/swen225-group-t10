@@ -3,9 +3,13 @@ package Render;
 import Application.Main;
 import Maze.FreeTile;
 import Maze.Item;
+import Persistence.Record;
+import Persistence.Replay;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class InfoPanel extends JPanel {
     Main game;
@@ -14,6 +18,7 @@ public class InfoPanel extends JPanel {
     JLabel timeRemaining;
     JLabel chipsRemaining;
     JPanel inventoryPanel;
+    JButton replayButton, recordButton;
     int timeLeft, chipsLeft;
 
     TilePanel[] invPanels;
@@ -41,6 +46,35 @@ public class InfoPanel extends JPanel {
 
         inventoryPanel = new JPanel(new GridLayout(2, 4));
         invPanels = new TilePanel[inventory.length];
+
+        replayButton = new JButton("Replay");
+        recordButton = new JButton("Record");
+        Record record = new Record(game);
+        Replay replay = new Replay(game);
+        recordButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(e.getSource() == recordButton) {
+                    if (!record.isRecording()) {
+                        recordButton.setText("Stop recording");
+                        record.record();
+                    }
+                    else {
+                        recordButton.setText("Record");
+                        record.stopRecording();
+                    }
+                }
+            }
+        });
+
+        replayButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(e.getSource() == replayButton) {
+
+                }
+            }
+        });
         redraw();
     }
 
@@ -77,6 +111,8 @@ public class InfoPanel extends JPanel {
         add(timeRemaining);
         add(chipsRemaining);
         add(inventoryPanel);
+        add(recordButton);
+        add(replayButton);
 
         for (TilePanel tp : invPanels) {
             tp.redraw();

@@ -24,9 +24,11 @@ public class Main {
     private LevelBoard levelBoard;
     private MainFrame frame;
     private List<Enemy> enemies;
+    private boolean recordMoves;
 
 
     private void setup() {
+        recordMoves = false;
         levelBoard = LoadJSON.loadLevelFromJSON(2);
         levelBoard.setMain(this);
         player = levelBoard.getPlayer();
@@ -53,10 +55,12 @@ public class Main {
     public boolean doMove(LevelBoard.Direction direction){
         Tile currentPos = player.getCurrentPos();
         Tile desiredTile = levelBoard.getTileAtPosition(currentPos, direction);
+        Tile newTile = null;
+        LevelBoard.Direction oldDirection = player.getDirection();
         if (desiredTile != null) {
 
             if (desiredTile.isWalkable()) {
-                Tile newTile = levelBoard.getTileAtPosition(currentPos, direction);
+                newTile = levelBoard.getTileAtPosition(currentPos, direction);
                 player.move(newTile);
             }
             desiredTile.interact();
@@ -64,6 +68,12 @@ public class Main {
             for (Iterator<Item> iterator = desiredTile.getItems().iterator(); iterator.hasNext();) {
                 iterator.next().interact();
             }
+            if (recordMoves) {
+                if (!(newTile == desiredTile && oldDirection == direction)) {
+
+                }
+            }
+
             return true;
         }
         return false;
@@ -150,5 +160,9 @@ public class Main {
 
     public Player getPlayer() {
         return player;
+    }
+
+    public void recordMoves(boolean b) {
+        recordMoves = b;
     }
 }
