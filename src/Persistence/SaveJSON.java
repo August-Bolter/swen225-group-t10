@@ -12,7 +12,7 @@ public class SaveJSON {
     /**
      * Saves the current game state to a .JSON file
      */
-    public void SaveGame(LevelBoard levelBoard) {
+    public static void SaveGame(LevelBoard levelBoard) {
         Tile[][] levelArray = levelBoard.getBoard();
 
         File jsonFile = new File("src/Utility/save.json");
