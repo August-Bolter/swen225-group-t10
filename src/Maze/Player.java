@@ -11,7 +11,7 @@ import java.io.IOException;
 public class Player extends Item {
     private Tile currentPos;
     private Item[] inventory;
-    private enum Direction {UP, DOWN, RIGHT, LEFT};
+    private enum Direction {UP, DOWN, RIGHT, LEFT}
     private Direction direction;
     private int row, col;
 
