@@ -105,6 +105,11 @@ public class LevelBoard {
         return timeLimit;
     }
 
+    public void updateFields() {
+        this.totalChips = main.getChipsRemaining();
+        this.timeLimit = main.getTimeRemaining();
+    }
+
     /**
      * Method that gets the title
      * @return title

@@ -1,9 +1,6 @@
 package Persistence;
 
-import Maze.FreeTile;
-import Maze.Item;
-import Maze.LevelBoard;
-import Maze.Tile;
+import Maze.*;
 
 import javax.json.*;
 import java.io.BufferedReader;
@@ -127,6 +124,19 @@ public class LoadJSON {
             if (extra == null) {
                 Constructor<?> itemConstructor = itemClazz.getConstructor(Integer.TYPE, Integer.TYPE);
                 item = (Item) itemConstructor.newInstance(row, col);
+            } else if (itemClassName.equals("Player")) {
+                String[] itemNames = extra.split(",");
+                Constructor<?> itemConstructor = itemClazz.getConstructor(Integer.TYPE, Integer.TYPE);
+                item = (Item) itemConstructor.newInstance(row, col);
+                Player player = (Player) item;
+                for (int i = 0; i < itemNames.length; i++) {
+                    String[] itemInfo = itemNames[i].split("\\|");
+                    if (itemInfo[0].equals("_")) {
+                        player.getInventory()[i] = null;
+                    } else {
+                        player.getInventory()[i] = createItem(itemInfo[0], row, col, (itemInfo[1].equals("_")) ? null : itemInfo[1]);
+                    }
+                }
             } else {
                 Constructor<?> itemConstructor = itemClazz.getConstructor(Integer.TYPE, Integer.TYPE, String.class);
                 item = (Item) itemConstructor.newInstance(row, col, extra);

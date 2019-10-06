@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Timer;
 
 public class Main {
-    private Timer timeRemaining = new Timer(); //Level timer
+    private int timeRemaining; //Level timer
     private Timer gameloop; //Timer object to ensure the game updates at a constant rate, regardless of the computer the game is running on
     private boolean gameover = false; //boolean the checks if the player has lost 3 levels
 
@@ -31,6 +31,7 @@ public class Main {
         levelBoard.setMain(this);
         frame = new MainFrame(this);
         chipsRemaining = levelBoard.getTotalChips();
+        timeRemaining = levelBoard.getTimeLimit();
 
         timer(levelBoard.getTimeLimit());
     }
@@ -74,6 +75,8 @@ public class Main {
                 //frame.getInfoPanel().updateIntegers();
                 //System.out.println("tick " + seconds);
                 lastTick = now;
+                timeRemaining--;
+                levelBoard.updateFields();
                 seconds--;
             }
         }
@@ -90,7 +93,7 @@ public class Main {
         return levelBoard;
     }
 
-    public Timer getTimeRemaining() {
+    public int getTimeRemaining() {
         return timeRemaining;
     }
 
