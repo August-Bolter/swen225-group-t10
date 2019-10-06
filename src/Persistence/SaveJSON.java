@@ -32,7 +32,7 @@ public class SaveJSON {
                     // Get tile descriptions
                     Tile tile = levelArray[row][col];
                     Class<?> clazz = tile.getClass();
-                    String type = clazz.getName();
+                    String type = clazz.getName().split(".")[1];
                     String extra = tile.getExtra();
 
                     // Get item description if the tile has one
