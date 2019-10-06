@@ -99,6 +99,9 @@ public class Player extends Item {
         return inventory;
     }
 
+    /**
+     * Player can't interact with himself
+     */
     @Override
     public void interact() {
 
