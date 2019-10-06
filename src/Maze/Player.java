@@ -11,8 +11,7 @@ import java.io.IOException;
 public class Player extends Item {
     private Tile currentPos;
     private Item[] inventory;
-    private enum Direction {UP, DOWN, RIGHT, LEFT};
-    private Direction direction;
+    private LevelBoard.Direction direction;
     private int row, col;
 
     public Player(int row, int col) {
@@ -20,21 +19,21 @@ public class Player extends Item {
         this.row = row;
         this.col = col;
         this.inventory = new Item[8];
-        direction = Direction.DOWN;
+        direction = LevelBoard.Direction.DOWN;
     }
 
     public void setDirection(LevelBoard.Direction d) {
         if (d == LevelBoard.Direction.LEFT) {
-            direction = Direction.LEFT;
+            direction = LevelBoard.Direction.LEFT;
         }
         else if (d == LevelBoard.Direction.RIGHT) {
-            direction = Direction.RIGHT;
+            direction = LevelBoard.Direction.RIGHT;
         }
         else if (d == LevelBoard.Direction.UP) {
-            direction = Direction.UP;
+            direction = LevelBoard.Direction.UP;
         }
         else if (d == LevelBoard.Direction.DOWN) {
-            direction = Direction.DOWN;
+            direction = LevelBoard.Direction.DOWN;
         }
     }
 
@@ -105,6 +104,10 @@ public class Player extends Item {
     @Override
     public void interact() {
 
+    }
+
+    public LevelBoard.Direction getDirection() {
+        return direction;
     }
 
     public void move(Tile tileToMoveTo) {
