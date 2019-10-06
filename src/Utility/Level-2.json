@@ -80,6 +80,14 @@
 			"col" : 15
 		},
 		{
+			"type" : "FreeTile",
+			"row" : 9,
+			"col" : 17,
+			"item" : {
+				"type" : "RedEnemy"
+			}
+		},
+		{
 			"type" : "WallTile",
 			"row" : 9,
 			"col" : 19
@@ -498,6 +506,14 @@
 			"extra" : "blue"
 		},
 		{
+			"type" : "FreeTile",
+			"row" : 16,
+			"col" : 19,
+			"item" : {
+				"type" : "BlueEnemy"
+			}
+		},
+		{
 			"type" : "WallTile",
 			"row" : 16,
 			"col" : 21
@@ -629,6 +645,14 @@
 			"type" : "WallTile",
 			"row" : 20,
 			"col" : 11
+		},
+		{
+			"type" : "FreeTile",
+			"row" : 20,
+			"col" : 12,
+			"item" : {
+				"type" : "GreenEnemy"
+			}
 		},
 		{
 			"type" : "WallTile",

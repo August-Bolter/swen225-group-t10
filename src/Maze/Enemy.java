@@ -1,5 +1,10 @@
 package Maze;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+
 public class Enemy extends Item {
     protected Tile currentPos;
     protected Maze.LevelBoard.Direction direction;
@@ -27,6 +32,17 @@ public class Enemy extends Item {
         currentPos.removeItem(this);
         toMoveTo.addItem(this);
         setCurrentPos(toMoveTo);
+    }
+    @Override
+    public Image getImage() {
+        String itemName = getClass().getName().substring(5);
+        String path = "Resources/enemy/"+itemName+direction.toString().toLowerCase()+".png";
+
+        try {
+            return ImageIO.read(new File(path));
+        } catch (IOException e) {
+            throw new Error(path+"\nThe file failed to load: " + e);
+        }
     }
 
     public Tile getCurrentPos() {
