@@ -39,16 +39,19 @@ public class BoardPanel extends JPanel {
     public void redraw() {
         invalidate();
         removeAll();
-//        if (player == null) System.out.println("THE PLAYER IS NULL !!!!!!!!!!!!!!!!!!\n\n\n\n\n\n\n\n\n\n\n\n");
+
         int playerRow = player.getCurrentPos().getRow();
         int playerCol = player.getCurrentPos().getCol();
 
-        int minRow = Math.max(playerRow - 4, MIN);
-        int minCol = Math.max(playerCol - 4, MIN);
+        int minRow = Math.max(playerRow - (DISPLAY_SIZE - 1) / 2,  MIN);
+        int minCol = Math.max(playerCol - (DISPLAY_SIZE - 1) / 2, MIN);
 
-        int maxRow = Math.min(playerRow - 4 + DISPLAY_SIZE, MAX);
-        int maxCol = Math.min(playerCol - 4 + DISPLAY_SIZE, MAX);
-
+        int maxRow = Math.min(minRow + DISPLAY_SIZE, MAX);
+        if (maxRow == MAX)
+            minRow = MAX - DISPLAY_SIZE;
+        int maxCol = Math.min(minCol + DISPLAY_SIZE, MAX);
+        if (maxCol == MAX)
+            minCol = MAX - DISPLAY_SIZE;
         for (int row = minRow; row < maxRow; row++) {
             for (int col = minCol; col < maxCol; col++) {
                 boardLabels[row][col].redraw();
