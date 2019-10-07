@@ -109,7 +109,7 @@ public abstract class Item implements Comparable<Item> {
     }
 
     /**
-     * Method to interact with the tile
+     * Method to interact with the item
      */
     public abstract void interact();
 

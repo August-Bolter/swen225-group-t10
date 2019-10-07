@@ -43,6 +43,9 @@ public class BlueEnemy extends Enemy {
             desiredTile = main.getLevelBoard().getTileAtPosition(currentPos, direction);
         }
         doMove(desiredTile);
+        if (currentPos.getItems().contains(main.getPlayer())) {
+            interact();
+        }
     }
 
     public void interact() {

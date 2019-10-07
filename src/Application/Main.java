@@ -4,10 +4,7 @@ import Maze.*;
 import Persistence.LoadJSON;
 import Render.MainFrame;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Timer;
+import java.util.*;
 
 public class Main {
     private int timeRemaining; //Level timer
@@ -22,10 +19,11 @@ public class Main {
     private LevelBoard levelBoard;
     private MainFrame frame;
     private List<Enemy> enemies;
+    private List<Fireblast> fireblasts = new ArrayList<>();
 
 
     private void setup() {
-        levelBoard = LoadJSON.loadLevelFromJSON(2);
+        levelBoard = LoadJSON.loadLevelFromJSON(3);
         levelBoard.setMain(this);
         player = levelBoard.getPlayer();
         player.setCurrentPos();
@@ -59,7 +57,15 @@ public class Main {
             desiredTile.interact();
             player.setDirection(direction);
             for (Iterator<Item> iterator = desiredTile.getItems().iterator(); iterator.hasNext();) {
-                iterator.next().interact();
+                Item item = iterator.next();
+                item.interact();
+                if (item instanceof GreenEnemy){
+                    GreenEnemy g = (GreenEnemy) item;
+                    if (!g.hasMoved()){
+                        System.out.println("stuck");
+                        player.move(currentPos);
+                    }
+                }
             }
             return true;
         }
@@ -77,24 +83,34 @@ public class Main {
         int frameRate = 2;
         while (seconds > 0) {
             long now = System.nanoTime();
-            if (now - lastTick > 1000000000 / frameRate) {
-                tick++;
-                lastTick = now;
-
-                if (tick % frameRate == 0) {
-                    frame.getInfoPanel().decrementTimeRemaining();
-                    timeRemaining--;
-                    levelBoard.updateFields();
-                    seconds--;
-                    for (Enemy e : enemies){
-                        if (e instanceof BlueEnemy){
-                            ((BlueEnemy) e).moveEnemy();
-                        }
-//                    if (e instanceof RedEnemy){
-//                        ((RedEnemy) e).shoot();
-//                    }
+            if (now - lastTick > 1000000000) {
+                frame.getInfoPanel().decrementTimeRemaining();
+                //frame.getInfoPanel().updateIntegers();
+                //System.out.println("tick " + seconds);
+                List<Fireblast> toRemove = new ArrayList<>();
+                for (Fireblast fb : fireblasts) {
+                    if (!fb.moveBlast()) {
+                        toRemove.add(fb);
                     }
                 }
+                fireblasts.removeAll(toRemove);
+
+                for (Enemy e : enemies) {
+                    if (e instanceof BlueEnemy) {
+                        ((BlueEnemy) e).moveEnemy();
+                    }
+                    if (timeRemaining % 3 == 0) {
+                        if (e instanceof RedEnemy) {
+                            fireblasts.add(((RedEnemy) e).shoot());
+                        }
+                    }
+                }
+
+
+                lastTick = now;
+                timeRemaining--;
+                levelBoard.updateFields();
+                seconds--;
                 frame.redraw();
             }
         }
