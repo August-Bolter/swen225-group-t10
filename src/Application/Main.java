@@ -73,36 +73,28 @@ public class Main {
      */
     public void timer(int seconds){
         long lastTick = System.nanoTime();
+        int tick = 0;
+        int frameRate = 2;
         while (seconds > 0) {
             long now = System.nanoTime();
-            if (now - lastTick > 1000000000 / 2) {
-                frame.getInfoPanel().decrementTimeRemaining();
-                //frame.getInfoPanel().updateIntegers();
-                //System.out.println("tick " + seconds);
+            if (now - lastTick > 1000000000 / frameRate) {
+                tick++;
+                lastTick = now;
 
-
-                for (Enemy e : enemies){
-                    if (e instanceof BlueEnemy){
-                        ((BlueEnemy) e).moveEnemy();
-                    }
+                if (tick % frameRate == 0) {
+                    frame.getInfoPanel().decrementTimeRemaining();
+                    timeRemaining--;
+                    levelBoard.updateFields();
+                    seconds--;
+                    for (Enemy e : enemies){
+                        if (e instanceof BlueEnemy){
+                            ((BlueEnemy) e).moveEnemy();
+                        }
 //                    if (e instanceof RedEnemy){
 //                        ((RedEnemy) e).shoot();
 //                    }
+                    }
                 }
-
-                lastTick = now;
-                timeRemaining--;
-                levelBoard.updateFields();
-                seconds--;
-//                try {
-//                    Robot r = new Robot();
-//                    int keycode = KeyEvent.VK_0;
-//                    r.keyPress(keycode);
-//                } catch (AWTException e) {
-//                    e.printStackTrace();
-//                }
-
-//                frame.keyPressed(new KeyEvent(new Button(), 1, 20, 1, 10, '0'));
                 frame.redraw();
             }
         }
