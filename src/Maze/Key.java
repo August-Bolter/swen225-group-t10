@@ -18,6 +18,7 @@ public class Key extends Item {
     public Key(int row, int col, String color) {
         super(row, col, color);
         this.color = color;
+        this.setPriority(3);
     }
 
     /**

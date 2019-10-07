@@ -9,6 +9,7 @@ public class Boots extends Item {
 
     public Boots(int row, int col) {
         super(row, col);
+        this.setPriority(4);
     }
 
     @Override

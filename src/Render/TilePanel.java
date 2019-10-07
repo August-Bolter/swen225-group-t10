@@ -36,8 +36,7 @@ public class TilePanel extends JPanel {
             for (Item i : tile.getItems()) {
 //            if (tile.getItems().get(0) == null) throw new RuntimeException("WRONG ITEM!!");
                 if (i != null) {
-                    g.drawImage(i.getImage(), 0, 0, this); // FIXME currently only displaying the first item in the list
-                    break;
+                    g.drawImage(i.getImage(), 0, 0, this);
                 }
             }
         }
