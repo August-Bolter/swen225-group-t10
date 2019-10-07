@@ -62,7 +62,7 @@
 			"type" : "TeleportTile",
 			"row" : 9,
 			"col" : 11,
-			"extra" : "20,16"
+			"extra" : "20>16"
 		},
 		{
 			"type" : "WallTile",
@@ -664,7 +664,7 @@
 			"type" : "TeleportTile",
 			"row" : 20,
 			"col" : 16,
-			"extra" : "9,11"
+			"extra" : "9>11"
 		},
 		{
 			"type" : "WallTile",

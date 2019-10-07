@@ -1,7 +1,7 @@
 {
-	"title": "Ahads Level",
+	"title": "Lesson 1",
 	"chips": 7,
-	"timeLimit" : 200,
+	"timeLimit" : 100,
 	"tiles" : [
 		{
 			"type" : "WallTile",
