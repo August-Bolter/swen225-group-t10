@@ -1,7 +1,6 @@
 package Render;
 
-import Maze.Item;
-import Maze.Tile;
+import Maze.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,15 +12,15 @@ public class TilePanel extends JPanel {
     public TilePanel(Tile tile) {
         setLayout(new GridLayout(1,1));
         this.tile = tile;
+
+        if(tile.getImage() == null) throw new RuntimeException(tile.getClass().getName() + "Tile image was null");
+        image = new JLabel(new ImageIcon(tile.getImage()));
+        add(image);
+        setVisible(true);
     }
 
     public void redraw() {
-        removeAll();
-        if(tile.getImage() == null) throw new RuntimeException(tile.getClass().getName() + "Tile image was null");
-
-        image = new JLabel(new ImageIcon(tile.getImage()));
-        add(image);
-
+        image.setIcon(new ImageIcon(tile.getImage()));
         setVisible(true);
     }
 

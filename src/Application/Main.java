@@ -90,12 +90,10 @@ public class Main {
 //                    }
                 }
 
-//                frame.getBoardPanel().updateBoard();
                 lastTick = now;
                 timeRemaining--;
                 levelBoard.updateFields();
                 seconds--;
-                //this.getFrame().getBoardPanel().redraw();
 //                try {
 //                    Robot r = new Robot();
 //                    int keycode = KeyEvent.VK_0;

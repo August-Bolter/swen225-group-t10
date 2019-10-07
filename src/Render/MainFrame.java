@@ -47,10 +47,11 @@ public class MainFrame extends JFrame implements KeyListener {
 
     private void createMenuBar() {
         JMenuBar menu = new JMenuBar();
+        JMenuItem gameMenu = new JMenuItem("Game");
         JMenuItem settingsMenu = new JMenuItem("Settings");
 
+        menu.add(gameMenu);
         menu.add(settingsMenu);
-//        menu.add();
 
         setJMenuBar(menu);
     }
@@ -107,19 +108,27 @@ public class MainFrame extends JFrame implements KeyListener {
                 return;
             case KeyEvent.VK_R:
                 // Resumes the game
-                System.out.println("CTRL R");
+                if (pressedKeys.contains(KeyEvent.VK_CONTROL)) {
+                    System.out.println("CTRL R");
+                }
                 return;
             case KeyEvent.VK_P:
                 // Starts a new game at level 1
-                System.out.println("CTRL P");
+                if (pressedKeys.contains(KeyEvent.VK_CONTROL)) {
+                    System.out.println("CTRL P");
+                }
                 return;
             case KeyEvent.VK_1:
                 // Starts level 1
-                System.out.println("CTRL 1");
+                if (pressedKeys.contains(KeyEvent.VK_CONTROL)) {
+                    System.out.println("CTRL 1");
+                }
                 return;
             case KeyEvent.VK_2:
                 // Starts level 2
-                System.out.println("CTRL 2");
+                if (pressedKeys.contains(KeyEvent.VK_CONTROL)) {
+                    System.out.println("CTRL 2");
+                }
                 return;
             case KeyEvent.VK_SPACE:
                 // Pauses the game
@@ -128,11 +137,6 @@ public class MainFrame extends JFrame implements KeyListener {
             case KeyEvent.VK_ESCAPE:
                 // Closes the pause dialog
                 System.out.println("ESC");
-                return;
-            case KeyEvent.VK_0:
-                System.out.println("WE DID IT BOYS");
-                boardpanel.redraw();
-                infoPanel.redraw();
                 return;
 
             default:
@@ -148,7 +152,7 @@ public class MainFrame extends JFrame implements KeyListener {
         infoPanel.redraw();
 
         revalidate();
-//        repaint();
+        repaint();
     }
 
     @Override
