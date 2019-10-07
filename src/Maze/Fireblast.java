@@ -12,6 +12,9 @@ public class Fireblast extends RedEnemy {
         Tile newTile = main.getLevelBoard().getTileAtPosition(currentPos, direction);
         if (newTile.isWalkable()) {
             doMove(newTile);
+            if (currentPos.getItems().contains(main.getPlayer())) {
+                interact();
+            }
             return true;
         } else {
             currentPos.removeItem(this);
