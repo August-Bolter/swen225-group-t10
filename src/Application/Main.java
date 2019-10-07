@@ -97,7 +97,7 @@ public class Main {
                     if (e instanceof BlueEnemy) {
                         ((BlueEnemy) e).moveEnemy();
                     }
-                    if (timeRemaining % 2 == 0) {
+                    if (timeRemaining % 3 == 0) {
                         if (e instanceof RedEnemy) {
                             fireblasts.add(((RedEnemy) e).shoot());
                         }
