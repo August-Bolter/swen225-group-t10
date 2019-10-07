@@ -23,7 +23,7 @@ public class Main {
 
 
     private void setup() {
-        levelBoard = LoadJSON.loadLevelFromJSON(2);
+        levelBoard = LoadJSON.loadLevelFromJSON(3);
         levelBoard.setMain(this);
         player = levelBoard.getPlayer();
         player.setCurrentPos();
