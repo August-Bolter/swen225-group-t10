@@ -38,7 +38,7 @@ public class BlueEnemy extends Enemy {
 
     public void moveEnemy(){
         Tile desiredTile = main.getLevelBoard().getTileAtPosition(currentPos, direction);
-        while (!(desiredTile instanceof FreeTile) || desiredTile == null) {
+        while (!(desiredTile instanceof FreeTile) && (!(desiredTile instanceof InfoTile))) {
             setDirection(getNextClockwiseDirection(direction));
             desiredTile = main.getLevelBoard().getTileAtPosition(currentPos, direction);
         }

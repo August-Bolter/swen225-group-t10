@@ -502,6 +502,14 @@
 		{
 			"type" : "FreeTile",
 			"row" : 16,
+			"col" : 13,
+			"item" : {
+				"type" : "GreenEnemy"
+			}
+		},
+		{
+			"type" : "FreeTile",
+			"row" : 16,
 			"col" : 14,
 			"item" : {
 				"type" : "Chip"
@@ -645,14 +653,6 @@
 			"type" : "WallTile",
 			"row" : 20,
 			"col" : 11
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 20,
-			"col" : 12,
-			"item" : {
-				"type" : "GreenEnemy"
-			}
 		},
 		{
 			"type" : "WallTile",

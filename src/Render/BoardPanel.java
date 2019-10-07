@@ -36,7 +36,6 @@ public class BoardPanel extends JPanel {
      * Each image will be stored in a map with the class name as the key
      */
     public void redraw() {
-        System.out.println("REDRAW IS CALLED");
         removeAll();
         revalidate();
 //        if (player == null) System.out.println("THE PLAYER IS NULL !!!!!!!!!!!!!!!!!!\n\n\n\n\n\n\n\n\n\n\n\n");

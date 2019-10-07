@@ -54,8 +54,7 @@ public class Main {
         Tile currentPos = player.getCurrentPos();
         Tile desiredTile = levelBoard.getTileAtPosition(currentPos, direction);
         if (desiredTile != null) {
-
-            if (desiredTile.isWalkable()) {
+            if (desiredTile.isWalkable() ) {
                 Tile newTile = levelBoard.getTileAtPosition(currentPos, direction);
                 player.move(newTile);
             }
@@ -68,6 +67,7 @@ public class Main {
         }
         return false;
     }
+    
 
     /**
      * Keeps track of the time left and is used to control enemies

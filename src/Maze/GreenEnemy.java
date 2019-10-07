@@ -7,8 +7,11 @@ public class GreenEnemy extends Enemy{
     }
 
     public void interact() {
-        getTile().removeItem(this);
-        doMove(main.getLevelBoard().getTileAtPosition(currentPos, main.getPlayer().getDirection()));
+        Tile desiredTile = main.getLevelBoard().getTileAtPosition(currentPos, main.getPlayer().getDirection());
+        if (desiredTile.isWalkable()) {
+            getTile().removeItem(this);
+            doMove(main.getLevelBoard().getTileAtPosition(currentPos, main.getPlayer().getDirection()));
+        }
     }
 
 }
