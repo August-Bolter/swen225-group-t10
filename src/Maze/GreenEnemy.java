@@ -9,13 +9,16 @@ public class GreenEnemy extends Enemy{
 
     public void interact() {
         //Needs to check if it can be pushed into a wall in that direction
-        LevelBoard.Direction playerDir = main.getPlayer().getDirection();
+        //return main.getPlayer().isInInventory(new Boots(0,0));
         moved = false;
-        Tile desiredTile = main.getLevelBoard().getTileAtPosition(currentPos, playerDir);
-        if (desiredTile.isWalkable()) {
-            getTile().removeItem(this);
-            doMove(desiredTile);
-            moved = true;
+        if (main.getPlayer().isInInventory(new Gloves(0,0))) {
+            LevelBoard.Direction playerDir = main.getPlayer().getDirection();
+            Tile desiredTile = main.getLevelBoard().getTileAtPosition(currentPos, playerDir);
+            if (desiredTile.isWalkable()) {
+                getTile().removeItem(this);
+                doMove(desiredTile);
+                moved = true;
+            }
         }
     }
 

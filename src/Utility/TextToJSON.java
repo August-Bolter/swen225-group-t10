@@ -118,6 +118,9 @@ class TextToJSON {
                         type = "FreeTile";
                         item = "BlueEnemy";
                         itemExtra = "DOWN";
+                    } else if (rowTiles[i] == '@') {
+                        type = "FreeTile";
+                        item = "Gloves";
                     } else {
                         System.out.println("Missing character " + rowTiles[i]);
                     }
