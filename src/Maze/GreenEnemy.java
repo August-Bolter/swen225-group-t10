@@ -3,8 +3,8 @@ package Maze;
 public class GreenEnemy extends Enemy{
     private boolean moved;
 
-    public GreenEnemy(int row, int col) {
-        super(row, col);
+    public GreenEnemy(int row, int col, String direction) {
+        super(row, col, direction);
     }
 
     public void interact() {

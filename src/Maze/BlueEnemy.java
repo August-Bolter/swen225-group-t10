@@ -1,8 +1,8 @@
 package Maze;
 
 public class BlueEnemy extends Enemy {
-    public BlueEnemy(int row, int col) {
-        super(row, col);
+    public BlueEnemy(int row, int col, String direction) {
+        super(row, col, direction);
     }
 
     public LevelBoard.Direction getNextClockwiseDirection(LevelBoard.Direction d){

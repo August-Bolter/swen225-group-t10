@@ -10,11 +10,11 @@ public class Enemy extends Item {
     protected Maze.LevelBoard.Direction direction;
     private int row, col;
 
-    public Enemy(int row, int col){
+    public Enemy(int row, int col, String direction){
         super(row, col);
         this.row = row;
         this.col = col;
-        direction = LevelBoard.Direction.DOWN;
+        this.direction = LevelBoard.Direction.valueOf(direction);
         this.setPriority(5);
     }
 

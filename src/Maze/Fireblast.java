@@ -3,8 +3,8 @@ package Maze;
 import Application.Main;
 
 public class Fireblast extends RedEnemy {
-    public Fireblast(int row, int col, Main main) {
-        super(row, col);
+    public Fireblast(int row, int col, String direction, Main main) {
+        super(row, col, direction);
         this.main = main;
     }
 

@@ -109,12 +109,15 @@ class TextToJSON {
                     } else if (rowTiles[i] == 'R') {
                         type = "FreeTile";
                         item = "RedEnemy";
+                        itemExtra = "LEFT";
                     } else if (rowTiles[i] == 'G') {
                         type = "FreeTile";
                         item = "GreenEnemy";
+                        itemExtra = "DOWN";
                     } else if (rowTiles[i] == 'B') {
                         type = "FreeTile";
                         item = "BlueEnemy";
+                        itemExtra = "DOWN";
                     } else {
                         System.out.println("Missing character " + rowTiles[i]);
                     }
