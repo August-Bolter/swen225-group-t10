@@ -140,8 +140,15 @@ public class MainFrame extends JFrame implements KeyListener {
         }
 
         game.doMove(direction);
+        redraw();
+    }
+
+    public void redraw() {
         boardpanel.redraw();
         infoPanel.redraw();
+
+        revalidate();
+//        repaint();
     }
 
     @Override
