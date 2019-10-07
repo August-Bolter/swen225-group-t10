@@ -11,7 +11,7 @@ public class TeleportTile extends Tile {
      */
     public TeleportTile(int row, int col, String destination) {
         super(row, col, destination);
-        String[] destinationInfo = destination.split(",");
+        String[] destinationInfo = destination.split(">");
         this.destinationRow = Integer.valueOf(destinationInfo[0]);
         this.destinationCol = Integer.valueOf(destinationInfo[1]);
     }
