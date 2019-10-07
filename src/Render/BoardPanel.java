@@ -27,8 +27,9 @@ public class BoardPanel extends JPanel {
             }
 
         }
-//        updateBoard();
+
         redraw();
+
     }
 
 
@@ -37,7 +38,7 @@ public class BoardPanel extends JPanel {
      * Goes through each tile in the array and gets the correct image for that tile
      */
     public void redraw() {
-        invalidate();
+//        invalidate();
         removeAll();
 
         int playerRow = player.getCurrentPos().getRow();

@@ -23,7 +23,9 @@ public class MainFrame extends JFrame implements KeyListener {
         this.game = game;
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         outerpanel = new JPanel();
-        outerpanel.setLayout(new GridLayout(1,2));
+
+//        setMinimumSize(new Dimension(2000, 800));
+
 
         setContentPane(outerpanel);
         addBoardPanel();
@@ -35,13 +37,14 @@ public class MainFrame extends JFrame implements KeyListener {
         requestFocus();
 
         createMenuBar();
+//        outerpanel.setLayout(new BoxLayout(outerpanel, BoxLayout.X_AXIS));
+        outerpanel.setLayout(new GridLayout(1,2));
 
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
         repaint();
         setResizable(false);
-
         pressedKeys = new HashSet<>();
     }
 
@@ -144,7 +147,7 @@ public class MainFrame extends JFrame implements KeyListener {
         }
 
         game.doMove(direction);
-        redraw();
+//        redraw();
     }
 
     public void redraw() {

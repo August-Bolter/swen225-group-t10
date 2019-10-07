@@ -25,7 +25,7 @@ public class Main {
 
 
     private void setup() {
-        levelBoard = LoadJSON.loadLevelFromJSON(1);
+        levelBoard = LoadJSON.loadLevelFromJSON(2);
         levelBoard.setMain(this);
         player = levelBoard.getPlayer();
         player.setCurrentPos();
@@ -75,7 +75,7 @@ public class Main {
         long lastTick = System.nanoTime();
         while (seconds > 0) {
             long now = System.nanoTime();
-            if (now - lastTick > 1000000000) {
+            if (now - lastTick > 1000000000 / 2) {
                 frame.getInfoPanel().decrementTimeRemaining();
                 //frame.getInfoPanel().updateIntegers();
                 //System.out.println("tick " + seconds);
