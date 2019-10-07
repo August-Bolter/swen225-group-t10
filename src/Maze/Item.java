@@ -6,18 +6,21 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.Objects;
 
 /**
  * Abstract class for Item - this will be implemented by all inventory items (keys, chips). Items are on top of tiles.
  */
 
-public abstract class Item {
+public abstract class Item implements Comparable<Item> {
     private int row;
     private int col;
     private String extra;
     protected Main main;
     private boolean inInventory;
+
+    private int priority;
     public static final String PATH = "Resources/items/";
 
     /** Creates an item.
@@ -136,6 +139,14 @@ public abstract class Item {
         }
     }
 
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
+
     public void setMain(Main main) {
         this.main = main;
     }
@@ -149,4 +160,10 @@ public abstract class Item {
     public int hashCode() {
         return Objects.hash(row, col);
     }
+
+    @Override
+    public int compareTo(Item other) {
+        return other.getPriority() - this.getPriority();
+    }
+
 }

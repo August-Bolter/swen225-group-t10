@@ -7,6 +7,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /** An abstract class representing a tile in the game. This abstract class is extended by concrete classes like DoorTile,
@@ -62,7 +63,9 @@ public abstract class Tile {
      * @param item the item to add
      */
     public void addItem(Item item) {
+
         items.add(item);
+        Collections.sort(items);
     }
 
     /**

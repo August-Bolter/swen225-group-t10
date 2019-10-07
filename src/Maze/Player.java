@@ -20,6 +20,7 @@ public class Player extends Item {
         this.col = col;
         this.inventory = new Item[8];
         direction = LevelBoard.Direction.DOWN;
+        this.setPriority(0);
     }
 
     public void setDirection(LevelBoard.Direction d) {

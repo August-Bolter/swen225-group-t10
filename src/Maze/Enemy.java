@@ -15,6 +15,7 @@ public class Enemy extends Item {
         this.row = row;
         this.col = col;
         direction = LevelBoard.Direction.DOWN;
+        this.setPriority(5);
     }
 
     @Override
@@ -30,6 +31,7 @@ public class Enemy extends Item {
 
     public void doMove(Tile toMoveTo){
         currentPos.removeItem(this);
+
         toMoveTo.addItem(this);
         setCurrentPos(toMoveTo);
     }
