@@ -69,14 +69,15 @@ public class InfoPanel extends JPanel {
             int col = i % 4;
             invPanels[i] = new TilePanel(new FreeTile(row, col));
             invPanels[i].getTile().addItem(inventory[i]);
-//            invPanels[i].removeAll();
             inventoryPanel.add(invPanels[i]);
         }
-//        add(new JLabel(new ImageIcon(new FreeTile(0,0).getImage())));
+        JPanel outerInvPanel = new JPanel(new FlowLayout());
+        outerInvPanel.add(inventoryPanel);
+
         add(level);
         add(timeRemaining);
         add(chipsRemaining);
-        add(inventoryPanel);
+        add(outerInvPanel);
 
         for (TilePanel tp : invPanels) {
             tp.redraw();

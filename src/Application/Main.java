@@ -79,6 +79,8 @@ public class Main {
      */
     public void timer(int seconds){
         long lastTick = System.nanoTime();
+        int tick = 0;
+        int frameRate = 2;
         while (seconds > 0) {
             long now = System.nanoTime();
             if (now - lastTick > 1000000000) {
