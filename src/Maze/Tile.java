@@ -63,9 +63,17 @@ public abstract class Tile {
      * @param item the item to add
      */
     public void addItem(Item item) {
-
         items.add(item);
         Collections.sort(items);
+    }
+
+    /**
+     * Adds all items in a list to the tiles list of items
+     * @param items the list of items to add
+     */
+    public void addAllItems(List<Item> items) {
+        this.items.addAll(items);
+        Collections.sort(this.items);
     }
 
     /**

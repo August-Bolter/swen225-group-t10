@@ -37,7 +37,6 @@ public class BoardPanel extends JPanel {
      */
     public void redraw() {
         removeAll();
-        revalidate();
 //        if (player == null) System.out.println("THE PLAYER IS NULL !!!!!!!!!!!!!!!!!!\n\n\n\n\n\n\n\n\n\n\n\n");
         int playerRow = player.getCurrentPos().getRow();
         int playerCol = player.getCurrentPos().getCol();
@@ -49,6 +48,7 @@ public class BoardPanel extends JPanel {
             }
 
         }
+        revalidate();
     }
 
     /**

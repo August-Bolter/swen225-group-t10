@@ -4,10 +4,7 @@ import Maze.*;
 import Persistence.LoadJSON;
 import Render.MainFrame;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Timer;
+import java.util.*;
 
 public class Main {
     private int timeRemaining; //Level timer
@@ -22,6 +19,7 @@ public class Main {
     private LevelBoard levelBoard;
     private MainFrame frame;
     private List<Enemy> enemies;
+    private List<Fireblast> fireblasts = new ArrayList<>();
 
 
     private void setup() {
@@ -87,32 +85,30 @@ public class Main {
                 frame.getInfoPanel().decrementTimeRemaining();
                 //frame.getInfoPanel().updateIntegers();
                 //System.out.println("tick " + seconds);
+                List<Fireblast> toRemove = new ArrayList<>();
+                for (Fireblast fb : fireblasts) {
+                    if (!fb.moveBlast()) {
+                        toRemove.add(fb);
+                    }
+                }
+                fireblasts.removeAll(toRemove);
 
-
-                for (Enemy e : enemies){
-                    if (e instanceof BlueEnemy){
+                for (Enemy e : enemies) {
+                    if (e instanceof BlueEnemy) {
                         ((BlueEnemy) e).moveEnemy();
                     }
-//                    if (e instanceof RedEnemy){
-//                        ((RedEnemy) e).shoot();
-//                    }
+                    if (timeRemaining % 2 == 0) {
+                        if (e instanceof RedEnemy) {
+                            fireblasts.add(((RedEnemy) e).shoot());
+                        }
+                    }
                 }
 
-//                frame.getBoardPanel().updateBoard();
+
                 lastTick = now;
                 timeRemaining--;
                 levelBoard.updateFields();
                 seconds--;
-                //this.getFrame().getBoardPanel().redraw();
-//                try {
-//                    Robot r = new Robot();
-//                    int keycode = KeyEvent.VK_0;
-//                    r.keyPress(keycode);
-//                } catch (AWTException e) {
-//                    e.printStackTrace();
-//                }
-
-//                frame.keyPressed(new KeyEvent(new Button(), 1, 20, 1, 10, '0'));
                 frame.redraw();
             }
         }

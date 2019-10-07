@@ -121,7 +121,7 @@ class TextToJSON {
 
 
                     // Print to JSON
-                    builder.append(SaveJSON.tileAsJSON(type, extra, item, itemExtra, row, i));
+                    builder.append(SaveJSON.tileAsJSON(type, extra, item + "|" + itemExtra, row, i));
                 }
 
                 row++;
