@@ -4,8 +4,6 @@ import Maze.*;
 import Persistence.LoadJSON;
 import Render.MainFrame;
 
-import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -107,8 +105,7 @@ public class Main {
 //                }
 
 //                frame.keyPressed(new KeyEvent(new Button(), 1, 20, 1, 10, '0'));
-//                frame.getBoardPanel().redraw();
-//                frame.getInfoPanel().redraw();
+                frame.redraw();
             }
         }
 
