@@ -23,7 +23,7 @@ public class Main {
 
 
     private void setup() {
-        levelBoard = LoadJSON.loadLevelFromJSON(3);
+        levelBoard = LoadJSON.loadLevelFromJSON(2);
         levelBoard.setMain(this);
         player = levelBoard.getPlayer();
         player.setCurrentPos();
@@ -79,36 +79,39 @@ public class Main {
      */
     public void timer(int seconds){
         long lastTick = System.nanoTime();
+        int tick = 0;
+        int frameRate = 2;
         while (seconds > 0) {
             long now = System.nanoTime();
-            if (now - lastTick > 1000000000) {
-                frame.getInfoPanel().decrementTimeRemaining();
-                //frame.getInfoPanel().updateIntegers();
-                //System.out.println("tick " + seconds);
-                List<Fireblast> toRemove = new ArrayList<>();
-                for (Fireblast fb : fireblasts) {
-                    if (!fb.moveBlast()) {
-                        toRemove.add(fb);
-                    }
-                }
-                fireblasts.removeAll(toRemove);
-
-                for (Enemy e : enemies) {
-                    if (e instanceof BlueEnemy) {
-                        ((BlueEnemy) e).moveEnemy();
-                    }
-                    if (timeRemaining % 3 == 0) {
-                        if (e instanceof RedEnemy) {
-                            fireblasts.add(((RedEnemy) e).shoot());
+            if (now - lastTick > 1000000000 / frameRate) {
+                lastTick = now;
+                tick++;
+                if (tick % frameRate == 0) {
+                    frame.getInfoPanel().decrementTimeRemaining();
+                    //frame.getInfoPanel().updateIntegers();
+                    List<Fireblast> toRemove = new ArrayList<>();
+                    for (Fireblast fb : fireblasts) {
+                        if (!fb.moveBlast()) {
+                            toRemove.add(fb);
                         }
                     }
+                    fireblasts.removeAll(toRemove);
+
+                    for (Enemy e : enemies) {
+                        if (e instanceof BlueEnemy) {
+                            ((BlueEnemy) e).moveEnemy();
+                        }
+                        if (timeRemaining % 3 == 0) {
+                            if (e instanceof RedEnemy) {
+                                fireblasts.add(((RedEnemy) e).shoot());
+                            }
+                        }
+                    }
+
+                    timeRemaining--;
+                    levelBoard.updateFields();
+                    seconds--;
                 }
-
-
-                lastTick = now;
-                timeRemaining--;
-                levelBoard.updateFields();
-                seconds--;
                 frame.redraw();
             }
         }

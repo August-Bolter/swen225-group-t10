@@ -23,7 +23,9 @@ public class MainFrame extends JFrame implements KeyListener {
         this.game = game;
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         outerpanel = new JPanel();
-        outerpanel.setLayout(new GridLayout(1,2));
+
+//        setMinimumSize(new Dimension(2000, 800));
+
 
         setContentPane(outerpanel);
         addBoardPanel();
@@ -35,22 +37,24 @@ public class MainFrame extends JFrame implements KeyListener {
         requestFocus();
 
         createMenuBar();
+//        outerpanel.setLayout(new BoxLayout(outerpanel, BoxLayout.X_AXIS));
+        outerpanel.setLayout(new GridLayout(1,2));
 
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
         repaint();
         setResizable(false);
-
         pressedKeys = new HashSet<>();
     }
 
     private void createMenuBar() {
         JMenuBar menu = new JMenuBar();
+        JMenuItem gameMenu = new JMenuItem("Game");
         JMenuItem settingsMenu = new JMenuItem("Settings");
 
+        menu.add(gameMenu);
         menu.add(settingsMenu);
-//        menu.add();
 
         setJMenuBar(menu);
     }
@@ -107,19 +111,27 @@ public class MainFrame extends JFrame implements KeyListener {
                 return;
             case KeyEvent.VK_R:
                 // Resumes the game
-                System.out.println("CTRL R");
+                if (pressedKeys.contains(KeyEvent.VK_CONTROL)) {
+                    System.out.println("CTRL R");
+                }
                 return;
             case KeyEvent.VK_P:
                 // Starts a new game at level 1
-                System.out.println("CTRL P");
+                if (pressedKeys.contains(KeyEvent.VK_CONTROL)) {
+                    System.out.println("CTRL P");
+                }
                 return;
             case KeyEvent.VK_1:
                 // Starts level 1
-                System.out.println("CTRL 1");
+                if (pressedKeys.contains(KeyEvent.VK_CONTROL)) {
+                    System.out.println("CTRL 1");
+                }
                 return;
             case KeyEvent.VK_2:
                 // Starts level 2
-                System.out.println("CTRL 2");
+                if (pressedKeys.contains(KeyEvent.VK_CONTROL)) {
+                    System.out.println("CTRL 2");
+                }
                 return;
             case KeyEvent.VK_SPACE:
                 // Pauses the game
@@ -129,18 +141,13 @@ public class MainFrame extends JFrame implements KeyListener {
                 // Closes the pause dialog
                 System.out.println("ESC");
                 return;
-            case KeyEvent.VK_0:
-                System.out.println("WE DID IT BOYS");
-                boardpanel.redraw();
-                infoPanel.redraw();
-                return;
 
             default:
                 return;
         }
 
         game.doMove(direction);
-        redraw();
+//        redraw();
     }
 
     public void redraw() {
@@ -148,7 +155,7 @@ public class MainFrame extends JFrame implements KeyListener {
         infoPanel.redraw();
 
         revalidate();
-//        repaint();
+        repaint();
     }
 
     @Override
