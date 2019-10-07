@@ -11,7 +11,7 @@ import java.io.*;
  * All levels are 32x32.
  */
 class TextToJSON {
-    private static final String TEXT_FILENAME = "Level-2.txt";
+    private static final String TEXT_FILENAME = "Level-3.txt";
 
     /**
      * Converts the text file to a JSON file

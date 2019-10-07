@@ -25,7 +25,7 @@ public class Main {
 
 
     private void setup() {
-        levelBoard = LoadJSON.loadLevelFromJSON(2);
+        levelBoard = LoadJSON.loadLevelFromJSON(3);
         levelBoard.setMain(this);
         player = levelBoard.getPlayer();
         player.setCurrentPos();
@@ -59,7 +59,15 @@ public class Main {
             desiredTile.interact();
             player.setDirection(direction);
             for (Iterator<Item> iterator = desiredTile.getItems().iterator(); iterator.hasNext();) {
-                iterator.next().interact();
+                Item item = iterator.next();
+                item.interact();
+                if (item instanceof GreenEnemy){
+                    GreenEnemy g = (GreenEnemy) item;
+                    if (!g.hasMoved()){
+                        System.out.println("stuck");
+                        player.move(currentPos);
+                    }
+                }
             }
             return true;
         }
