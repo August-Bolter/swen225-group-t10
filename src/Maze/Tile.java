@@ -4,8 +4,10 @@ import Application.Main;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.Buffer;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -89,6 +91,13 @@ public abstract class Tile {
      */
     public Image getImage() {
         String tileName = getClass().getName().substring(5);
+
+        if (main != null) {
+            BufferedImage img = main.tileImages.get(tileName);
+            if (img != null) {
+                return img;
+            }
+        }
 
         try {
             return ImageIO.read(new File(PATH+tileName+".png"));

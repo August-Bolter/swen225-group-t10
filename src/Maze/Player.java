@@ -2,6 +2,7 @@ package Maze;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
@@ -145,6 +146,13 @@ public class Player extends Item {
      * @return the image
      */
     public Image getImage() {
+        if (main != null) {
+            BufferedImage img = main.itemImages.get(direction.toString().toLowerCase() + "Player");
+            if (img != null) {
+                return img;
+            }
+        }
+
         String path = "Resources/player/"+direction.toString().toLowerCase()+".png";
 
         try {
