@@ -4,6 +4,7 @@ import Application.Main;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.Comparator;
@@ -131,7 +132,17 @@ public abstract class Item implements Comparable<Item> {
      */
     public Image getImage() {
         String itemName = getClass().getName().substring(5);
+
+        if (main != null) {
+            BufferedImage img = main.tileImages.get(itemName);
+            if (img != null) {
+                return img;
+            }
+        }
+
         String path = PATH;
+
+
         try {
             return ImageIO.read(new File(path+itemName+".png"));
         } catch (IOException e) {

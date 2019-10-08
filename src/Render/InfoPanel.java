@@ -5,6 +5,8 @@ import Maze.FreeTile;
 import Maze.Item;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.EtchedBorder;
 import java.awt.*;
 
 public class InfoPanel extends JPanel {
@@ -41,7 +43,14 @@ public class InfoPanel extends JPanel {
 
         inventoryPanel = new JPanel(new GridLayout(2, 4));
         invPanels = new TilePanel[inventory.length];
+
+        createBorder();
         redraw();
+    }
+
+    public void createBorder() {
+        Border blackline = BorderFactory.createEtchedBorder(EtchedBorder.RAISED);
+        setBorder(blackline);
     }
 
     /**

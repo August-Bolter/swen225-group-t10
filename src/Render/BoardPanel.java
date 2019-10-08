@@ -4,6 +4,8 @@ import Maze.Player;
 import Maze.Tile;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.EtchedBorder;
 import java.awt.*;
 
 public class BoardPanel extends JPanel {
@@ -27,12 +29,15 @@ public class BoardPanel extends JPanel {
             }
 
         }
-
+        createBorder();
         redraw();
 
     }
 
-
+    public void createBorder() {
+        Border blackline = BorderFactory.createEtchedBorder(EtchedBorder.RAISED);
+        setBorder(blackline);
+    }
 
     /**
      * Goes through each tile in the array and gets the correct image for that tile
@@ -60,6 +65,7 @@ public class BoardPanel extends JPanel {
             }
 
         }
+        repaint();
         revalidate();
     }
 
