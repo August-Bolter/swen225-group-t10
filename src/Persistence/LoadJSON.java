@@ -9,6 +9,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Class for loading information from JSON files
@@ -163,5 +165,9 @@ public class LoadJSON {
         }
 
         return item;
+    }
+
+    public static HashMap<Integer, ArrayList<String>> loadMoves() {
+        return null;
     }
 }

@@ -56,7 +56,6 @@ public class Main {
      */
     public boolean doMove(LevelBoard.Direction direction){
         Tile currentPos = player.getCurrentPos();
-        System.out.println(currentPos);
         Tile desiredTile = levelBoard.getTileAtPosition(currentPos, direction);
         Tile newTile = null;
         LevelBoard.Direction oldDirection = player.getDirection();

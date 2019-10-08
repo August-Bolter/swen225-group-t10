@@ -6,6 +6,8 @@ import Maze.Player;
 import Render.InfoPanel;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Replay {
     InfoPanel infoPanel;
@@ -43,5 +45,7 @@ public class Replay {
         infoPanel.changeButtons();
         infoPanel.addReplayButtons();
         infoPanel.redraw();
+
+        HashMap<Integer, ArrayList<String>> tickToMovesMap = LoadJSON.loadMoves();
     }
 }

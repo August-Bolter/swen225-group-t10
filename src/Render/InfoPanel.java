@@ -21,7 +21,7 @@ public class InfoPanel extends JPanel {
     JLabel timeRemaining;
     JLabel chipsRemaining;
     JPanel inventoryPanel;
-    JButton replayButton, recordButton;
+    JButton replayButton, recordButton, nextStepButton, exitButton;
     int timeLeft, chipsLeft;
     Record record;
     Replay replay;
@@ -39,6 +39,11 @@ public class InfoPanel extends JPanel {
      * an image drawn over them
      */
     public InfoPanel(Main game, MainFrame mainFrame) {
+        nextStepButton = new JButton("Next Step");
+        nextStepButton.setVisible(false);
+        exitButton = new JButton("Exit");
+        exitButton.setVisible(false);
+
         this.mainFrame = mainFrame;
         this.game = game;
         inventory = game.getPlayer().getInventory();
@@ -87,23 +92,6 @@ public class InfoPanel extends JPanel {
                 }
             }
         });
-        redraw();
-    }
-
-    public InfoPanel(LevelBoard board) {
-        inventory = board.getPlayer().getInventory();
-
-        setLayout(new GridLayout(4,1));
-
-        level = new JLabel("Level: " + board.getTitle());
-        timeLeft = board.getTimeLimit();
-        timeRemaining = new JLabel("Time Remaining: " + timeLeft);
-        chipsLeft = board.getTotalChips();
-        chipsRemaining = new JLabel("Chips Remaining: " + chipsLeft);
-
-        inventoryPanel = new JPanel(new GridLayout(2, 4));
-        invPanels = new TilePanel[inventory.length];
-
         redraw();
     }
 
@@ -162,6 +150,8 @@ public class InfoPanel extends JPanel {
         add(inventoryPanel);
         add(recordButton);
         add(replayButton);
+        add(nextStepButton);
+        add(exitButton);
 
         for (TilePanel tp : invPanels) {
             tp.redraw();
@@ -182,11 +172,46 @@ public class InfoPanel extends JPanel {
 
     public void changeButtons() {
         recordButton.setText("Play");
-        recordButton.setText("Change speed");
+        recordButton.removeActionListener(recordButton.getActionListeners()[0]);
+        recordButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (recordButton.getText().equals("Play")) {
+                    recordButton.setText("Stop");
+                }
+                else {
+                    recordButton.setText("Play");
+                }
+            }
+        });
 
+        replayButton.setText("Change speed");
+        replayButton.removeActionListener(replayButton.getActionListeners()[0]);
+        replayButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
     }
 
     public void addReplayButtons() {
-        
+        nextStepButton.setVisible(true);
+        nextStepButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        add(nextStepButton);
+
+        exitButton.setVisible(true);
+        exitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //Needs to take user back to title screen
+            }
+        });
+        add(exitButton);
     }
 }
