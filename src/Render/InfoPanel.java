@@ -89,7 +89,7 @@ public class InfoPanel extends JPanel {
         add(outerInvPanel);
 
         for (TilePanel tp : invPanels) {
-            tp.redraw();
+            tp.repaint();
         }
     }
 }

@@ -19,9 +19,8 @@ public class TilePanel extends JPanel {
         setVisible(true);
     }
 
-    public void redraw() {
-        image.setIcon(new ImageIcon(tile.getImage()));
-        setVisible(true);
+    public void redraw(int row, int col) {
+
     }
 
     public Tile getTile() {
@@ -31,6 +30,7 @@ public class TilePanel extends JPanel {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
+        g.drawImage(tile.getImage(),0, 0, this);
         if (tile.hasItem()) {
             for (Item i : tile.getItems()) {
 //            if (tile.getItems().get(0) == null) throw new RuntimeException("WRONG ITEM!!");

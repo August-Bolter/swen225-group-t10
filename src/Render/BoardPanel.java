@@ -43,9 +43,6 @@ public class BoardPanel extends JPanel {
      * Goes through each tile in the array and gets the correct image for that tile
      */
     private void redraw() {
-//        invalidate();
-//        removeAll();
-
         int playerRow = player.getCurrentPos().getRow();
         int playerCol = player.getCurrentPos().getCol();
 
@@ -60,7 +57,7 @@ public class BoardPanel extends JPanel {
             minCol = MAX - DISPLAY_SIZE;
         for (int row = minRow; row < maxRow; row++) {
             for (int col = minCol; col < maxCol; col++) {
-                boardLabels[row][col].redraw();
+                boardLabels[row][col].repaint();
                 add(boardLabels[row][col]);
             }
 
