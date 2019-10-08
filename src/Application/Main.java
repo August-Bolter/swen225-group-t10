@@ -18,6 +18,10 @@ public class Main {
     private List<Chip> allChips = new ArrayList<Chip>();
     private int chipsRemaining;
 
+    private Random generator = new Random();
+    private long seed;
+
+    private int level = 3;
 
     private Player player;
     private LevelBoard levelBoard;
@@ -79,7 +83,7 @@ public class Main {
 
     private void setup() {
         initialiseMaps();
-        levelBoard = LoadJSON.loadLevelFromJSON(3);
+        levelBoard = LoadJSON.loadLevelFromJSON(level);
         levelBoard.setMain(this);
         player = levelBoard.getPlayer();
         player.setCurrentPos();
@@ -93,6 +97,9 @@ public class Main {
         timeRemaining = levelBoard.getTimeLimit();
 
         timer(levelBoard.getTimeLimit());
+
+        seed = System.currentTimeMillis();
+        generator.setSeed(seed);
     }
 
 
@@ -139,19 +146,14 @@ public class Main {
         int frameRate = 6;
         while (seconds > 0) {
             long now = System.nanoTime();
-            if (now - lastTick > 1000000000 / frameRate) {
+            if (frameRate > 0 && now - lastTick > 1000000000 / frameRate) {
                 lastTick = now;
                 tick++;
                 if (tick % frameRate == 0) {
                     frame.getInfoPanel().decrementTimeRemaining();
-                    //frame.getInfoPanel().updateIntegers();
-                    List<Fireblast> toRemove = new ArrayList<>();
                     for (Fireblast fb : fireblasts) {
-                        if (!fb.moveBlast()) {
-                            toRemove.add(fb);
-                        }
+                        fb.moveBlast();
                     }
-                    fireblasts.removeAll(toRemove);
 
                     for (Enemy e : enemies) {
                         if (e instanceof BlueEnemy) {
@@ -205,6 +207,32 @@ public class Main {
     public static void main(String[] args) {
         Main game = new Main();
         game.setup();
+    }
+
+    public int getRandomInt() {
+        return generator.nextInt();
+    }
+
+    public void restartLevel() {
+        levelBoard = LoadJSON.loadLevelFromJSON(level);
+        levelBoard.setMain(this);
+        player = levelBoard.getPlayer();
+        player.setCurrentPos();
+        enemies = levelBoard.getEnemies();
+        for (Enemy e : enemies){
+            e.setCurrentPos();
+        }
+        levelBoard.setMain(this);
+
+        frame.redraw();
+
+        chipsRemaining = levelBoard.getTotalChips();
+        timeRemaining = levelBoard.getTimeLimit();
+
+        timer(levelBoard.getTimeLimit());
+
+        seed = System.currentTimeMillis();
+        generator.setSeed(seed);
     }
 
 

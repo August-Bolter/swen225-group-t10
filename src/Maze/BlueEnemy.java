@@ -6,7 +6,7 @@ public class BlueEnemy extends Enemy {
     }
 
     public LevelBoard.Direction getRandomDirection(){
-        int x = (int)(Math.random()*((4-1)+1))+1;
+        int x = main.getRandomInt() % 4;
         if (x == 1){
             return LevelBoard.Direction.LEFT;
         } else if (x == 2){

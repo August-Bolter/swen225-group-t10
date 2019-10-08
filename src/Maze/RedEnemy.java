@@ -6,7 +6,8 @@ public class RedEnemy extends Enemy {
     }
 
     public void interact() {
-        main.getFrame().displayInfo("Game over you lil bitch ass");
+        main.getFrame().displayInfo("Watch out for fireblasts you lil bitch ass");
+        main.restartLevel();
     }
 
     public Fireblast shoot(){
