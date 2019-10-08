@@ -12,6 +12,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 public class InfoPanel extends JPanel {
     Main game;
@@ -95,10 +96,10 @@ public class InfoPanel extends JPanel {
         setLayout(new GridLayout(4,1));
 
         level = new JLabel("Level: " + board.getTitle());
-        timeRemaining = new JLabel("Time Remaining: " + board.getTimeLimit());
         timeLeft = board.getTimeLimit();
-        chipsRemaining = new JLabel("Chips Remaining: " + board.getTotalChips());
+        timeRemaining = new JLabel("Time Remaining: " + timeLeft);
         chipsLeft = board.getTotalChips();
+        chipsRemaining = new JLabel("Chips Remaining: " + chipsLeft);
 
         inventoryPanel = new JPanel(new GridLayout(2, 4));
         invPanels = new TilePanel[inventory.length];
@@ -128,6 +129,18 @@ public class InfoPanel extends JPanel {
         return record;
     }
 
+    public void setChipsLeft(int chips) {
+        chipsLeft = chips;
+    }
+
+    public void setTimeLeft(int time) {
+        timeLeft = time;
+    }
+
+    public void setInventory(Item[] inventory) {
+        this.inventory = inventory;
+    }
+
     /**
      * Only redraws the inventory
      */
@@ -155,12 +168,25 @@ public class InfoPanel extends JPanel {
         }
     }
 
-    public void openFileChooser() {
+    public File openFileChooser() {
         JFileChooser chooseFile = new JFileChooser("src/Utility");
         chooseFile.setDialogTitle("Please select a replay file (.json format)");
         int chooseValue = chooseFile.showOpenDialog(InfoPanel.this);
         if (chooseValue == JFileChooser.APPROVE_OPTION) {
-
+            return chooseFile.getSelectedFile();
         }
+        else {
+            return null;
+        }
+    }
+
+    public void changeButtons() {
+        recordButton.setText("Play");
+        recordButton.setText("Change speed");
+
+    }
+
+    public void addReplayButtons() {
+        
     }
 }

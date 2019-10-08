@@ -6,11 +6,6 @@ import Persistence.Record;
 import Persistence.SaveJSON;
 import Render.MainFrame;
 
-import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -36,7 +31,7 @@ public class Main {
 
     public void setup() {
         recordMoves = false;
-        levelBoard = LoadJSON.loadLevelFromJSON(2);
+        levelBoard = LoadJSON.loadLevelFromJSON(2, null);
         levelBoard.setMain(this);
         player = levelBoard.getPlayer();
         player.setCurrentPos();
@@ -61,6 +56,7 @@ public class Main {
      */
     public boolean doMove(LevelBoard.Direction direction){
         Tile currentPos = player.getCurrentPos();
+        System.out.println(currentPos);
         Tile desiredTile = levelBoard.getTileAtPosition(currentPos, direction);
         Tile newTile = null;
         LevelBoard.Direction oldDirection = player.getDirection();
@@ -156,6 +152,18 @@ public class Main {
         return chipsRemaining;
     }
 
+    public void setChipsRemaining(int chipsLeft) {
+        chipsRemaining = chipsLeft;
+    }
+
+    public void setTimeRemaining(int timeLeft) {
+        timeRemaining = timeLeft;
+    }
+
+    public void setPlayer(Player p) {
+        player = p;
+    }
+
     public boolean allChipsCollected(){
         return chipsRemaining == 0;
     }
@@ -176,5 +184,9 @@ public class Main {
 
     public void setRecord(Record record) {
         currentRecord = record;
+    }
+
+    public void setLevelBoard(LevelBoard board) {
+        levelBoard = board;
     }
 }

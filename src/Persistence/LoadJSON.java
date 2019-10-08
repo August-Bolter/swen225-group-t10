@@ -18,9 +18,10 @@ public class LoadJSON {
     /**
      * Creates a new LevelBoard from information in a JSON file
      * @param level the level number to load
+     * @param selectedReplay
      * @return a new LevelBoard representing that level
      */
-    public static LevelBoard loadLevelFromJSON(int level) {
+    public static LevelBoard loadLevelFromJSON(int level, File selectedReplay) {
         Tile[][] levelArray = new Tile[32][32];
         String title;
         int chips, timeLimit;
@@ -33,10 +34,15 @@ public class LoadJSON {
         try {
             // Open the JSON file
             BufferedReader in;
-            if (level > 0) {
-                in = new BufferedReader(new FileReader("src/Utility/Level-" + level + ".json"));
-            } else {
-                in = new BufferedReader(new FileReader("src/Utility/save.json"));
+            if (selectedReplay == null) {
+                if (level > 0) {
+                    in = new BufferedReader(new FileReader("src/Utility/Level-" + level + ".json"));
+                } else {
+                    in = new BufferedReader(new FileReader("src/Utility/save.json"));
+                }
+            }
+            else {
+                in = new BufferedReader(new FileReader(selectedReplay));
             }
             JsonReader reader = Json.createReader(in);
 

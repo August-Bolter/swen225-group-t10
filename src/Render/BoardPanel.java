@@ -62,4 +62,12 @@ public class BoardPanel extends JPanel {
             }
         }
     }
+
+    public void setPlayer(Player p) {
+        player = p;
+    }
+
+    public void setBoard(Tile[][] board) {
+        this.board = board;
+    }
 }
