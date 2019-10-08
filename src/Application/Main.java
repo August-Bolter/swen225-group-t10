@@ -44,12 +44,12 @@ public class Main {
             tileImages.put("yellowDoor", ImageIO.read(new File("Resources/floor/yellowDoor.png")));
 
             // Initialise itemImages
-            itemImages.put("pokeball", ImageIO.read(new File("Resources/items/pokeBall.png")));
+            itemImages.put("pokeball", ImageIO.read(new File("Resources/items/pokeball.png")));
             itemImages.put("gloves", ImageIO.read(new File("Resources/items/gloves.png")));
             itemImages.put("blueKey", ImageIO.read(new File("Resources/items/blueKey.png")));
             itemImages.put("greenKey", ImageIO.read(new File("Resources/items/greenKey.png")));
             itemImages.put("redKey", ImageIO.read(new File("Resources/items/redKey.png")));
-            itemImages.put("yellowKey", ImageIO.read(new File("Resources/items/YellowKey.png")));
+            itemImages.put("yellowKey", ImageIO.read(new File("Resources/items/yellowKey.png")));
             itemImages.put("boots", ImageIO.read(new File("Resources/items/boots.png")));
             itemImages.put("downPlayer", ImageIO.read(new File("Resources/player/down.png")));
             itemImages.put("upPlayer", ImageIO.read(new File("Resources/player/up.png")));
@@ -79,7 +79,7 @@ public class Main {
 
     private void setup() {
         initialiseMaps();
-        levelBoard = LoadJSON.loadLevelFromJSON(2);
+        levelBoard = LoadJSON.loadLevelFromJSON(3);
         levelBoard.setMain(this);
         player = levelBoard.getPlayer();
         player.setCurrentPos();

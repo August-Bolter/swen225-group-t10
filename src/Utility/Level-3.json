@@ -1,7 +1,7 @@
 {
 	"title": "Lesson 1",
 	"chips": 8,
-	"timeLimit" : 100,
+	"timeLimit" : 150,
 	"tiles" : [
 		{
 			"type" : "WallTile",
