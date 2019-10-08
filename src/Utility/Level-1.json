@@ -88,7 +88,7 @@
 			"row" : 10,
 			"col" : 11,
 			"item" : {
-				"type" : "Chip"
+				"descriptor" : "Chip|null"
 			}
 		},
 		{
@@ -111,7 +111,7 @@
 			"row" : 10,
 			"col" : 17,
 			"item" : {
-				"type" : "Chip"
+				"descriptor" : "Chip|null"
 			}
 		},
 		{
@@ -206,8 +206,7 @@
 			"row" : 12,
 			"col" : 9,
 			"item" : {
-				"type" : "Key",
-				"extra" : "yellow"
+				"descriptor" : "Key|yellow"
 			}
 		},
 		{
@@ -227,8 +226,7 @@
 			"row" : 12,
 			"col" : 19,
 			"item" : {
-				"type" : "Key",
-				"extra" : "yellow"
+				"descriptor" : "Key|yellow"
 			}
 		},
 		{
@@ -246,7 +244,7 @@
 			"row" : 13,
 			"col" : 9,
 			"item" : {
-				"type" : "Chip"
+				"descriptor" : "Chip|null"
 			}
 		},
 		{
@@ -259,23 +257,21 @@
 			"row" : 13,
 			"col" : 12,
 			"item" : {
-				"type" : "Key",
-				"extra" : "blue"
+				"descriptor" : "Key|blue"
 			}
 		},
 		{
 			"type" : "InfoTile",
 			"row" : 13,
 			"col" : 14,
-			"extra" : "Hint: Collect chips to get past the chip socket. Use keys to open doors."
+			"extra" : "Hint: You need special boots to walk on lava"
 		},
 		{
 			"type" : "FreeTile",
 			"row" : 13,
 			"col" : 16,
 			"item" : {
-				"type" : "Key",
-				"extra" : "red"
+				"descriptor" : "Key|red"
 			}
 		},
 		{
@@ -288,7 +284,7 @@
 			"row" : 13,
 			"col" : 19,
 			"item" : {
-				"type" : "Chip"
+				"descriptor" : "Chip|null"
 			}
 		},
 		{
@@ -326,7 +322,7 @@
 			"row" : 14,
 			"col" : 12,
 			"item" : {
-				"type" : "Chip"
+				"descriptor" : "Chip|null"
 			}
 		},
 		{
@@ -334,7 +330,7 @@
 			"row" : 14,
 			"col" : 14,
 			"item" : {
-				"type" : "Player"
+				"descriptor" : "Player|null"
 			}
 		},
 		{
@@ -342,7 +338,7 @@
 			"row" : 14,
 			"col" : 16,
 			"item" : {
-				"type" : "Chip"
+				"descriptor" : "Chip|null"
 			}
 		},
 		{
@@ -380,7 +376,7 @@
 			"row" : 15,
 			"col" : 9,
 			"item" : {
-				"type" : "Chip"
+				"descriptor" : "Chip|null"
 			}
 		},
 		{
@@ -393,8 +389,7 @@
 			"row" : 15,
 			"col" : 12,
 			"item" : {
-				"type" : "Key",
-				"extra" : "blue"
+				"descriptor" : "Key|blue"
 			}
 		},
 		{
@@ -402,8 +397,7 @@
 			"row" : 15,
 			"col" : 16,
 			"item" : {
-				"type" : "Key",
-				"extra" : "red"
+				"descriptor" : "Key|red"
 			}
 		},
 		{
@@ -416,7 +410,7 @@
 			"row" : 15,
 			"col" : 19,
 			"item" : {
-				"type" : "Chip"
+				"descriptor" : "Chip|null"
 			}
 		},
 		{
@@ -434,8 +428,7 @@
 			"row" : 16,
 			"col" : 9,
 			"item" : {
-				"type" : "Key",
-				"extra" : "green"
+				"descriptor" : "Key|green"
 			}
 		},
 		{
@@ -449,7 +442,7 @@
 			"row" : 16,
 			"col" : 14,
 			"item" : {
-				"type" : "Chip"
+				"descriptor" : "Chip|null"
 			}
 		},
 		{
@@ -565,7 +558,7 @@
 			"row" : 19,
 			"col" : 13,
 			"item" : {
-				"type" : "Chip"
+				"descriptor" : "Chip|null"
 			}
 		},
 		{
@@ -578,7 +571,7 @@
 			"row" : 19,
 			"col" : 15,
 			"item" : {
-				"type" : "Chip"
+				"descriptor" : "Chip|null"
 			}
 		},
 		{
@@ -601,8 +594,7 @@
 			"row" : 20,
 			"col" : 15,
 			"item" : {
-				"type" : "Key",
-				"extra" : "green"
+				"descriptor" : "Key|green"
 			}
 		},
 		{
