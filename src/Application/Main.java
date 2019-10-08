@@ -79,7 +79,7 @@ public class Main {
 
     private void setup() {
         initialiseMaps();
-        levelBoard = LoadJSON.loadLevelFromJSON(2);
+        levelBoard = LoadJSON.loadLevelFromJSON(3);
         levelBoard.setMain(this);
         player = levelBoard.getPlayer();
         player.setCurrentPos();
@@ -136,7 +136,7 @@ public class Main {
     public void timer(int seconds){
         long lastTick = System.nanoTime();
         int tick = 0;
-        int frameRate = 12;
+        int frameRate = 6;
         while (seconds > 0) {
             long now = System.nanoTime();
             if (now - lastTick > 1000000000 / frameRate) {

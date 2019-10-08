@@ -42,9 +42,9 @@ public class BoardPanel extends JPanel {
     /**
      * Goes through each tile in the array and gets the correct image for that tile
      */
-    public void redraw() {
+    private void redraw() {
 //        invalidate();
-        removeAll();
+//        removeAll();
 
         int playerRow = player.getCurrentPos().getRow();
         int playerCol = player.getCurrentPos().getCol();
@@ -65,23 +65,23 @@ public class BoardPanel extends JPanel {
             }
 
         }
-        repaint();
         revalidate();
+        repaint();
     }
 
     /**
-     *
+     * FIXME When we open a door at the same time as a pokemon moving the screen flickers
      */
-    public void updateBoard(Tile tile) {
-        for (int row = 0; row < board.length; row++) {
-            for (int col = 0; col < board[0].length; col++) {
-//                boardLabels[row][col] = new TilePanel(board[row][col]); // Makes the label, gives it the image for the tile
-                if (boardLabels[row][col].getTile() == tile) {
-                    boardLabels[row][col] = new TilePanel(board[row][col]); // Makes the label, gives it the image for the tile
-                }
-            }
-        }
-
-        redraw();
-    }
+//    public void updateBoard(Tile tile) {
+//        for (int row = 0; row < board.length; row++) {
+//            for (int col = 0; col < board[0].length; col++) {
+////                boardLabels[row][col] = new TilePanel(board[row][col]); // Makes the label, gives it the image for the tile
+//                if (boardLabels[row][col].getTile() == tile) {
+//                    boardLabels[row][col] = new TilePanel(board[row][col]); // Makes the label, gives it the image for the tile
+//                }
+//            }
+//        }
+//
+//        redraw();
+//    }
 }

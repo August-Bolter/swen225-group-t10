@@ -70,8 +70,8 @@ public class InfoPanel extends JPanel {
     /**
      * Only redraws the inventory
      */
-    public void redraw() {
-        removeAll();
+    private void redraw() {
+//        removeAll();
         inventoryPanel.removeAll();
         for (int i = 0; i < inventory.length; i++) {
             int row = i / 4 >= 1 ? 1 : 0;

@@ -26,11 +26,10 @@ public class MainFrame extends JFrame implements KeyListener {
 
 //        setMinimumSize(new Dimension(2000, 800));
 
-
         setContentPane(outerpanel);
         addBoardPanel();
         addInfoPanel();
-
+//        redraw();
         // Setup key listener
         addKeyListener(this);
         setFocusable(true);
@@ -38,13 +37,13 @@ public class MainFrame extends JFrame implements KeyListener {
 
         createMenuBar();
 //        outerpanel.setLayout(new BoxLayout(outerpanel, BoxLayout.X_AXIS));
-        outerpanel.setLayout(new GridLayout(1,2));
-
+        outerpanel.setLayout(new GridBagLayout());
+        outerpanel.setBorder(new GameBorder(Color.BLUE));
         pack();
         setLocationRelativeTo(null);
-        setVisible(true);
         repaint();
         setResizable(false);
+        setVisible(true);
         pressedKeys = new HashSet<>();
     }
 
@@ -151,8 +150,16 @@ public class MainFrame extends JFrame implements KeyListener {
     }
 
     public void redraw() {
-        boardpanel.redraw();
-        infoPanel.redraw();
+        outerpanel.remove(boardpanel);
+        outerpanel.remove(infoPanel);
+        boardpanel = new BoardPanel(game.getLevelBoard().getBoard(), game.getPlayer());
+        infoPanel = new InfoPanel(game);
+
+        outerpanel.add(boardpanel);
+        outerpanel.add(infoPanel);
+
+//        boardpanel.redraw();
+//        infoPanel.redraw();
 
         revalidate();
         repaint();
