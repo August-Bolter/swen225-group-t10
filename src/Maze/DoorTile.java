@@ -2,6 +2,7 @@ package Maze;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
@@ -90,6 +91,14 @@ public class DoorTile extends Tile {
      * Paints the item in the tile on top of each tile.
      */
     public Image getImage() {
+        if (main != null) {
+            BufferedImage img = main.tileImages.get(color+DOOR + ".png");
+            if (img != null) {
+                System.out.println("Returned door");
+                return img;
+            }
+        }
+
         String path = PATH+color+DOOR + ".png";
 
         try {

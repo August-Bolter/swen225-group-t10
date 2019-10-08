@@ -2,6 +2,7 @@ package Maze;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
@@ -57,6 +58,13 @@ public class Key extends Item {
     }
 
     public Image getImage() {
+        if (main != null) {
+            BufferedImage img = main.itemImages.get(color+KEY);
+            if (img != null) {
+                return img;
+            }
+        }
+
         String path = PATH+color+ KEY + ".png";
 
         try {

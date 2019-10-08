@@ -4,6 +4,10 @@ import Maze.*;
 import Persistence.LoadJSON;
 import Render.MainFrame;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
 
 public class Main {
@@ -21,9 +25,61 @@ public class Main {
     private List<Enemy> enemies;
     private List<Fireblast> fireblasts = new ArrayList<>();
 
+    public final Map<String, BufferedImage> tileImages = new HashMap<>();
+    public final Map<String, BufferedImage> itemImages = new HashMap<>();
+
+    private void initialiseMaps() {
+        try {
+            // Initialise tileImages
+            tileImages.put("FreeTile", ImageIO.read(new File("Resources/floor/FreeTile.png")));
+            tileImages.put("ExitTile", ImageIO.read(new File("Resources/floor/ExitTile.png")));
+            tileImages.put("FireTile", ImageIO.read(new File("Resources/floor/FireTile.png")));
+            tileImages.put("TeleportTile", ImageIO.read(new File("Resources/floor/TeleportTile.png")));
+            tileImages.put("WallTile", ImageIO.read(new File("Resources/floor/WallTile.png")));
+            tileImages.put("GateTile", ImageIO.read(new File("Resources/floor/GateTile.png")));
+            tileImages.put("InfoTile", ImageIO.read(new File("Resources/floor/InfoTile.png")));
+            tileImages.put("blueDoor", ImageIO.read(new File("Resources/floor/blueDoor.png")));
+            tileImages.put("greenDoor", ImageIO.read(new File("Resources/floor/greenDoor.png")));
+            tileImages.put("redDoor", ImageIO.read(new File("Resources/floor/redDoor.png")));
+            tileImages.put("yellowDoor", ImageIO.read(new File("Resources/floor/yellowDoor.png")));
+
+            // Initialise itemImages
+            itemImages.put("pokeball", ImageIO.read(new File("Resources/items/pokeBall.png")));
+            itemImages.put("gloves", ImageIO.read(new File("Resources/items/gloves.png")));
+            itemImages.put("blueKey", ImageIO.read(new File("Resources/items/blueKey.png")));
+            itemImages.put("greenKey", ImageIO.read(new File("Resources/items/greenKey.png")));
+            itemImages.put("redKey", ImageIO.read(new File("Resources/items/redKey.png")));
+            itemImages.put("yellowKey", ImageIO.read(new File("Resources/items/YellowKey.png")));
+            itemImages.put("boots", ImageIO.read(new File("Resources/items/boots.png")));
+            itemImages.put("downPlayer", ImageIO.read(new File("Resources/player/down.png")));
+            itemImages.put("upPlayer", ImageIO.read(new File("Resources/player/up.png")));
+            itemImages.put("leftPlayer", ImageIO.read(new File("Resources/player/left.png")));
+            itemImages.put("rightPlayer", ImageIO.read(new File("Resources/player/right.png")));
+            itemImages.put("BlueEnemyDown", ImageIO.read(new File("Resources/enemy/BlueEnemyDown.png")));
+            itemImages.put("BlueEnemyLeft", ImageIO.read(new File("Resources/enemy/BlueEnemyLeft.png")));
+            itemImages.put("BlueEnemyRight", ImageIO.read(new File("Resources/enemy/BlueEnemyRight.png")));
+            itemImages.put("BlueEnemyUp", ImageIO.read(new File("Resources/enemy/BlueEnemyUp.png")));
+            itemImages.put("GreenEnemyDown", ImageIO.read(new File("Resources/enemy/GreenEnemyDown.png")));
+            itemImages.put("GreenEnemyLeft", ImageIO.read(new File("Resources/enemy/GreenEnemyLeft.png")));
+            itemImages.put("GreenEnemyRight", ImageIO.read(new File("Resources/enemy/GreenEnemyRight.png")));
+            itemImages.put("GreenEnemyUp", ImageIO.read(new File("Resources/enemy/GreenEnemyUp.png")));
+            itemImages.put("RedEnemyDown", ImageIO.read(new File("Resources/enemy/RedEnemyDown.png")));
+            itemImages.put("RedEnemyLeft", ImageIO.read(new File("Resources/enemy/RedEnemyLeft.png")));
+            itemImages.put("RedEnemyRight", ImageIO.read(new File("Resources/enemy/RedEnemyRight.png")));
+            itemImages.put("RedEnemyUp", ImageIO.read(new File("Resources/enemy/RedEnemyUp.png")));
+            itemImages.put("FireblastLeft", ImageIO.read(new File("Resources/enemy/fireblastLeft.png")));
+            itemImages.put("FireblastRight", ImageIO.read(new File("Resources/enemy/fireblastRight.png")));
+            itemImages.put("FireblastDown", ImageIO.read(new File("Resources/enemy/FireblastDown.png")));
+            itemImages.put("FireblastUp", ImageIO.read(new File("Resources/enemy/fireblastUp.png")));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     private void setup() {
-        levelBoard = LoadJSON.loadLevelFromJSON(3);
+        initialiseMaps();
+        levelBoard = LoadJSON.loadLevelFromJSON(2);
         levelBoard.setMain(this);
         player = levelBoard.getPlayer();
         player.setCurrentPos();
@@ -80,7 +136,7 @@ public class Main {
     public void timer(int seconds){
         long lastTick = System.nanoTime();
         int tick = 0;
-        int frameRate = 5;
+        int frameRate = 12;
         while (seconds > 0) {
             long now = System.nanoTime();
             if (now - lastTick > 1000000000 / frameRate) {

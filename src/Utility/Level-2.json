@@ -62,7 +62,7 @@
 			"type" : "TeleportTile",
 			"row" : 9,
 			"col" : 11,
-			"extra" : "20>16"
+			"extra" : "14>27"
 		},
 		{
 			"type" : "WallTile",
@@ -84,7 +84,7 @@
 			"row" : 9,
 			"col" : 18,
 			"item" : {
-				"descriptor" : "RedEnemy|null"
+				"descriptor" : "RedEnemy|LEFT"
 			}
 		},
 		{
@@ -465,7 +465,7 @@
 			"row" : 15,
 			"col" : 20,
 			"item" : {
-				"descriptor" : "BlueEnemy|null"
+				"descriptor" : "BlueEnemy|DOWN"
 			}
 		},
 		{
@@ -497,7 +497,7 @@
 			"row" : 16,
 			"col" : 13,
 			"item" : {
-				"descriptor" : "GreenEnemy|null"
+				"descriptor" : "GreenEnemy|DOWN"
 			}
 		},
 		{
@@ -664,7 +664,7 @@
 			"type" : "TeleportTile",
 			"row" : 20,
 			"col" : 16,
-			"extra" : "9>11"
+			"extra" : "16>27"
 		},
 		{
 			"type" : "WallTile",

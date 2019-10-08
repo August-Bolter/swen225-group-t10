@@ -2,6 +2,7 @@ package Maze;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
@@ -27,6 +28,13 @@ public class Boots extends Item {
     }
 
     public Image getImage() {
+        if (main != null) {
+            BufferedImage img = main.itemImages.get("boots");
+            if (img != null) {
+                return img;
+            }
+        }
+
         String path = PATH + "boots" + ".png";
 
         try {

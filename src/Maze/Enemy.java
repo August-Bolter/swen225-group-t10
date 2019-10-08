@@ -2,6 +2,7 @@ package Maze;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
@@ -40,6 +41,16 @@ public class Enemy extends Item {
         String itemName = getClass().getName().substring(5);
         String dir = direction.toString().toUpperCase();
         dir = dir.charAt(0) + dir.substring(1).toLowerCase();
+
+        if (main != null) {
+            BufferedImage img = main.itemImages.get(itemName+dir);
+            if (img != null) {
+                return img;
+            }
+        }
+
+
+
         String path = "Resources/enemy/"+itemName+dir+".png";
 
         try {
