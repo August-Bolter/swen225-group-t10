@@ -1,8 +1,8 @@
 package Maze;
 
-import Application.Main;
-
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
@@ -20,7 +20,7 @@ public class DoorTile extends Tile {
      * @param color The pre-defined color of the board
      * */
     public DoorTile(int row, int col, String color) {
-        super(row, col);
+        super(row, col, color);
         this.color = color;
         this.isWalkable = false; //The door by default (i.e. when created) is locked.
     }
@@ -48,12 +48,13 @@ public class DoorTile extends Tile {
      * @return a boolean representing if the door is unlocked and therefore can be walked through
      */
     @Override
-    public boolean isWalkable() { return !isWalkable;}
+    public boolean isWalkable() { return isWalkable;}
 
     @Override
     public void interact() {
         //TODO: need to implement door being able to interact with Player
         setWalkable();
+
 
         if (isWalkable()) {
             main.getLevelBoard().replaceWithEmptyTile(this);
@@ -64,12 +65,17 @@ public class DoorTile extends Tile {
                     Key k = (Key) i;
                     if (k.getColor().equals(color)) {
                         main.getPlayer().removeItemFromInventory(k);
+                        return;
                     }
                 }
             }
+
         }
     }
 
+    /**
+     * Checks if the player has the correct key and if so unlock the door
+     */
     public void setWalkable() {
         for (Item i : main.getPlayer().getInventory()) {
             if (i instanceof Key) {
@@ -78,6 +84,27 @@ public class DoorTile extends Tile {
                     isWalkable = true;
                 }
             }
+        }
+    }
+
+    /**
+     * Paints the item in the tile on top of each tile.
+     */
+    public Image getImage() {
+        if (main != null) {
+            BufferedImage img = main.tileImages.get(color+DOOR + ".png");
+            if (img != null) {
+                System.out.println("Returned door");
+                return img;
+            }
+        }
+
+        String path = PATH+color+DOOR + ".png";
+
+        try {
+            return ImageIO.read(new File(path));
+        } catch (IOException e) {
+            throw new Error(path+"\nThe image failed to load:" + e);
         }
     }
 

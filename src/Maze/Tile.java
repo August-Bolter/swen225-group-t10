@@ -2,6 +2,12 @@ package Maze;
 
 import Application.Main;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.nio.Buffer;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -12,6 +18,7 @@ public abstract class Tile {
     public static final String PATH = "Resources/floor/";
     private int row;
     private int col;
+    private String extra;
     private List<Item> items;
     protected Main main;
 
@@ -21,6 +28,13 @@ public abstract class Tile {
     public Tile(int row, int col){
         this.row = row;
         this.col = col;
+        this.items = new ArrayList<>();
+    }
+
+    public Tile(int row, int col, String extra) {
+        this.row = row;
+        this.col = col;
+        this.extra = extra;
         this.items = new ArrayList<>();
     }
 
@@ -35,10 +49,15 @@ public abstract class Tile {
     }
 
     /**
+     * @return the extra field, null if the tile doesn't have one
+     */
+    public String getExtra() { return extra; }
+
+    /**
      * @return the list of items on this tile
      */
     public List<Item> getItems() {
-        return Collections.unmodifiableList(items);
+        return items;
     }
 
     /**
@@ -47,6 +66,16 @@ public abstract class Tile {
      */
     public void addItem(Item item) {
         items.add(item);
+        Collections.sort(items);
+    }
+
+    /**
+     * Adds all items in a list to the tiles list of items
+     * @param items the list of items to add
+     */
+    public void addAllItems(List<Item> items) {
+        this.items.addAll(items);
+        Collections.sort(this.items);
     }
 
     /**
@@ -54,12 +83,37 @@ public abstract class Tile {
      * @param item the item to removes
      */
     public void removeItem(Item item) {
-        items.remove(item);
+        items.removeIf(i -> i.equals(item));
     }
 
+    /**
+     * Paints the item in the tile on top of each tile.
+     */
+    public Image getImage() {
+        String tileName = getClass().getName().substring(5);
 
+        if (main != null) {
+            BufferedImage img = main.tileImages.get(tileName);
+            if (img != null) {
+                return img;
+            }
+        }
 
+        try {
+            return ImageIO.read(new File(PATH+tileName+".png"));
+        } catch (IOException e) {
+            throw new Error(PATH+tileName+"\nThe image failed to load:" + e);
+        }
+    }
 
+    public boolean hasPlayer(){
+        for (Item i : items){
+            if (i instanceof Player){
+                return true;
+            }
+        }
+        return false;
+    }
 
     /** Checks if an Object is the same as (equals) this tile.
      * @param o The object that the tile is being compared to
@@ -83,6 +137,10 @@ public abstract class Tile {
      * Method to interact with the tile.
      */
     public abstract void interact();
+
+    public boolean hasItem() {
+        return !items.isEmpty();
+    }
 
     public void setMain(Main main) {
         this.main = main;

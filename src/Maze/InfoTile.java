@@ -11,7 +11,7 @@ public class InfoTile extends Tile {
      * @param info The helpful text
      * */
     public InfoTile(int row, int col, String info) {
-        super(row, col);
+        super(row, col, info);
         this.info = info;
     }
 
@@ -28,6 +28,6 @@ public class InfoTile extends Tile {
 
     @Override
     public void interact() {
-        //TODO: need to implement info tile being able to interact with Player
+        main.getFrame().displayInfo(info);
     }
 }

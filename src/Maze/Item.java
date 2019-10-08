@@ -2,15 +2,27 @@ package Maze;
 
 import Application.Main;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.Comparator;
+import java.util.Objects;
+
 /**
  * Abstract class for Item - this will be implemented by all inventory items (keys, chips). Items are on top of tiles.
  */
 
-public abstract class Item {
+public abstract class Item implements Comparable<Item> {
     private int row;
     private int col;
+    private String extra;
     protected Main main;
     private boolean inInventory;
+
+    private int priority;
+    public static final String PATH = "Resources/items/";
 
     /** Creates an item.
      * @param row The row (in regards to the board) of the item
@@ -19,6 +31,18 @@ public abstract class Item {
         this.row = row;
         this.col = col;
         inInventory = false;
+    }
+
+    /**
+     * Creates an item with an extra
+     * @param row the row
+     * @param col the col
+     * @param extra the extra descriptor
+     */
+    public Item(int row, int col, String extra) {
+        this.row = row;
+        this.col = col;
+        this.extra = extra;
     }
 
     //Start of getter and setter methods
@@ -48,6 +72,11 @@ public abstract class Item {
     public int getRow(){
         return row;
     }
+
+    /**
+     * @return the extra descriptor
+     */
+    public String getExtra() { return extra; }
 
     /**
      * Sets the item's row number
@@ -81,7 +110,7 @@ public abstract class Item {
     }
 
     /**
-     * Method to interact with the tile
+     * Method to interact with the item
      */
     public abstract void interact();
 
@@ -98,7 +127,54 @@ public abstract class Item {
         return true;
     }
 
+    /**
+     * Paints the item in the tile on top of each tile.
+     */
+    public Image getImage() {
+        String itemName = getClass().getName().substring(5);
+
+        if (main != null) {
+            BufferedImage img = main.tileImages.get(itemName);
+            if (img != null) {
+                return img;
+            }
+        }
+
+        String path = PATH;
+
+
+        try {
+            return ImageIO.read(new File(path+itemName+".png"));
+        } catch (IOException e) {
+            throw new Error(path+itemName+"\nThe image failed to load:" + e);
+        }
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
+
     public void setMain(Main main) {
         this.main = main;
     }
+
+    @Override
+    public String toString() {
+        return this.getClass().toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(row, col);
+    }
+
+    @Override
+    public int compareTo(Item other) {
+        return other.getPriority() - this.getPriority();
+    }
+
 }
