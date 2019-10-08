@@ -5,20 +5,17 @@ public class BlueEnemy extends Enemy {
         super(row, col, direction);
     }
 
-    public LevelBoard.Direction getNextClockwiseDirection(LevelBoard.Direction d){
-        if (d == LevelBoard.Direction.LEFT) {
-            direction = LevelBoard.Direction.UP;
+    public LevelBoard.Direction getRandomDirection(){
+        int x = (int)(Math.random()*((4-1)+1))+1;
+        if (x == 1){
+            return LevelBoard.Direction.LEFT;
+        } else if (x == 2){
+            return LevelBoard.Direction.RIGHT;
+        } else if (x == 3){
+            return LevelBoard.Direction.UP;
+        } else {
+            return LevelBoard.Direction.DOWN;
         }
-        else if (d == LevelBoard.Direction.RIGHT) {
-            direction = LevelBoard.Direction.DOWN;
-        }
-        else if (d == LevelBoard.Direction.UP) {
-            direction = LevelBoard.Direction.RIGHT;
-        }
-        else if (d == LevelBoard.Direction.DOWN) {
-            direction = LevelBoard.Direction.LEFT;
-        }
-        return direction;
     }
 
     public void setDirection(LevelBoard.Direction d) {
@@ -39,7 +36,7 @@ public class BlueEnemy extends Enemy {
     public void moveEnemy(){
         Tile desiredTile = main.getLevelBoard().getTileAtPosition(currentPos, direction);
         while (!(desiredTile instanceof FreeTile) && (!(desiredTile instanceof InfoTile))) {
-            setDirection(getNextClockwiseDirection(direction));
+            setDirection(getRandomDirection());
             desiredTile = main.getLevelBoard().getTileAtPosition(currentPos, direction);
         }
         doMove(desiredTile);

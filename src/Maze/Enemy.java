@@ -14,7 +14,7 @@ public class Enemy extends Item {
         super(row, col);
         this.row = row;
         this.col = col;
-        this.direction = LevelBoard.Direction.valueOf(direction);
+        this.direction = LevelBoard.Direction.DOWN;
         this.setPriority(5);
     }
 
