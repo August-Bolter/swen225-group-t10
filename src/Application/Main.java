@@ -79,7 +79,7 @@ public class Main {
 
     private void setup() {
         initialiseMaps();
-        levelBoard = LoadJSON.loadLevelFromJSON(2);
+        levelBoard = LoadJSON.loadLevelFromJSON(3);
         levelBoard.setMain(this);
         player = levelBoard.getPlayer();
         player.setCurrentPos();
