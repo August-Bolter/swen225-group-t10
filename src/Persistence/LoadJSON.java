@@ -11,6 +11,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Class for loading information from JSON files
@@ -167,7 +168,29 @@ public class LoadJSON {
         return item;
     }
 
-    public static HashMap<Integer, ArrayList<String>> loadMoves() {
-        return null;
+    public static HashMap<Integer, ArrayList<String>> loadMoves(File selectedReplay) {
+        HashMap<Integer, ArrayList<String>> tickAndMoves = new HashMap<Integer, ArrayList<String>>();
+        try {
+            BufferedReader in = new BufferedReader(new FileReader(selectedReplay));
+            JsonReader reader = Json.createReader(in);
+            JsonObject movesObject = reader.readObject();
+            JsonArray movesArray = movesObject.getJsonArray("moves");
+            for (JsonValue move : movesArray) {
+                JsonObject moveObject = move.asJsonObject();
+                //String moveType = moveObject.getString("type");
+                String direction = moveObject.getString("direction");
+                int tick = moveObject.getInt("tick");
+                ArrayList<String> currentDirections = tickAndMoves.get(tick);
+                if (currentDirections == null) {
+                    currentDirections = new ArrayList<String>();
+                    tickAndMoves.put(tick, currentDirections);
+                }
+                currentDirections.add(direction);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return tickAndMoves;
     }
 }

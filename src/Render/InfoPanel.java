@@ -119,10 +119,12 @@ public class InfoPanel extends JPanel {
 
     public void setChipsLeft(int chips) {
         chipsLeft = chips;
+        chipsRemaining.setText("Chips Remaining: " + chipsLeft);
     }
 
     public void setTimeLeft(int time) {
         timeLeft = time;
+        timeRemaining.setText("Time Remaining: " + timeLeft);
     }
 
     public void setInventory(Item[] inventory) {
@@ -177,9 +179,12 @@ public class InfoPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (recordButton.getText().equals("Play")) {
+                    game.setFrameRate(1);
                     recordButton.setText("Stop");
+                    replay.startReplay();
                 }
                 else {
+                    game.setFrameRate(0000000000000000.1);
                     recordButton.setText("Play");
                 }
             }

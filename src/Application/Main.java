@@ -27,6 +27,7 @@ public class Main {
     private boolean recordMoves;
     private Record currentRecord;
     private boolean firstMove = true;
+    private double frameRate;
 
 
     public void setup() {
@@ -87,10 +88,11 @@ public class Main {
      * @param seconds the number of seconds until game over
      */
     public void timer(int seconds){
+        frameRate = 1;
         long lastTick = System.nanoTime();
         while (seconds > 0) {
             long now = System.nanoTime();
-            if (now - lastTick > 1000000000) {
+            if (now - lastTick > 1000000000/frameRate) {
                 frame.getInfoPanel().decrementTimeRemaining();
                 //frame.getInfoPanel().updateIntegers();
                 //System.out.println("tick " + seconds);
@@ -165,6 +167,10 @@ public class Main {
 
     public boolean allChipsCollected(){
         return chipsRemaining == 0;
+    }
+
+    public void setFrameRate(double frameRate) {
+        this.frameRate = frameRate;
     }
 
     public static void main(String[] args) {

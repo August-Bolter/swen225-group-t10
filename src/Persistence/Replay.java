@@ -12,16 +12,22 @@ import java.util.HashMap;
 public class Replay {
     InfoPanel infoPanel;
     Main game;
+    HashMap<Integer, ArrayList<String>> tickToMovesMap;
     public Replay(Main game, InfoPanel panel) {
         this.game = game;
         infoPanel = panel;
     }
 
     public void replay() {
+        game.setFrameRate(0000000000000000.1); //Stopping the game
+
         File selectedReplay = infoPanel.openFileChooser();
         LevelBoard replayBoard = LoadJSON.loadLevelFromJSON(0, selectedReplay);
         game.setLevelBoard(replayBoard);
         game.getLevelBoard().setMain(game);
+
+        System.out.println(replayBoard.getTotalChips());
+        System.out.println(replayBoard.getTimeLimit());
 
         game.setChipsRemaining(replayBoard.getTotalChips());
         game.setTimeRemaining(replayBoard.getTimeLimit());
@@ -46,6 +52,10 @@ public class Replay {
         infoPanel.addReplayButtons();
         infoPanel.redraw();
 
-        HashMap<Integer, ArrayList<String>> tickToMovesMap = LoadJSON.loadMoves();
+        tickToMovesMap = LoadJSON.loadMoves(selectedReplay);
+    }
+
+    public void startReplay() {
+
     }
 }
