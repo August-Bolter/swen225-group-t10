@@ -102,7 +102,7 @@ class TextToJSON {
                         type = "GateTile";
                     } else if (rowTiles[i] == 'I') {
                         type = "InfoTile";
-                        extra = "Hint: You need special boots to walk on lava";
+                        extra = "Hints: Collect Boots to walk on lava. Collect Boxing Gloves to move Venosaur. Watch out for Charizard and his Fireblasts, and avoid moving the moving Blastoise.";
                     } else if (rowTiles[i] == 'C') {
                         type = "FreeTile";
                         item = "Player";

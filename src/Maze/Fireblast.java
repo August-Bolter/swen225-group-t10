@@ -19,4 +19,9 @@ public class Fireblast extends RedEnemy {
             currentPos.removeItem(this);
         }
     }
+
+    public void interact() {
+        main.getFrame().displayInfo("Watch out for Fire Blasts!");
+        main.restartLevel();
+    }
 }

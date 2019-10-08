@@ -1,6 +1,6 @@
 {
 	"title": "Lesson 1",
-	"chips": 8,
+	"chips": 11,
 	"timeLimit" : 150,
 	"tiles" : [
 		{
@@ -675,7 +675,7 @@
 			"type" : "InfoTile",
 			"row" : 4,
 			"col" : 5,
-			"extra" : "Hint: You need special boots to walk on lava"
+			"extra" : "Hints: Collect Boots to walk on lava. Collect Boxing Gloves to move Venosaur. Watch out for Charizard and his Fireblasts, and avoid moving the moving Blastoise."
 		},
 		{
 			"type" : "WallTile",
@@ -1160,6 +1160,14 @@
 			"col" : 5
 		},
 		{
+			"type" : "FreeTile",
+			"row" : 8,
+			"col" : 7,
+			"item" : {
+				"descriptor" : "Chip|null"
+			}
+		},
+		{
 			"type" : "WallTile",
 			"row" : 8,
 			"col" : 14
@@ -1437,6 +1445,19 @@
 			"col" : 11
 		},
 		{
+			"type" : "FreeTile",
+			"row" : 11,
+			"col" : 17,
+			"item" : {
+				"descriptor" : "Chip|null"
+			}
+		},
+		{
+			"type" : "WallTile",
+			"row" : 11,
+			"col" : 18
+		},
+		{
 			"type" : "WallTile",
 			"row" : 11,
 			"col" : 24
@@ -1495,6 +1516,19 @@
 			"type" : "WallTile",
 			"row" : 12,
 			"col" : 3
+		},
+		{
+			"type" : "FreeTile",
+			"row" : 12,
+			"col" : 5,
+			"item" : {
+				"descriptor" : "Chip|null"
+			}
+		},
+		{
+			"type" : "WallTile",
+			"row" : 12,
+			"col" : 6
 		},
 		{
 			"type" : "WallTile",
@@ -1620,6 +1654,16 @@
 		{
 			"type" : "WallTile",
 			"row" : 13,
+			"col" : 5
+		},
+		{
+			"type" : "WallTile",
+			"row" : 13,
+			"col" : 6
+		},
+		{
+			"type" : "WallTile",
+			"row" : 13,
 			"col" : 7
 		},
 		{
@@ -1707,6 +1751,29 @@
 			"col" : 4,
 			"item" : {
 				"descriptor" : "Boots|null"
+			}
+		},
+		{
+			"type" : "WallTile",
+			"row" : 14,
+			"col" : 5
+		},
+		{
+			"type" : "WallTile",
+			"row" : 14,
+			"col" : 6
+		},
+		{
+			"type" : "WallTile",
+			"row" : 14,
+			"col" : 7
+		},
+		{
+			"type" : "FreeTile",
+			"row" : 14,
+			"col" : 8,
+			"item" : {
+				"descriptor" : "GreenEnemy|DOWN"
 			}
 		},
 		{
@@ -1800,31 +1867,6 @@
 			"type" : "WallTile",
 			"row" : 15,
 			"col" : 3
-		},
-		{
-			"type" : "WallTile",
-			"row" : 15,
-			"col" : 4
-		},
-		{
-			"type" : "WallTile",
-			"row" : 15,
-			"col" : 5
-		},
-		{
-			"type" : "WallTile",
-			"row" : 15,
-			"col" : 6
-		},
-		{
-			"type" : "WallTile",
-			"row" : 15,
-			"col" : 7
-		},
-		{
-			"type" : "WallTile",
-			"row" : 15,
-			"col" : 8
 		},
 		{
 			"type" : "WallTile",
@@ -2695,7 +2737,7 @@
 		{
 			"type" : "FreeTile",
 			"row" : 24,
-			"col" : 4,
+			"col" : 8,
 			"item" : {
 				"descriptor" : "Chip|null"
 			}

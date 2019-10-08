@@ -46,7 +46,7 @@ public class BlueEnemy extends Enemy {
     }
 
     public void interact() {
-        main.getFrame().displayInfo("Watch out for blastoise you lil bitch ass");
+        main.getFrame().displayInfo("Watch out for moving Blastoise!");
         main.restartLevel();
     }
 }
