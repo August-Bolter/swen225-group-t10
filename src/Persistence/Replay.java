@@ -1,6 +1,8 @@
 package Persistence;
 
 import Application.Main;
+import Maze.BlueEnemy;
+import Maze.Enemy;
 import Maze.LevelBoard;
 import Maze.Player;
 import Render.InfoPanel;
@@ -12,7 +14,7 @@ import java.util.HashMap;
 public class Replay {
     InfoPanel infoPanel;
     Main game;
-    HashMap<Integer, ArrayList<String>> tickToMovesMap;
+    HashMap<Long, ArrayList<String>> tickToMovesMap;
     public Replay(Main game, InfoPanel panel) {
         this.game = game;
         infoPanel = panel;
@@ -25,9 +27,6 @@ public class Replay {
         LevelBoard replayBoard = LoadJSON.loadLevelFromJSON(0, selectedReplay);
         game.setLevelBoard(replayBoard);
         game.getLevelBoard().setMain(game);
-
-        System.out.println(replayBoard.getTotalChips());
-        System.out.println(replayBoard.getTimeLimit());
 
         game.setChipsRemaining(replayBoard.getTotalChips());
         game.setTimeRemaining(replayBoard.getTimeLimit());
@@ -55,7 +54,7 @@ public class Replay {
         tickToMovesMap = LoadJSON.loadMoves(selectedReplay);
     }
 
-    public void startReplay() {
-
+    public HashMap<Long, ArrayList<String>> getTickToMovesMap() {
+        return tickToMovesMap;
     }
 }

@@ -181,10 +181,12 @@ public class InfoPanel extends JPanel {
                 if (recordButton.getText().equals("Play")) {
                     game.setFrameRate(1);
                     recordButton.setText("Stop");
-                    replay.startReplay();
+                    game.setReplayMode(true);
+                    game.setReplay(replay);
                 }
                 else {
                     game.setFrameRate(0000000000000000.1);
+                    game.setReplayMode(false);
                     recordButton.setText("Play");
                 }
             }
@@ -214,6 +216,7 @@ public class InfoPanel extends JPanel {
         exitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                game.setReplayMode(false);
                 //Needs to take user back to title screen
             }
         });

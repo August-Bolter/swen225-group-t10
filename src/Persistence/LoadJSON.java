@@ -168,8 +168,8 @@ public class LoadJSON {
         return item;
     }
 
-    public static HashMap<Integer, ArrayList<String>> loadMoves(File selectedReplay) {
-        HashMap<Integer, ArrayList<String>> tickAndMoves = new HashMap<Integer, ArrayList<String>>();
+    public static HashMap<Long, ArrayList<String>> loadMoves(File selectedReplay) {
+        HashMap<Long, ArrayList<String>> tickAndMoves = new HashMap<Long, ArrayList<String>>();
         try {
             BufferedReader in = new BufferedReader(new FileReader(selectedReplay));
             JsonReader reader = Json.createReader(in);
@@ -179,11 +179,11 @@ public class LoadJSON {
                 JsonObject moveObject = move.asJsonObject();
                 //String moveType = moveObject.getString("type");
                 String direction = moveObject.getString("direction");
-                int tick = moveObject.getInt("tick");
-                ArrayList<String> currentDirections = tickAndMoves.get(tick);
+                long time = moveObject.getJsonNumber("time").bigDecimalValue().longValueExact();
+                ArrayList<String> currentDirections = tickAndMoves.get(time);
                 if (currentDirections == null) {
                     currentDirections = new ArrayList<String>();
-                    tickAndMoves.put(tick, currentDirections);
+                    tickAndMoves.put(time, currentDirections);
                 }
                 currentDirections.add(direction);
             }

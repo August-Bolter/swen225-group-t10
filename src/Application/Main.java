@@ -3,13 +3,11 @@ package Application;
 import Maze.*;
 import Persistence.LoadJSON;
 import Persistence.Record;
+import Persistence.Replay;
 import Persistence.SaveJSON;
 import Render.MainFrame;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Timer;
+import java.util.*;
 
 public class Main {
     private int timeRemaining; //Level timer
@@ -26,9 +24,11 @@ public class Main {
     private List<Enemy> enemies;
     private boolean recordMoves;
     private Record currentRecord;
+    private Replay currentReplay;
     private boolean firstMove = true;
     private double frameRate;
-
+    private boolean replayMode = false;
+    private long startTime;
 
     public void setup() {
         recordMoves = false;
@@ -70,12 +70,13 @@ public class Main {
             for (Iterator<Item> iterator = desiredTile.getItems().iterator(); iterator.hasNext();) {
                 iterator.next().interact();
             }
-            if (recordMoves) {
-                if (!(newTile == desiredTile && oldDirection == direction)) {
-                    String fileName = "src/Utility/record-" + currentRecord.getCount() + ".json";
-                    SaveJSON.SaveMove(fileName, direction, 100-getTimeRemaining(), firstMove);
-                    firstMove = false;
-                }
+            if (recordMoves && !replayMode) {
+                /* Need an if clause which doesn't record the move if the move doesn't change players direction or tile
+                *  e.g. walking into a wall */
+                String fileName = "src/Utility/record-" + currentRecord.getCount() + ".json";
+                long time = System.nanoTime()-startTime;
+                SaveJSON.SaveMove(fileName, direction, time, firstMove);
+                firstMove = false;
             }
 
             return true;
@@ -89,14 +90,46 @@ public class Main {
      */
     public void timer(int seconds){
         frameRate = 1;
+        boolean firstTime = true;
         long lastTick = System.nanoTime();
+        startTime = System.nanoTime();
+        ArrayList<Long> executedTimes = new ArrayList<Long>();
+        long startReplayTime = 0;
         while (seconds > 0) {
+            if (replayMode & firstTime) {
+                startReplayTime = System.nanoTime();
+                firstTime = false;
+            }
+
             long now = System.nanoTime();
+            if (replayMode) {
+                long diff = now - startReplayTime;
+                for (Map.Entry<Long, ArrayList<String>> entry: currentReplay.getTickToMovesMap().entrySet()) {
+                    if (diff > entry.getKey() && !executedTimes.contains(entry.getKey())) {
+                        System.out.println(diff);
+                        for (String s : entry.getValue()) {
+                            if (s.equals("LEFT")) {
+                                doMove(LevelBoard.Direction.LEFT);
+                            } else if (s.equals("RIGHT")) {
+                                doMove(LevelBoard.Direction.RIGHT);
+                            } else if (s.equals("UP")) {
+                                doMove(LevelBoard.Direction.UP);
+                            } else {
+                                doMove(LevelBoard.Direction.DOWN);
+                            }
+                            frame.getBoardPanel().redraw();
+                            frame.getBoardPanel().updateBoard();
+                            frame.getInfoPanel().redraw();
+                        }
+                        executedTimes.add(entry.getKey());
+                    }
+                }
+            }
+
             if (now - lastTick > 1000000000/frameRate) {
                 frame.getInfoPanel().decrementTimeRemaining();
                 //frame.getInfoPanel().updateIntegers();
                 //System.out.println("tick " + seconds);
-
 
                 for (Enemy e : enemies){
                     if (e instanceof BlueEnemy){
@@ -191,7 +224,15 @@ public class Main {
         currentRecord = record;
     }
 
+    public void setReplay(Replay replay) {
+        currentReplay = replay;
+    }
+
     public void setLevelBoard(LevelBoard board) {
         levelBoard = board;
+    }
+
+    public void setReplayMode(boolean replayMode) {
+        this.replayMode = replayMode;
     }
 }

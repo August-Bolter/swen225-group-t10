@@ -119,7 +119,7 @@ public class SaveJSON {
         return builder.toString();
     }
 
-    public static void SaveMove(String fileName, LevelBoard.Direction direction, int tick, boolean firstMove) {
+    public static void SaveMove(String fileName, LevelBoard.Direction direction, long time, boolean firstMove) {
         try {
             StringBuilder move = new StringBuilder();
             FileWriter fileWriter = new FileWriter(fileName, true);
@@ -146,7 +146,7 @@ public class SaveJSON {
             }
             move.append("\t\t{\n\t\t\t\"type\" : \""+ type +"\",\n" +
                     "\t\t\t\"direction\" : \"" + directionText + "\",\n" +
-                    "\t\t\t\"tick\" : " + tick);
+                    "\t\t\t\"time\" : " + time);
 
             move.append("\n\t\t}");
             out.append(move.toString());
