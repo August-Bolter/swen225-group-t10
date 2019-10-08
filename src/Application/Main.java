@@ -214,6 +214,7 @@ public class Main {
     }
 
     public void restartLevel() {
+        System.out.println("RESTART CALLED");
         levelBoard = LoadJSON.loadLevelFromJSON(level);
         levelBoard.setMain(this);
         player = levelBoard.getPlayer();
@@ -228,8 +229,6 @@ public class Main {
 
         chipsRemaining = levelBoard.getTotalChips();
         timeRemaining = levelBoard.getTimeLimit();
-
-        timer(levelBoard.getTimeLimit());
 
         seed = System.currentTimeMillis();
         generator.setSeed(seed);

@@ -764,7 +764,7 @@
 			"col" : 25
 		},
 		{
-			"type" : "FreeTile",
+			"type" : "FireTile",
 			"row" : 4,
 			"col" : 26,
 			"item" : {
