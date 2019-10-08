@@ -32,10 +32,10 @@ public class Enemy extends Item {
 
     public void doMove(Tile toMoveTo){
         currentPos.removeItem(this);
-
         toMoveTo.addItem(this);
         setCurrentPos(toMoveTo);
     }
+
     @Override
     public Image getImage() {
         String itemName = getClass().getName().substring(5);

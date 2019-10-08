@@ -10,7 +10,7 @@ import java.io.IOException;
  * same color. */
 public class Key extends Item {
     private static final String KEY = "Key";
-    String color; //The key can be blue, red, green or yellow
+    private String color; //The key can be blue, red, green or yellow
 
     /** Creates a key.
      * @param row The row (in regards to the board) of the key.
