@@ -2317,6 +2317,11 @@
 			}
 		},
 		{
+			"type" : "WallTile",
+			"row" : 19,
+			"col" : 14
+		},
+		{
 			"type" : "FreeTile",
 			"row" : 19,
 			"col" : 16,
@@ -2379,6 +2384,11 @@
 			"item" : {
 				"descriptor" : "BlueEnemy|DOWN"
 			}
+		},
+		{
+			"type" : "WallTile",
+			"row" : 20,
+			"col" : 14
 		},
 		{
 			"type" : "WallTile",
@@ -2472,6 +2482,26 @@
 		{
 			"type" : "WallTile",
 			"row" : 21,
+			"col" : 4
+		},
+		{
+			"type" : "WallTile",
+			"row" : 21,
+			"col" : 5
+		},
+		{
+			"type" : "WallTile",
+			"row" : 21,
+			"col" : 13
+		},
+		{
+			"type" : "WallTile",
+			"row" : 21,
+			"col" : 14
+		},
+		{
+			"type" : "WallTile",
+			"row" : 21,
 			"col" : 16
 		},
 		{
@@ -2550,6 +2580,21 @@
 			"item" : {
 				"descriptor" : "BlueEnemy|DOWN"
 			}
+		},
+		{
+			"type" : "WallTile",
+			"row" : 22,
+			"col" : 9
+		},
+		{
+			"type" : "WallTile",
+			"row" : 22,
+			"col" : 10
+		},
+		{
+			"type" : "WallTile",
+			"row" : 22,
+			"col" : 11
 		},
 		{
 			"type" : "WallTile",
@@ -2722,6 +2767,16 @@
 		{
 			"type" : "WallTile",
 			"row" : 24,
+			"col" : 22
+		},
+		{
+			"type" : "WallTile",
+			"row" : 24,
+			"col" : 23
+		},
+		{
+			"type" : "WallTile",
+			"row" : 24,
 			"col" : 28
 		},
 		{
@@ -2762,6 +2817,11 @@
 		{
 			"type" : "WallTile",
 			"row" : 25,
+			"col" : 5
+		},
+		{
+			"type" : "WallTile",
+			"row" : 25,
 			"col" : 8
 		},
 		{
@@ -2784,6 +2844,21 @@
 			"type" : "WallTile",
 			"row" : 25,
 			"col" : 12
+		},
+		{
+			"type" : "WallTile",
+			"row" : 25,
+			"col" : 17
+		},
+		{
+			"type" : "WallTile",
+			"row" : 25,
+			"col" : 18
+		},
+		{
+			"type" : "WallTile",
+			"row" : 25,
+			"col" : 19
 		},
 		{
 			"type" : "FreeTile",
@@ -2850,6 +2925,11 @@
 			"type" : "WallTile",
 			"row" : 26,
 			"col" : 12
+		},
+		{
+			"type" : "WallTile",
+			"row" : 26,
+			"col" : 18
 		},
 		{
 			"type" : "WallTile",
