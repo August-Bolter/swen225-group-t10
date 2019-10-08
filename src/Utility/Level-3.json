@@ -764,17 +764,17 @@
 			"col" : 25
 		},
 		{
-			"type" : "FreeTile",
+			"type" : "FireTile",
 			"row" : 4,
-			"col" : 26,
-			"item" : {
-				"descriptor" : "Key|blue"
-			}
+			"col" : 26
 		},
 		{
 			"type" : "FireTile",
 			"row" : 4,
-			"col" : 27
+			"col" : 27,
+			"item" : {
+				"descriptor" : "Key|blue"
+			}
 		},
 		{
 			"type" : "WallTile",
@@ -1259,14 +1259,6 @@
 			"type" : "WallTile",
 			"row" : 9,
 			"col" : 11
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 9,
-			"col" : 21,
-			"item" : {
-				"descriptor" : "RedEnemy|LEFT"
-			}
 		},
 		{
 			"type" : "WallTile",
@@ -2247,7 +2239,7 @@
 		{
 			"type" : "FreeTile",
 			"row" : 18,
-			"col" : 8,
+			"col" : 12,
 			"item" : {
 				"descriptor" : "Key|red"
 			}
@@ -2324,14 +2316,6 @@
 		{
 			"type" : "FreeTile",
 			"row" : 19,
-			"col" : 16,
-			"item" : {
-				"descriptor" : "BlueEnemy|DOWN"
-			}
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 19,
 			"col" : 21,
 			"item" : {
 				"descriptor" : "GreenEnemy|DOWN"
@@ -2376,14 +2360,6 @@
 			"type" : "WallTile",
 			"row" : 20,
 			"col" : 3
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 20,
-			"col" : 9,
-			"item" : {
-				"descriptor" : "BlueEnemy|DOWN"
-			}
 		},
 		{
 			"type" : "WallTile",
@@ -2524,14 +2500,6 @@
 			"type" : "WallTile",
 			"row" : 21,
 			"col" : 23
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 21,
-			"col" : 27,
-			"item" : {
-				"descriptor" : "BlueEnemy|DOWN"
-			}
 		},
 		{
 			"type" : "WallTile",
@@ -2679,22 +2647,6 @@
 		{
 			"type" : "FreeTile",
 			"row" : 23,
-			"col" : 15,
-			"item" : {
-				"descriptor" : "BlueEnemy|DOWN"
-			}
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 23,
-			"col" : 23,
-			"item" : {
-				"descriptor" : "BlueEnemy|DOWN"
-			}
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 23,
 			"col" : 27,
 			"item" : {
 				"descriptor" : "BlueEnemy|DOWN"
@@ -2746,22 +2698,6 @@
 			"col" : 4,
 			"item" : {
 				"descriptor" : "Chip|null"
-			}
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 24,
-			"col" : 9,
-			"item" : {
-				"descriptor" : "BlueEnemy|DOWN"
-			}
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 24,
-			"col" : 19,
-			"item" : {
-				"descriptor" : "BlueEnemy|DOWN"
 			}
 		},
 		{
@@ -3016,23 +2952,7 @@
 		{
 			"type" : "FreeTile",
 			"row" : 27,
-			"col" : 13,
-			"item" : {
-				"descriptor" : "BlueEnemy|DOWN"
-			}
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 27,
 			"col" : 18,
-			"item" : {
-				"descriptor" : "BlueEnemy|DOWN"
-			}
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 27,
-			"col" : 21,
 			"item" : {
 				"descriptor" : "BlueEnemy|DOWN"
 			}
