@@ -2,10 +2,15 @@ package Application;
 
 import Maze.*;
 import Persistence.LoadJSON;
+import Persistence.Record;
+import Persistence.SaveJSON;
 import Render.MainFrame;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -25,9 +30,11 @@ public class Main {
     private MainFrame frame;
     private List<Enemy> enemies;
     private boolean recordMoves;
+    private Record currentRecord;
+    private boolean firstMove = true;
 
 
-    private void setup() {
+    public void setup() {
         recordMoves = false;
         levelBoard = LoadJSON.loadLevelFromJSON(2);
         levelBoard.setMain(this);
@@ -58,7 +65,6 @@ public class Main {
         Tile newTile = null;
         LevelBoard.Direction oldDirection = player.getDirection();
         if (desiredTile != null) {
-
             if (desiredTile.isWalkable()) {
                 newTile = levelBoard.getTileAtPosition(currentPos, direction);
                 player.move(newTile);
@@ -70,7 +76,9 @@ public class Main {
             }
             if (recordMoves) {
                 if (!(newTile == desiredTile && oldDirection == direction)) {
-
+                    String fileName = "src/Utility/record-" + currentRecord.getCount() + ".json";
+                    SaveJSON.SaveMove(fileName, direction, 100-getTimeRemaining(), firstMove);
+                    firstMove = false;
                 }
             }
 
@@ -164,5 +172,9 @@ public class Main {
 
     public void recordMoves(boolean b) {
         recordMoves = b;
+    }
+
+    public void setRecord(Record record) {
+        currentRecord = record;
     }
 }

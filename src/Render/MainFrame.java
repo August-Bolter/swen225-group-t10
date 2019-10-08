@@ -6,6 +6,8 @@ import Persistence.SaveJSON;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.HashSet;
@@ -61,7 +63,7 @@ public class MainFrame extends JFrame implements KeyListener {
     }
 
     private void addInfoPanel() {
-        infoPanel = new InfoPanel(game);
+        infoPanel = new InfoPanel(game, this);
         outerpanel.add(infoPanel);
     }
 
@@ -83,7 +85,7 @@ public class MainFrame extends JFrame implements KeyListener {
                 break;
             case KeyEvent.VK_S:
                 if (pressedKeys.contains(KeyEvent.VK_CONTROL)) {
-                    SaveJSON.SaveGame(game.getLevelBoard(), -1);
+                    SaveJSON.SaveGame(game.getLevelBoard(), "src/Utility/save.json", true);
                     return;
                 }
             case KeyEvent.VK_DOWN:
