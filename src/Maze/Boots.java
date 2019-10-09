@@ -8,8 +8,7 @@ import java.io.IOException;
 
 /**
  * Boots class- this is a type of item
- * Boots are needed to be 'picked up' by the player before they can move through
- * CHECKTHIS
+ * Boots are needed to be 'picked up' by the player before they can move through fireTiles
  */
 public class Boots extends Item {
 
