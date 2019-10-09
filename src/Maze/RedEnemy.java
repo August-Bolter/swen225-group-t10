@@ -1,9 +1,13 @@
 package Maze;
 
+/**
+ * Type of enemy
+ */
 public class RedEnemy extends Enemy {
     public RedEnemy(int row, int col, String direction) {
         super(row, col, direction);
     }
+
 
     public void interact() {
         main.getFrame().displayInfo("Watch out for Charizards!");

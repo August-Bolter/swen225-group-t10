@@ -97,8 +97,9 @@ public class Main {
 
     /**
      * Method that setups the actual playing board
+     * CHECKTHIS
      */
-    private void setup() {
+    public void setup() {
         //setting up the correct level
         initialiseMaps();
         levelBoard = LoadJSON.loadLevelFromJSON(level);
