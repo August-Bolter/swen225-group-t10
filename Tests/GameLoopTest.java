@@ -257,7 +257,7 @@ public class GameLoopTest extends JFrame implements ActionListener
         float x, y, lastX, lastY;
         int width, height;
         float xVelocity, yVelocity;
-        float speed;
+        float speed = 1;
 
         public Ball()
         {
