@@ -204,55 +204,9 @@ public class Main {
         restartLevel();
     }
 
-    //start of getter and setters
-
     /**
-     * Getter method: Fetches the current frame
-     * @return current frame
+     * Method used to restart the level. Will occur when the user pressed the restart button
      */
-    public MainFrame getFrame() {
-        return frame;
-    }
-
-    /**
-     * Getter method: fetches the current levelboard
-     * @return levelboard we are on
-     */
-    public LevelBoard getLevelBoard() {
-        return levelBoard;
-    }
-
-    /**
-     * Getter method: fetches the time left - level must be completed before time runs out
-     * @return levelboard we are on
-     */
-    public int getTimeRemaining() {
-        return timeRemaining;
-    }
-
-    public void decrementChipsRemaining(){
-        if (chipsRemaining > 0) {
-            chipsRemaining--;
-        }
-    }
-
-    public int getChipsRemaining() {
-        return chipsRemaining;
-    }
-
-    public boolean allChipsCollected(){
-        return chipsRemaining == 0;
-    }
-
-    public static void main(String[] args) {
-        Main game = new Main();
-        game.setup();
-    }
-
-    public int getRandomInt() {
-        return generator.nextInt();
-    }
-
     public void restartLevel() {
         System.out.println("RESTART CALLED");
         levelBoard = LoadJSON.loadLevelFromJSON(level);
@@ -272,8 +226,80 @@ public class Main {
         generator.setSeed(seed);
     }
 
+    //start of getter and setters
 
+    /**
+     * Getter method: Fetches the current frame
+     * @return current frame
+     */
+    public MainFrame getFrame() {
+        return frame;
+    }
+
+    /**
+     * Getter method: fetches the current levelboard
+     * @return levelboard we are on
+     */
+    public LevelBoard getLevelBoard() {
+        return levelBoard;
+    }
+
+    /**
+     * Getter method: fetches the remaining chips
+     * @return total number of chipsremaining
+     */
+    public int getChipsRemaining() {
+        return chipsRemaining;
+    }
+
+    /**
+     * Getter method: fetches the time left - level must be completed before time runs out
+     * @return levelboard we are on
+     */
+    public int getTimeRemaining() {
+        return timeRemaining;
+    }
+
+    /**
+     * Getter method: returns whether there are more chips that need to be fetched to complete the method
+     * @return true if there are chips remaining in level, else false
+     */
+    public boolean allChipsCollected(){
+        return chipsRemaining == 0;
+    }
+
+    /**
+     * Getter method: fetches a random integer
+     * @return random integer generated
+     */
+    public int getRandomInt() {
+        return generator.nextInt();
+    }
+
+    /**
+     * Getter method: fetches the current player
+     * @return player currently playing
+     */
     public Player getPlayer() {
         return player;
     }
+
+    /**
+     * Setter method: changes by decrementing the total number of chips left
+     */
+    public void decrementChipsRemaining(){
+        if (chipsRemaining > 0) {
+            chipsRemaining--;
+        }
+    }
+
+    /**
+     * Main method
+     * @param args
+     */
+    public static void main(String[] args) {
+        Main game = new Main();
+        game.setup();
+    }
+
 }
