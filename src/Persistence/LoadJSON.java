@@ -3,13 +3,19 @@ package Persistence;
 import Maze.*;
 
 import javax.json.*;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
 
 /**
  * Class for loading information from JSON files
@@ -74,8 +80,14 @@ public class LoadJSON {
                 if (tileObject.containsKey("extra"))
                     extra = tileObject.getString("extra");
 
+
                 try {
-                    Class<?> clazz = Class.forName("Maze." + tileClassName);
+                    Class<?> clazz;
+                    try {
+                        clazz = Class.forName("Maze." + tileClassName);
+                    } catch (ClassNotFoundException e) {
+                        clazz = loadClassFromZip();
+                    }
                     Tile tile;
                     Constructor<?> constructor;
 
@@ -101,8 +113,6 @@ public class LoadJSON {
                 } catch (NoSuchMethodException e) {
                     e.printStackTrace();
                 } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 }
             }
@@ -170,6 +180,34 @@ public class LoadJSON {
         }
 
         return item;
+    }
+
+    private static Class loadClassFromZip() {
+        System.out.println("Class " + "TestTile" + " is not part of default tiles. Looking in .zip folder");
+
+
+        try {
+            // Get the class file from the zip file
+            ZipFile zipFile = new ZipFile("src/Utility/Level-2.zip");
+            ZipEntry classFileZipped = zipFile.getEntry("Level-2/TestTile.class");
+            InputStream inputStream = zipFile.getInputStream(classFileZipped);
+            new File("src/Utility/Level-3").mkdirs();
+            Files.copy(inputStream, Paths.get("src/Utility/Level-3/TestTile.class"), StandardCopyOption.REPLACE_EXISTING);
+            File classFile = new File("src/Utility/Level-3/TestTile.class");
+
+            // Load the class file from the new folder
+            //URL classURL = classFile.toURI().toURL();
+            URL classURL = new File("src/Utility/Level-3").toURI().toURL();
+            URL[] classURLs = {classURL};
+            URLClassLoader classLoader = new URLClassLoader(classURLs);
+            Class clazz = classLoader.loadClass("TestTile");
+
+            return clazz;
+        } catch (IOException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+
+        throw new Error("Couldn't load class");
     }
 
 }

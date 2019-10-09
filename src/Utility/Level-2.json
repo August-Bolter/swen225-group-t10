@@ -495,10 +495,7 @@
 		{
 			"type" : "FreeTile",
 			"row" : 16,
-			"col" : 13,
-			"item" : {
-				"descriptor" : "GreenEnemy|DOWN"
-			}
+			"col" : 13
 		},
 		{
 			"type" : "FreeTile",
@@ -550,10 +547,9 @@
 			"col" : 12
 		},
 		{
-			"type" : "DoorTile",
+			"type" : "TestTile",
 			"row" : 17,
-			"col" : 13,
-			"extra" : "yellow"
+			"col" : 13
 		},
 		{
 			"type" : "WallTile",

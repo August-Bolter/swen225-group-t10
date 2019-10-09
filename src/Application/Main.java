@@ -21,7 +21,7 @@ public class Main {
     private Random generator = new Random();
     private long seed;
 
-    private int level = 3;
+    private int level = 2;
 
     private Player player;
     private LevelBoard levelBoard;
