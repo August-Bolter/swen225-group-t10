@@ -102,7 +102,6 @@ public class Main {
     }
 
 
-
     /**
      * Method that is called when you want to move in a direction
      * @param direction

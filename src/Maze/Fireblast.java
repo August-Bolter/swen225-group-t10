@@ -22,6 +22,7 @@ public class Fireblast extends RedEnemy {
 
     @Override
     public void onTick() {
+        System.out.println("Fireblast on tick");
         moveBlast();
     }
 
