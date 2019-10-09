@@ -6,6 +6,9 @@ import Application.Main;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class for the levelBoard
+ */
 public class LevelBoard {
     private static final int SIZE = 32;
 
@@ -28,10 +31,6 @@ public class LevelBoard {
         this.board = board;
     }
 
-
-    public Tile[][] getBoard() {
-        return board;
-    }
 
     /**
      * Gets the tile at a given direction from a given position.
@@ -90,7 +89,11 @@ public class LevelBoard {
 
 
 
+
     //getter and setter methods
+    public Tile[][] getBoard() {
+        return board;
+    }
 
     /**
      * Method that gets the total number of chips
@@ -140,6 +143,10 @@ public class LevelBoard {
         return null;
     }
 
+    /**
+     * Gets a list of all the enemies on the board
+     * @return list of enemies on the board
+     */
     public List<Enemy> getEnemies(){
         List<Enemy> enemies = new ArrayList<>();
         for (int row = 0; row < board.length; row++) {
@@ -155,5 +162,6 @@ public class LevelBoard {
         }
         return enemies;
     }
+
 
 }

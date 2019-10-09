@@ -6,8 +6,16 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Class for gloves. The gloves are required in order to push the ____ out of the way
+ */
 public class Gloves extends Item {
 
+    /**
+     * Constrsuctor for the gloves
+     * @param row The row (in regards to the board) of the free tile
+     * @param col The column (in regards to the board) of the free tile
+     */
     public Gloves(int row, int col) {
         super(row, col);
         this.setPriority(5);
