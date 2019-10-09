@@ -139,7 +139,7 @@ public class Main {
     /**
      * Keeps track of the time left and is used to control enemies
      */
-    public void timer(){
+    private void timer(){
         long lastTick = System.nanoTime();
         int tick = 0;
         int frameRate = 6;
