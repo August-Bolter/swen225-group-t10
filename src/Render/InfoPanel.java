@@ -167,6 +167,8 @@ public class InfoPanel extends JPanel {
         for (TilePanel tp : invPanels) {
             tp.redraw();
         }
+
+        revalidate();
     }
 
     public File openFileChooser() {
@@ -191,11 +193,15 @@ public class InfoPanel extends JPanel {
                     game.setFrameRate(1);
                     recordButton.setText("Stop");
                     game.setReplayMode(true);
+                    nextStepButton.setEnabled(false);
+                    previousStepButton.setEnabled(false);
                 }
                 else {
                     game.setFrameRate(0000000000000000.1);
                     game.setReplayMode(false);
                     recordButton.setText("Play");
+                    nextStepButton.setEnabled(true);
+                    previousStepButton.setEnabled(true);
                 }
             }
         });

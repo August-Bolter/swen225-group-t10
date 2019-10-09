@@ -31,6 +31,8 @@ public class Main {
     private long startTime;
     private double replaySpeed;
     ArrayList<Long> executedTimes;
+    private long totalStepTime;
+    private long lastDiff;
 
     public void setup() {
         recordMoves = false;
@@ -103,6 +105,9 @@ public class Main {
         long pauseTime = 0;
         long unpauseTime = 0;
         long totalPauseTime = 0;
+        totalStepTime = 0;
+        lastDiff = 0;
+        long diff = 0;
         while (seconds > 0) {
             if (replayMode & firstTime) {
                 startReplayTime = System.nanoTime();
@@ -111,6 +116,7 @@ public class Main {
             if (!replayMode & !firstTime & !beenPaused) {
                 beenPausedPerm = true;
                 beenPaused = true;
+                setLastDiff(diff);
                 pauseTime = System.nanoTime();
             }
             long now = System.nanoTime();
@@ -119,12 +125,11 @@ public class Main {
                     unpauseTime = System.nanoTime();
                     totalPauseTime = totalPauseTime + (unpauseTime - pauseTime);
                 }
-                long diff;
                 if (beenPausedPerm) {
-                    diff = (long) (((now - startReplayTime) - (totalPauseTime))*replaySpeed);
+                    diff = (long) (((now - startReplayTime) - (totalPauseTime - totalStepTime))*replaySpeed);
                 }
                 else {
-                    diff = (long) ((now - startReplayTime)*replaySpeed);
+                    diff = (long) ((now - startReplayTime + totalStepTime)*replaySpeed);
                 }
                 beenPaused = false;
                 for (Map.Entry<Long, ArrayList<String>> entry: currentReplay.getTickToMovesMap().entrySet()) {
@@ -266,21 +271,34 @@ public class Main {
         this.replaySpeed = replaySpeed;
     }
 
+    public void addStepTime(long stepTime) {
+        long amountToAdd = stepTime - lastDiff;
+        totalStepTime = totalStepTime + amountToAdd;
+    }
+
+    public void setLastDiff(long diff) {
+        lastDiff = diff;
+    }
+
     public void nextStep() {
         SortedSet<Long> sortedMoves = new TreeSet<Long>(currentReplay.getTickToMovesMap().keySet());
         for (long l : sortedMoves) {
             if (!executedTimes.contains(l)) {
                 replayMove(currentReplay.getTickToMovesMap().get(l).get(0));
                 executedTimes.add(l);
+                addStepTime(l);
                 break;
             }
         }
     }
 
     public void reverseStep() {
-        Long timeOfLastMove = executedTimes.get(executedTimes.size()-1);
-        String direction = currentReplay.getTickToMovesMap().get(timeOfLastMove).get(0);
-        replayMove(LevelBoard.Direction.reverseDirection(direction));
-        executedTimes.remove(executedTimes.size()-1);
+        if (executedTimes.size() != 0) {
+            Long timeOfLastMove = executedTimes.get(executedTimes.size() - 1);
+            String direction = currentReplay.getTickToMovesMap().get(timeOfLastMove).get(0);
+            replayMove(LevelBoard.Direction.reverseDirection(direction));
+            executedTimes.remove(executedTimes.size() - 1);
+            addStepTime(timeOfLastMove);
+        }
     }
 }
