@@ -187,21 +187,26 @@ public class LoadJSON {
 
         try {
             // Get the class file from the zip file
+            new File("src/Utility/Level-3").mkdirs();
             ZipFile zipFile = new ZipFile("src/Utility/Level-2.zip");
             ZipEntry classFileZipped = zipFile.getEntry("Level-2/TestTile.class");
             InputStream inputStream = zipFile.getInputStream(classFileZipped);
 
-            // Make a new folder to store level-k class folders
-            new File("src/Utility/Level-3").mkdirs();
-            Files.copy(inputStream, Paths.get("src/Utility/Level-3/TestTile.class"), StandardCopyOption.REPLACE_EXISTING);
+            // Make a new folder to store level-k class folder
+            new File("src/Utility/Level-3/Classes").mkdirs();
+            Files.copy(inputStream, Paths.get("src/Utility/Level-3/Classes/TestTile.class"), StandardCopyOption.REPLACE_EXISTING);
 
             // Load the class file from the new folder
-            URL classURL = new File("src/Utility/Level-3").toURI().toURL();
+            URL classURL = new File("src/Utility/Level-3/Classes").toURI().toURL();
             URL[] classURLs = {classURL};
             URLClassLoader classLoader = new URLClassLoader(classURLs);
             Class clazz = classLoader.loadClass("TestTile");
 
-            // Load image into new folder
+            // Load image into level-k resources folder
+            ZipEntry classImageZipped = zipFile.getEntry("Level-2/TestTile.png");
+            inputStream = zipFile.getInputStream(classImageZipped);
+            new File("src/Utility/Level-3/Resources").mkdirs();
+            Files.copy(inputStream, Paths.get("src/Utility/Level-3/Resources/TestTile.png"), StandardCopyOption.REPLACE_EXISTING);
 
             return clazz;
 

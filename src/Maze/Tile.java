@@ -102,7 +102,12 @@ public abstract class Tile {
         try {
             return ImageIO.read(new File(PATH+tileName+".png"));
         } catch (IOException e) {
-            throw new Error(PATH+tileName+"\nThe image failed to load:" + e);
+            // If the image is not part of the default resources look in the level specific resources
+            try {
+                return ImageIO.read(new File("src/Utility/Level-3/Resources/" + getClass().getName() + ".png")); // TODO remove level 3 hardcode
+            } catch (IOException ex) {
+                throw new Error(PATH + tileName + "\nThe image failed to load:" + e);
+            }
         }
     }
 
