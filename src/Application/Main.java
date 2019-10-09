@@ -140,7 +140,7 @@ public class Main {
      * Keeps track of the time left and is used to control enemies
      * @param seconds the number of seconds until game over
      */
-    public void timer(int seconds){
+    private void timer(int seconds){
         long lastTick = System.nanoTime();
         int tick = 0;
         int frameRate = 6;
