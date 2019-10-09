@@ -29,6 +29,8 @@ public class Main {
     private double frameRate;
     private boolean replayMode = false;
     private long startTime;
+    private double replaySpeed;
+    ArrayList<Long> executedTimes;
 
     public void setup() {
         recordMoves = false;
@@ -90,43 +92,52 @@ public class Main {
      */
     public void timer(int seconds){
         frameRate = 1;
+        replaySpeed = 1;
         boolean firstTime = true;
+        boolean beenPausedPerm = false;
+        boolean beenPaused = false;
         long lastTick = System.nanoTime();
         startTime = System.nanoTime();
-        ArrayList<Long> executedTimes = new ArrayList<Long>();
+        executedTimes = new ArrayList<Long>();
         long startReplayTime = 0;
+        long pauseTime = 0;
+        long unpauseTime = 0;
+        long totalPauseTime = 0;
         while (seconds > 0) {
             if (replayMode & firstTime) {
                 startReplayTime = System.nanoTime();
                 firstTime = false;
             }
-
+            if (!replayMode & !firstTime & !beenPaused) {
+                beenPausedPerm = true;
+                beenPaused = true;
+                pauseTime = System.nanoTime();
+            }
             long now = System.nanoTime();
             if (replayMode) {
-                long diff = now - startReplayTime;
+                if (beenPaused) {
+                    unpauseTime = System.nanoTime();
+                    totalPauseTime = totalPauseTime + (unpauseTime - pauseTime);
+                }
+                long diff;
+                if (beenPausedPerm) {
+                    diff = (long) (((now - startReplayTime) - (totalPauseTime))*replaySpeed);
+                }
+                else {
+                    diff = (long) ((now - startReplayTime)*replaySpeed);
+                }
+                beenPaused = false;
                 for (Map.Entry<Long, ArrayList<String>> entry: currentReplay.getTickToMovesMap().entrySet()) {
                     if (diff > entry.getKey() && !executedTimes.contains(entry.getKey())) {
-                        System.out.println(diff);
                         for (String s : entry.getValue()) {
-                            if (s.equals("LEFT")) {
-                                doMove(LevelBoard.Direction.LEFT);
-                            } else if (s.equals("RIGHT")) {
-                                doMove(LevelBoard.Direction.RIGHT);
-                            } else if (s.equals("UP")) {
-                                doMove(LevelBoard.Direction.UP);
-                            } else {
-                                doMove(LevelBoard.Direction.DOWN);
-                            }
-                            frame.getBoardPanel().redraw();
-                            frame.getBoardPanel().updateBoard();
-                            frame.getInfoPanel().redraw();
+                            replayMove(s);
                         }
                         executedTimes.add(entry.getKey());
                     }
                 }
             }
 
-            if (now - lastTick > 1000000000/frameRate) {
+            if (now - lastTick > (1000000000/replaySpeed)/frameRate) {
                 frame.getInfoPanel().decrementTimeRemaining();
                 //frame.getInfoPanel().updateIntegers();
                 //System.out.println("tick " + seconds);
@@ -162,6 +173,21 @@ public class Main {
 
         System.out.println("Out of time");
         frame.displayInfo("Out of time");
+    }
+
+    private void replayMove(String dir) {
+        if (dir.equals("LEFT")) {
+            doMove(LevelBoard.Direction.LEFT);
+        } else if (dir.equals("RIGHT")) {
+            doMove(LevelBoard.Direction.RIGHT);
+        } else if (dir.equals("UP")) {
+            doMove(LevelBoard.Direction.UP);
+        } else {
+            doMove(LevelBoard.Direction.DOWN);
+        }
+        frame.getBoardPanel().redraw();
+        frame.getBoardPanel().updateBoard();
+        frame.getInfoPanel().redraw();
     }
 
     public MainFrame getFrame() {
@@ -234,5 +260,27 @@ public class Main {
 
     public void setReplayMode(boolean replayMode) {
         this.replayMode = replayMode;
+    }
+
+    public void setReplaySpeed(double replaySpeed) {
+        this.replaySpeed = replaySpeed;
+    }
+
+    public void nextStep() {
+        SortedSet<Long> sortedMoves = new TreeSet<Long>(currentReplay.getTickToMovesMap().keySet());
+        for (long l : sortedMoves) {
+            if (!executedTimes.contains(l)) {
+                replayMove(currentReplay.getTickToMovesMap().get(l).get(0));
+                executedTimes.add(l);
+                break;
+            }
+        }
+    }
+
+    public void reverseStep() {
+        Long timeOfLastMove = executedTimes.get(executedTimes.size()-1);
+        String direction = currentReplay.getTickToMovesMap().get(timeOfLastMove).get(0);
+        replayMove(LevelBoard.Direction.reverseDirection(direction));
+        executedTimes.remove(executedTimes.size()-1);
     }
 }

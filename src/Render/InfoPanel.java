@@ -21,7 +21,8 @@ public class InfoPanel extends JPanel {
     JLabel timeRemaining;
     JLabel chipsRemaining;
     JPanel inventoryPanel;
-    JButton replayButton, recordButton, nextStepButton, exitButton;
+    JButton replayButton, recordButton, nextStepButton, previousStepButton, exitButton;
+    JPanel stepPanel;
     int timeLeft, chipsLeft;
     Record record;
     Replay replay;
@@ -41,6 +42,14 @@ public class InfoPanel extends JPanel {
     public InfoPanel(Main game, MainFrame mainFrame) {
         nextStepButton = new JButton("Next Step");
         nextStepButton.setVisible(false);
+        previousStepButton = new JButton("Previous Step");
+        previousStepButton.setVisible(false);
+        stepPanel = new JPanel();
+        stepPanel.setVisible(false);
+        stepPanel.setLayout(new GridLayout(1, 2));
+        stepPanel.add(nextStepButton);
+        stepPanel.add(previousStepButton);
+
         exitButton = new JButton("Exit");
         exitButton.setVisible(false);
 
@@ -152,7 +161,7 @@ public class InfoPanel extends JPanel {
         add(inventoryPanel);
         add(recordButton);
         add(replayButton);
-        add(nextStepButton);
+        add(stepPanel);
         add(exitButton);
 
         for (TilePanel tp : invPanels) {
@@ -182,7 +191,6 @@ public class InfoPanel extends JPanel {
                     game.setFrameRate(1);
                     recordButton.setText("Stop");
                     game.setReplayMode(true);
-                    game.setReplay(replay);
                 }
                 else {
                     game.setFrameRate(0000000000000000.1);
@@ -197,20 +205,31 @@ public class InfoPanel extends JPanel {
         replayButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                mainFrame.createChangeSpeedWindow();
             }
         });
     }
 
     public void addReplayButtons() {
+        stepPanel.setVisible(true);
+
         nextStepButton.setVisible(true);
         nextStepButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                game.nextStep();
             }
         });
-        add(nextStepButton);
+        stepPanel.add(nextStepButton);
+
+        previousStepButton.setVisible(true);
+        previousStepButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                game.reverseStep();
+            }
+        });
+        stepPanel.add(previousStepButton);
 
         exitButton.setVisible(true);
         exitButton.addActionListener(new ActionListener() {
@@ -220,6 +239,7 @@ public class InfoPanel extends JPanel {
                 //Needs to take user back to title screen
             }
         });
+        add(stepPanel);
         add(exitButton);
     }
 }

@@ -2,6 +2,7 @@ package Render;
 
 import Application.Main;
 import Maze.LevelBoard;
+import Persistence.Replay;
 import Persistence.SaveJSON;
 
 import javax.swing.*;
@@ -171,6 +172,32 @@ public class MainFrame extends JFrame implements KeyListener {
      */
     public InfoPanel getInfoPanel() {
         return infoPanel;
+    }
+
+    public void createChangeSpeedWindow() {
+        JDialog changeSpeedWindow = new JDialog();
+        JPanel changeSpeedPanel = new JPanel();
+        changeSpeedPanel.setLayout(new GridLayout(3, 1));
+        JLabel info = new JLabel("Please select a replay speed");
+        String[] speeds = {"0.25", "0.5", "1.0", "2.0", "4.0"};
+        JComboBox<String> speedOptions = new JComboBox<String>(speeds);
+        JButton submitButton = new JButton("Submit");
+        submitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == submitButton) {
+                    String selectedSpeedString = (String) speedOptions.getSelectedItem();
+                    game.setReplaySpeed(Double.parseDouble(selectedSpeedString));
+                    changeSpeedWindow.dispose();
+                }
+            }
+        });
+        changeSpeedPanel.add(info);
+        changeSpeedPanel.add(speedOptions);
+        changeSpeedPanel.add(submitButton);
+        changeSpeedWindow.add(changeSpeedPanel);
+        changeSpeedWindow.setVisible(true);
+        changeSpeedWindow.pack();
     }
 
     //    /**

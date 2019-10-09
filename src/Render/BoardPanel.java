@@ -38,7 +38,6 @@ public class BoardPanel extends JPanel {
     public void redraw() {
         System.out.println("REDRAW IS CALLED");
         removeAll();
-        revalidate();
 //        if (player == null) System.out.println("THE PLAYER IS NULL !!!!!!!!!!!!!!!!!!\n\n\n\n\n\n\n\n\n\n\n\n");
         int playerRow = player.getCurrentPos().getRow();
         int playerCol = player.getCurrentPos().getCol();
@@ -48,8 +47,8 @@ public class BoardPanel extends JPanel {
                 boardLabels[row][col].redraw();
                 add(boardLabels[row][col]);
             }
-
         }
+        revalidate();
     }
 
     /**

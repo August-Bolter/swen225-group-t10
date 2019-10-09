@@ -22,6 +22,7 @@ public class Replay {
 
     public void replay() {
         game.setFrameRate(0000000000000000.1); //Stopping the game
+        game.setReplay(this);
 
         File selectedReplay = infoPanel.openFileChooser();
         LevelBoard replayBoard = LoadJSON.loadLevelFromJSON(0, selectedReplay);
