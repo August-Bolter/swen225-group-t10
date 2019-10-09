@@ -185,24 +185,26 @@ public class LoadJSON {
     private static Class loadClassFromZip() {
         System.out.println("Class " + "TestTile" + " is not part of default tiles. Looking in .zip folder");
 
-
         try {
             // Get the class file from the zip file
             ZipFile zipFile = new ZipFile("src/Utility/Level-2.zip");
             ZipEntry classFileZipped = zipFile.getEntry("Level-2/TestTile.class");
             InputStream inputStream = zipFile.getInputStream(classFileZipped);
+
+            // Make a new folder to store level-k class folders
             new File("src/Utility/Level-3").mkdirs();
             Files.copy(inputStream, Paths.get("src/Utility/Level-3/TestTile.class"), StandardCopyOption.REPLACE_EXISTING);
-            File classFile = new File("src/Utility/Level-3/TestTile.class");
 
             // Load the class file from the new folder
-            //URL classURL = classFile.toURI().toURL();
             URL classURL = new File("src/Utility/Level-3").toURI().toURL();
             URL[] classURLs = {classURL};
             URLClassLoader classLoader = new URLClassLoader(classURLs);
             Class clazz = classLoader.loadClass("TestTile");
 
+            // Load image into new folder
+
             return clazz;
+
         } catch (IOException | ClassNotFoundException ex) {
             ex.printStackTrace();
         }
