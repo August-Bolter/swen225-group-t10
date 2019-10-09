@@ -10,11 +10,20 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
+/**
+ * Main Class: This contains the methods
+ * setup() - setting up the game
+ * domove()
+ * getPlayer()
+ *
+ */
 public class Main {
+   //start of fields
     private int timeRemaining; //Level timer
     private Timer gameloop; //Timer object to ensure the game updates at a constant rate, regardless of the computer the game is running on
     private boolean gameover = false; //boolean the checks if the player has lost 3 levels
 
+    //for actual game play
     private List<Chip> allChips = new ArrayList<Chip>();
     private int chipsRemaining;
 
@@ -23,15 +32,20 @@ public class Main {
 
     private int level = 3;
 
+    //for making the board
     private Player player;
     private LevelBoard levelBoard;
     private MainFrame frame;
     private List<Enemy> enemies;
     private List<Fireblast> fireblasts = new ArrayList<>();
 
+    //for images
     public final Map<String, BufferedImage> tileImages = new HashMap<>();
     public final Map<String, BufferedImage> itemImages = new HashMap<>();
 
+    /**
+     * Used to initliase the maps with the correct .png files
+     */
     private void initialiseMaps() {
         try {
             // Initialise tileImages
@@ -81,12 +95,20 @@ public class Main {
         }
     }
 
+    /**
+     * Method that setups the actual playing board
+     */
     private void setup() {
+        //setting up the correct level
         initialiseMaps();
         levelBoard = LoadJSON.loadLevelFromJSON(level);
         levelBoard.setMain(this);
+
+        //setting up players
         player = levelBoard.getPlayer();
         player.setCurrentPos();
+
+        //setting up enemies
         enemies = levelBoard.getEnemies();
         for (Enemy e : enemies){
             e.setCurrentPos();
@@ -94,7 +116,7 @@ public class Main {
         levelBoard.setMain(this);
         frame = new MainFrame(this);
         chipsRemaining = levelBoard.getTotalChips();
-        timeRemaining = levelBoard.getTimeLimit();
+        timeRemaining = levelBoard.getTimeLimit();      //level must be completed before this time limit runs out
 
         timer();
 
@@ -110,8 +132,11 @@ public class Main {
      * @return true is move is valid else false
      */
     public boolean doMove(LevelBoard.Direction direction){
+        //Fetching tiles you are on want to move onto
         Tile currentPos = player.getCurrentPos();
         Tile desiredTile = levelBoard.getTileAtPosition(currentPos, direction);
+
+        //To move onto a tile, it has to be empty
         if (desiredTile != null) {
             if (desiredTile.isWalkable() ) {
                 Tile newTile = levelBoard.getTileAtPosition(currentPos, direction);
@@ -119,9 +144,12 @@ public class Main {
             }
             desiredTile.interact();
             player.setDirection(direction);
+
+            //gets each item on the tile and interacts with them
             for (Iterator<Item> iterator = desiredTile.getItems().iterator(); iterator.hasNext();) {
                 Item item = iterator.next();
                 item.interact();
+                //what happens when an enemy is encountered
                 if (item instanceof GreenEnemy){
                     GreenEnemy g = (GreenEnemy) item;
                     if (!g.hasMoved()){
@@ -134,7 +162,7 @@ public class Main {
         }
         return false;
     }
-    
+
 
     /**
      * Keeps track of the time left and is used to control enemies
@@ -176,14 +204,28 @@ public class Main {
         restartLevel();
     }
 
+    //start of getter and setters
+
+    /**
+     * Getter method: Fetches the current frame
+     * @return current frame
+     */
     public MainFrame getFrame() {
         return frame;
     }
 
+    /**
+     * Getter method: fetches the current levelboard
+     * @return levelboard we are on
+     */
     public LevelBoard getLevelBoard() {
         return levelBoard;
     }
 
+    /**
+     * Getter method: fetches the time left - level must be completed before time runs out
+     * @return levelboard we are on
+     */
     public int getTimeRemaining() {
         return timeRemaining;
     }
