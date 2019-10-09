@@ -2,6 +2,9 @@ package Application;
 
 import Maze.*;
 import Persistence.LoadJSON;
+import Persistence.Record;
+import Persistence.Replay;
+import Persistence.SaveJSON;
 import Render.MainFrame;
 
 import javax.imageio.ImageIO;
@@ -27,6 +30,17 @@ public class Main {
     private LevelBoard levelBoard;
     private MainFrame frame;
     private List<Enemy> enemies;
+    private boolean recordMoves;
+    private Record currentRecord;
+    private Replay currentReplay;
+    private boolean firstMove = true;
+    private double frameRate;
+    private boolean replayMode = false;
+    private long startTime;
+    private double replaySpeed;
+    ArrayList<Long> executedTimes;
+    private long totalStepTime;
+    private long lastDiff;
 
     public final Map<String, BufferedImage> tileImages = new HashMap<>();
     public final Map<String, BufferedImage> itemImages = new HashMap<>();
@@ -90,9 +104,11 @@ public class Main {
     public boolean doMove(LevelBoard.Direction direction){
         Tile currentPos = player.getCurrentPos();
         Tile desiredTile = levelBoard.getTileAtPosition(currentPos, direction);
+        Tile newTile = null;
+        LevelBoard.Direction oldDirection = player.getDirection();
         if (desiredTile != null) {
-            if (desiredTile.isWalkable() ) {
-                Tile newTile = levelBoard.getTileAtPosition(currentPos, direction);
+            if (desiredTile.isWalkable()) {
+                newTile = levelBoard.getTileAtPosition(currentPos, direction);
                 player.move(newTile);
             }
             desiredTile.interact();
@@ -101,6 +117,15 @@ public class Main {
                 Item item = iterator.next();
                 item.interact();
             }
+            if (recordMoves && !replayMode) {
+                /* Need an if clause which doesn't record the move if the move doesn't change players direction or tile
+                *  e.g. walking into a wall */
+                String fileName = "src/Utility/record-" + currentRecord.getCount() + ".json";
+                long time = System.nanoTime()-startTime;
+                SaveJSON.SaveMove(fileName, direction, time, firstMove);
+                firstMove = false;
+            }
+
             return true;
         }
         return false;
@@ -110,20 +135,64 @@ public class Main {
     /**
      * Keeps track of the time left and is used to control enemies
      */
-    public void timer(){
+    public void timer(int seconds){
+        frameRate = 1;
+        replaySpeed = 1;
+        boolean firstTime = true;
+        boolean beenPausedPerm = false;
+        boolean beenPaused = false;
         long lastTick = System.nanoTime();
-        int tick = 0;
-        int frameRate = 6;
-        while (timeRemaining > 0) {
+        startTime = System.nanoTime();
+        executedTimes = new ArrayList<Long>();
+        long startReplayTime = 0;
+        long pauseTime = 0;
+        long unpauseTime = 0;
+        long totalPauseTime = 0;
+        totalStepTime = 0;
+        lastDiff = 0;
+        long diff = 0;
+        while (seconds > 0) {
+            if (replayMode & firstTime) {
+                startReplayTime = System.nanoTime();
+                firstTime = false;
+            }
+            if (!replayMode & !firstTime & !beenPaused) {
+                beenPausedPerm = true;
+                beenPaused = true;
+                setLastDiff(diff);
+                pauseTime = System.nanoTime();
+            }
             long now = System.nanoTime();
-            if (frameRate > 0 && now - lastTick > 1000000000 / frameRate) {
-                lastTick = now;
-                tick++;
-                if (tick % frameRate == 0) {
-                    frame.getInfoPanel().decrementTimeRemaining();
+            if (replayMode) {
+                if (beenPaused) {
+                    unpauseTime = System.nanoTime();
+                    totalPauseTime = totalPauseTime + (unpauseTime - pauseTime);
+                }
+                if (beenPausedPerm) {
+                    diff = (long) (((now - startReplayTime) - (totalPauseTime - totalStepTime))*replaySpeed);
+                }
+                else {
+                    diff = (long) ((now - startReplayTime + totalStepTime)*replaySpeed);
+                }
+                beenPaused = false;
+                for (Map.Entry<Long, ArrayList<String>> entry: currentReplay.getTickToMovesMap().entrySet()) {
+                    if (diff > entry.getKey() && !executedTimes.contains(entry.getKey())) {
+                        for (String s : entry.getValue()) {
+                            replayMove(s);
+                        }
+                        executedTimes.add(entry.getKey());
+                    }
+                }
+            }
 
-                    for (int i = 0; i < enemies.size(); i++) {
-                        enemies.get(i).onTick();
+            if (now - lastTick > (1000000000/replaySpeed)/frameRate) {
+                frame.getInfoPanel().decrementTimeRemaining();
+                //frame.getInfoPanel().updateIntegers();
+                //System.out.println("tick " + seconds);
+
+                for (Enemy e : enemies){
+                    if (e instanceof BlueEnemy){
+                        ((BlueEnemy) e).moveEnemy();
                     }
 
                     timeRemaining--;
@@ -135,6 +204,21 @@ public class Main {
 
         frame.displayInfo("Out of time");
         restartLevel();
+    }
+
+    private void replayMove(String dir) {
+        if (dir.equals("LEFT")) {
+            doMove(LevelBoard.Direction.LEFT);
+        } else if (dir.equals("RIGHT")) {
+            doMove(LevelBoard.Direction.RIGHT);
+        } else if (dir.equals("UP")) {
+            doMove(LevelBoard.Direction.UP);
+        } else {
+            doMove(LevelBoard.Direction.DOWN);
+        }
+        frame.getBoardPanel().redraw();
+        frame.getBoardPanel().updateBoard();
+        frame.getInfoPanel().redraw();
     }
 
     public MainFrame getFrame() {
@@ -159,8 +243,24 @@ public class Main {
         return chipsRemaining;
     }
 
+    public void setChipsRemaining(int chipsLeft) {
+        chipsRemaining = chipsLeft;
+    }
+
+    public void setTimeRemaining(int timeLeft) {
+        timeRemaining = timeLeft;
+    }
+
+    public void setPlayer(Player p) {
+        player = p;
+    }
+
     public boolean allChipsCollected(){
         return chipsRemaining == 0;
+    }
+
+    public void setFrameRate(double frameRate) {
+        this.frameRate = frameRate;
     }
 
     public static void main(String[] args) {
@@ -216,5 +316,60 @@ public class Main {
 
     public Player getPlayer() {
         return player;
+    }
+
+    public void recordMoves(boolean b) {
+        recordMoves = b;
+    }
+
+    public void setRecord(Record record) {
+        currentRecord = record;
+    }
+
+    public void setReplay(Replay replay) {
+        currentReplay = replay;
+    }
+
+    public void setLevelBoard(LevelBoard board) {
+        levelBoard = board;
+    }
+
+    public void setReplayMode(boolean replayMode) {
+        this.replayMode = replayMode;
+    }
+
+    public void setReplaySpeed(double replaySpeed) {
+        this.replaySpeed = replaySpeed;
+    }
+
+    public void addStepTime(long stepTime) {
+        long amountToAdd = stepTime - lastDiff;
+        totalStepTime = totalStepTime + amountToAdd;
+    }
+
+    public void setLastDiff(long diff) {
+        lastDiff = diff;
+    }
+
+    public void nextStep() {
+        SortedSet<Long> sortedMoves = new TreeSet<Long>(currentReplay.getTickToMovesMap().keySet());
+        for (long l : sortedMoves) {
+            if (!executedTimes.contains(l)) {
+                replayMove(currentReplay.getTickToMovesMap().get(l).get(0));
+                executedTimes.add(l);
+                addStepTime(l);
+                break;
+            }
+        }
+    }
+
+    public void reverseStep() {
+        if (executedTimes.size() != 0) {
+            Long timeOfLastMove = executedTimes.get(executedTimes.size() - 1);
+            String direction = currentReplay.getTickToMovesMap().get(timeOfLastMove).get(0);
+            replayMove(LevelBoard.Direction.reverseDirection(direction));
+            executedTimes.remove(executedTimes.size() - 1);
+            addStepTime(timeOfLastMove);
+        }
     }
 }

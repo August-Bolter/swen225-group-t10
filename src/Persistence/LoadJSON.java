@@ -25,9 +25,10 @@ public class LoadJSON {
     /**
      * Creates a new LevelBoard from information in a JSON file
      * @param level the level number to load
+     * @param selectedReplay
      * @return a new LevelBoard representing that level
      */
-    public static LevelBoard loadLevelFromJSON(int level) {
+    public static LevelBoard loadLevelFromJSON(int level, File selectedReplay) {
         Tile[][] levelArray = new Tile[32][32];
         String title = null;
         int chips = 0, timeLimit = 0;
@@ -195,48 +196,29 @@ public class LoadJSON {
         return item;
     }
 
-    private static void readFilesInZip(int level) {
+    public static HashMap<Long, ArrayList<String>> loadMoves(File selectedReplay) {
+        HashMap<Long, ArrayList<String>> tickAndMoves = new HashMap<Long, ArrayList<String>>();
         try {
-            ZipFile zipFile = new ZipFile("levels/Level-" + level + ".zip");
-            Enumeration<? extends ZipEntry> entries = zipFile.entries();
-            new File("src/Utility/Level-"+level).mkdirs();
-            new File("src/Utility/Level-" + level + "/Resources").mkdirs();
-            new File("src/Utility/Level-" + level + "/Classes").mkdirs();
-
-            while(entries.hasMoreElements()){
-                ZipEntry entry = entries.nextElement();
-                InputStream stream = zipFile.getInputStream(entry);
-                if (entry.getName().endsWith(".png")) {
-                    Files.copy(stream, Paths.get("src/Utility/Level-" + level + "/Resources/" + entry.getName().split("/")[1]), StandardCopyOption.REPLACE_EXISTING);
-                } else if (entry.getName().endsWith(".class")){
-                    Files.copy(stream, Paths.get("src/Utility/Level-" + level + "/Classes/" + entry.getName().split("/")[1]), StandardCopyOption.REPLACE_EXISTING);
-                } else {
-                    Files.copy(stream, Paths.get("src/Utility/Level-" + level + "/" + entry.getName().split("/")[1]), StandardCopyOption.REPLACE_EXISTING);
+            BufferedReader in = new BufferedReader(new FileReader(selectedReplay));
+            JsonReader reader = Json.createReader(in);
+            JsonObject movesObject = reader.readObject();
+            JsonArray movesArray = movesObject.getJsonArray("moves");
+            for (JsonValue move : movesArray) {
+                JsonObject moveObject = move.asJsonObject();
+                //String moveType = moveObject.getString("type");
+                String direction = moveObject.getString("direction");
+                long time = moveObject.getJsonNumber("time").bigDecimalValue().longValueExact();
+                ArrayList<String> currentDirections = tickAndMoves.get(time);
+                if (currentDirections == null) {
+                    currentDirections = new ArrayList<String>();
+                    tickAndMoves.put(time, currentDirections);
                 }
-                stream.close();
+                currentDirections.add(direction);
             }
-
-            zipFile.close();
-        } catch (IOException e) {
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+
+        return tickAndMoves;
     }
-
-    private static Class loadClassFromZip(String className, int level) {
-        try {
-            // Load the class file from the new folder
-            URL classURL = new File("src/Utility/Level-" + level + "/Classes").toURI().toURL();
-            URL[] classURLs = {classURL};
-            URLClassLoader classLoader = new URLClassLoader(classURLs);
-            Class clazz = classLoader.loadClass(className);
-
-            return clazz;
-
-        } catch (IOException | ClassNotFoundException ex) {
-            ex.printStackTrace();
-        }
-
-        throw new Error("Couldn't load class " + className);
-    }
-
 }

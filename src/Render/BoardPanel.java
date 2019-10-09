@@ -60,7 +60,6 @@ public class BoardPanel extends JPanel {
                 boardLabels[row][col].repaint();
                 add(boardLabels[row][col]);
             }
-
         }
         revalidate();
         repaint();
@@ -69,16 +68,19 @@ public class BoardPanel extends JPanel {
     /**
      * FIXME When we open a door at the same time as a pokemon moving the screen flickers
      */
-//    public void updateBoard(Tile tile) {
-//        for (int row = 0; row < board.length; row++) {
-//            for (int col = 0; col < board[0].length; col++) {
-////                boardLabels[row][col] = new TilePanel(board[row][col]); // Makes the label, gives it the image for the tile
-//                if (boardLabels[row][col].getTile() == tile) {
-//                    boardLabels[row][col] = new TilePanel(board[row][col]); // Makes the label, gives it the image for the tile
-//                }
-//            }
-//        }
-//
-//        redraw();
-//    }
+    public void updateBoard() {
+        for (int row = 0; row < board.length; row++) {
+            for (int col = 0; col < board[0].length; col++) {
+                boardLabels[row][col] = new TilePanel(board[row][col]); // Makes the label, gives it the image for the tile
+            }
+        }
+    }
+
+    public void setPlayer(Player p) {
+        player = p;
+    }
+
+    public void setBoard(Tile[][] board) {
+        this.board = board;
+    }
 }

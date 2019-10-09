@@ -14,7 +14,23 @@ public class LevelBoard {
 
 
 
-    public enum Direction {LEFT, RIGHT, UP, DOWN}
+    public enum Direction {LEFT, RIGHT, UP, DOWN;
+
+        public static String reverseDirection(String direction) {
+            if (direction.equals("LEFT")) {
+                return "RIGHT";
+            }
+            else if (direction.equals("RIGHT")) {
+                return "LEFT";
+            }
+            else if (direction.equals("UP")) {
+                return "DOWN";
+            }
+            else {
+                return "UP";
+            }
+        }
+    }
     private int totalChips, timeLimit;
 
     private Main main;

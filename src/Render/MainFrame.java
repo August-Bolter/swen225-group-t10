@@ -2,10 +2,13 @@ package Render;
 
 import Application.Main;
 import Maze.LevelBoard;
+import Persistence.Replay;
 import Persistence.SaveJSON;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.HashSet;
@@ -64,7 +67,7 @@ public class MainFrame extends JFrame implements KeyListener {
     }
 
     private void addInfoPanel() {
-        infoPanel = new InfoPanel(game);
+        infoPanel = new InfoPanel(game, this);
         outerpanel.add(infoPanel);
     }
 
@@ -86,7 +89,7 @@ public class MainFrame extends JFrame implements KeyListener {
                 break;
             case KeyEvent.VK_S:
                 if (pressedKeys.contains(KeyEvent.VK_CONTROL)) {
-                    SaveJSON.SaveGame(game.getLevelBoard());
+                    SaveJSON.SaveGame(game.getLevelBoard(), "src/Utility/save.json", true);
                     return;
                 }
             case KeyEvent.VK_DOWN:
@@ -190,6 +193,32 @@ public class MainFrame extends JFrame implements KeyListener {
      */
     public InfoPanel getInfoPanel() {
         return infoPanel;
+    }
+
+    public void createChangeSpeedWindow() {
+        JDialog changeSpeedWindow = new JDialog();
+        JPanel changeSpeedPanel = new JPanel();
+        changeSpeedPanel.setLayout(new GridLayout(3, 1));
+        JLabel info = new JLabel("Please select a replay speed");
+        String[] speeds = {"0.25", "0.5", "1.0", "2.0", "4.0"};
+        JComboBox<String> speedOptions = new JComboBox<String>(speeds);
+        JButton submitButton = new JButton("Submit");
+        submitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == submitButton) {
+                    String selectedSpeedString = (String) speedOptions.getSelectedItem();
+                    game.setReplaySpeed(Double.parseDouble(selectedSpeedString));
+                    changeSpeedWindow.dispose();
+                }
+            }
+        });
+        changeSpeedPanel.add(info);
+        changeSpeedPanel.add(speedOptions);
+        changeSpeedPanel.add(submitButton);
+        changeSpeedWindow.add(changeSpeedPanel);
+        changeSpeedWindow.setVisible(true);
+        changeSpeedWindow.pack();
     }
 
     //    /**
