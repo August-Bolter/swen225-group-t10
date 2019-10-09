@@ -47,7 +47,7 @@ public class LoadJSON {
             BufferedReader in;
             if (level > 0) {
                 if (level == 1)
-                    in = new BufferedReader(new FileReader("src/Utility/Level-" + level + ".json"));
+                    in = new BufferedReader(new FileReader("levels/Level-" + level + ".json"));
                 else {
                     in = new BufferedReader(new FileReader("src/Utility/Level-" + level + "/Level-" + level + ".json"));
                 }
@@ -197,7 +197,7 @@ public class LoadJSON {
 
     private static void readFilesInZip(int level) {
         try {
-            ZipFile zipFile = new ZipFile("src/Utility/Level-" + level + ".zip");
+            ZipFile zipFile = new ZipFile("levels/Level-" + level + ".zip");
             Enumeration<? extends ZipEntry> entries = zipFile.entries();
             new File("src/Utility/Level-"+level).mkdirs();
             new File("src/Utility/Level-" + level + "/Resources").mkdirs();
