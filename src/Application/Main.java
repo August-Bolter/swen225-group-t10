@@ -70,10 +70,10 @@ public class Main {
             itemImages.put("RedEnemyLeft", ImageIO.read(new File("Resources/enemy/RedEnemyLeft.png")));
             itemImages.put("RedEnemyRight", ImageIO.read(new File("Resources/enemy/RedEnemyRight.png")));
             itemImages.put("RedEnemyUp", ImageIO.read(new File("Resources/enemy/RedEnemyUp.png")));
-            itemImages.put("FireblastLeft", ImageIO.read(new File("Resources/enemy/fireblastLeft.png")));
-            itemImages.put("FireblastRight", ImageIO.read(new File("Resources/enemy/fireblastRight.png")));
+            itemImages.put("FireblastLeft", ImageIO.read(new File("Resources/enemy/FireblastLeft.png")));
+            itemImages.put("FireblastRight", ImageIO.read(new File("Resources/enemy/FireblastRight.png")));
             itemImages.put("FireblastDown", ImageIO.read(new File("Resources/enemy/FireblastDown.png")));
-            itemImages.put("FireblastUp", ImageIO.read(new File("Resources/enemy/fireblastUp.png")));
+            itemImages.put("FireblastUp", ImageIO.read(new File("Resources/enemy/FireblastUp.png")));
 
         } catch (IOException e) {
             e.printStackTrace();

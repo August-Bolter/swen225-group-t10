@@ -55,14 +55,17 @@ public abstract class Enemy extends Item {
             }
         }
 
-
-
         String path = "Resources/enemy/"+itemName+dir+".png";
 
         try {
             return ImageIO.read(new File(path));
         } catch (IOException e) {
-            throw new Error(path+"\nThe file failed to load: " + e);
+            // If the image is not part of the default resources look in the level plugin specific resources
+            try {
+                return ImageIO.read(new File("src/Utility/Level-" + main.getLevel() + "/Resources/" + getClass().getName() + dir + ".png"));  // TODO remove level 3 hardcode
+            } catch (IOException ex) {
+                throw new Error(PATH + getClass().getName() + "\nThe image failed to load:" + e);
+            }
         }
     }
 
