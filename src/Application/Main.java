@@ -218,12 +218,27 @@ public class Main {
         generator.setSeed(seed);
     }
 
+    /**
+     * @return the current level number e.g. 2 for level 2
+     */
     public int getLevel() {
         return level;
     }
 
+    /**
+     * Adds an enemy
+     * @param e the enemy to add
+     */
     public void addEnemy(Enemy e) {
         enemies.add(e);
+    }
+
+    /**
+     * Removes an enemy
+     * @param e the enemy to remove
+     */
+    public void removeEnemy(Enemy e) {
+        enemies.remove(e);
     }
 
     public Player getPlayer() {

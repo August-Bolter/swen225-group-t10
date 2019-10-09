@@ -17,12 +17,12 @@ public class Fireblast extends RedEnemy {
             }
         } else {
             currentPos.removeItem(this);
+            main.removeEnemy(this);
         }
     }
 
     @Override
     public void onTick() {
-        System.out.println("Fireblast on tick");
         moveBlast();
     }
 
