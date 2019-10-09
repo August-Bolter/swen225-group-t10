@@ -1,4 +1,4 @@
-<h3>Plugins</h3>
+<h2>Plugins</h2>
 <h4>Implementation</h4>
 <p>The levels as plguins extention is implemented using two classes 
 from the Java standard library; ZipFile and URLClassLoader. ZipFile is used to
