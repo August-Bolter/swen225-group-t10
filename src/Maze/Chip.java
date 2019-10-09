@@ -21,6 +21,12 @@ public class Chip extends Item {
         this.setPriority(2);
     }
 
+    /**
+     * Method used to interact with the chip: this is when the player moves onto a tile with the chip on it
+     * Two things will happen when player interacts with chip:
+     * 1) chip will be added to total number of chips
+     * 2) chip will disappear from the board and total number of chips on the board will decrease
+     */
     @Override
     public void interact() {
         main.decrementChipsRemaining();
@@ -33,6 +39,10 @@ public class Chip extends Item {
         main.getLevelBoard().updateFields();
     }
 
+    /**
+     * Gets the image of the chip
+     * @return image of the chip
+     */
     public Image getImage() {
         if (main != null) {
             BufferedImage img = main.itemImages.get("pokeball");
