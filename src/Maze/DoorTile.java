@@ -50,12 +50,15 @@ public class DoorTile extends Tile {
     @Override
     public boolean isWalkable() { return isWalkable;}
 
+    /**
+     * Method used to interact with the door: this is when the player moves onto a tile with the door on it
+     * In order to interact with a door the player has to have collected the correct key
+     */
     @Override
     public void interact() {
-        //TODO: need to implement door being able to interact with Player
         setWalkable();
 
-
+        //checks if player can enter the tile with the door on it: i.e. whether the door is unlocked
         if (isWalkable()) {
             main.getLevelBoard().replaceWithEmptyTile(this);
 
@@ -63,6 +66,7 @@ public class DoorTile extends Tile {
             for (Item i : main.getPlayer().getInventory()) {
                 if (i instanceof Key) {
                     Key k = (Key) i;
+                    //check to make sure the key's colour is the same colour as the door
                     if (k.getColor().equals(color)) {
                         main.getPlayer().removeItemFromInventory(k);
                         return;
