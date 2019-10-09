@@ -64,7 +64,7 @@ public abstract class Enemy extends Item {
             try {
                 return ImageIO.read(new File("src/Utility/Level-" + main.getLevel() + "/Resources/" + getClass().getName() + dir + ".png"));  // TODO remove level 3 hardcode
             } catch (IOException ex) {
-                throw new Error(PATH + getClass().getName() + "\nThe image failed to load:" + e);
+                throw new Error(PATH + getClass().getName() + dir + ".png \nThe image failed to load: " + e);
             }
         }
     }

@@ -37,6 +37,10 @@ public class LoadJSON {
             for (int j = 0; j < levelArray[i].length; j++)
                 levelArray[i][j] = new FreeTile(i,j);
 
+        // Read the zip file
+        if (level != 1) {
+            readFilesInZip(level);
+        }
 
         try {
             // Open the JSON file
@@ -45,7 +49,6 @@ public class LoadJSON {
                 if (level == 1)
                     in = new BufferedReader(new FileReader("src/Utility/Level-" + level + ".json"));
                 else {
-                    readFilesInZip(level);
                     in = new BufferedReader(new FileReader("src/Utility/Level-" + level + "/Level-" + level + ".json"));
                 }
             } else {
@@ -210,7 +213,10 @@ public class LoadJSON {
                 } else {
                     Files.copy(stream, Paths.get("src/Utility/Level-" + level + "/" + entry.getName().split("/")[1]), StandardCopyOption.REPLACE_EXISTING);
                 }
+                stream.close();
             }
+
+            zipFile.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
