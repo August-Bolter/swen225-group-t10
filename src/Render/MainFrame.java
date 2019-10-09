@@ -6,22 +6,27 @@ import Persistence.SaveJSON;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
 import java.util.HashSet;
 import java.util.Set;
 
-public class MainFrame extends JFrame implements KeyListener {
+public class MainFrame extends JFrame implements KeyListener, WindowListener, ActionListener {
     private Main game;
     private JPanel outerpanel;
     private BoardPanel boardpanel;
     private InfoPanel infoPanel;
     private Set<Integer> pressedKeys;
 
+
+    private JMenuItem quit;
+
     public MainFrame(Main game){
         super("Chip's Challenge");
         this.game = game;
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); // Makes the program have exit dialogue instead
+        addWindowListener(this);
+
         outerpanel = new JPanel();
 
 //        setMinimumSize(new Dimension(2000, 800));
@@ -49,11 +54,19 @@ public class MainFrame extends JFrame implements KeyListener {
 
     private void createMenuBar() {
         JMenuBar menu = new JMenuBar();
-        JMenuItem gameMenu = new JMenuItem("Game");
+        JMenu gameMenu = new JMenu("Game");
+        JMenuItem restart = new JMenuItem("Restart");
+        quit = new JMenuItem("Quit");
+        quit.addActionListener(this);
+
         JMenuItem settingsMenu = new JMenuItem("Settings");
 
         menu.add(gameMenu);
-        menu.add(settingsMenu);
+//        menu.add(settingsMenu);
+
+        gameMenu.add(settingsMenu);
+        gameMenu.add(restart);
+        gameMenu.add(quit);
 
         setJMenuBar(menu);
     }
@@ -86,7 +99,7 @@ public class MainFrame extends JFrame implements KeyListener {
                 break;
             case KeyEvent.VK_S:
                 if (pressedKeys.contains(KeyEvent.VK_CONTROL)) {
-                    SaveJSON.SaveGame(game.getLevelBoard());
+                    save();
                     return;
                 }
             case KeyEvent.VK_DOWN:
@@ -102,43 +115,40 @@ public class MainFrame extends JFrame implements KeyListener {
                 break;
             case KeyEvent.VK_X:
                 if (pressedKeys.contains(KeyEvent.VK_CONTROL)) {
-                    int confirmed = JOptionPane.showConfirmDialog(null, "Exit Program?","EXIT",JOptionPane.YES_NO_OPTION);
-                    if(confirmed == JOptionPane.YES_OPTION) {
-                        System.exit(0);
-                    }
+                    quit();
                 }
                 return;
             case KeyEvent.VK_R:
                 // Resumes the game
                 if (pressedKeys.contains(KeyEvent.VK_CONTROL)) {
-                    System.out.println("CTRL R");
+                    resume();
                 }
                 return;
             case KeyEvent.VK_P:
-                // Starts a new game at level 1
+                // Pauses the game
                 if (pressedKeys.contains(KeyEvent.VK_CONTROL)) {
-                    System.out.println("CTRL P");
+                    pause();
                 }
                 return;
             case KeyEvent.VK_1:
                 // Starts level 1
                 if (pressedKeys.contains(KeyEvent.VK_CONTROL)) {
-                    System.out.println("CTRL 1");
+                    restart(1);
                 }
                 return;
             case KeyEvent.VK_2:
                 // Starts level 2
                 if (pressedKeys.contains(KeyEvent.VK_CONTROL)) {
-                    System.out.println("CTRL 2");
+                    restart(2);
                 }
                 return;
             case KeyEvent.VK_SPACE:
                 // Pauses the game
-                System.out.println("SPACE");
+                pause();
                 return;
             case KeyEvent.VK_ESCAPE:
                 // Closes the pause dialog
-                System.out.println("ESC");
+                resume();
                 return;
 
             default:
@@ -192,13 +202,68 @@ public class MainFrame extends JFrame implements KeyListener {
         return infoPanel;
     }
 
-    //    /**
-//     * It will go into persistence and by getting the name of the tile.
-//     * This will get passed to the board which will store it in a map for fast recovery
-//     * @param name name of the tile you want an image for
-//     * @return Image of the tile that you need for the board
-//     */
-//    public Image getImage(String name) {
-//        return null;
-//    }
+    public void save() {
+        SaveJSON.SaveGame(game.getLevelBoard());
+    }
+
+    public void quit() {
+        int confirmed = JOptionPane.showConfirmDialog(null, "Exit Program?","EXIT",JOptionPane.YES_NO_OPTION);
+        if(confirmed == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }
+    }
+
+    public void resume() {
+        System.out.println("Resume");
+    }
+
+    public void restart(int level) {
+        System.out.println("CTRL "+ level);
+    }
+
+    public void pause() {
+        System.out.println("PAUSE");
+    }
+
+    @Override
+    public void windowOpened(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+        quit();
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource().equals(quit)) {
+            quit();
+        }
+    }
 }
