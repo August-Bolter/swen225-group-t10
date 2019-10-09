@@ -37,3 +37,11 @@ because all items must extend Maze.Item and therefore implement interact(). The 
 method is not aware of what interact() will do. This is important because it allows level
 creators to define their own interactions (i.e. introduce new differences between objects) 
 without affecting the code in the standard classes.</p>
+
+<h4>Making Your Own Level</h4>
+<p>If you did want to make your own level it would be a simple process. <ol><li>Decide on what
+new tiles and items you want to have in your level.</li><li>Write classes describing those tiles
+and items that extend Maze.Tile or Maze.Item.</li><li>Create images for each tile and item. The images
+should be in the format "CLASSNAME.png"</li><li>Create a .json file clalled "Level-k.json". 
+It will describe the potition of every item and tile in the level.</li><li>Finally, simply place all your 
+.class files, .png files, and .json file into a zipped folder called "Level-k.zip".</li></p>
