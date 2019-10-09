@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class Enemy extends Item {
+public abstract class Enemy extends Item {
     protected Tile currentPos;
     protected Maze.LevelBoard.Direction direction;
     private int row, col;
@@ -29,6 +29,12 @@ public class Enemy extends Item {
 //            doMove(main.getLevelBoard().getTileAtPosition(currentPos, main.getPlayer().getDirection()));
 //        }
     }
+
+    /**
+     * Describes what the enemy should do each tick.
+     * This method will be called each tick in Application.
+     */
+    public abstract void onTick();
 
     public void doMove(Tile toMoveTo){
         currentPos.removeItem(this);

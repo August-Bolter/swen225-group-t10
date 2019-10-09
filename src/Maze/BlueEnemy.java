@@ -49,4 +49,9 @@ public class BlueEnemy extends Enemy {
         main.getFrame().displayInfo("Watch out for moving Blastoise!");
         main.restartLevel();
     }
+
+    @Override
+    public void onTick() {
+        moveEnemy();
+    }
 }

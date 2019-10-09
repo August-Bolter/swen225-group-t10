@@ -20,6 +20,11 @@ public class Fireblast extends RedEnemy {
         }
     }
 
+    @Override
+    public void onTick() {
+        moveBlast();
+    }
+
     public void interact() {
         main.getFrame().displayInfo("Watch out for Fire Blasts!");
         main.restartLevel();

@@ -27,7 +27,6 @@ public class Main {
     private LevelBoard levelBoard;
     private MainFrame frame;
     private List<Enemy> enemies;
-    private List<Fireblast> fireblasts = new ArrayList<>();
 
     public final Map<String, BufferedImage> tileImages = new HashMap<>();
     public final Map<String, BufferedImage> itemImages = new HashMap<>();
@@ -150,19 +149,9 @@ public class Main {
                 tick++;
                 if (tick % frameRate == 0) {
                     frame.getInfoPanel().decrementTimeRemaining();
-                    for (Fireblast fb : fireblasts) {
-                        fb.moveBlast();
-                    }
 
-                    for (Enemy e : enemies) {
-                        if (e instanceof BlueEnemy) {
-                            ((BlueEnemy) e).moveEnemy();
-                        }
-                        if (timeRemaining % 3 == 0) {
-                            if (e instanceof RedEnemy) {
-                                fireblasts.add(((RedEnemy) e).shoot());
-                            }
-                        }
+                    for (int i = 0; i < enemies.size(); i++) {
+                        enemies.get(i).onTick();
                     }
 
                     timeRemaining--;
@@ -230,6 +219,13 @@ public class Main {
         generator.setSeed(seed);
     }
 
+    public int getLevel() {
+        return level;
+    }
+
+    public void addEnemy(Enemy e) {
+        enemies.add(e);
+    }
 
     public Player getPlayer() {
         return player;

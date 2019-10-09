@@ -142,11 +142,15 @@ public abstract class Item implements Comparable<Item> {
 
         String path = PATH;
 
-
         try {
             return ImageIO.read(new File(path+itemName+".png"));
         } catch (IOException e) {
-            throw new Error(path+itemName+"\nThe image failed to load:" + e);
+            // If the image is not part of the default resources look in the level plugin specific resources
+            try {
+                return ImageIO.read(new File("src/Utility/Level-" + main.getLevel() + "/Resources/" + getClass().getName() + ".png")); // TODO remove level 3 hardcode
+            } catch (IOException ex) {
+                throw new Error(PATH + "\nThe image failed to load:" + e);
+            }
         }
     }
 

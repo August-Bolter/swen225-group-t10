@@ -22,6 +22,11 @@ public class GreenEnemy extends Enemy{
         }
     }
 
+    @Override
+    public void onTick() {
+        // Do nothing
+    }
+
     public boolean hasMoved() {
         return moved;
     }

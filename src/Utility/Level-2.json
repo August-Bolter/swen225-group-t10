@@ -547,9 +547,10 @@
 			"col" : 12
 		},
 		{
-			"type" : "TestTile",
+			"type" : "DoorTile",
 			"row" : 17,
-			"col" : 13
+			"col" : 13,
+			"extra" : "yellow"
 		},
 		{
 			"type" : "WallTile",
