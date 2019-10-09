@@ -96,7 +96,7 @@ public class Main {
         chipsRemaining = levelBoard.getTotalChips();
         timeRemaining = levelBoard.getTimeLimit();
 
-        timer(levelBoard.getTimeLimit());
+        timer();
 
         seed = System.currentTimeMillis();
         generator.setSeed(seed);
@@ -138,13 +138,12 @@ public class Main {
 
     /**
      * Keeps track of the time left and is used to control enemies
-     * @param seconds the number of seconds until game over
      */
-    private void timer(int seconds){
+    public void timer(){
         long lastTick = System.nanoTime();
         int tick = 0;
         int frameRate = 6;
-        while (seconds > 0) {
+        while (timeRemaining > 0) {
             long now = System.nanoTime();
             if (frameRate > 0 && now - lastTick > 1000000000 / frameRate) {
                 lastTick = now;
@@ -168,14 +167,13 @@ public class Main {
 
                     timeRemaining--;
                     levelBoard.updateFields();
-                    seconds--;
                 }
                 frame.redraw();
             }
         }
 
-        System.out.println("Out of time");
         frame.displayInfo("Out of time");
+        restartLevel();
     }
 
     public MainFrame getFrame() {
@@ -223,10 +221,8 @@ public class Main {
         for (Enemy e : enemies){
             e.setCurrentPos();
         }
-        levelBoard.setMain(this);
 
         frame.redraw();
-
         chipsRemaining = levelBoard.getTotalChips();
         timeRemaining = levelBoard.getTimeLimit();
 
