@@ -37,6 +37,7 @@ public class LoadJSON {
             for (int j = 0; j < levelArray[i].length; j++)
                 levelArray[i][j] = new FreeTile(i,j);
 
+
         try {
             // Open the JSON file
             BufferedReader in;
@@ -44,12 +45,8 @@ public class LoadJSON {
                 if (level == 1)
                     in = new BufferedReader(new FileReader("src/Utility/Level-" + level + ".json"));
                 else {
-                    // Load the .json from the zip file
-                    ZipFile zipFile = new ZipFile("src/Utility/Level-" + level + ".zip");
-                    ZipEntry classFileZipped = zipFile.getEntry("Level-" + level + "/Level-" + level + ".json");
-                    InputStream inputStream = zipFile.getInputStream(classFileZipped);
-                    Reader reader = new InputStreamReader(inputStream);
-                    in = new BufferedReader(reader);
+                    readFilesInZip(level);
+                    in = new BufferedReader(new FileReader("src/Utility/Level-" + level + "/Level-" + level + ".json"));
                 }
             } else {
                 in = new BufferedReader(new FileReader("src/Utility/save.json"));
@@ -195,31 +192,37 @@ public class LoadJSON {
         return item;
     }
 
-    private static Class loadClassFromZip(String className, int level) {
-        System.out.println("Class " + className + " is not part of default tiles. Looking in .zip folder");
-
+    private static void readFilesInZip(int level) {
         try {
-            // Get the class file from the zip file
-            new File("src/Utility/Level-"+level).mkdirs();
             ZipFile zipFile = new ZipFile("src/Utility/Level-" + level + ".zip");
-            ZipEntry classFileZipped = zipFile.getEntry("Level-" + level + "/" + className + ".class");
-            InputStream inputStream = zipFile.getInputStream(classFileZipped);
-
-            // Make a new folder to store level-k class folder
+            Enumeration<? extends ZipEntry> entries = zipFile.entries();
+            new File("src/Utility/Level-"+level).mkdirs();
+            new File("src/Utility/Level-" + level + "/Resources").mkdirs();
             new File("src/Utility/Level-" + level + "/Classes").mkdirs();
-            Files.copy(inputStream, Paths.get("src/Utility/Level-" + level + "/Classes/" + className + ".class"), StandardCopyOption.REPLACE_EXISTING);
 
+            while(entries.hasMoreElements()){
+                ZipEntry entry = entries.nextElement();
+                InputStream stream = zipFile.getInputStream(entry);
+                if (entry.getName().endsWith(".png")) {
+                    Files.copy(stream, Paths.get("src/Utility/Level-" + level + "/Resources/" + entry.getName().split("/")[1]), StandardCopyOption.REPLACE_EXISTING);
+                } else if (entry.getName().endsWith(".class")){
+                    Files.copy(stream, Paths.get("src/Utility/Level-" + level + "/Classes/" + entry.getName().split("/")[1]), StandardCopyOption.REPLACE_EXISTING);
+                } else {
+                    Files.copy(stream, Paths.get("src/Utility/Level-" + level + "/" + entry.getName().split("/")[1]), StandardCopyOption.REPLACE_EXISTING);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static Class loadClassFromZip(String className, int level) {
+        try {
             // Load the class file from the new folder
             URL classURL = new File("src/Utility/Level-" + level + "/Classes").toURI().toURL();
             URL[] classURLs = {classURL};
             URLClassLoader classLoader = new URLClassLoader(classURLs);
             Class clazz = classLoader.loadClass(className);
-
-            // Load image into level-k resources folder
-            ZipEntry classImageZipped = zipFile.getEntry("Level-" + level + "/" + className + ".png");
-            inputStream = zipFile.getInputStream(classImageZipped);
-            new File("src/Utility/Level-" + level + "/Resources").mkdirs();
-            Files.copy(inputStream, Paths.get("src/Utility/Level-" + level + "/Resources/" + className + ".png"), StandardCopyOption.REPLACE_EXISTING);
 
             return clazz;
 

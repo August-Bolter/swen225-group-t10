@@ -36,8 +36,6 @@ public class Main {
             // Initialise tileImages
             tileImages.put("FreeTile", ImageIO.read(new File("Resources/floor/FreeTile.png")));
             tileImages.put("ExitTile", ImageIO.read(new File("Resources/floor/ExitTile.png")));
-            tileImages.put("FireTile", ImageIO.read(new File("Resources/floor/FireTile.png")));
-            tileImages.put("TeleportTile", ImageIO.read(new File("Resources/floor/TeleportTile.png")));
             tileImages.put("WallTile", ImageIO.read(new File("Resources/floor/WallTile.png")));
             tileImages.put("GateTile", ImageIO.read(new File("Resources/floor/GateTile.png")));
             tileImages.put("InfoTile", ImageIO.read(new File("Resources/floor/InfoTile.png")));
@@ -48,32 +46,14 @@ public class Main {
 
             // Initialise itemImages
             itemImages.put("pokeball", ImageIO.read(new File("Resources/items/pokeball.png")));
-            itemImages.put("gloves", ImageIO.read(new File("Resources/items/gloves.png")));
             itemImages.put("blueKey", ImageIO.read(new File("Resources/items/blueKey.png")));
             itemImages.put("greenKey", ImageIO.read(new File("Resources/items/greenKey.png")));
             itemImages.put("redKey", ImageIO.read(new File("Resources/items/redKey.png")));
             itemImages.put("yellowKey", ImageIO.read(new File("Resources/items/yellowKey.png")));
-            itemImages.put("boots", ImageIO.read(new File("Resources/items/boots.png")));
             itemImages.put("downPlayer", ImageIO.read(new File("Resources/player/down.png")));
             itemImages.put("upPlayer", ImageIO.read(new File("Resources/player/up.png")));
             itemImages.put("leftPlayer", ImageIO.read(new File("Resources/player/left.png")));
             itemImages.put("rightPlayer", ImageIO.read(new File("Resources/player/right.png")));
-            itemImages.put("BlueEnemyDown", ImageIO.read(new File("Resources/enemy/BlueEnemyDown.png")));
-            itemImages.put("BlueEnemyLeft", ImageIO.read(new File("Resources/enemy/BlueEnemyLeft.png")));
-            itemImages.put("BlueEnemyRight", ImageIO.read(new File("Resources/enemy/BlueEnemyRight.png")));
-            itemImages.put("BlueEnemyUp", ImageIO.read(new File("Resources/enemy/BlueEnemyUp.png")));
-            itemImages.put("GreenEnemyDown", ImageIO.read(new File("Resources/enemy/GreenEnemyDown.png")));
-            itemImages.put("GreenEnemyLeft", ImageIO.read(new File("Resources/enemy/GreenEnemyLeft.png")));
-            itemImages.put("GreenEnemyRight", ImageIO.read(new File("Resources/enemy/GreenEnemyRight.png")));
-            itemImages.put("GreenEnemyUp", ImageIO.read(new File("Resources/enemy/GreenEnemyUp.png")));
-            itemImages.put("RedEnemyDown", ImageIO.read(new File("Resources/enemy/RedEnemyDown.png")));
-            itemImages.put("RedEnemyLeft", ImageIO.read(new File("Resources/enemy/RedEnemyLeft.png")));
-            itemImages.put("RedEnemyRight", ImageIO.read(new File("Resources/enemy/RedEnemyRight.png")));
-            itemImages.put("RedEnemyUp", ImageIO.read(new File("Resources/enemy/RedEnemyUp.png")));
-            itemImages.put("FireblastLeft", ImageIO.read(new File("Resources/enemy/FireblastLeft.png")));
-            itemImages.put("FireblastRight", ImageIO.read(new File("Resources/enemy/FireblastRight.png")));
-            itemImages.put("FireblastDown", ImageIO.read(new File("Resources/enemy/FireblastDown.png")));
-            itemImages.put("FireblastUp", ImageIO.read(new File("Resources/enemy/FireblastUp.png")));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -120,13 +100,6 @@ public class Main {
             for (Iterator<Item> iterator = desiredTile.getItems().iterator(); iterator.hasNext();) {
                 Item item = iterator.next();
                 item.interact();
-                if (item instanceof GreenEnemy){
-                    GreenEnemy g = (GreenEnemy) item;
-                    if (!g.hasMoved()){
-                        System.out.println("stuck");
-                        player.move(currentPos);
-                    }
-                }
             }
             return true;
         }
