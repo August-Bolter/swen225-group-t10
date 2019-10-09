@@ -2,6 +2,7 @@ package Maze;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
@@ -17,6 +18,7 @@ public class Chip extends Item {
      * */
     public Chip(int row, int col) {
         super(row, col);
+        this.setPriority(2);
     }
 
     @Override
@@ -32,6 +34,13 @@ public class Chip extends Item {
     }
 
     public Image getImage() {
+        if (main != null) {
+            BufferedImage img = main.itemImages.get("pokeball");
+            if (img != null) {
+                return img;
+            }
+        }
+
         String path = PATH + POKEBALL + ".png";
 
         try {

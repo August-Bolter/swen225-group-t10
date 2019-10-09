@@ -39,36 +39,37 @@ public class SaveJSON {
                     // Get item description if the tile has one
                     Item itemObj;
                     String item, itemExtra;
+                    String itemString;
                     if (tile.getItems().isEmpty()) {
                         itemObj = null;
-                        item = null;
+                        itemString = null;
                     } else {
-                        itemObj = tile.getItems().get(0);
-                        item = itemObj.getClass().getName().split("\\.")[1];
-                    }
+                        itemString = "";
 
-                    if (itemObj == null) {
-                        itemExtra = null;
-                    } else if (itemObj instanceof Player) {
-                        itemExtra = "";
-                        Player player = (Player) itemObj;
-                        for (int i = 0; i < player.getInventory().length; i++) {
-                            if (player.getInventory()[i] == null) {
-                                itemExtra += "_,";
-                            } else {
-                                itemExtra += player.getInventory()[i].getClass().getName().split("\\.")[1] + "|" + ((player.getInventory()[i].getExtra() == null) ? "_" :  player.getInventory()[i].getExtra()) + ",";
+                        for (Item itemO : tile.getItems()) {
+                            if (itemO == null) continue;
+                            itemObj = itemO;
+                            item = itemObj.getClass().getName().split("\\.")[1];
+                            itemExtra = (itemObj.getExtra() == null) ? "_" : itemObj.getExtra();
+                            if (itemObj instanceof Player) {
+                                itemExtra = "";
+                                Player player = (Player) itemObj;
+                                for (int i = 0; i < player.getInventory().length; i++) {
+                                    if (player.getInventory()[i] == null) {
+                                        itemExtra += "_>";
+                                    } else {
+                                        itemExtra += player.getInventory()[i].getClass().getName().split("\\.")[1] + "/" + ((player.getInventory()[i].getExtra() == null) ? "_" : player.getInventory()[i].getExtra()) + ">";
+                                    }
+                                }
+                                itemExtra = itemExtra.substring(0, itemExtra.length() - 1);
                             }
+                            itemString += (item + "|" + itemExtra + ",");
                         }
-                        itemExtra = itemExtra.substring(0, itemExtra.length() - 1);
-                        System.out.println(itemExtra);
-
-                    } else {
-                        itemExtra = itemObj.getExtra();
+                        itemString = itemString.substring(0, itemString.length() - 1);
                     }
 
                     // Print to JSON
-                    builder.append(tileAsJSON(type, extra, item, itemExtra, row, col));
-
+                    builder.append(tileAsJSON(type, extra, itemString, row, col));
                 }
             }
 
@@ -93,7 +94,7 @@ public class SaveJSON {
     /**
      * @return A tile's information as a JSON object string
      */
-    public static String tileAsJSON(String type, String extra, String item, String itemExtra, int row, int col) {
+    public static String tileAsJSON(String type, String extra, String itemString, int row, int col) {
         StringBuilder builder = new StringBuilder();
 
         builder.append("\t\t{\n\t\t\t\"type\" : \""+ type +"\",\n" +
@@ -104,12 +105,8 @@ public class SaveJSON {
             builder.append(",\n\t\t\t\"extra\" : \"" + extra + "\"");
         }
 
-        if (item != null) {
-            builder.append(",\n\t\t\t\"item\" : {\n\t\t\t\t\"type\" : \"" + item + "\"");
-
-            if (itemExtra != null) {
-                builder.append(",\n\t\t\t\t\"extra\" : \"" + itemExtra + "\"" );
-            }
+        if (itemString != null && !itemString.equals("null|null")) {
+            builder.append(",\n\t\t\t\"item\" : {\n\t\t\t\t\"descriptor\" : \"" + itemString + "\"");
 
             builder.append("\n\t\t\t}");
         }

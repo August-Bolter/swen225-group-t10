@@ -2,6 +2,7 @@ package Maze;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -21,6 +22,7 @@ public class Player extends Item {
         this.col = col;
         this.inventory = new Item[8];
         direction = LevelBoard.Direction.DOWN;
+        this.setPriority(0);
     }
 
     public void setDirection(LevelBoard.Direction d) {
@@ -145,6 +147,13 @@ public class Player extends Item {
      * @return the image
      */
     public Image getImage() {
+        if (main != null) {
+            BufferedImage img = main.itemImages.get(direction.toString().toLowerCase() + "Player");
+            if (img != null) {
+                return img;
+            }
+        }
+
         String path = "Resources/player/"+direction.toString().toLowerCase()+".png";
 
         try {

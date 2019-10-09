@@ -7,6 +7,10 @@ import Persistence.Replay;
 import Persistence.SaveJSON;
 import Render.MainFrame;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
 
 public class Main {
@@ -17,6 +21,10 @@ public class Main {
     private List<Chip> allChips = new ArrayList<Chip>();
     private int chipsRemaining;
 
+    private Random generator = new Random();
+    private long seed;
+
+    private int level = 2;
 
     private Player player;
     private LevelBoard levelBoard;
@@ -34,9 +42,41 @@ public class Main {
     private long totalStepTime;
     private long lastDiff;
 
-    public void setup() {
-        recordMoves = false;
-        levelBoard = LoadJSON.loadLevelFromJSON(2, null);
+    public final Map<String, BufferedImage> tileImages = new HashMap<>();
+    public final Map<String, BufferedImage> itemImages = new HashMap<>();
+
+    private void initialiseMaps() {
+        try {
+            // Initialise tileImages
+            tileImages.put("FreeTile", ImageIO.read(new File("Resources/floor/FreeTile.png")));
+            tileImages.put("ExitTile", ImageIO.read(new File("Resources/floor/ExitTile.png")));
+            tileImages.put("WallTile", ImageIO.read(new File("Resources/floor/WallTile.png")));
+            tileImages.put("GateTile", ImageIO.read(new File("Resources/floor/GateTile.png")));
+            tileImages.put("InfoTile", ImageIO.read(new File("Resources/floor/InfoTile.png")));
+            tileImages.put("blueDoor", ImageIO.read(new File("Resources/floor/blueDoor.png")));
+            tileImages.put("greenDoor", ImageIO.read(new File("Resources/floor/greenDoor.png")));
+            tileImages.put("redDoor", ImageIO.read(new File("Resources/floor/redDoor.png")));
+            tileImages.put("yellowDoor", ImageIO.read(new File("Resources/floor/yellowDoor.png")));
+
+            // Initialise itemImages
+            itemImages.put("pokeball", ImageIO.read(new File("Resources/items/pokeball.png")));
+            itemImages.put("blueKey", ImageIO.read(new File("Resources/items/blueKey.png")));
+            itemImages.put("greenKey", ImageIO.read(new File("Resources/items/greenKey.png")));
+            itemImages.put("redKey", ImageIO.read(new File("Resources/items/redKey.png")));
+            itemImages.put("yellowKey", ImageIO.read(new File("Resources/items/yellowKey.png")));
+            itemImages.put("downPlayer", ImageIO.read(new File("Resources/player/down.png")));
+            itemImages.put("upPlayer", ImageIO.read(new File("Resources/player/up.png")));
+            itemImages.put("leftPlayer", ImageIO.read(new File("Resources/player/left.png")));
+            itemImages.put("rightPlayer", ImageIO.read(new File("Resources/player/right.png")));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void setup() {
+        initialiseMaps();
+        levelBoard = LoadJSON.loadLevelFromJSON(level);
         levelBoard.setMain(this);
         player = levelBoard.getPlayer();
         player.setCurrentPos();
@@ -49,9 +89,11 @@ public class Main {
         chipsRemaining = levelBoard.getTotalChips();
         timeRemaining = levelBoard.getTimeLimit();
 
-        timer(levelBoard.getTimeLimit());
-    }
+        timer();
 
+        seed = System.currentTimeMillis();
+        generator.setSeed(seed);
+    }
 
 
     /**
@@ -72,7 +114,8 @@ public class Main {
             desiredTile.interact();
             player.setDirection(direction);
             for (Iterator<Item> iterator = desiredTile.getItems().iterator(); iterator.hasNext();) {
-                iterator.next().interact();
+                Item item = iterator.next();
+                item.interact();
             }
             if (recordMoves && !replayMode) {
                 /* Need an if clause which doesn't record the move if the move doesn't change players direction or tile
@@ -87,10 +130,10 @@ public class Main {
         }
         return false;
     }
+    
 
     /**
      * Keeps track of the time left and is used to control enemies
-     * @param seconds the number of seconds until game over
      */
     public void timer(int seconds){
         frameRate = 1;
@@ -151,33 +194,16 @@ public class Main {
                     if (e instanceof BlueEnemy){
                         ((BlueEnemy) e).moveEnemy();
                     }
-//                    if (e instanceof RedEnemy){
-//                        ((RedEnemy) e).shoot();
-//                    }
+
+                    timeRemaining--;
+                    levelBoard.updateFields();
                 }
-
-//                frame.getBoardPanel().updateBoard();
-                lastTick = now;
-                timeRemaining--;
-                levelBoard.updateFields();
-                seconds--;
-                //this.getFrame().getBoardPanel().redraw();
-//                try {
-//                    Robot r = new Robot();
-//                    int keycode = KeyEvent.VK_0;
-//                    r.keyPress(keycode);
-//                } catch (AWTException e) {
-//                    e.printStackTrace();
-//                }
-
-//                frame.keyPressed(new KeyEvent(new Button(), 1, 20, 1, 10, '0'));
-//                frame.getBoardPanel().redraw();
-//                frame.getInfoPanel().redraw();
+                frame.redraw();
             }
         }
 
-        System.out.println("Out of time");
         frame.displayInfo("Out of time");
+        restartLevel();
     }
 
     private void replayMove(String dir) {
@@ -242,6 +268,51 @@ public class Main {
         game.setup();
     }
 
+    public int getRandomInt() {
+        return generator.nextInt();
+    }
+
+    public void restartLevel() {
+        System.out.println("RESTART CALLED");
+        levelBoard = LoadJSON.loadLevelFromJSON(level);
+        levelBoard.setMain(this);
+        player = levelBoard.getPlayer();
+        player.setCurrentPos();
+        enemies = levelBoard.getEnemies();
+        for (Enemy e : enemies){
+            e.setCurrentPos();
+        }
+
+        frame.redraw();
+        chipsRemaining = levelBoard.getTotalChips();
+        timeRemaining = levelBoard.getTimeLimit();
+
+        seed = System.currentTimeMillis();
+        generator.setSeed(seed);
+    }
+
+    /**
+     * @return the current level number e.g. 2 for level 2
+     */
+    public int getLevel() {
+        return level;
+    }
+
+    /**
+     * Adds an enemy
+     * @param e the enemy to add
+     */
+    public void addEnemy(Enemy e) {
+        enemies.add(e);
+    }
+
+    /**
+     * Removes an enemy
+     * @param e the enemy to remove
+     */
+    public void removeEnemy(Enemy e) {
+        enemies.remove(e);
+    }
 
     public Player getPlayer() {
         return player;

@@ -9,6 +9,8 @@ import Persistence.Record;
 import Persistence.Replay;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.EtchedBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -104,6 +106,11 @@ public class InfoPanel extends JPanel {
         redraw();
     }
 
+    public void createBorder() {
+        Border blackline = BorderFactory.createEtchedBorder(EtchedBorder.RAISED);
+        setBorder(blackline);
+    }
+
     /**
      * Reduces the timeLeft by one second
      */
@@ -143,18 +150,19 @@ public class InfoPanel extends JPanel {
     /**
      * Only redraws the inventory
      */
-    public void redraw() {
-        removeAll();
+    private void redraw() {
+//        removeAll();
         inventoryPanel.removeAll();
         for (int i = 0; i < inventory.length; i++) {
             int row = i / 4 >= 1 ? 1 : 0;
             int col = i % 4;
             invPanels[i] = new TilePanel(new FreeTile(row, col));
             invPanels[i].getTile().addItem(inventory[i]);
-//            invPanels[i].removeAll();
             inventoryPanel.add(invPanels[i]);
         }
-//        add(new JLabel(new ImageIcon(new FreeTile(0,0).getImage())));
+        JPanel outerInvPanel = new JPanel(new FlowLayout());
+        outerInvPanel.add(inventoryPanel);
+
         add(level);
         add(timeRemaining);
         add(chipsRemaining);
@@ -165,7 +173,7 @@ public class InfoPanel extends JPanel {
         add(exitButton);
 
         for (TilePanel tp : invPanels) {
-            tp.redraw();
+            tp.repaint();
         }
 
         revalidate();

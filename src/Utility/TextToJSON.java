@@ -11,7 +11,7 @@ import java.io.*;
  * All levels are 32x32.
  */
 class TextToJSON {
-    private static final String TEXT_FILENAME = "Level-2.txt";
+    private static final String TEXT_FILENAME = "Level-3.txt";
 
     /**
      * Converts the text file to a JSON file
@@ -90,10 +90,10 @@ class TextToJSON {
                         item = "Boots";
                     } else if (rowTiles[i] == 's') {
                         type = "TeleportTile";
-                        extra = "9,11";
+                        extra = "16>27";
                     } else if (rowTiles[i] == 't') {
                         type = "TeleportTile";
-                        extra = "20,16";
+                        extra = "14>27";
                     } else if (rowTiles[i] == 'z') {
                         type = "FireTile";
                     } else if (rowTiles[i] == 'E') {
@@ -102,26 +102,31 @@ class TextToJSON {
                         type = "GateTile";
                     } else if (rowTiles[i] == 'I') {
                         type = "InfoTile";
-                        extra = "Hint: You need special boots to walk on lava";
+                        extra = "Hints: Collect Boots to walk on lava. Collect Boxing Gloves to move Venosaur. Watch out for Charizard and his Fireblasts, and avoid moving the moving Blastoise.";
                     } else if (rowTiles[i] == 'C') {
                         type = "FreeTile";
                         item = "Player";
                     } else if (rowTiles[i] == 'R') {
                         type = "FreeTile";
                         item = "RedEnemy";
+                        itemExtra = "LEFT";
                     } else if (rowTiles[i] == 'G') {
                         type = "FreeTile";
                         item = "GreenEnemy";
+                        itemExtra = "DOWN";
                     } else if (rowTiles[i] == 'B') {
                         type = "FreeTile";
                         item = "BlueEnemy";
+                        itemExtra = "DOWN";
+                    } else if (rowTiles[i] == '@') {
+                        type = "FreeTile";
+                        item = "Gloves";
                     } else {
                         System.out.println("Missing character " + rowTiles[i]);
                     }
 
-
                     // Print to JSON
-                    builder.append(SaveJSON.tileAsJSON(type, extra, item, itemExtra, row, i));
+                    builder.append(SaveJSON.tileAsJSON(type, extra, item + "|" + itemExtra, row, i));
                 }
 
                 row++;

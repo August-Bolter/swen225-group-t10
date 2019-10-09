@@ -2,19 +2,21 @@ package Maze;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class Enemy extends Item {
+public abstract class Enemy extends Item {
     protected Tile currentPos;
     protected Maze.LevelBoard.Direction direction;
     private int row, col;
 
-    public Enemy(int row, int col){
+    public Enemy(int row, int col, String direction){
         super(row, col);
         this.row = row;
         this.col = col;
-        direction = LevelBoard.Direction.DOWN;
+        this.direction = LevelBoard.Direction.DOWN;
+        this.setPriority(5);
     }
 
     @Override
@@ -28,20 +30,42 @@ public class Enemy extends Item {
 //        }
     }
 
+    /**
+     * Describes what the enemy should do each tick.
+     * This method will be called each tick in Application.
+     */
+    public abstract void onTick();
+
     public void doMove(Tile toMoveTo){
         currentPos.removeItem(this);
         toMoveTo.addItem(this);
         setCurrentPos(toMoveTo);
     }
+
     @Override
     public Image getImage() {
         String itemName = getClass().getName().substring(5);
-        String path = "Resources/enemy/"+itemName+direction.toString().toLowerCase()+".png";
+        String dir = direction.toString().toUpperCase();
+        dir = dir.charAt(0) + dir.substring(1).toLowerCase();
+
+        if (main != null) {
+            BufferedImage img = main.itemImages.get(itemName+dir);
+            if (img != null) {
+                return img;
+            }
+        }
+
+        String path = "Resources/enemy/"+itemName+dir+".png";
 
         try {
             return ImageIO.read(new File(path));
         } catch (IOException e) {
-            throw new Error(path+"\nThe file failed to load: " + e);
+            // If the image is not part of the default resources look in the level plugin specific resources
+            try {
+                return ImageIO.read(new File("src/Utility/Level-" + main.getLevel() + "/Resources/" + getClass().getName() + dir + ".png"));  // TODO remove level 3 hardcode
+            } catch (IOException ex) {
+                throw new Error(PATH + getClass().getName() + dir + ".png \nThe image failed to load: " + e);
+            }
         }
     }
 

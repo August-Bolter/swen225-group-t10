@@ -100,7 +100,7 @@ public class LevelBoard {
         //board[tile.getRow()][tile.getCol()].addItem(getPlayer());
         //getPlayer().setCurrentPos(board[tile.getRow()][tile.getCol()]);
         //getPlayer().move(board[tile.getRow()][tile.getCol()]);
-        main.getFrame().getBoardPanel().updateBoard(); // TODO think about moving this
+//        main.getFrame().redraw(); // TODO think about moving this
 
     }
 
@@ -170,6 +170,25 @@ public class LevelBoard {
             }
         }
         return enemies;
+    }
+
+    /**
+     * @param dir the direction
+     * @return the inverse of that direction e.g. dir := up returns down
+     */
+    public static Direction directionInverse(Direction dir) {
+        switch(dir) {
+            case UP:
+                return Direction.DOWN;
+            case DOWN:
+                return Direction.UP;
+            case LEFT:
+                return Direction.RIGHT;
+            case RIGHT:
+                return Direction.LEFT;
+            default:
+                return null; // unreachable
+        }
     }
 
 }

@@ -4,20 +4,24 @@ import Application.Main;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.Objects;
 
 /**
  * Abstract class for Item - this will be implemented by all inventory items (keys, chips). Items are on top of tiles.
  */
 
-public abstract class Item {
+public abstract class Item implements Comparable<Item> {
     private int row;
     private int col;
     private String extra;
     protected Main main;
     private boolean inInventory;
+
+    private int priority;
     public static final String PATH = "Resources/items/";
 
     /** Creates an item.
@@ -106,7 +110,7 @@ public abstract class Item {
     }
 
     /**
-     * Method to interact with the tile
+     * Method to interact with the item
      */
     public abstract void interact();
 
@@ -128,12 +132,34 @@ public abstract class Item {
      */
     public Image getImage() {
         String itemName = getClass().getName().substring(5);
+
+        if (main != null) {
+            BufferedImage img = main.tileImages.get(itemName);
+            if (img != null) {
+                return img;
+            }
+        }
+
         String path = PATH;
+
         try {
             return ImageIO.read(new File(path+itemName+".png"));
         } catch (IOException e) {
-            throw new Error(path+itemName+"\nThe image failed to load:" + e);
+            // If the image is not part of the default resources look in the level plugin specific resources
+            try {
+                return ImageIO.read(new File("src/Utility/Level-" + main.getLevel() + "/Resources/" + getClass().getName() + ".png")); // TODO remove level 3 hardcode
+            } catch (IOException ex) {
+                throw new Error(PATH + "\nThe image failed to load:" + e);
+            }
         }
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
     }
 
     public void setMain(Main main) {
@@ -149,4 +175,10 @@ public abstract class Item {
     public int hashCode() {
         return Objects.hash(row, col);
     }
+
+    @Override
+    public int compareTo(Item other) {
+        return other.getPriority() - this.getPriority();
+    }
+
 }
