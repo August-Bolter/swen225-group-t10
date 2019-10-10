@@ -17,13 +17,28 @@ public class LevelBoard {
 
 
 
-    public enum Direction {LEFT, RIGHT, UP, DOWN}
+    /**
+     * An enum for the direction actors are facing
+     */
+    public enum Direction {
+		/*** left */ LEFT,
+	    /*** right */ RIGHT,
+	    /*** up */ UP,
+	    /*** down */ DOWN
+    }
     private int totalChips, timeLimit;
 
     private Main main;
 
     private Tile[][] board;
 
+    /**
+     * Creates a new level board object
+     * @param title the level's title
+     * @param totalChips the number of chips in the level
+     * @param timeLimit the time limit of the level
+     * @param board the array of objects in the level
+     */
     public LevelBoard(String title, int totalChips, int timeLimit, Tile[][] board) {
         this.title = title;
         this.totalChips = totalChips;
@@ -65,6 +80,9 @@ public class LevelBoard {
         }
     }
 
+    /**
+     * Associates tiles and items to this main object
+     */
     public void linkTilesAndItemsToMain() {
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++) {
@@ -76,21 +94,21 @@ public class LevelBoard {
         }
     }
 
+
+    /**
+     * Replaces a tile with an empty free tile
+     * Used when unlocking doors for example
+     * @param tile the tile to replace
+     */
     public void replaceWithEmptyTile(Tile tile){
-
         board[tile.getRow()][tile.getCol()] = new FreeTile(tile.getRow(), tile.getCol());
-        //getPlayer().move(board[tile.getRow()][tile.getCol()]);
-        //board[tile.getRow()][tile.getCol()].addItem(getPlayer());
-        //getPlayer().setCurrentPos(board[tile.getRow()][tile.getCol()]);
-        //getPlayer().move(board[tile.getRow()][tile.getCol()]);
-//        main.getFrame().redraw(); // TODO think about moving this
-
     }
 
-
-
-
     //getter and setter methods
+
+    /**
+     * @return the board
+     */
     public Tile[][] getBoard() {
         return board;
     }
@@ -104,13 +122,16 @@ public class LevelBoard {
     }
 
     /**
-     * Method that gets the timelimit
+     * Method that gets the time limit
      * @return the timeLimit
      */
     public int getTimeLimit() {
         return timeLimit;
     }
 
+    /**
+     * Update the chips and time left
+     */
     public void updateFields() {
         this.totalChips = main.getChipsRemaining();
         this.timeLimit = main.getTimeRemaining();
@@ -124,6 +145,9 @@ public class LevelBoard {
         return title;
     }
 
+    /**
+     * @param main
+     */
     public void setMain(Main main) {
         this.main = main;
         linkTilesAndItemsToMain();
@@ -131,6 +155,7 @@ public class LevelBoard {
 
     /**
      * Returns the player currently on the board
+     * @return the player on the level
      */
     public Player getPlayer() {
         for (int row = 0; row < board.length; row++)

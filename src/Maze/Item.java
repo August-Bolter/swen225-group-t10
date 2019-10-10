@@ -13,7 +13,6 @@ import java.util.Objects;
 /**
  * Abstract class for Item - this will be implemented by all inventory items (keys, chips). Items are on top of tiles.
  */
-
 public abstract class Item implements Comparable<Item> {
     private int row;
     private int col;
@@ -22,6 +21,9 @@ public abstract class Item implements Comparable<Item> {
     private boolean inInventory;
 
     private int priority;
+    /**
+     * The path the the images folder
+     */
     public static final String PATH = "Resources/items/";
 
     /** Creates an item.
@@ -59,7 +61,7 @@ public abstract class Item implements Comparable<Item> {
 
     /**
      * Gets the column
-     * @return
+     * @return the col in reference to the level board
      */
     public int getCol() {
         return col;
@@ -67,7 +69,7 @@ public abstract class Item implements Comparable<Item> {
 
     /**
      * Gets the row
-     * @return
+     * @return the row in reference to the level board
      */
     public int getRow(){
         return row;
@@ -104,6 +106,7 @@ public abstract class Item implements Comparable<Item> {
 
     /**
      * Set's the item to be out of/into the players inventory.
+     * @param inInventory true if in inventory, false otherwise
      * */
     public void setInInventory(boolean inInventory) {
         this.inInventory = inInventory;
@@ -130,6 +133,7 @@ public abstract class Item implements Comparable<Item> {
 
     /**
      * Paints the item in the tile on top of each tile.
+     * @return the image assocatied to the item
      */
     public Image getImage() {
         String itemName = getClass().getName().substring(5);
@@ -151,14 +155,23 @@ public abstract class Item implements Comparable<Item> {
         }
     }
 
+    /**
+     * @return returns the item's priority for drawing
+     */
     public int getPriority() {
         return priority;
     }
 
+    /**
+     * @param priority sets the item's priority for drawing
+     */
     public void setPriority(int priority) {
         this.priority = priority;
     }
 
+    /**
+     * @param main sets the main class
+     */
     public void setMain(Main main) {
         this.main = main;
     }

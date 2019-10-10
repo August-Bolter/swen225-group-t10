@@ -15,6 +15,11 @@ public class Player extends Item {
     private LevelBoard.Direction direction;
     private int row, col;
 
+    /**
+     * Creates a new Player
+     * @param row the row in reference to the level board
+     * @param col the col in reference to the level board
+     */
     public Player(int row, int col) {
         super(row, col);
         this.row = row;
@@ -24,6 +29,10 @@ public class Player extends Item {
         this.setPriority(0);
     }
 
+    /**
+     * Sets the direction
+     * @param d the direction to set to
+     */
     public void setDirection(LevelBoard.Direction d) {
         if (d == LevelBoard.Direction.LEFT) {
             direction = LevelBoard.Direction.LEFT;
@@ -67,6 +76,7 @@ public class Player extends Item {
     /**
      * Adds a new item into the inventory (list)
      * @param newItem
+     * @throws InventoryException thrown if the addInventory
      */
     public void addInventory(Item newItem) throws InventoryException {
         for (int i = 0; i < inventory.length; i++) {
@@ -76,15 +86,6 @@ public class Player extends Item {
             }
         }
         throw new InventoryException("The player's inventory is full");
-    }
-
-    // TODO remove testing method
-    public void printInventory() {
-        System.out.print("[");
-        for (int i = 0; i < inventory.length; i++) {
-            System.out.print(inventory[i] + ", ");
-        }
-        System.out.print("]\n");
     }
 
     /**
@@ -162,6 +163,9 @@ public class Player extends Item {
         }
     }
 
+    /**
+     * @return the Player's current direction
+     */
     public LevelBoard.Direction getDirection() {
         return direction;
     }
