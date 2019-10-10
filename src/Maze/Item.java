@@ -154,7 +154,7 @@ public abstract class Item implements Comparable<Item> {
             try {
                 return ImageIO.read(new File("src/Utility/Level-" + main.getLevel() + "/Resources/" + getClass().getName() + ".png"));
             } catch (IOException ex) {
-                throw new Error(PATH + "\nThe image failed to load:" + e);
+                throw new Error("src/Utility/Level-" + main.getLevel() + "/Resources/" + getClass().getName() + ".png" + e);
             }
         }
     }

@@ -1,47 +1,29 @@
 import Application.Main;
 import Maze.Tile;
-
 import java.util.Optional;
 
-/**
- * Fireblast class.
- * Fireblasts are shot by the red enemies.
- */
 public class Fireblast extends RedEnemy {
-    /**
-     * Creates a new Fireblast.
-     * @param row the starting row in reference to the level board
-     * @param col the starting col in reference to the level board
-     * @param direction the direction the Fireblast is travelling
-     */
     public Fireblast(int row, int col, String direction) {
         super(row, col, direction);
     }
 
-    /**
-     * Moves the blast in one specific direction
-     */
-    public void moveBlast(){
-        Tile newTile = main.getLevelBoard().getTileAtPosition(currentPos, direction);
+    public void moveBlast() {
+        Tile newTile = this.main.getLevelBoard().getTileAtPosition(this.currentPos, this.direction);
         if (newTile.isWalkable()) {
-            doMove(newTile);
-            if (currentPos.getItems().contains(main.getPlayer())) {
-                interact();
+            this.doMove(newTile);
+            if (this.currentPos.getItems().contains(this.main.getPlayer())) {
+                this.interact();
             }
         } else {
-            currentPos.removeItem(this);
+            this.currentPos.removeItem(this);
         }
+
     }
 
-    @Override
     public void onTick() {
         this.moveBlast();
     }
 
-    /**
-     * Method for interacting with the fireblast - this occurs when the player walks into the same tile as the fireblast
-     * When this occurs, the game starts again
-     */
     public void interact() {
         super.main.getFrame().displayInfo("Watch out for Fire Blasts!");
         super.main.restartLevel(Optional.empty());
