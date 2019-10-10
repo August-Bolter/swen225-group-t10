@@ -39,12 +39,19 @@ public class Main {
     private List<Enemy> enemies;
     private List<Fireblast> fireblasts = new ArrayList<>();
 
-    //for images
+    /**
+     * Map from a String of class name to a BufferedImage containing the image associated to that class.
+     * This map is used for Tile objects.
+     */
     public final Map<String, BufferedImage> tileImages = new HashMap<>();
+    /**
+     * Map from a String of class name to a BufferedImage containing the image associated to that class.
+     * This map is used for Item objects.
+     */
     public final Map<String, BufferedImage> itemImages = new HashMap<>();
 
     /**
-     * Used to initliase the maps with the correct .png files
+     * Used to initialise the maps with the correct .png files
      */
     private void initialiseMaps() {
         try {
@@ -101,7 +108,7 @@ public class Main {
      */
     public void setup() {
         //setting up the correct level
-        initialiseMaps();
+        //initialiseMaps();
         levelBoard = LoadJSON.loadLevelFromJSON(level);
         levelBoard.setMain(this);
 
@@ -249,8 +256,8 @@ public class Main {
     }
 
     /**
-     * Getter method: fetches the current levelboard
-     * @return levelboard we are on
+     * Getter method: fetches the current level board
+     * @return level board we are on
      */
     public LevelBoard getLevelBoard() {
         return levelBoard;
@@ -258,7 +265,7 @@ public class Main {
 
     /**
      * Getter method: fetches the remaining chips
-     * @return total number of chipsremaining
+     * @return total number of chips remaining
      */
     public int getChipsRemaining() {
         return chipsRemaining;
