@@ -1,9 +1,11 @@
 package Persistence;
 
-import Maze.*;
+import Maze.Item;
+import Maze.LevelBoard;
+import Maze.Player;
+import Maze.Tile;
 
 import java.io.*;
-import java.nio.Buffer;
 
 /**
  * Class responsible for saving and loading the game
@@ -33,7 +35,10 @@ public class SaveJSON {
                     // Get tile descriptions
                     Tile tile = levelArray[row][col];
                     Class<?> clazz = tile.getClass();
-                    String type = clazz.getName().split("\\.")[1];
+                    String[] classComposition = clazz.getName().split("\\.");
+                    String type = (classComposition.length == 2) ? classComposition[1] : classComposition[0];
+
+
                     String extra = tile.getExtra();
 
                     // Get item description if the tile has one
@@ -49,7 +54,10 @@ public class SaveJSON {
                         for (Item itemO : tile.getItems()) {
                             if (itemO == null) continue;
                             itemObj = itemO;
-                            item = itemObj.getClass().getName().split("\\.")[1];
+
+                            String[] itemComposition = itemObj.getClass().getName().split("\\.");
+                            item = (itemComposition.length == 2) ? itemComposition[1] : itemComposition[0];
+
                             itemExtra = (itemObj.getExtra() == null) ? "_" : itemObj.getExtra();
                             if (itemObj instanceof Player) {
                                 itemExtra = "";
@@ -58,7 +66,9 @@ public class SaveJSON {
                                     if (player.getInventory()[i] == null) {
                                         itemExtra += "_>";
                                     } else {
-                                        itemExtra += player.getInventory()[i].getClass().getName().split("\\.")[1] + "/" + ((player.getInventory()[i].getExtra() == null) ? "_" : player.getInventory()[i].getExtra()) + ">";
+                                        String[] itemExtraComp = player.getInventory()[i].getClass().getName().split("\\.");
+                                        String itemComp = itemExtraComp.length==2 ? itemExtraComp[1] : itemExtraComp[0];
+                                        itemExtra += itemComp + "/" + ((player.getInventory()[i].getExtra() == null) ? "_" : player.getInventory()[i].getExtra()) + ">";
                                     }
                                 }
                                 itemExtra = itemExtra.substring(0, itemExtra.length() - 1);

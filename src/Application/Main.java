@@ -220,7 +220,6 @@ public class Main {
             doMove(LevelBoard.Direction.DOWN);
         }
         frame.getBoardPanel().redraw();
-        frame.getBoardPanel().updateBoard();
         frame.getInfoPanel().redraw();
     }
 

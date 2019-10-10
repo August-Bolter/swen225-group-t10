@@ -3,35 +3,23 @@ package Render;
 import Application.Main;
 import Maze.FreeTile;
 import Maze.Item;
-import Maze.LevelBoard;
-import Persistence.LoadJSON;
-import Persistence.Record;
-import Persistence.Replay;
 
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.EtchedBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
 
 public class InfoPanel extends JPanel {
-    Main game;
+    private JLabel level;
+    private JLabel timeRemaining;
+    private JLabel chipsRemaining;
+    private JPanel inventoryPanel;
+    private ReplayPanel replayPanel;
 
-    JLabel level;
-    JLabel timeRemaining;
-    JLabel chipsRemaining;
-    JPanel inventoryPanel;
-    JButton replayButton, recordButton, nextStepButton, previousStepButton, exitButton;
-    JPanel stepPanel;
-    int timeLeft, chipsLeft;
-    Record record;
-    Replay replay;
-    MainFrame mainFrame;
+    private int timeLeft, chipsLeft;
 
-    TilePanel[] invPanels;
-    Item[] inventory;
+    private MainFrame frame;
+
+    private TilePanel[] invPanels;
+    private Item[] inventory;
 
     /**
      * Info panel needs:
@@ -41,25 +29,12 @@ public class InfoPanel extends JPanel {
      * Inventory (an array with 8 pos) so it'll be 8 labels that can have
      * an image drawn over them
      */
-    public InfoPanel(Main game, MainFrame mainFrame) {
-        nextStepButton = new JButton("Next Step");
-        nextStepButton.setVisible(false);
-        previousStepButton = new JButton("Previous Step");
-        previousStepButton.setVisible(false);
-        stepPanel = new JPanel();
-        stepPanel.setVisible(false);
-        stepPanel.setLayout(new GridLayout(1, 2));
-        stepPanel.add(nextStepButton);
-        stepPanel.add(previousStepButton);
-
-        exitButton = new JButton("Exit");
-        exitButton.setVisible(false);
-
-        this.mainFrame = mainFrame;
-        this.game = game;
+    public InfoPanel(MainFrame frame) {
+        this.frame = frame;
+        Main game = frame.getGame();
         inventory = game.getPlayer().getInventory();
 
-        setLayout(new GridLayout(4,1));
+        setLayout(new GridLayout(5,1));
 
         level = new JLabel("Level: " + game.getLevelBoard().getTitle());
         timeRemaining = new JLabel("Time Remaining: " + game.getLevelBoard().getTimeLimit());
@@ -70,41 +45,9 @@ public class InfoPanel extends JPanel {
         inventoryPanel = new JPanel(new GridLayout(2, 4));
         invPanels = new TilePanel[inventory.length];
 
-        replayButton = new JButton("Replay");
-        replayButton.setFocusable(false);
-        recordButton = new JButton("Record");
-        recordButton.setFocusable(false);
-        record = new Record(game);
-        replay = new Replay(game, this);
-        recordButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (!record.isRecording()) {
-                        recordButton.setText("Stop recording");
-                        game.setRecord(record);
-                        record.record();
-                        replayButton.setEnabled(false);
-                    }
-                else {
-                        recordButton.setText("Record");
-                        record.stopRecording();
-                        replayButton.setEnabled(true);
-                    }
-            }
-        });
+        replayPanel = new ReplayPanel(frame);
 
-        replayButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                    replay.replay();
-            }
-        });
         redraw();
-    }
-
-    public void createBorder() {
-        Border blackline = BorderFactory.createEtchedBorder(EtchedBorder.RAISED);
-        setBorder(blackline);
     }
 
     /**
@@ -114,8 +57,8 @@ public class InfoPanel extends JPanel {
         timeRemaining.setText("Time Remaining: " + --timeLeft);
     }
 
-    public MainFrame getMainFrame() {
-        return mainFrame;
+    public MainFrame getFrame() {
+        return frame;
     }
 
     /**
@@ -123,10 +66,6 @@ public class InfoPanel extends JPanel {
      */
     public void decrementChipsRemaining() {
         chipsRemaining.setText("Chips Remaining: " + --chipsLeft);
-    }
-
-    public Record getRecord() {
-        return record;
     }
 
     public void setChipsLeft(int chips) {
@@ -147,8 +86,8 @@ public class InfoPanel extends JPanel {
      * Only redraws the inventory
      */
     public void redraw() {
-//        removeAll();
         inventoryPanel.removeAll();
+
         for (int i = 0; i < inventory.length; i++) {
             int row = i / 4 >= 1 ? 1 : 0;
             int col = i % 4;
@@ -156,6 +95,7 @@ public class InfoPanel extends JPanel {
             invPanels[i].getTile().addItem(inventory[i]);
             inventoryPanel.add(invPanels[i]);
         }
+
         JPanel outerInvPanel = new JPanel(new FlowLayout());
         outerInvPanel.add(inventoryPanel);
 
@@ -163,93 +103,14 @@ public class InfoPanel extends JPanel {
         add(timeRemaining);
         add(chipsRemaining);
         add(outerInvPanel);
-        add(recordButton);
-        add(replayButton);
-        add(stepPanel);
-        add(exitButton);
 
         for (TilePanel tp : invPanels) {
             tp.repaint();
         }
 
+        add(replayPanel);
+
         revalidate();
         repaint();
-    }
-
-    public File openFileChooser() {
-        JFileChooser chooseFile = new JFileChooser("src/Utility");
-        chooseFile.setDialogTitle("Please select a replay file (.json format)");
-        int chooseValue = chooseFile.showOpenDialog(InfoPanel.this);
-        if (chooseValue == JFileChooser.APPROVE_OPTION) {
-            return chooseFile.getSelectedFile();
-        }
-        else {
-            return null;
-        }
-    }
-
-    public void changeButtons() {
-        recordButton.setText("Play");
-        recordButton.removeActionListener(recordButton.getActionListeners()[0]);
-        recordButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                    if (recordButton.getText().equals("Play")) {
-                        game.setFrameRate(1);
-                        recordButton.setText("Stop");
-                        game.setReplayMode(true);
-                        nextStepButton.setEnabled(false);
-                        previousStepButton.setEnabled(false);
-                    } else {
-                        game.setFrameRate(0000000000000000.1);
-                        game.setReplayMode(false);
-                        recordButton.setText("Play");
-                        nextStepButton.setEnabled(true);
-                        previousStepButton.setEnabled(true);
-                    }
-            }
-        });
-
-        replayButton.setText("Change speed");
-        replayButton.removeActionListener(replayButton.getActionListeners()[0]);
-        replayButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                    mainFrame.createChangeSpeedWindow();
-            }
-        });
-    }
-
-    public void addReplayButtons() {
-        stepPanel.setVisible(true);
-
-        nextStepButton.setVisible(true);
-        nextStepButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                    game.nextStep();
-            }
-        });
-        stepPanel.add(nextStepButton);
-
-        previousStepButton.setVisible(true);
-        previousStepButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                    game.reverseStep();
-            }
-        });
-        stepPanel.add(previousStepButton);
-
-        exitButton.setVisible(true);
-        exitButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                    game.setReplayMode(false);
-                    //Needs to take user back to title screen
-            }
-        });
-        add(stepPanel);
-        add(exitButton);
     }
 }
