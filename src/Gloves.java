@@ -1,4 +1,5 @@
-package Maze;
+import Maze.InventoryException;
+import Maze.Item;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

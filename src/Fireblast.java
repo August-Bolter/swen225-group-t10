@@ -1,6 +1,5 @@
-package Maze;
-
 import Application.Main;
+import Maze.Tile;
 
 import java.util.Optional;
 
@@ -32,6 +31,11 @@ public class Fireblast extends RedEnemy {
         } else {
             currentPos.removeItem(this);
         }
+    }
+
+    @Override
+    public void onTick() {
+        this.moveBlast();
     }
 
     /**

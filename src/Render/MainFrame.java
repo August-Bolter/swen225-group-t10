@@ -234,7 +234,7 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
      * Saves the game.
      */
     public void save() {
-        SaveJSON.SaveGame(game.getLevelBoard());
+        SaveJSON.SaveGame(game.getLevelBoard(), "save.json", true);
     }
 
     /**
@@ -311,6 +311,7 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
         } else if (e.getSource().equals(resume)) {
             resume();
         }
+    }
 
     public void createChangeSpeedWindow() {
         JDialog changeSpeedWindow = new JDialog();

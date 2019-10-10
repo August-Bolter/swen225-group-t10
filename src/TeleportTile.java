@@ -1,4 +1,4 @@
-package Maze;
+import Maze.Tile;
 
 /**
  * CA Teleport tile that moves the player to a destination tile when stepped on

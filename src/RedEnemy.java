@@ -1,4 +1,4 @@
-package Maze;
+import Maze.Enemy;
 
 import java.util.Optional;
 
@@ -21,6 +21,13 @@ public class RedEnemy extends Enemy {
     public void interact() {
         main.getFrame().displayInfo("Watch out for Charizards!");
         main.restartLevel(Optional.empty());
+    }
+
+    @Override
+    public void onTick() {
+        if (main.getTimeRemaining() % 3 == 0) {
+            this.main.addEnemy(shoot());
+        }
     }
 
     /**

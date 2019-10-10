@@ -1,4 +1,4 @@
-package Maze;
+import Maze.*;
 
 import java.util.Optional;
 
@@ -61,6 +61,11 @@ public class BlueEnemy extends Enemy {
     public void interact() {
         main.getFrame().displayInfo("Watch out for moving Blastoise!");
         main.restartLevel(Optional.empty());
+    }
+
+    @Override
+    public void onTick() {
+        moveEnemy();
     }
 
     /**

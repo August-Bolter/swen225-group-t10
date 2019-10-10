@@ -1,4 +1,4 @@
-package Maze;
+import Maze.Tile;
 
 /**
  * FireTile this is a type of tile which the players can't interact with (walk on) unless they have obtained the boots

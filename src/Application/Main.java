@@ -41,6 +41,8 @@ public class Main{
     private MainFrame frame;
     private List<Enemy> enemies;
 
+    private boolean waitForRestart = false;
+    private boolean paused = false;
     private boolean recordMoves;
     private Record currentRecord;
     private Replay currentReplay;
@@ -200,6 +202,8 @@ public class Main{
         int tick = 0; //A tick is 1/6th of a second
         lastDiff = 0; //The last diff (before the game is paused) that is calculated
         long diff = 0; //The time that has elapsed so far for the replay
+
+
         while (timeRemaining > 0) {
             if (replayMode & firstTime) { //If we have pressed the play button for the first time
                 startReplayTime = System.nanoTime();
@@ -214,10 +218,7 @@ public class Main{
 
             long now = System.nanoTime();
 
-            if (!paused && now - lastTick > 1000000000 / frameRate) {
-                if (waitForRestart) {
-                    reloadLevel();
-                }
+
 
 
             if (replayMode) { //If we are replaying a record, (play button has been pressed)
@@ -248,8 +249,13 @@ public class Main{
                 }
             }
 
+
             //Every 1/6 of a second
-            if (now - lastTick > (1000000000/replaySpeed)/frameRate) {
+            if (!paused && now - lastTick > (1000000000/replaySpeed)/frameRate) {
+
+                if (waitForRestart) {
+                    reloadLevel();
+                }
 
                 lastTick = now;
                 tick++;
@@ -274,6 +280,7 @@ public class Main{
 
         frame.displayInfo("Out of time");
         reloadLevel();
+
     }
 
     /**
@@ -281,12 +288,12 @@ public class Main{
      * Used when restarting or switching levels.
      */
     public void reloadLevel() {
-        levelBoard = LoadJSON.loadLevelFromJSON(level);
+        levelBoard = LoadJSON.loadLevelFromJSON(level, null);
         levelBoard.setMain(this);
         player = levelBoard.getPlayer();
         player.setCurrentPos();
         enemies = levelBoard.getEnemies();
-        fireblasts.clear();
+
         for (Enemy e : enemies){
             e.setCurrentPos();
         }
@@ -424,17 +431,9 @@ public class Main{
         player = p;
     }
 
-    public boolean allChipsCollected(){
-        return chipsRemaining == 0;
-    }
 
     public void setFrameRate(double frameRate) {
         this.frameRate = frameRate;
-    }
-
-    public static void main(String[] args) {
-        Main game = new Main();
-        game.setup();
     }
 
     /**
@@ -460,12 +459,6 @@ public class Main{
         }
     }
 
-    /**
-     * @return the current level number e.g. 2 for level 2
-     */
-    public int getLevel() {
-        return level;
-    }
 
     /**
      * Adds an enemy
@@ -488,10 +481,7 @@ public class Main{
      * @param args none
      */
     public static void main(String[] args) {
-        Main game = new Main(2);
-//        game.startScreen();
-//        game.setup(2);
-        //new Main();
+        Main game = new Main(1);
     }
 
     public void recordMoves(boolean b) {

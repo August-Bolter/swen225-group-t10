@@ -13,13 +13,13 @@ import java.awt.*;
  */
 public class BoardPanel extends JPanel {
     /*** The board. */
-    public final Tile[][] board;
+    private Tile[][] board;
     /*** The board labels. */
     public final TilePanel[][] boardLabels;
     /*** Display size. */
     public static final int DISPLAY_SIZE = 9;
     /*** The player. */
-    public final Player player;
+    private Player player;
     /*** The max coordinate i.e. width/height. */
     public final static int MAX = 32;
     /*** The min coordinate. */

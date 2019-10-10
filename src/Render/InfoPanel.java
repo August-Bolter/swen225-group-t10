@@ -5,6 +5,8 @@ import Maze.FreeTile;
 import Maze.Item;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.EtchedBorder;
 import java.awt.*;
 
 /**

@@ -173,7 +173,6 @@ public class LoadJSON {
                 } else if (entry.getName().endsWith(".class")){
                     Files.copy(stream, Paths.get("src/Utility/Level-" + level + "/Classes/" + entry.getName().split("/")[1]), StandardCopyOption.REPLACE_EXISTING);
                 } else {
-                    System.out.println(entry.getName());
                     Files.copy(stream, Paths.get("src/Utility/Level-" + level + "/" + entry.getName().split("/")[1]), StandardCopyOption.REPLACE_EXISTING);
                 }
                 stream.close();
