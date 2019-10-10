@@ -246,6 +246,7 @@ public class Main{
         player = levelBoard.getPlayer();
         player.setCurrentPos();
         enemies = levelBoard.getEnemies();
+        fireblasts.clear();
         for (Enemy e : enemies){
             e.setCurrentPos();
         }
