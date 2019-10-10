@@ -150,7 +150,7 @@ public class InfoPanel extends JPanel {
     /**
      * Only redraws the inventory
      */
-    private void redraw() {
+    public void redraw() {
 //        removeAll();
         inventoryPanel.removeAll();
         for (int i = 0; i < inventory.length; i++) {
@@ -166,7 +166,7 @@ public class InfoPanel extends JPanel {
         add(level);
         add(timeRemaining);
         add(chipsRemaining);
-        add(inventoryPanel);
+        add(outerInvPanel);
         add(recordButton);
         add(replayButton);
         add(stepPanel);
@@ -177,6 +177,7 @@ public class InfoPanel extends JPanel {
         }
 
         revalidate();
+        repaint();
     }
 
     public File openFileChooser() {
@@ -197,19 +198,20 @@ public class InfoPanel extends JPanel {
         recordButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (recordButton.getText().equals("Play")) {
-                    game.setFrameRate(1);
-                    recordButton.setText("Stop");
-                    game.setReplayMode(true);
-                    nextStepButton.setEnabled(false);
-                    previousStepButton.setEnabled(false);
-                }
-                else {
-                    game.setFrameRate(0000000000000000.1);
-                    game.setReplayMode(false);
-                    recordButton.setText("Play");
-                    nextStepButton.setEnabled(true);
-                    previousStepButton.setEnabled(true);
+                if (e.getSource() == recordButton) {
+                    if (recordButton.getText().equals("Play")) {
+                        game.setFrameRate(1);
+                        recordButton.setText("Stop");
+                        game.setReplayMode(true);
+                        nextStepButton.setEnabled(false);
+                        previousStepButton.setEnabled(false);
+                    } else {
+                        game.setFrameRate(0000000000000000.1);
+                        game.setReplayMode(false);
+                        recordButton.setText("Play");
+                        nextStepButton.setEnabled(true);
+                        previousStepButton.setEnabled(true);
+                    }
                 }
             }
         });
@@ -219,7 +221,9 @@ public class InfoPanel extends JPanel {
         replayButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainFrame.createChangeSpeedWindow();
+                if (e.getSource() == replayButton) {
+                    mainFrame.createChangeSpeedWindow();
+                }
             }
         });
     }
@@ -231,7 +235,9 @@ public class InfoPanel extends JPanel {
         nextStepButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                game.nextStep();
+                if (e.getSource() == nextStepButton) {
+                    game.nextStep();
+                }
             }
         });
         stepPanel.add(nextStepButton);
@@ -240,7 +246,9 @@ public class InfoPanel extends JPanel {
         previousStepButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                game.reverseStep();
+                if (e.getSource() == previousStepButton) {
+                    game.reverseStep();
+                }
             }
         });
         stepPanel.add(previousStepButton);
@@ -249,8 +257,10 @@ public class InfoPanel extends JPanel {
         exitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                game.setReplayMode(false);
-                //Needs to take user back to title screen
+                if (e.getSource() == exitButton) {
+                    game.setReplayMode(false);
+                    //Needs to take user back to title screen
+                }
             }
         });
         add(stepPanel);

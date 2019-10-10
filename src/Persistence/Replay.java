@@ -1,8 +1,6 @@
 package Persistence;
 
 import Application.Main;
-import Maze.BlueEnemy;
-import Maze.Enemy;
 import Maze.LevelBoard;
 import Maze.Player;
 import Render.InfoPanel;
@@ -53,6 +51,8 @@ public class Replay {
         infoPanel.redraw();
 
         tickToMovesMap = LoadJSON.loadMoves(selectedReplay);
+        infoPanel.getMainFrame().getBoardPanel().redraw();
+        infoPanel.getMainFrame().getBoardPanel().updateBoard();
     }
 
     public HashMap<Long, ArrayList<String>> getTickToMovesMap() {

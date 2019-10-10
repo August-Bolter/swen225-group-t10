@@ -76,7 +76,7 @@ public class Main {
 
     private void setup() {
         initialiseMaps();
-        levelBoard = LoadJSON.loadLevelFromJSON(level);
+        levelBoard = LoadJSON.loadLevelFromJSON(level, null);
         levelBoard.setMain(this);
         player = levelBoard.getPlayer();
         player.setCurrentPos();
@@ -135,7 +135,7 @@ public class Main {
     /**
      * Keeps track of the time left and is used to control enemies
      */
-    public void timer(int seconds){
+    public void timer(){
         frameRate = 1;
         replaySpeed = 1;
         boolean firstTime = true;
@@ -151,7 +151,7 @@ public class Main {
         totalStepTime = 0;
         lastDiff = 0;
         long diff = 0;
-        while (seconds > 0) {
+        while (timeRemaining > 0) {
             if (replayMode & firstTime) {
                 startReplayTime = System.nanoTime();
                 firstTime = false;
@@ -187,19 +187,14 @@ public class Main {
 
             if (now - lastTick > (1000000000/replaySpeed)/frameRate) {
                 frame.getInfoPanel().decrementTimeRemaining();
-                //frame.getInfoPanel().updateIntegers();
-                //System.out.println("tick " + seconds);
 
-                for (Enemy e : enemies){
-                    if (e instanceof BlueEnemy){
-                        ((BlueEnemy) e).moveEnemy();
-                    }
-
-                    timeRemaining--;
-                    levelBoard.updateFields();
+                for (int i = 0; i < enemies.size(); i++){
+                    enemies.get(i).onTick();
                 }
-                frame.redraw();
+                timeRemaining--;
+                levelBoard.updateFields();
             }
+            frame.redraw();
         }
 
         frame.displayInfo("Out of time");
@@ -274,7 +269,7 @@ public class Main {
 
     public void restartLevel() {
         System.out.println("RESTART CALLED");
-        levelBoard = LoadJSON.loadLevelFromJSON(level);
+        levelBoard = LoadJSON.loadLevelFromJSON(level, null);
         levelBoard.setMain(this);
         player = levelBoard.getPlayer();
         player.setCurrentPos();

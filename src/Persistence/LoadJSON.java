@@ -13,6 +13,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
@@ -46,14 +47,19 @@ public class LoadJSON {
         try {
             // Open the JSON file
             BufferedReader in;
-            if (level > 0) {
-                if (level == 1)
-                    in = new BufferedReader(new FileReader("levels/Level-" + level + ".json"));
-                else {
-                    in = new BufferedReader(new FileReader("src/Utility/Level-" + level + "/Level-" + level + ".json"));
+            if (selectedReplay == null) {
+                if (level > 0) {
+                    if (level == 1)
+                        in = new BufferedReader(new FileReader("levels/Level-" + level + ".json"));
+                    else {
+                        in = new BufferedReader(new FileReader("src/Utility/Level-" + level + "/Level-" + level + ".json"));
+                    }
+                } else {
+                    in = new BufferedReader(new FileReader("src/Utility/save.json"));
                 }
-            } else {
-                in = new BufferedReader(new FileReader("src/Utility/save.json"));
+            }
+            else {
+                in = new BufferedReader(new FileReader(selectedReplay));
             }
             JsonReader reader = Json.createReader(in);
 
@@ -151,6 +157,50 @@ public class LoadJSON {
         return items;
     }
 
+    private static void readFilesInZip(int level) {
+        try {
+            ZipFile zipFile = new ZipFile("levels/Level-" + level + ".zip");
+            Enumeration<? extends ZipEntry> entries = zipFile.entries();
+            new File("src/Utility/Level-"+level).mkdirs();
+            new File("src/Utility/Level-" + level + "/Resources").mkdirs();
+            new File("src/Utility/Level-" + level + "/Classes").mkdirs();
+
+            while(entries.hasMoreElements()){
+                ZipEntry entry = entries.nextElement();
+                InputStream stream = zipFile.getInputStream(entry);
+                if (entry.getName().endsWith(".png")) {
+                    Files.copy(stream, Paths.get("src/Utility/Level-" + level + "/Resources/" + entry.getName().split("/")[1]), StandardCopyOption.REPLACE_EXISTING);
+                } else if (entry.getName().endsWith(".class")){
+                    Files.copy(stream, Paths.get("src/Utility/Level-" + level + "/Classes/" + entry.getName().split("/")[1]), StandardCopyOption.REPLACE_EXISTING);
+                } else {
+                    System.out.println(entry.getName());
+                    Files.copy(stream, Paths.get("src/Utility/Level-" + level + "/" + entry.getName().split("/")[1]), StandardCopyOption.REPLACE_EXISTING);
+                }
+                stream.close();
+            }
+
+            zipFile.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static Class loadClassFromZip(String className, int level) {
+        try {
+            // Load the class file from the new folder
+            URL classURL = new File("src/Utility/Level-" + level + "/Classes").toURI().toURL();
+            URL[] classURLs = {classURL};
+            URLClassLoader classLoader = new URLClassLoader(classURLs);
+            Class clazz = classLoader.loadClass(className);
+
+            return clazz;
+
+        } catch (IOException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+
+        throw new Error("Couldn't load class " + className);
+    }
 
     private static Item createItem(String itemClassName, int row, int col, String extra, int level) {
         Item item = null;
