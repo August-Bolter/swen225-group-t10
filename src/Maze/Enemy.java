@@ -22,7 +22,7 @@ public class Enemy extends Item {
      * @param direction enemy is travelling in
      */
     public Enemy(int row, int col, String direction){
-        super(row, col);
+        super(row, col, direction);
         this.row = row;
         this.col = col;
         this.direction = LevelBoard.Direction.DOWN;

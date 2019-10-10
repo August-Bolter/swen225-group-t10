@@ -27,7 +27,8 @@ public class RedEnemy extends Enemy {
      * @return a new fireball that has been shot
      */
     public Fireblast shoot(){
-        Fireblast fb = new Fireblast(getRow(), getCol(), direction.toString(), main);
+        Fireblast fb = new Fireblast(getRow(), getCol(), direction.toString());
+        fb.setMain(main);
         fb.setCurrentPos(main.getLevelBoard().getBoard()[getRow()][getCol()]);
         fb.moveBlast();
         return fb;

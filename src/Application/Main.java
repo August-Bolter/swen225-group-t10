@@ -139,6 +139,7 @@ public class Main{
 
         //setting up enemies
         enemies = levelBoard.getEnemies();
+        System.out.println("enemies no. : " + enemies.size());
         for (Enemy e : enemies){
             e.setCurrentPos();
         }
@@ -211,6 +212,7 @@ public class Main{
                 if (tick % frameRate == 0) {
                     frame.getInfoPanel().decrementTimeRemaining();
                     for (Fireblast fb : fireblasts) {
+
                         fb.moveBlast();
                     }
 
@@ -233,7 +235,7 @@ public class Main{
         }
 
         frame.displayInfo("Out of time");
-        restartLevel(Optional.empty());
+        reloadLevel();
     }
 
     /**
