@@ -14,10 +14,6 @@ import java.util.Set;
 public class TitleFrame extends JFrame implements MouseListener {
 
     private static Main game;
-    private BoardPanel boardpanel;
-    private InfoPanel infoPanel;
-    private Set<Integer> pressedKeys;
-    private JMenuItem quit;
     private JLabel background;
     private LevelBoard level;
     private int row = 1;
