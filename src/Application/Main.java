@@ -30,7 +30,7 @@ public class Main {
     private Random generator = new Random();
     private long seed;
 
-    private int level = 3;
+    private int level = 1;
 
     //for making the board
     private Player player;
@@ -124,7 +124,6 @@ public class Main {
         seed = System.currentTimeMillis();
         generator.setSeed(seed);
     }
-
 
 
     /**
@@ -227,6 +226,18 @@ public class Main {
         generator.setSeed(seed);
     }
 
+    /**
+     * Moves to the next level when a level is completed
+     */
+    public void nextLevel() {
+        if (level ==1) {
+            level = 2;
+            restartLevel();
+        } else {
+            System.out.println("CREDITS SCREEN");
+        }
+    }
+
     //start of getter and setters
 
     /**
@@ -286,6 +297,13 @@ public class Main {
     }
 
     /**
+     * @return the current level
+     */
+    public int getLevel() {
+        return level;
+    }
+
+    /**
      * Setter method: changes by decrementing the total number of chips left
      */
     public void decrementChipsRemaining(){
@@ -296,7 +314,7 @@ public class Main {
 
     /**
      * Main method
-     * @param args
+     * @param args none
      */
     public static void main(String[] args) {
         Main game = new Main();

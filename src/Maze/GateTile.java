@@ -25,7 +25,6 @@ public class GateTile extends Tile {
 
     @Override
     public void interact() {
-        //TODO: need to implement gate being able to interact with Player
         if (main.allChipsCollected()){
             setPassable(true);
         }
