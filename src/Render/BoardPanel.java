@@ -59,7 +59,7 @@ public class BoardPanel extends JPanel {
     /**
      * Goes through each tile in the array and gets the correct image for that tile.
      */
-    private void redraw() {
+    public void redraw() {
         int playerRow = player.getCurrentPos().getRow();
         int playerCol = player.getCurrentPos().getCol();
 
@@ -77,9 +77,16 @@ public class BoardPanel extends JPanel {
                 boardLabels[row][col].repaint();
                 add(boardLabels[row][col]);
             }
-
         }
         revalidate();
         repaint();
+    }
+
+    public void setPlayer(Player p) {
+        player = p;
+    }
+
+    public void setBoard(Tile[][] board) {
+        this.board = board;
     }
 }

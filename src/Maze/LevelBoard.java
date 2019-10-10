@@ -24,6 +24,7 @@ public class LevelBoard {
 	    /*** up */ UP,
 	    /*** down */ DOWN
     }
+    
     private int totalChips, timeLimit;
 
     private Main main;
@@ -185,5 +186,23 @@ public class LevelBoard {
         return enemies;
     }
 
+    /**
+     * @param dir the direction
+     * @return the inverse of that direction e.g. dir := up returns down
+     */
+    public static Direction directionInverse(Direction dir) {
+        switch(dir) {
+            case UP:
+                return Direction.DOWN;
+            case DOWN:
+                return Direction.UP;
+            case LEFT:
+                return Direction.RIGHT;
+            case RIGHT:
+                return Direction.LEFT;
+            default:
+                return null; // unreachable
+        }
+    }
 
 }

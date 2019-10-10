@@ -1,6 +1,9 @@
 package Persistence;
 
-import Maze.*;
+import Maze.Item;
+import Maze.LevelBoard;
+import Maze.Player;
+import Maze.Tile;
 
 import java.io.*;
 
@@ -13,10 +16,10 @@ public class SaveJSON {
      * Saves the current game state to a .JSON file
      * @param levelBoard the level board to save
      */
-    public static void SaveGame(LevelBoard levelBoard) {
+    public static void SaveGame(LevelBoard levelBoard, String fileName, boolean endFile) {
         Tile[][] levelArray = levelBoard.getBoard();
-
-        File jsonFile = new File("src/Utility/save.json");
+        File jsonFile;
+        jsonFile = new File(fileName);
 
         try {
             PrintStream out = new PrintStream(jsonFile);
@@ -33,7 +36,10 @@ public class SaveJSON {
                     // Get tile descriptions
                     Tile tile = levelArray[row][col];
                     Class<?> clazz = tile.getClass();
-                    String type = clazz.getName().split("\\.")[1];
+                    String[] classComposition = clazz.getName().split("\\.");
+                    String type = (classComposition.length == 2) ? classComposition[1] : classComposition[0];
+
+
                     String extra = tile.getExtra();
 
                     // Get item description if the tile has one
@@ -49,7 +55,9 @@ public class SaveJSON {
                         for (Item itemO : tile.getItems()) {
                             if (itemO == null) continue;
                             itemObj = itemO;
-                            item = itemObj.getClass().getName().split("\\.")[1];
+
+                            String[] itemComposition = itemObj.getClass().getName().split("\\.");
+                            item = (itemComposition.length == 2) ? itemComposition[1] : itemComposition[0];
                             itemExtra = (itemObj.getExtra() == null) ? "_" : itemObj.getExtra();
                             if (itemObj instanceof Player) {
                                 itemExtra = "";
@@ -58,7 +66,9 @@ public class SaveJSON {
                                     if (player.getInventory()[i] == null) {
                                         itemExtra += "_>";
                                     } else {
-                                        itemExtra += player.getInventory()[i].getClass().getName().split("\\.")[1] + "/" + ((player.getInventory()[i].getExtra() == null) ? "_" : player.getInventory()[i].getExtra()) + ">";
+                                        String[] itemExtraComp = player.getInventory()[i].getClass().getName().split("\\.");
+                                        String itemComp = itemExtraComp.length==2 ? itemExtraComp[1] : itemExtraComp[0];
+                                        itemExtra += itemComp + "/" + ((player.getInventory()[i].getExtra() == null) ? "_" : player.getInventory()[i].getExtra()) + ">";
                                     }
                                 }
                                 itemExtra = itemExtra.substring(0, itemExtra.length() - 1);
@@ -76,14 +86,17 @@ public class SaveJSON {
 
             // Write the end of the JSON file
             builder.setLength(builder.length() - 2);
-            builder.append("\n\t]\n}");
+            if (endFile) {
+                builder.append("\n\t]\n}");
+            }
+            else {
+                builder.append("\n\t],\n");
+            }
             out.print(builder.toString());
 
             out.close();
 
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -116,5 +129,61 @@ public class SaveJSON {
         builder.append("\n\t\t},\n");
 
         return builder.toString();
+    }
+
+    public static void SaveMove(String fileName, LevelBoard.Direction direction, long time, boolean firstMove) {
+        try {
+            StringBuilder move = new StringBuilder();
+            FileWriter fileWriter = new FileWriter(fileName, true);
+            BufferedWriter out = new BufferedWriter(fileWriter);
+            if (firstMove) {
+                move.append("\t\"moves\" : [\n");
+            }
+            String type = "playerMove";
+            String directionText = "";
+            if (LevelBoard.Direction.DOWN == direction) {
+                directionText = "DOWN";
+            }
+            else if (LevelBoard.Direction.UP == direction) {
+                directionText = "UP";
+            }
+            else if (LevelBoard.Direction.RIGHT == direction) {
+                directionText = "RIGHT";
+            }
+            else {
+                directionText = "LEFT";
+            }
+            if (!firstMove) {
+                move.append(",\n");
+            }
+            move.append("\t\t{\n\t\t\t\"type\" : \""+ type +"\",\n" +
+                    "\t\t\t\"direction\" : \"" + directionText + "\",\n" +
+                    "\t\t\t\"time\" : " + time);
+
+            move.append("\n\t\t}");
+            out.append(move.toString());
+            out.close();
+            fileWriter.close();
+        }
+
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void endRecord(String fileName) {
+        try {
+            StringBuilder move = new StringBuilder();
+            FileWriter fileWriter = new FileWriter(fileName, true);
+            BufferedWriter out = new BufferedWriter(fileWriter);
+            move.append("\n\t]\n}");
+            out.append(move.toString());
+            out.close();
+            fileWriter.close();
+        }
+
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
