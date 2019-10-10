@@ -51,6 +51,7 @@ public class Main{
     private MainFrame frame;
     private List<Enemy> enemies;
     private List<Fireblast> fireblasts = new ArrayList<>();
+    private boolean waitForRestart = false;
 
     /**
      * Map from a String of class name to a BufferedImage containing the image associated to that class.
@@ -201,6 +202,10 @@ public class Main{
         while (timeRemaining > 0) {
             long now = System.nanoTime();
             if (frameRate > 0 && now - lastTick > 1000000000 / frameRate) {
+                if (waitForRestart) {
+                    reloadLevel();
+                }
+
                 lastTick = now;
                 tick++;
                 if (tick % frameRate == 0) {
@@ -232,18 +237,10 @@ public class Main{
     }
 
     /**
-     * Method used to restart the level. Will occur when the user pressed the restart button
+     * Reloads the current level.
+     * Used when restarting or switching levels.
      */
-    public void restartLevel(Optional<Integer> lvl) {
-        int level;
-        if (lvl.isPresent()) {
-            level = lvl.get();
-        } else {
-            level = this.level;
-        }
-
-        System.out.println("RESTART CALLED");
-        this.level = level;
+    public void reloadLevel() {
         levelBoard = LoadJSON.loadLevelFromJSON(level);
         levelBoard.setMain(this);
         player = levelBoard.getPlayer();
@@ -259,6 +256,25 @@ public class Main{
 
         seed = System.currentTimeMillis();
         generator.setSeed(seed);
+        waitForRestart = false;
+    }
+
+    /**
+     * Method used to restart the level. Will occur when the user pressed the restart button
+     */
+    public void restartLevel(Optional<Integer> lvl) {
+        int level;
+        if (lvl.isPresent()) {
+            level = lvl.get();
+        } else {
+            level = this.level;
+        }
+
+        System.out.println("RESTART CALLED");
+        this.level = level;
+
+        waitForRestart = true;
+
     }
 
     /**
@@ -386,9 +402,9 @@ public class Main{
      */
     public static void main(String[] args) {
         Main game = new Main();
-        game.startScreen();
+        //game.startScreen();
         // game.startScreen(g2D);
-        //game.setup();
+        game.setup();
     }
 
 
