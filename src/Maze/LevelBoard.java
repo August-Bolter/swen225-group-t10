@@ -15,8 +15,6 @@ public class LevelBoard {
     //these used to public and I changed them to private and used getter and setter methods  - is this okay?
     private final String title;
 
-
-
     /**
      * An enum for the direction actors are facing
      */
@@ -45,7 +43,6 @@ public class LevelBoard {
         this.timeLimit = timeLimit;
         this.board = board;
     }
-
 
     /**
      * Gets the tile at a given direction from a given position.
