@@ -115,13 +115,10 @@ public class Main{
      */
     public void setup(int levelX) {
         //setting up the correct level
-        System.out.println("IN HERE "+ levelX);
         initialiseMaps();
         levelBoard = LoadJSON.loadLevelFromJSON(levelX);
         System.out.println(levelBoard == null);
         levelBoard.setMain(this);
-
-        System.out.println("PAST LEVEL BOARD");
 
         //setting up players
         player = levelBoard.getPlayer();

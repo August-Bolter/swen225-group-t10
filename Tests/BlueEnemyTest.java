@@ -160,7 +160,7 @@ class BlueEnemyTest {
     void interactTest() {
         BlueEnemy b = new BlueEnemy(15, 15, "left");
         Player p = new Player(15, 15);
+        p.setCurrentPos();
         b.interact();
-
     }
 }
