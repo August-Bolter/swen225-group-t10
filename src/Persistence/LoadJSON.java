@@ -40,7 +40,7 @@ public class LoadJSON {
                 levelArray[i][j] = new FreeTile(i,j);
 
         // Read the zip file
-        if (level != 1) {
+        if (level != 1 && selectedReplay == null) {
             readFilesInZip(level);
         }
 

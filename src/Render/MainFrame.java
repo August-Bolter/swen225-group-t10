@@ -2,7 +2,6 @@ package Render;
 
 import Application.Main;
 import Maze.LevelBoard;
-import Persistence.Replay;
 import Persistence.SaveJSON;
 
 import javax.swing.*;
@@ -27,26 +26,26 @@ public class MainFrame extends JFrame implements KeyListener {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         outerpanel = new JPanel();
 
-//        setMinimumSize(new Dimension(2000, 800));
-
         setContentPane(outerpanel);
         addBoardPanel();
         addInfoPanel();
-//        redraw();
+
         // Setup key listener
         addKeyListener(this);
         setFocusable(true);
         requestFocus();
 
         createMenuBar();
-//        outerpanel.setLayout(new BoxLayout(outerpanel, BoxLayout.X_AXIS));
+
         outerpanel.setLayout(new GridBagLayout());
         outerpanel.setBorder(new GameBorder(Color.BLUE));
+
         pack();
         setLocationRelativeTo(null);
         repaint();
         setResizable(false);
         setVisible(true);
+
         pressedKeys = new HashSet<>();
     }
 
@@ -67,7 +66,7 @@ public class MainFrame extends JFrame implements KeyListener {
     }
 
     private void addInfoPanel() {
-        infoPanel = new InfoPanel(game, this);
+        infoPanel = new InfoPanel(this);
         outerpanel.add(infoPanel);
     }
 
@@ -149,20 +148,16 @@ public class MainFrame extends JFrame implements KeyListener {
         }
 
         game.doMove(direction);
-//        redraw();
     }
 
     public void redraw() {
         outerpanel.remove(boardpanel);
         outerpanel.remove(infoPanel);
         boardpanel = new BoardPanel(game.getLevelBoard().getBoard(), game.getPlayer());
-        infoPanel = new InfoPanel(game, this);
+        infoPanel = new InfoPanel(this);
 
         outerpanel.add(boardpanel);
         outerpanel.add(infoPanel);
-
-//        boardpanel.redraw();
-//        infoPanel.redraw();
 
         revalidate();
         repaint();
@@ -221,13 +216,7 @@ public class MainFrame extends JFrame implements KeyListener {
         changeSpeedWindow.pack();
     }
 
-    //    /**
-//     * It will go into persistence and by getting the name of the tile.
-//     * This will get passed to the board which will store it in a map for fast recovery
-//     * @param name name of the tile you want an image for
-//     * @return Image of the tile that you need for the board
-//     */
-//    public Image getImage(String name) {
-//        return null;
-//    }
+    public Main getGame() {
+        return game;
+    }
 }

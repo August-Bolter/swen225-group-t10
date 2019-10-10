@@ -233,7 +233,6 @@ public class Main {
         }
         /* Update the board */
         frame.getBoardPanel().redraw();
-        frame.getBoardPanel().updateBoard();
         frame.getInfoPanel().redraw();
     }
 

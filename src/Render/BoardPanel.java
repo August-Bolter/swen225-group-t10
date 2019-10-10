@@ -65,19 +65,6 @@ public class BoardPanel extends JPanel {
         repaint();
     }
 
-    /**
-     * FIXME When we open a door at the same time as a pokemon moving the screen flickers
-     */
-    public void updateBoard() {
-        for (int row = 0; row < board.length; row++) {
-            for (int col = 0; col < board[0].length; col++) {
-                boardLabels[row][col] = new TilePanel(board[row][col]); // Makes the label, gives it the image for the tile
-            }
-        }
-        revalidate();
-        repaint();
-    }
-
     public void setPlayer(Player p) {
         player = p;
     }
