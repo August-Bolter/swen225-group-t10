@@ -1,14 +1,25 @@
+import Application.Main;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Method;
 
 
 public class MainTest {
+
+    /**
+     * Tests whether a board is made
+     */
+    @Test
+    public void createBoardTest(){
+   //     Main game = new Main(1);
+//        game.setup(2);
+
+    }
+
     /**
      * Tests a valid move
      * @return
      */
-
     @Test
     public void doValidMove() {
         //get class get methods
