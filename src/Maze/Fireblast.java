@@ -14,11 +14,9 @@ public class Fireblast extends RedEnemy {
      * @param row the starting row in reference to the level board
      * @param col the starting col in reference to the level board
      * @param direction the direction the Fireblast is travelling
-     * @param main the main class, i.e. the current game
      */
-    public Fireblast(int row, int col, String direction, Main main) {
+    public Fireblast(int row, int col, String direction) {
         super(row, col, direction);
-        this.main = main;
     }
 
     /**
@@ -41,7 +39,11 @@ public class Fireblast extends RedEnemy {
      * When this occurs, the game starts again
      */
     public void interact() {
-        main.getFrame().displayInfo("Watch out for Fire Blasts!");
-        main.restartLevel(Optional.empty());
+        super.main.getFrame().displayInfo("Watch out for Fire Blasts!");
+        super.main.restartLevel(Optional.empty());
+    }
+
+    public void setMain(Main main) {
+        this.main = main;
     }
 }
