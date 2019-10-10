@@ -4,7 +4,6 @@ import Maze.*;
 import Persistence.LoadJSON;
 import Render.MainFrame;
 import Render.TitleFrame;
-import jdk.swing.interop.SwingInterOpUtils;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -135,11 +134,8 @@ public class Main{
 
         //setting up enemies
         enemies = levelBoard.getEnemies();
-<<<<<<< HEAD
         System.out.println("PAST BEFORE ENEMY LOOP");
-=======
         System.out.println("enemies no. : " + enemies.size());
->>>>>>> origin/minor
         for (Enemy e : enemies){
             e.setCurrentPos();
             System.out.println("IN THE ENEMY LOOP");
