@@ -52,6 +52,7 @@ public class Main{
     private List<Enemy> enemies;
     private List<Fireblast> fireblasts = new ArrayList<>();
     private boolean waitForRestart = false;
+    private boolean isPaused;
 
     /**
      * Map from a String of class name to a BufferedImage containing the image associated to that class.
@@ -201,36 +202,38 @@ public class Main{
         int tick = 0;
         int frameRate = 6;
         while (timeRemaining > 0) {
-            long now = System.nanoTime();
-            if (frameRate > 0 && now - lastTick > 1000000000 / frameRate) {
-                if (waitForRestart) {
-                    reloadLevel();
-                }
-
-                lastTick = now;
-                tick++;
-                if (tick % frameRate == 0) {
-                    frame.getInfoPanel().decrementTimeRemaining();
-                    for (Fireblast fb : fireblasts) {
-
-                        fb.moveBlast();
+            if (!isPaused) {
+                long now = System.nanoTime();
+                if (frameRate > 0 && now - lastTick > 1000000000 / frameRate) {
+                    if (waitForRestart) {
+                        reloadLevel();
                     }
 
-                    for (Enemy e : enemies) {
-                        if (e instanceof BlueEnemy) {
-                            ((BlueEnemy) e).moveEnemy();
+                    lastTick = now;
+                    tick++;
+                    if (tick % frameRate == 0) {
+                        frame.getInfoPanel().decrementTimeRemaining();
+                        for (Fireblast fb : fireblasts) {
+
+                            fb.moveBlast();
                         }
-                        if (timeRemaining % 3 == 0) {
-                            if (e instanceof RedEnemy) {
-                                fireblasts.add(((RedEnemy) e).shoot());
+
+                        for (Enemy e : enemies) {
+                            if (e instanceof BlueEnemy) {
+                                ((BlueEnemy) e).moveEnemy();
+                            }
+                            if (timeRemaining % 3 == 0) {
+                                if (e instanceof RedEnemy) {
+                                    fireblasts.add(((RedEnemy) e).shoot());
+                                }
                             }
                         }
-                    }
 
-                    timeRemaining--;
-                    levelBoard.updateFields();
+                        timeRemaining--;
+                        levelBoard.updateFields();
+                    }
+                    frame.redraw();
                 }
-                frame.redraw();
             }
         }
 
@@ -355,6 +358,20 @@ public class Main{
      */
     public int getLevel() {
         return level;
+    }
+
+    /**
+     * Pauses the game
+     */
+    public void setPaused() {
+        this.isPaused = true;
+    }
+
+    /**
+     * Resumes the game
+     */
+    public void resume() {
+        this.isPaused = false;
     }
 
     /**
