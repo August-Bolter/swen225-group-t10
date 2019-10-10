@@ -11,22 +11,18 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Set;
 
-public class TitleFrame extends JFrame implements KeyListener, MouseListener {
+public class TitleFrame extends JFrame implements MouseListener {
 
-    private Main game;
-    private BoardPanel boardpanel;
-    private InfoPanel infoPanel;
-    private Set<Integer> pressedKeys;
-    private JMenuItem quit;
+    private static Main game;
     private JLabel background;
     private LevelBoard level;
     private int row = 1;
 
-    public TitleFrame(Main game){
+    public TitleFrame(Main game) {
         this.game = game;
-       // setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); // Makes the program have exit dialogue instead
-        addKeyListener(this);
+        // setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); // Makes the program have exit dialogue instead
         addMouseListener(this);
+        setResizable(false);
 
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -41,60 +37,6 @@ public class TitleFrame extends JFrame implements KeyListener, MouseListener {
 
         setVisible(true);
 
-    }
-
-    /**
-     * Invoked when a key has been typed.
-     * See the class description for {@link KeyEvent} for a definition of
-     * a key typed event.
-     *
-     * @param e the event to be processed
-     */
-    @Override
-    public void keyTyped(KeyEvent e) {
-        //leave empty
-    }
-
-    /**
-     * Invoked when a key has been pressed.
-     * See the class description for {@link KeyEvent} for a definition of
-     * a key pressed event.
-     *
-     * @param e the event to be processed
-     */
-    @Override
-    public void keyPressed(KeyEvent e) {
-        int keyCode = e.getKeyCode();
-        switch (keyCode){
-            case KeyEvent.VK_UP:
-                System.out.println("up");
-                if(!(row <= 1)){
-                    row--;
-                }
-                System.out.println("Row Num:   " + row );
-                break;
-            case KeyEvent.VK_DOWN:
-                System.out.println("down");
-                if(!(row >= 3)){
-                    row++;
-                }
-                System.out.println("Row Num:   " + row );
-                break;
-            case KeyEvent.VK_ENTER:
-                System.out.println("PRESSED ENTER");
-        }
-    }
-
-    /**
-     * Invoked when a key has been released.
-     * See the class description for {@link KeyEvent} for a definition of
-     * a key released event.
-     *
-     * @param e the event to be processed
-     */
-    @Override
-    public void keyReleased(KeyEvent e) {
-    //leave empty
     }
 
     /**
@@ -132,33 +74,17 @@ public class TitleFrame extends JFrame implements KeyListener, MouseListener {
 
     }
 
-    /**
-     * Invoked when a mouse button has been released on a component.
-     *
-     * @param e the event to be processed
-     */
+
     @Override
-    public void mouseReleased(MouseEvent e) {
+    public void mouseReleased(MouseEvent e) {}
 
-    }
-
-    /**
-     * Invoked when the mouse enters a component.
-     *
-     * @param e the event to be processed
-     */
     @Override
-    public void mouseEntered(MouseEvent e) {
+    public void mouseEntered(MouseEvent e) {}
 
-    }
-
-    /**
-     * Invoked when the mouse exits a component.
-     *
-     * @param e the event to be processed
-     */
     @Override
-    public void mouseExited(MouseEvent e) {
+    public void mouseExited(MouseEvent e) {}
 
+    public static void main(String[] args) {
+        new TitleFrame(game);
     }
 }
