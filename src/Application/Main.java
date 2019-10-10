@@ -51,6 +51,7 @@ public class Main{
     private MainFrame frame;
     private List<Enemy> enemies;
     private List<Fireblast> fireblasts = new ArrayList<>();
+    private boolean waitForRestart = false;
 
     /**
      * Map from a String of class name to a BufferedImage containing the image associated to that class.
@@ -201,6 +202,10 @@ public class Main{
         while (timeRemaining > 0) {
             long now = System.nanoTime();
             if (frameRate > 0 && now - lastTick > 1000000000 / frameRate) {
+                if (waitForRestart) {
+                    reloadLevel();
+                }
+
                 lastTick = now;
                 tick++;
                 if (tick % frameRate == 0) {
@@ -232,6 +237,30 @@ public class Main{
     }
 
     /**
+     * Reloads the current level.
+     * Used when restarting or switching levels.
+     */
+    public void reloadLevel() {
+        levelBoard = LoadJSON.loadLevelFromJSON(level);
+        levelBoard.setMain(this);
+        player = levelBoard.getPlayer();
+        player.setCurrentPos();
+        enemies = levelBoard.getEnemies();
+        fireblasts.clear();
+        for (Enemy e : enemies){
+            e.setCurrentPos();
+        }
+
+        frame.redraw();
+        chipsRemaining = levelBoard.getTotalChips();
+        timeRemaining = levelBoard.getTimeLimit();
+
+        seed = System.currentTimeMillis();
+        generator.setSeed(seed);
+        waitForRestart = false;
+    }
+
+    /**
      * Method used to restart the level. Will occur when the user pressed the restart button
      */
     public void restartLevel(Optional<Integer> lvl) {
@@ -244,21 +273,9 @@ public class Main{
 
         System.out.println("RESTART CALLED");
         this.level = level;
-        levelBoard = LoadJSON.loadLevelFromJSON(level);
-        levelBoard.setMain(this);
-        player = levelBoard.getPlayer();
-        player.setCurrentPos();
-        enemies = levelBoard.getEnemies();
-        for (Enemy e : enemies){
-            e.setCurrentPos();
-        }
 
-        frame.redraw();
-        chipsRemaining = levelBoard.getTotalChips();
-        timeRemaining = levelBoard.getTimeLimit();
+        waitForRestart = true;
 
-        seed = System.currentTimeMillis();
-        generator.setSeed(seed);
     }
 
     /**
@@ -347,7 +364,38 @@ public class Main{
         }
     }
 
+//    public void startScreen(Graphics g){
+//        JFrame f = new JFrame();
+//
+//
+//        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        JLabel background = new JLabel(new ImageIcon("Resources/levels/startscreen.jpg"));
+//        f.setContentPane(background);
+//        background.setLayout(new FlowLayout());
+//        f.pack();
+//       // f.addKeyListener();
+//        f.setVisible(true);
+//    }
 
+    public void startScreen(){
+        titleFrame = new TitleFrame(this);
+    }
+
+
+//
+//    public void drawStartScreen(Graphics2D g){
+//        int row = 1;
+//        try {
+//            BufferedImage startScreen = ImageIO.read(new File("levels/start-screen.jpg"));
+//            g.drawImage(startScreen, 0, 0, null);
+//            // BufferedImage selectIcon = new BufferedImage(80, 80, "yellowDoor.png");
+//       //     g.drawImage(selectIcon, 375, row*70+440, null);
+//        } catch (IOException e) {
+//            System.out.println("Not working");
+//            e.printStackTrace();
+//        }
+//
+//    }
 
     /**
      * Main method
@@ -355,6 +403,8 @@ public class Main{
      */
     public static void main(String[] args) {
         Main game = new Main();
+        //game.startScreen();
+        // game.startScreen(g2D);
         game.setup();
     }
 
