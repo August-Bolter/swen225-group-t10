@@ -264,7 +264,7 @@
 			"type" : "InfoTile",
 			"row" : 13,
 			"col" : 14,
-			"extra" : "Hint: You need special boots to walk on lava"
+			"extra" : "Collect all chips within the time limit."
 		},
 		{
 			"type" : "FreeTile",

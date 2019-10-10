@@ -8,15 +8,29 @@ import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import java.awt.*;
 
+/**
+ * The panel that draws the game
+ */
 public class BoardPanel extends JPanel {
-    public Tile[][] board;
-    public TilePanel[][] boardLabels;
+    /*** The board. */
+    public final Tile[][] board;
+    /*** The board labels. */
+    public final TilePanel[][] boardLabels;
+    /*** Display size. */
     public static final int DISPLAY_SIZE = 9;
-    public Player player;
+    /*** The player. */
+    public final Player player;
+    /*** The max coordinate i.e. width/height. */
     public final static int MAX = 32;
+    /*** The min coordinate. */
     public final static int MIN = 0;
 
 
+    /**
+     * Creates a new board panel
+     * @param board the board to draw
+     * @param player the player
+     */
     public BoardPanel(Tile[][] board, Player player) {
         this.board = board;
         this.player = player;
@@ -34,13 +48,16 @@ public class BoardPanel extends JPanel {
 
     }
 
+    /**
+     * Creates a new border.
+     */
     public void createBorder() {
         Border blackline = BorderFactory.createEtchedBorder(EtchedBorder.RAISED);
         setBorder(blackline);
     }
 
     /**
-     * Goes through each tile in the array and gets the correct image for that tile
+     * Goes through each tile in the array and gets the correct image for that tile.
      */
     private void redraw() {
         int playerRow = player.getCurrentPos().getRow();
@@ -65,20 +82,4 @@ public class BoardPanel extends JPanel {
         revalidate();
         repaint();
     }
-
-    /**
-     * FIXME When we open a door at the same time as a pokemon moving the screen flickers
-     */
-//    public void updateBoard(Tile tile) {
-//        for (int row = 0; row < board.length; row++) {
-//            for (int col = 0; col < board[0].length; col++) {
-////                boardLabels[row][col] = new TilePanel(board[row][col]); // Makes the label, gives it the image for the tile
-//                if (boardLabels[row][col].getTile() == tile) {
-//                    boardLabels[row][col] = new TilePanel(board[row][col]); // Makes the label, gives it the image for the tile
-//                }
-//            }
-//        }
-//
-//        redraw();
-//    }
 }

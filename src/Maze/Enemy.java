@@ -29,20 +29,9 @@ public class Enemy extends Item {
         this.setPriority(5);
     }
 
-    /**
-     * Method used to 'interact' (when the player steps on a square the enemy is on)
-     * Note: the level will restart if this occurs
-     */
+
     @Override
-    public void interact() {
-//        //Kill player, game over
-//        if (this instanceof RedEnemy || this instanceof BlueEnemy) {
-//            main.getFrame().displayInfo("Game over you lil bitch ass");
-//        } else if (this instanceof GreenEnemy){
-//            getTile().removeItem(this);
-//            doMove(main.getLevelBoard().getTileAtPosition(currentPos, main.getPlayer().getDirection()));
-//        }
-    }
+    public void interact() {}
 
     /**
      * Makes the enemy move from one tile to another tile
@@ -66,8 +55,6 @@ public class Enemy extends Item {
                 return img;
             }
         }
-
-
 
         String path = "Resources/enemy/"+itemName+dir+".png";
 
@@ -116,14 +103,20 @@ public class Enemy extends Item {
     }
 
     /**
-     * Setter method: sets the row of the enemy
-     * In one sense: updates the current position to the position the enemy has moved onto
+     * Setter method: sets the row of the enemy.
+     * In one sense: updates the current position to the position the enemy has moved onto.
+     * @param currentPos the tile to set the current position to
      */
     public void setCurrentPos(Tile currentPos) {
         this.currentPos = currentPos;
     }
 
 
+    /**
+     * Setter method called at the start of the game.
+     * Sets the current tile field to the tile the Enemy is currently on.
+     * Needed as the Tile may not have been created when this item is initialised.
+     */
     public void setCurrentPos() {
         this.currentPos = main.getLevelBoard().getBoard()[row][col];
     }
@@ -137,8 +130,4 @@ public class Enemy extends Item {
     public void setCol(int col) {
         this.col = col;
     }
-
-    //straight = move in direction currently facing
-    //always move straight
-    //if you cannot move straight, then turn clockwise
 }

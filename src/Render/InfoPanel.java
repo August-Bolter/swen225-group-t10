@@ -9,6 +9,9 @@ import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import java.awt.*;
 
+/**
+ * Panel that display information about the game such as time left or chips left
+ */
 public class InfoPanel extends JPanel {
     Main game;
 
@@ -28,6 +31,7 @@ public class InfoPanel extends JPanel {
      * Chips left
      * Inventory (an array with 8 pos) so it'll be 8 labels that can have
      * an image drawn over them
+     * @param game the game whose info to display
      */
     public InfoPanel(Main game) {
         this.game = game;
@@ -48,6 +52,9 @@ public class InfoPanel extends JPanel {
         redraw();
     }
 
+    /**
+     * Creates a border
+     */
     public void createBorder() {
         Border blackline = BorderFactory.createEtchedBorder(EtchedBorder.RAISED);
         setBorder(blackline);
@@ -68,10 +75,9 @@ public class InfoPanel extends JPanel {
     }
 
     /**
-     * Only redraws the inventory
+     * Redraws the inventory
      */
     private void redraw() {
-//        removeAll();
         inventoryPanel.removeAll();
         for (int i = 0; i < inventory.length; i++) {
             int row = i / 4 >= 1 ? 1 : 0;

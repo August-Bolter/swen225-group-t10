@@ -15,6 +15,9 @@ import java.util.List;
 /** An abstract class representing a tile in the game. This abstract class is extended by concrete classes like DoorTile,
  * ExitTile etc. The board is made up of tiles (with items on some of the tiles). */
 public abstract class Tile {
+    /**
+     *  The path to Tile images
+     */
     public static final String PATH = "Resources/floor/";
     private int row;
     private int col;
@@ -31,6 +34,12 @@ public abstract class Tile {
         this.items = new ArrayList<>();
     }
 
+    /**
+     * Creates a new tile
+     * @param row the row in reference to the level board
+     * @param col the col in reference to the level board
+     * @param extra any extra descriptions
+     */
     public Tile(int row, int col, String extra) {
         this.row = row;
         this.col = col;
@@ -38,12 +47,16 @@ public abstract class Tile {
         this.items = new ArrayList<>();
     }
 
-    /** Gets the row of the tile */
+    /** Gets the row of the tile
+     * @return the row
+     */
     public int getRow() {
         return row;
     }
 
-    /** Gets the column of the tile */
+    /** Gets the column of the tile
+     * @return the col
+     */
     public int getCol() {
         return col;
     }
@@ -88,6 +101,7 @@ public abstract class Tile {
 
     /**
      * Paints the item in the tile on top of each tile.
+     * @return the image associated to the tile
      */
     public Image getImage() {
         String tileName = getClass().getName().substring(5);
@@ -106,6 +120,9 @@ public abstract class Tile {
         }
     }
 
+    /**
+     * @return true if the tile has the player on it, false otherwise
+     */
     public boolean hasPlayer(){
         for (Item i : items){
             if (i instanceof Player){
@@ -138,10 +155,17 @@ public abstract class Tile {
      */
     public abstract void interact();
 
+    /**
+     * @return true if the tile has at least one item
+     */
     public boolean hasItem() {
         return !items.isEmpty();
     }
 
+    /**
+     * Sets the main class
+     * @param main the class to set
+     */
     public void setMain(Main main) {
         this.main = main;
     }

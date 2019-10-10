@@ -5,10 +5,17 @@ import Maze.*;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * A panel representing an individual tile.
+ */
 public class TilePanel extends JPanel {
     private Tile tile;
     private JLabel image;
 
+    /**
+     * Creates a new tile panel.
+     * @param tile The title of the panel.
+     */
     public TilePanel(Tile tile) {
         setLayout(new GridLayout(1,1));
         this.tile = tile;
@@ -19,10 +26,9 @@ public class TilePanel extends JPanel {
         setVisible(true);
     }
 
-    public void redraw(int row, int col) {
-
-    }
-
+    /**
+     * @return the tile the panel is drawing
+     */
     public Tile getTile() {
         return tile;
     }
@@ -33,7 +39,6 @@ public class TilePanel extends JPanel {
         g.drawImage(tile.getImage(),0, 0, this);
         if (tile.hasItem()) {
             for (Item i : tile.getItems()) {
-//            if (tile.getItems().get(0) == null) throw new RuntimeException("WRONG ITEM!!");
                 if (i != null) {
                     g.drawImage(i.getImage(), 0, 0, this);
                 }

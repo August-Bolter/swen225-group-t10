@@ -1,5 +1,7 @@
 package Maze;
 
+import java.util.Optional;
+
 /**
  * Class for blueEnemy - this is a type of enemy that moves and the player must avoid.
  * It can't be 'defeated'
@@ -58,7 +60,7 @@ public class BlueEnemy extends Enemy {
      */
     public void interact() {
         main.getFrame().displayInfo("Watch out for moving Blastoise!");
-        main.restartLevel();
+        main.restartLevel(Optional.empty());
     }
 
     /**

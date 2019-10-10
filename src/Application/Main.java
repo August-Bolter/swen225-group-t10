@@ -43,7 +43,7 @@ public class Main{
     private Random generator = new Random();
     private long seed;
 
-    private int level = 3;
+    private int level = 1;
 
     //for making the board
     private Player player;
@@ -52,8 +52,15 @@ public class Main{
     private List<Enemy> enemies;
     private List<Fireblast> fireblasts = new ArrayList<>();
 
-    //for images
+    /**
+     * Map from a String of class name to a BufferedImage containing the image associated to that class.
+     * This map is used for Tile objects.
+     */
     public final Map<String, BufferedImage> tileImages = new HashMap<>();
+    /**
+     * Map from a String of class name to a BufferedImage containing the image associated to that class.
+     * This map is used for Item objects.
+     */
     public final Map<String, BufferedImage> itemImages = new HashMap<>();
 
     //START OF JUSTINA'S STUFF
@@ -146,7 +153,6 @@ public class Main{
     }
 
 
-
     /**
      * Method that is called when you want to move in a direction
      * @param direction
@@ -222,14 +228,22 @@ public class Main{
         }
 
         frame.displayInfo("Out of time");
-        restartLevel();
+        restartLevel(Optional.empty());
     }
 
     /**
      * Method used to restart the level. Will occur when the user pressed the restart button
      */
-    public void restartLevel() {
+    public void restartLevel(Optional<Integer> lvl) {
+        int level;
+        if (lvl.isPresent()) {
+            level = lvl.get();
+        } else {
+            level = this.level;
+        }
+
         System.out.println("RESTART CALLED");
+        this.level = level;
         levelBoard = LoadJSON.loadLevelFromJSON(level);
         levelBoard.setMain(this);
         player = levelBoard.getPlayer();
@@ -247,6 +261,18 @@ public class Main{
         generator.setSeed(seed);
     }
 
+    /**
+     * Moves to the next level when a level is completed
+     */
+    public void nextLevel() {
+        if (level ==1) {
+            level = 2;
+            restartLevel(Optional.empty());
+        } else {
+            System.out.println("CREDITS SCREEN");
+        }
+    }
+
     //start of getter and setters
 
     /**
@@ -258,8 +284,8 @@ public class Main{
     }
 
     /**
-     * Getter method: fetches the current levelboard
-     * @return levelboard we are on
+     * Getter method: fetches the current level board
+     * @return level board we are on
      */
     public LevelBoard getLevelBoard() {
         return levelBoard;
@@ -267,7 +293,7 @@ public class Main{
 
     /**
      * Getter method: fetches the remaining chips
-     * @return total number of chipsremaining
+     * @return total number of chips remaining
      */
     public int getChipsRemaining() {
         return chipsRemaining;
@@ -303,6 +329,13 @@ public class Main{
      */
     public Player getPlayer() {
         return player;
+    }
+
+    /**
+     * @return the current level
+     */
+    public int getLevel() {
+        return level;
     }
 
     /**
@@ -349,7 +382,7 @@ public class Main{
 
     /**
      * Main method
-     * @param args
+     * @param args none
      */
     public static void main(String[] args) {
         Main game = new Main();

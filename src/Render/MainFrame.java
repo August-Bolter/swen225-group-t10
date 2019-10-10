@@ -10,6 +10,9 @@ import java.awt.event.*;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * The main frame that contains other panels.
+ */
 public class MainFrame extends JFrame implements KeyListener, WindowListener, ActionListener {
     private Main game;
     private JPanel outerpanel;
@@ -20,6 +23,10 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
 
     private JMenuItem quit;
 
+    /**
+     * Creates a new main frame.
+     * @param game the game to represent
+     */
     public MainFrame(Main game){
         super("Chip's Challenge");
         this.game = game;
@@ -62,8 +69,6 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
         JMenuItem settingsMenu = new JMenuItem("Settings");
 
         menu.add(gameMenu);
-//        menu.add(settingsMenu);
-
         gameMenu.add(settingsMenu);
         gameMenu.add(restart);
         gameMenu.add(quit);
@@ -156,9 +161,11 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
         }
 
         game.doMove(direction);
-//        redraw();
     }
 
+    /**
+     * Redraws the main frame.
+     */
     public void redraw() {
         outerpanel.remove(boardpanel);
         outerpanel.remove(infoPanel);
@@ -167,9 +174,6 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
 
         outerpanel.add(boardpanel);
         outerpanel.add(infoPanel);
-
-//        boardpanel.redraw();
-//        infoPanel.redraw();
 
         revalidate();
         repaint();
@@ -202,10 +206,16 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
         return infoPanel;
     }
 
+    /**
+     * Saves the game.
+     */
     public void save() {
         SaveJSON.SaveGame(game.getLevelBoard());
     }
 
+    /**
+     * Quits the game.
+     */
     public void quit() {
         int confirmed = JOptionPane.showConfirmDialog(null, "Exit Program?","EXIT",JOptionPane.YES_NO_OPTION);
         if(confirmed == JOptionPane.YES_OPTION) {
@@ -213,22 +223,30 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
         }
     }
 
+    /**
+     * Resume the game.
+     */
     public void resume() {
         System.out.println("Resume");
     }
 
+    /**
+     * Resume a given level
+     * @param level the number of the level to restart
+     */
     public void restart(int level) {
         System.out.println("CTRL "+ level);
     }
 
+    /**
+     * Pauses the game.
+     */
     public void pause() {
         System.out.println("PAUSE");
     }
 
     @Override
-    public void windowOpened(WindowEvent e) {
-
-    }
+    public void windowOpened(WindowEvent e) {}
 
     @Override
     public void windowClosing(WindowEvent e) {
@@ -236,29 +254,19 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
     }
 
     @Override
-    public void windowClosed(WindowEvent e) {
-
-    }
+    public void windowClosed(WindowEvent e) {}
 
     @Override
-    public void windowIconified(WindowEvent e) {
-
-    }
+    public void windowIconified(WindowEvent e) {}
 
     @Override
-    public void windowDeiconified(WindowEvent e) {
-
-    }
+    public void windowDeiconified(WindowEvent e) {}
 
     @Override
-    public void windowActivated(WindowEvent e) {
-
-    }
+    public void windowActivated(WindowEvent e) {}
 
     @Override
-    public void windowDeactivated(WindowEvent e) {
-
-    }
+    public void windowDeactivated(WindowEvent e) {}
 
     @Override
     public void actionPerformed(ActionEvent e) {
