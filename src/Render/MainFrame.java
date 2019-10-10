@@ -19,8 +19,9 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
     private JPanel outerpanel;
     private BoardPanel boardpanel;
     private InfoPanel infoPanel;
-    private Set<Integer> pressedKeys;
 
+    private Set<Integer> pressedKeys;
+    private boolean paused = false;
 
     private JMenuItem save, level1, level2, pause, resume, quit;
 
@@ -140,6 +141,7 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
                 // Resumes the game
                 if (pressedKeys.contains(KeyEvent.VK_CONTROL)) {
                     resume();
+                    paused = false;
                 }
                 return;
             case KeyEvent.VK_P:
@@ -163,6 +165,7 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
             case KeyEvent.VK_SPACE:
                 // Pauses the game
                 pause();
+                paused = true;
                 return;
             case KeyEvent.VK_ESCAPE:
                 // Closes the pause dialog
@@ -173,7 +176,8 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
                 return;
         }
 
-        game.doMove(direction);
+        if (!paused)
+            game.doMove(direction);
     }
 
     /**
@@ -237,10 +241,10 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
     }
 
     /**
-     * Resume the game.
+     * Resumes the game.
      */
     public void resume() {
-        System.out.println("Resume");
+        game.resume();
     }
 
     /**
@@ -255,7 +259,7 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
      * Pauses the game.
      */
     public void pause() {
-        System.out.println("PAUSE");
+        game.setPaused();
     }
 
     @Override

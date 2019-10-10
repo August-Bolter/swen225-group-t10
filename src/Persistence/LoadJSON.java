@@ -66,8 +66,6 @@ public class LoadJSON {
                 if (tileObject.containsKey("item")) {
                     JsonObject itemObject = tileObject.get("item").asJsonObject();
                     String descriptor= itemObject.getString("descriptor");
-
-
                     items = createItems(descriptor, row, col);
                 }
 

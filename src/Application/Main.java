@@ -3,17 +3,12 @@ package Application;
 import Maze.*;
 import Persistence.LoadJSON;
 import Render.MainFrame;
-import Render.TitleFrame;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
-import java.util.List;
-import java.awt.Graphics2D;
-import java.util.Timer;
 
 /**
  * Main Class: This contains the methods
@@ -44,7 +39,7 @@ public class Main{
     private List<Enemy> enemies;
     private List<Fireblast> fireblasts = new ArrayList<>();
     private boolean waitForRestart = false;
-    private boolean isPaused;
+    private boolean paused;
 
     /**
      * Map from a String of class name to a BufferedImage containing the image associated to that class.
@@ -199,38 +194,36 @@ public class Main{
         int tick = 0;
         int frameRate = 6;
         while (timeRemaining > 0) {
-            if (!isPaused) {
-                long now = System.nanoTime();
-                if (frameRate > 0 && now - lastTick > 1000000000 / frameRate) {
-                    if (waitForRestart) {
-                        reloadLevel();
-                    }
-
-                    lastTick = now;
-                    tick++;
-                    if (tick % frameRate == 0) {
-                        frame.getInfoPanel().decrementTimeRemaining();
-                        for (Fireblast fb : fireblasts) {
-
-                            fb.moveBlast();
-                        }
-
-                        for (Enemy e : enemies) {
-                            if (e instanceof BlueEnemy) {
-                                ((BlueEnemy) e).moveEnemy();
-                            }
-                            if (timeRemaining % 3 == 0) {
-                                if (e instanceof RedEnemy) {
-                                    fireblasts.add(((RedEnemy) e).shoot());
-                                }
-                            }
-                        }
-
-                        timeRemaining--;
-                        levelBoard.updateFields();
-                    }
-                    frame.redraw();
+            long now = System.nanoTime();
+            if (!paused && now - lastTick > 1000000000 / frameRate) {
+                if (waitForRestart) {
+                    reloadLevel();
                 }
+
+                lastTick = now;
+                tick++;
+                if (tick % frameRate == 0) {
+                    frame.getInfoPanel().decrementTimeRemaining();
+                    for (Fireblast fb : fireblasts) {
+
+                        fb.moveBlast();
+                    }
+
+                    for (Enemy e : enemies) {
+                        if (e instanceof BlueEnemy) {
+                            ((BlueEnemy) e).moveEnemy();
+                        }
+                        if (timeRemaining % 3 == 0) {
+                            if (e instanceof RedEnemy) {
+                                fireblasts.add(((RedEnemy) e).shoot());
+                            }
+                        }
+                    }
+
+                    timeRemaining--;
+                    levelBoard.updateFields();
+                }
+                frame.redraw();
             }
         }
 
@@ -361,14 +354,14 @@ public class Main{
      * Pauses the game
      */
     public void setPaused() {
-        this.isPaused = true;
+        this.paused = true;
     }
 
     /**
      * Resumes the game
      */
     public void resume() {
-        this.isPaused = false;
+        this.paused = false;
     }
 
     /**
