@@ -136,67 +136,78 @@ public class Main {
      * Keeps track of the time left and is used to control enemies
      */
     public void timer(){
-        frameRate = 6;
-        replaySpeed = 1;
-        boolean firstTime = true;
-        boolean beenPausedPerm = false;
-        boolean beenPaused = false;
+        frameRate = 6; //Frame rate is 6, i.e. the board updates 6 times per second
+        replaySpeed = 1; //The replay speed is 1 (100%) when the replay is loaded
+        boolean firstTime = true; //A boolean that is used to get critical info only the first time the play button is pressed
+        boolean beenPausedPerm = false; //Determines if the replay has been paused at least once
+        boolean beenPaused = false; //Determines if the replay is currently paused
         long lastTick = System.nanoTime();
-        startTime = System.nanoTime();
-        executedTimes = new ArrayList<Long>();
-        long startReplayTime = 0;
-        long pauseTime = 0;
-        long unpauseTime = 0;
+        startTime = System.nanoTime(); //The start time of the game
+        executedTimes = new ArrayList<Long>(); //A list of times (of moves) that have been already executed by the replay
+        long startReplayTime = 0; //The start time that is determined when the replay is loaded
+        long pauseTime = 0; //The start time of the replay pause
+        long unpauseTime = 0; //The end time of the replay pause
         long totalPauseTime = 0;
-        totalStepTime = 0;
-        int tick = 0;
-        lastDiff = 0;
-        long diff = 0;
+        totalStepTime = 0; //The total step time (time skipped by pressing the next step button)
+        int tick = 0; //A tick is 1/6th of a second
+        lastDiff = 0; //The last diff (before the game is paused) that is calculated
+        long diff = 0; //The time that has elapsed so far for the replay
         while (timeRemaining > 0) {
-            if (replayMode & firstTime) {
+            if (replayMode & firstTime) { //If we have pressed the play button for the first time
                 startReplayTime = System.nanoTime();
                 firstTime = false;
             }
-            if (!replayMode & !firstTime & !beenPaused) {
-                beenPausedPerm = true;
+            if (!replayMode & !firstTime & !beenPaused) { //If we have pressed the stop button
+                beenPausedPerm = true; //Then the replay has been paused at least once
                 beenPaused = true;
                 setLastDiff(diff);
                 pauseTime = System.nanoTime();
             }
 
             long now = System.nanoTime();
-            if (replayMode) {
+            if (replayMode) { //If we are replaying a record, (play button has been pressed)
+                /* In the first iteration get the time of when the unpause happened and calculate the totalPauseTime from this */
                 if (beenPaused) {
                     unpauseTime = System.nanoTime();
                     totalPauseTime = totalPauseTime + (unpauseTime - pauseTime);
                 }
+                /* If the game has been paused once then calculate the diff is different then if the game hasn't been paused */
                 if (beenPausedPerm) {
+                    /* replaySpeed is used to calculate diff, the higher the replay speed, the quicker moves will execute  */
                     diff = (long) (((now - startReplayTime) - (totalPauseTime - totalStepTime))*replaySpeed);
                 }
                 else {
                     diff = (long) ((now - startReplayTime + totalStepTime)*replaySpeed);
                 }
                 beenPaused = false;
+                /* Iterate through the player moves map */
                 for (Map.Entry<Long, ArrayList<String>> entry: currentReplay.getTickToMovesMap().entrySet()) {
+                    /*Check if the time the move happened is less than the diff (time elapsed), i.e. the move should be executed
+                      and don't execute moves that have already been executed */
                     if (diff > entry.getKey() && !executedTimes.contains(entry.getKey())) {
                         for (String s : entry.getValue()) {
-                            replayMove(s);
+                            replayMove(s); //Execute the move
                         }
-                        executedTimes.add(entry.getKey());
+                        executedTimes.add(entry.getKey()); //And register that this move has been executed
                     }
                 }
             }
 
+            //Every 1/6 of a second
             if (now - lastTick > (1000000000/replaySpeed)/frameRate) {
                 lastTick = now;
                 tick++;
 
+                //Every second
                 if (tick % frameRate == 0) {
+                    //Update the InfoPanel information
                     frame.getInfoPanel().decrementTimeRemaining();
 
+                    //Move each enemy
                     for (int i = 0; i < enemies.size(); i++) {
                         enemies.get(i).onTick();
                     }
+                    //Update relevant variables
                     timeRemaining--;
                     levelBoard.updateFields();
                 }
@@ -210,6 +221,7 @@ public class Main {
     }
 
     private void replayMove(String dir) {
+        /* Execute a move with a direction corresponding to the string passed in */
         if (dir.equals("LEFT")) {
             doMove(LevelBoard.Direction.LEFT);
         } else if (dir.equals("RIGHT")) {
@@ -219,6 +231,7 @@ public class Main {
         } else {
             doMove(LevelBoard.Direction.DOWN);
         }
+        /* Update the board */
         frame.getBoardPanel().redraw();
         frame.getBoardPanel().updateBoard();
         frame.getInfoPanel().redraw();
