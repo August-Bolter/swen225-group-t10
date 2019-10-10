@@ -2,9 +2,9 @@ package Maze;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Iterator;
 
 /** Represents a treasure (chip) in the game. This item can be picked up by the player. Once they have all the chips in the
  * level they can pass through the GateTile and finish the level by reaching the ExitTile. */
@@ -18,29 +18,20 @@ public class Chip extends Item {
      * */
     public Chip(int row, int col) {
         super(row, col);
-        this.setPriority(2);
     }
 
     @Override
     public void interact() {
+        //TODO: need to implement chip tile being able to interact with Player
         main.decrementChipsRemaining();
 
         //remove chip from tile
         getTile().removeItem(this);
 
-        // Decrement chips left
-        main.getFrame().getInfoPanel().decrementChipsRemaining();
-        main.getLevelBoard().updateFields();
+        // TODO decrement total chips
     }
 
     public Image getImage() {
-        if (main != null) {
-            BufferedImage img = main.itemImages.get("pokeball");
-            if (img != null) {
-                return img;
-            }
-        }
-
         String path = PATH + POKEBALL + ".png";
 
         try {

@@ -11,7 +11,7 @@ public class InfoTile extends Tile {
      * @param info The helpful text
      * */
     public InfoTile(int row, int col, String info) {
-        super(row, col, info);
+        super(row, col);
         this.info = info;
     }
 

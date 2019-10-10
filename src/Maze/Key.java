@@ -2,7 +2,6 @@ package Maze;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
@@ -10,16 +9,15 @@ import java.io.IOException;
  * same color. */
 public class Key extends Item {
     private static final String KEY = "Key";
-    private String color; //The key can be blue, red, green or yellow
+    String color; //The key can be blue, red, green or yellow
 
     /** Creates a key.
      * @param row The row (in regards to the board) of the key.
      * @param col The column (in regards to the board) of the key.
      * @param color The color of the key. */
     public Key(int row, int col, String color) {
-        super(row, col, color);
+        super(row, col);
         this.color = color;
-        this.setPriority(3);
     }
 
     /**
@@ -58,13 +56,6 @@ public class Key extends Item {
     }
 
     public Image getImage() {
-        if (main != null) {
-            BufferedImage img = main.itemImages.get(color+KEY);
-            if (img != null) {
-                return img;
-            }
-        }
-
         String path = PATH+color+ KEY + ".png";
 
         try {

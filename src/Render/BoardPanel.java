@@ -4,8 +4,6 @@ import Maze.Player;
 import Maze.Tile;
 
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.EtchedBorder;
 import java.awt.*;
 
 public class BoardPanel extends JPanel {
@@ -13,8 +11,6 @@ public class BoardPanel extends JPanel {
     public TilePanel[][] boardLabels;
     public static final int DISPLAY_SIZE = 9;
     public Player player;
-    public final static int MAX = 32;
-    public final static int MIN = 0;
 
 
     public BoardPanel(Tile[][] board, Player player) {
@@ -23,53 +19,66 @@ public class BoardPanel extends JPanel {
         boardLabels = new TilePanel[board.length][board[0].length];
 
         setLayout(new GridLayout(DISPLAY_SIZE, DISPLAY_SIZE));
+
         for (int row = 0; row < board.length; row++) {
             for (int col = 0; col < board[0].length; col++) {
                 boardLabels[row][col] = new TilePanel(board[row][col]); // Makes the label, gives it the image for the tile
             }
 
         }
-        createBorder();
+
         redraw();
-
     }
 
-    public void createBorder() {
-        Border blackline = BorderFactory.createEtchedBorder(EtchedBorder.RAISED);
-        setBorder(blackline);
-    }
+//    /**
+//     * Creates the map of images corresponding to image names
+//     * Currently uses the class name for the key and image name
+//     * TODO names are bad because they're currently maze.freetile, I want to remove the first bit
+//     */
+//    public void setup() {
+//        imageMap = new HashMap<>();
+//
+//        for (int row = 0; row < board.length; row++) {
+//            for (int col = 0; col < board[0].length; col++) {
+//                String name = board[row][col].getClass().toString().toLowerCase();
+//                System.out.println(name);
+//                Image image = frame.getImage(name);
+//                imageMap.put(name, image);
+//            }
+//
+//        }
+//    }
 
     /**
      * Goes through each tile in the array and gets the correct image for that tile
+     * Once setup is done
+     * Each image will be stored in a map with the class name as the key
      */
     public void redraw() {
+//        System.out.println("REDRAW IS CALLED");
+        removeAll();
+        revalidate();
+//        if (player == null) System.out.println("THE PLAYER IS NULL !!!!!!!!!!!!!!!!!!\n\n\n\n\n\n\n\n\n\n\n\n");
         int playerRow = player.getCurrentPos().getRow();
         int playerCol = player.getCurrentPos().getCol();
 
-        int minRow = Math.max(playerRow - (DISPLAY_SIZE - 1) / 2,  MIN);
-        int minCol = Math.max(playerCol - (DISPLAY_SIZE - 1) / 2, MIN);
-
-        int maxRow = Math.min(minRow + DISPLAY_SIZE, MAX);
-        if (maxRow == MAX)
-            minRow = MAX - DISPLAY_SIZE;
-        int maxCol = Math.min(minCol + DISPLAY_SIZE, MAX);
-        if (maxCol == MAX)
-            minCol = MAX - DISPLAY_SIZE;
-        for (int row = minRow; row < maxRow; row++) {
-            for (int col = minCol; col < maxCol; col++) {
-                boardLabels[row][col].repaint();
+        for (int row = playerRow - 4; row < playerRow - 4 + DISPLAY_SIZE; row++) {
+            for (int col = playerCol - 4; col < playerCol - 4 + DISPLAY_SIZE; col++) {
+                boardLabels[row][col].redraw();
                 add(boardLabels[row][col]);
             }
+
         }
-        revalidate();
-        repaint();
     }
 
-    public void setPlayer(Player p) {
-        player = p;
-    }
-
-    public void setBoard(Tile[][] board) {
-        this.board = board;
+    /**
+     *
+     */
+    public void updateBoard() {
+        for (int row = 0; row < board.length; row++) {
+            for (int col = 0; col < board[0].length; col++) {
+                boardLabels[row][col] = new TilePanel(board[row][col]); // Makes the label, gives it the image for the tile
+            }
+        }
     }
 }

@@ -3,9 +3,6 @@ package Maze;
 
 import Application.Main;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class LevelBoard {
     private static final int SIZE = 32;
 
@@ -14,23 +11,7 @@ public class LevelBoard {
 
 
 
-    public enum Direction {LEFT, RIGHT, UP, DOWN;
-
-        public static String reverseDirection(String direction) {
-            if (direction.equals("LEFT")) {
-                return "RIGHT";
-            }
-            else if (direction.equals("RIGHT")) {
-                return "LEFT";
-            }
-            else if (direction.equals("UP")) {
-                return "DOWN";
-            }
-            else {
-                return "UP";
-            }
-        }
-    }
+    public enum Direction {LEFT, RIGHT, UP, DOWN}
     private int totalChips, timeLimit;
 
     private Main main;
@@ -100,7 +81,7 @@ public class LevelBoard {
         //board[tile.getRow()][tile.getCol()].addItem(getPlayer());
         //getPlayer().setCurrentPos(board[tile.getRow()][tile.getCol()]);
         //getPlayer().move(board[tile.getRow()][tile.getCol()]);
-//        main.getFrame().redraw(); // TODO think about moving this
+        main.getFrame().getBoardPanel().updateBoard(); // TODO think about moving this
 
     }
 
@@ -122,11 +103,6 @@ public class LevelBoard {
      */
     public int getTimeLimit() {
         return timeLimit;
-    }
-
-    public void updateFields() {
-        this.totalChips = main.getChipsRemaining();
-        this.timeLimit = main.getTimeRemaining();
     }
 
     /**
@@ -156,39 +132,5 @@ public class LevelBoard {
         return null;
     }
 
-    public List<Enemy> getEnemies(){
-        List<Enemy> enemies = new ArrayList<>();
-        for (int row = 0; row < board.length; row++) {
-            for (int col = 0; col < board[row].length; col++) {
-                if (board[row][col].hasItem()) {
-                    for (Item item : board[row][col].getItems()) {
-                        if (item instanceof Enemy){
-                            enemies.add((Enemy)item);
-                        }
-                    }
-                }
-            }
-        }
-        return enemies;
-    }
-
-    /**
-     * @param dir the direction
-     * @return the inverse of that direction e.g. dir := up returns down
-     */
-    public static Direction directionInverse(Direction dir) {
-        switch(dir) {
-            case UP:
-                return Direction.DOWN;
-            case DOWN:
-                return Direction.UP;
-            case LEFT:
-                return Direction.RIGHT;
-            case RIGHT:
-                return Direction.LEFT;
-            default:
-                return null; // unreachable
-        }
-    }
 
 }

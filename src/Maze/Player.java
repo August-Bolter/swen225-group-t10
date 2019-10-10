@@ -2,10 +2,8 @@ package Maze;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.logging.Level;
 
 /**
  * Player class: This is the main player which the user moves to play the game.
@@ -13,7 +11,8 @@ import java.util.logging.Level;
 public class Player extends Item {
     private Tile currentPos;
     private Item[] inventory;
-    private LevelBoard.Direction direction;
+    private enum Direction {UP, DOWN, RIGHT, LEFT};
+    private Direction direction;
     private int row, col;
 
     public Player(int row, int col) {
@@ -21,22 +20,21 @@ public class Player extends Item {
         this.row = row;
         this.col = col;
         this.inventory = new Item[8];
-        direction = LevelBoard.Direction.DOWN;
-        this.setPriority(0);
+        direction = Direction.DOWN;
     }
 
     public void setDirection(LevelBoard.Direction d) {
         if (d == LevelBoard.Direction.LEFT) {
-            direction = LevelBoard.Direction.LEFT;
+            direction = Direction.LEFT;
         }
         else if (d == LevelBoard.Direction.RIGHT) {
-            direction = LevelBoard.Direction.RIGHT;
+            direction = Direction.RIGHT;
         }
         else if (d == LevelBoard.Direction.UP) {
-            direction = LevelBoard.Direction.UP;
+            direction = Direction.UP;
         }
         else if (d == LevelBoard.Direction.DOWN) {
-            direction = LevelBoard.Direction.DOWN;
+            direction = Direction.DOWN;
         }
     }
 
@@ -123,9 +121,6 @@ public class Player extends Item {
         return inventory;
     }
 
-    /**
-     * Player can't interact with himself
-     */
     @Override
     public void interact() {
         // Intentionally unimplemented
@@ -147,13 +142,6 @@ public class Player extends Item {
      * @return the image
      */
     public Image getImage() {
-        if (main != null) {
-            BufferedImage img = main.itemImages.get(direction.toString().toLowerCase() + "Player");
-            if (img != null) {
-                return img;
-            }
-        }
-
         String path = "Resources/player/"+direction.toString().toLowerCase()+".png";
 
         try {
@@ -161,9 +149,5 @@ public class Player extends Item {
         } catch (IOException e) {
             throw new Error(path+"\nThe file failed to load: " + e);
         }
-    }
-
-    public LevelBoard.Direction getDirection() {
-        return direction;
     }
 }
