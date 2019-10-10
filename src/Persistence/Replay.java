@@ -23,7 +23,7 @@ public class Replay {
         game.setReplay(this);
 
         File selectedReplay = replayPanel.openFileChooser();
-        LevelBoard replayBoard = LoadJSON.loadLevelFromJSON(0, selectedReplay);
+        LevelBoard replayBoard = LoadJSON.loadLevelFromJSON(game.getLevel(), selectedReplay);
         game.setLevelBoard(replayBoard);
         game.getLevelBoard().setMain(game);
 

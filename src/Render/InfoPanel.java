@@ -50,6 +50,26 @@ public class InfoPanel extends JPanel {
         redraw();
     }
 
+    public InfoPanel(MainFrame frame, ReplayPanel replayPanel) {
+        this.frame = frame;
+        Main game = frame.getGame();
+        inventory = game.getPlayer().getInventory();
+
+        setLayout(new GridLayout(5,1));
+
+        level = new JLabel("Level: " + game.getLevelBoard().getTitle());
+        timeRemaining = new JLabel("Time Remaining: " + game.getLevelBoard().getTimeLimit());
+        timeLeft = game.getLevelBoard().getTimeLimit();
+        chipsRemaining = new JLabel("Chips Remaining: " + game.getLevelBoard().getTotalChips());
+        chipsLeft = game.getLevelBoard().getTotalChips();
+
+        inventoryPanel = new JPanel(new GridLayout(2, 4));
+        invPanels = new TilePanel[inventory.length];
+
+        this.replayPanel = replayPanel;
+        redraw();
+    }
+
     /**
      * Reduces the timeLeft by one second
      */
@@ -112,5 +132,9 @@ public class InfoPanel extends JPanel {
 
         revalidate();
         repaint();
+    }
+
+    public ReplayPanel getReplayPanel() {
+        return replayPanel;
     }
 }

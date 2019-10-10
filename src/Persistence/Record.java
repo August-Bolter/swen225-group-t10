@@ -5,7 +5,7 @@ import Application.Main;
 import java.io.File;
 
 public class Record {
-    boolean isRecording = false;
+    boolean isRecording;
     int startTime, endTime;
     int count = -1;
     File moves;
@@ -14,6 +14,7 @@ public class Record {
 
     public Record(Main game) {
         this.game = game;
+        isRecording = false;
     }
 
     public int getCount() {

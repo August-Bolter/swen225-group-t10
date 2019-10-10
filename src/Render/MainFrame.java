@@ -2,6 +2,7 @@ package Render;
 
 import Application.Main;
 import Maze.LevelBoard;
+import Persistence.Replay;
 import Persistence.SaveJSON;
 
 import javax.swing.*;
@@ -154,7 +155,8 @@ public class MainFrame extends JFrame implements KeyListener {
         outerpanel.remove(boardpanel);
         outerpanel.remove(infoPanel);
         boardpanel = new BoardPanel(game.getLevelBoard().getBoard(), game.getPlayer());
-        infoPanel = new InfoPanel(this);
+        ReplayPanel copyOfReplay = infoPanel.getReplayPanel();
+        infoPanel = new InfoPanel(this, copyOfReplay);
 
         outerpanel.add(boardpanel);
         outerpanel.add(infoPanel);
