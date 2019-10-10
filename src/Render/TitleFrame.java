@@ -21,7 +21,6 @@ public class TitleFrame extends JFrame implements MouseListener {
     public TitleFrame(Main game) {
         this.game = game;
         // setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); // Makes the program have exit dialogue instead
-        addKeyListener(this);
         addMouseListener(this);
         setResizable(false);
 
