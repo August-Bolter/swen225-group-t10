@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -21,7 +22,7 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
     private Set<Integer> pressedKeys;
 
 
-    private JMenuItem quit;
+    private JMenuItem save, level1, level2, pause, resume, quit;
 
     /**
      * Creates a new main frame.
@@ -36,19 +37,17 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
 
         outerpanel = new JPanel();
 
-//        setMinimumSize(new Dimension(2000, 800));
-
         setContentPane(outerpanel);
         addBoardPanel();
         addInfoPanel();
-//        redraw();
+
         // Setup key listener
         addKeyListener(this);
         setFocusable(true);
         requestFocus();
 
         createMenuBar();
-//        outerpanel.setLayout(new BoxLayout(outerpanel, BoxLayout.X_AXIS));
+
         outerpanel.setLayout(new GridBagLayout());
         outerpanel.setBorder(new GameBorder(Color.BLUE));
         pack();
@@ -62,15 +61,28 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
     private void createMenuBar() {
         JMenuBar menu = new JMenuBar();
         JMenu gameMenu = new JMenu("Game");
-        JMenuItem restart = new JMenuItem("Restart");
+
+        save = new JMenuItem("Save");
+        level1 = new JMenuItem("Level 1");
+        level2 = new JMenuItem("Level 2");
+        pause = new JMenuItem("Pause");
+        resume = new JMenuItem("Resume");
         quit = new JMenuItem("Quit");
+
+        save.addActionListener(this);
+        level1.addActionListener(this);
+        level2.addActionListener(this);
+        pause.addActionListener(this);
+        resume.addActionListener(this);
         quit.addActionListener(this);
 
-        JMenuItem settingsMenu = new JMenuItem("Settings");
-
         menu.add(gameMenu);
-        gameMenu.add(settingsMenu);
-        gameMenu.add(restart);
+
+        gameMenu.add(save);
+        gameMenu.add(level1);
+        gameMenu.add(level2);
+        gameMenu.add(pause);
+        gameMenu.add(resume);
         gameMenu.add(quit);
 
         setJMenuBar(menu);
@@ -119,6 +131,7 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
                 direction = LevelBoard.Direction.RIGHT;
                 break;
             case KeyEvent.VK_X:
+                // Opens the exit dialogue
                 if (pressedKeys.contains(KeyEvent.VK_CONTROL)) {
                     quit();
                 }
@@ -235,7 +248,7 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
      * @param level the number of the level to restart
      */
     public void restart(int level) {
-        System.out.println("CTRL "+ level);
+        game.restartLevel(Optional.of(level));
     }
 
     /**
@@ -272,6 +285,16 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(quit)) {
             quit();
+        } else if (e.getSource().equals(save)) {
+            save();
+        } else if (e.getSource().equals(level1)) {
+            restart(1);
+        } else if (e.getSource().equals(level2)) {
+            restart(2);
+        } else if (e.getSource().equals(pause)) {
+            pause();
+        } else if (e.getSource().equals(resume)) {
+            resume();
         }
     }
 }
