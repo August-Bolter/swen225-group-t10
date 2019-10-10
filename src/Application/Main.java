@@ -347,38 +347,7 @@ public class Main{
         }
     }
 
-//    public void startScreen(Graphics g){
-//        JFrame f = new JFrame();
-//
-//
-//        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        JLabel background = new JLabel(new ImageIcon("Resources/levels/startscreen.jpg"));
-//        f.setContentPane(background);
-//        background.setLayout(new FlowLayout());
-//        f.pack();
-//       // f.addKeyListener();
-//        f.setVisible(true);
-//    }
 
-    public void startScreen(){
-        titleFrame = new TitleFrame(this);
-    }
-
-
-//
-//    public void drawStartScreen(Graphics2D g){
-//        int row = 1;
-//        try {
-//            BufferedImage startScreen = ImageIO.read(new File("levels/start-screen.jpg"));
-//            g.drawImage(startScreen, 0, 0, null);
-//            // BufferedImage selectIcon = new BufferedImage(80, 80, "yellowDoor.png");
-//       //     g.drawImage(selectIcon, 375, row*70+440, null);
-//        } catch (IOException e) {
-//            System.out.println("Not working");
-//            e.printStackTrace();
-//        }
-//
-//    }
 
     /**
      * Main method
@@ -386,9 +355,7 @@ public class Main{
      */
     public static void main(String[] args) {
         Main game = new Main();
-        game.startScreen();
-        // game.startScreen(g2D);
-        //game.setup();
+        game.setup();
     }
 
 

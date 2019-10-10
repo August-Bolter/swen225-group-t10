@@ -162,4 +162,8 @@ public class TitleFrame extends JFrame implements KeyListener, MouseListener {
     public void mouseExited(MouseEvent e) {
 
     }
+
+    public static void main(String[] args) {
+        new TitleFrame()
+    }
 }
