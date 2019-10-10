@@ -13,7 +13,7 @@ import java.util.Set;
 
 public class TitleFrame extends JFrame implements KeyListener, MouseListener {
 
-    private Main game;
+    private static Main game;
     private BoardPanel boardpanel;
     private InfoPanel infoPanel;
     private Set<Integer> pressedKeys;
@@ -133,37 +133,17 @@ public class TitleFrame extends JFrame implements KeyListener, MouseListener {
 
     }
 
-    /**
-     * Invoked when a mouse button has been released on a component.
-     *
-     * @param e the event to be processed
-     */
+
     @Override
-    public void mouseReleased(MouseEvent e) {
+    public void mouseReleased(MouseEvent e) {}
 
-    }
-
-    /**
-     * Invoked when the mouse enters a component.
-     *
-     * @param e the event to be processed
-     */
     @Override
-    public void mouseEntered(MouseEvent e) {
+    public void mouseEntered(MouseEvent e) {}
 
-    }
-
-    /**
-     * Invoked when the mouse exits a component.
-     *
-     * @param e the event to be processed
-     */
     @Override
-    public void mouseExited(MouseEvent e) {
-
-    }
+    public void mouseExited(MouseEvent e) {}
 
     public static void main(String[] args) {
-        new TitleFrame()
+        new TitleFrame(game);
     }
 }
