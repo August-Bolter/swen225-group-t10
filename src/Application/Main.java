@@ -125,7 +125,6 @@ public class Main {
                 SaveJSON.SaveMove(fileName, direction, time, firstMove);
                 firstMove = false;
             }
-
             return true;
         }
         return false;
@@ -232,8 +231,8 @@ public class Main {
             doMove(LevelBoard.Direction.DOWN);
         }
         /* Update the board */
-        frame.getBoardPanel().redraw();
-        frame.getInfoPanel().redraw();
+        //frame.getBoardPanel().redraw();
+        //frame.getInfoPanel().redraw();
     }
 
     public MainFrame getFrame() {
@@ -375,16 +374,6 @@ public class Main {
                 addStepTime(l);
                 break;
             }
-        }
-    }
-
-    public void reverseStep() {
-        if (executedTimes.size() != 0) {
-            Long timeOfLastMove = executedTimes.get(executedTimes.size() - 1);
-            String direction = currentReplay.getTickToMovesMap().get(timeOfLastMove).get(0);
-            replayMove(LevelBoard.Direction.reverseDirection(direction));
-            executedTimes.remove(executedTimes.size() - 1);
-            addStepTime(timeOfLastMove);
         }
     }
 }

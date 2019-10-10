@@ -45,10 +45,10 @@ public class Replay {
 
 //        replayPanel.setInventory(p.getInventory());
 
-//        replayPanel.getMainFrame().removeKeyListener(replayPanel.getMainFrame());
+        game.getFrame().removeKeyListener(game.getFrame());
 
         replayPanel.changeButtons();
-//        replayPanel.addReplayButtons();
+        replayPanel.addReplayButtons();
 //        replayPanel.redraw();
 
         tickToMovesMap = LoadJSON.loadMoves(selectedReplay);

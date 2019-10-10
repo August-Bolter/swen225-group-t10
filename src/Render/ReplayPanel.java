@@ -11,45 +11,38 @@ import java.awt.event.ActionListener;
 import java.io.File;
 
 public class ReplayPanel extends JPanel implements ActionListener {
-    private JButton replayButton, recordButton, nextStepButton, previousStepButton, exitButton;
-    private JPanel stepPanel;
+    private JButton replayButton, recordButton, nextStepButton, exitButton;
 
     private Record record;
     private Replay replay;
 
     private MainFrame frame;
     private Main game;
+    private JPanel replayJPanel;
 
     public ReplayPanel(MainFrame frame) {
         this.frame = frame;
         this.game = frame.getGame();
-
-        nextStepButton = new JButton("Next Step");
-        nextStepButton.setVisible(false);
-
-        previousStepButton = new JButton("Previous Step");
-        previousStepButton.setVisible(false);
-
-        stepPanel = new JPanel();
-        stepPanel.setVisible(false);
-        stepPanel.setLayout(new GridLayout(1, 2));
-        stepPanel.add(nextStepButton);
-        stepPanel.add(previousStepButton);
-
-        exitButton = new JButton("Exit");
-        exitButton.setVisible(false);
+        replayJPanel = new JPanel();
+        replayJPanel.setLayout(new GridLayout(2, 2));
 
         replayButton = new JButton("Replay");
         recordButton = new JButton("Record");
+        recordButton.addActionListener(this);
+        replayButton.addActionListener(this);
 
         record = new Record(game);
         replay = new Replay(game, this);
 
-        recordButton.addActionListener(this);
-        replayButton.addActionListener(this);
+        nextStepButton = new JButton("Next Step");
+        nextStepButton.setVisible(false);
 
-        add(recordButton);
-        add(replayButton);
+        exitButton = new JButton("Exit");
+        exitButton.setVisible(false);
+
+        replayJPanel.add(recordButton);
+        replayJPanel.add(replayButton);
+        add(replayJPanel);
     }
 
     public File openFileChooser() {
@@ -66,88 +59,64 @@ public class ReplayPanel extends JPanel implements ActionListener {
 
     public void changeButtons() {
         recordButton.setText("Play");
-        recordButton.removeActionListener(recordButton.getActionListeners()[0]);
-        recordButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (recordButton.getText().equals("Play")) {
-                    game.setFrameRate(1);
-                    recordButton.setText("Stop");
-                    game.setReplayMode(true);
-                    nextStepButton.setEnabled(false);
-                    previousStepButton.setEnabled(false);
-                } else {
-                    game.setFrameRate(0000000000000000.1);
-                    game.setReplayMode(false);
-                    recordButton.setText("Play");
-                    nextStepButton.setEnabled(true);
-                    previousStepButton.setEnabled(true);
-                }
-            }
-        });
-
         replayButton.setText("Change speed");
-        replayButton.removeActionListener(replayButton.getActionListeners()[0]);
-        replayButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.createChangeSpeedWindow();
-            }
-        });
     }
 
     public void addReplayButtons() {
-        stepPanel.setVisible(true);
-
         nextStepButton.setVisible(true);
-        nextStepButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                game.nextStep();
-            }
-        });
-        stepPanel.add(nextStepButton);
-
-        previousStepButton.setVisible(true);
-        previousStepButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                game.reverseStep();
-            }
-        });
-        stepPanel.add(previousStepButton);
+        nextStepButton.addActionListener(this);
 
         exitButton.setVisible(true);
-        exitButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                game.setReplayMode(false);
-                //Needs to take user back to title screen
-            }
-        });
+        exitButton.addActionListener(this);
 
-        add(stepPanel);
-        add(exitButton);
+        replayJPanel.add(nextStepButton);
+        replayJPanel.add(exitButton);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == recordButton) {
-            if (!record.isRecording()) {
+            if (recordButton.getText().equals("Record")) {
                 recordButton.setText("Stop recording");
                 game.setRecord(record);
                 record.record();
                 replayButton.setEnabled(false);
-            } else {
+            }
+            else if (recordButton.getText().equals("Stop recording")){
                 recordButton.setText("Record");
                 record.stopRecording();
                 replayButton.setEnabled(true);
             }
+            else if (recordButton.getText().equals("Play")) {
+                game.setFrameRate(1);
+                recordButton.setText("Stop");
+                game.setReplayMode(true);
+                nextStepButton.setEnabled(false);
+            }
+            else {
+                game.setFrameRate(0000000000000000.1);
+                game.setReplayMode(false);
+                recordButton.setText("Play");
+                nextStepButton.setEnabled(true);
+            }
         }
 
         else if (e.getSource() == replayButton) {
-            replay.replay();
+            if (replayButton.getText().equals("Replay")) {
+                replay.replay();
+            }
+            else {
+                frame.createChangeSpeedWindow();
+            }
+        }
+
+        else if (e.getSource() == nextStepButton) {
+            game.nextStep();
+        }
+
+        else if (e.getSource() == exitButton) {
+            game.setReplayMode(false);
         }
     }
 }
