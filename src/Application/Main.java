@@ -117,26 +117,30 @@ public class Main{
         //setting up the correct level
         initialiseMaps();
         levelBoard = LoadJSON.loadLevelFromJSON(levelX);
-        System.out.println(levelBoard == null);
         levelBoard.setMain(this);
 
         //setting up players
         player = levelBoard.getPlayer();
         player.setCurrentPos();
 
+        for (int i = 0; i < levelBoard.getBoard().length; i++) {
+            System.out.println(levelBoard.getBoard()[i][i]);
+        }
+
         //setting up enemies
         enemies = levelBoard.getEnemies();
-        System.out.println("PAST BEFORE ENEMY LOOP");
+//        System.out.println("PAST BEFORE ENEMY LOOP");
         System.out.println("enemies no. : " + enemies.size());
         for (Enemy e : enemies){
             e.setCurrentPos();
-            System.out.println("IN THE ENEMY LOOP");
+//            System.out.println("IN THE ENEMY LOOP");
         }
         levelBoard.setMain(this);
-        frame = new MainFrame(this);
+
         chipsRemaining = levelBoard.getTotalChips();
         timeRemaining = levelBoard.getTimeLimit();      //level must be completed before this time limit runs out
 
+        frame = new MainFrame(this);
         timer();
 
         seed = System.currentTimeMillis();
@@ -379,7 +383,7 @@ public class Main{
      * @param args none
      */
     public static void main(String[] args) {
-        Main game = new Main(1);
+        Main game = new Main(2);
 //        game.startScreen();
 //        game.setup(2);
         //new Main();

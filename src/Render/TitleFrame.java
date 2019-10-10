@@ -11,14 +11,17 @@ import java.awt.event.MouseListener;
 public class TitleFrame extends JFrame implements MouseListener {
 
     private static Main game;
+    private MainFrame frame;
     private JLabel background;
     //private int level;
 
     /**
      * Constructor for Title Frame
-     * the Main game that is currenltly being used
+     * the Main game that is currently being used
      */
-    public TitleFrame() {
+    public TitleFrame(MainFrame frame) {
+        this.frame = frame;
+
         addMouseListener(this);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -29,6 +32,7 @@ public class TitleFrame extends JFrame implements MouseListener {
         setContentPane(background);
         background.setLayout(new FlowLayout());
         pack();
+        setLocationRelativeTo(null);
 
         setVisible(true);
 
@@ -47,18 +51,17 @@ public class TitleFrame extends JFrame implements MouseListener {
     @Override
     public void mousePressed(MouseEvent e) {
         //Level one button clicked
-        int levelUserClicked;
         if((e.getX() >= 163 && e.getX() <= 291) && (e.getY() >= 324 && e.getY() <= 369)){
-            System.out.println("YOU HAVE CLICKED BUTTON 1");
-            new Main(1);
+            frame.restart(1);
+            frame.showFrame();
             dispose();
             //createNewLevel(levelUserClicked);
         }
         //level two button clicked
         if((e.getX() >= 331 && e.getX() <= 460) && (e.getY() >= 324 && e.getY() <= 370)){
-            levelUserClicked = 2;
-            System.out.println("YOU HAVE CLICKED BUTTON 2");
-            createNewLevel(levelUserClicked);
+            frame.restart(2);
+            frame.showFrame();
+            dispose();
         }
 
     }
@@ -81,5 +84,9 @@ public class TitleFrame extends JFrame implements MouseListener {
         //creating a new game
         game.setup(l);
 //        game.tester();
+    }
+
+    public static void main(String[] args) {
+//        new TitleFrame();
     }
 }

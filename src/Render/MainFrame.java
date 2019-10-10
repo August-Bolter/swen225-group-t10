@@ -31,6 +31,10 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
      */
     public MainFrame(Main game){
         super("Chip's Challenge");
+
+        TitleFrame title = new TitleFrame(this);
+
+        setVisible(false);
         this.game = game;
 
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); // Makes the program have exit dialogue instead
@@ -55,7 +59,7 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
         setLocationRelativeTo(null);
         repaint();
         setResizable(false);
-        setVisible(true);
+
         pressedKeys = new HashSet<>();
     }
 
@@ -260,6 +264,10 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
      */
     public void pause() {
         game.setPaused();
+    }
+
+    public void showFrame() {
+        setVisible(true);
     }
 
     @Override
