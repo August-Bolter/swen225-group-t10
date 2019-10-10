@@ -2,6 +2,7 @@ package Maze;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
@@ -19,7 +20,7 @@ public class DoorTile extends Tile {
      * @param color The pre-defined color of the board
      * */
     public DoorTile(int row, int col, String color) {
-        super(row, col);
+        super(row, col, color);
         this.color = color;
         this.isWalkable = false; //The door by default (i.e. when created) is locked.
     }
@@ -90,6 +91,14 @@ public class DoorTile extends Tile {
      * Paints the item in the tile on top of each tile.
      */
     public Image getImage() {
+        if (main != null) {
+            BufferedImage img = main.tileImages.get(color+DOOR + ".png");
+            if (img != null) {
+                System.out.println("Returned door");
+                return img;
+            }
+        }
+
         String path = PATH+color+DOOR + ".png";
 
         try {

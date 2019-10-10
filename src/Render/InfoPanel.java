@@ -8,15 +8,18 @@ import javax.swing.*;
 import java.awt.*;
 
 public class InfoPanel extends JPanel {
-    Main game;
+    private JLabel level;
+    private JLabel timeRemaining;
+    private JLabel chipsRemaining;
+    private JPanel inventoryPanel;
+    private ReplayPanel replayPanel;
 
-    JLabel level;
-    JLabel timeRemaining;
-    JLabel chipsRemaining;
-    JPanel inventoryPanel;
+    private int timeLeft, chipsLeft;
 
-    TilePanel[] invPanels;
-    Item[] inventory;
+    private MainFrame frame;
+
+    private TilePanel[] invPanels;
+    private Item[] inventory;
 
     /**
      * Info panel needs:
@@ -26,43 +29,112 @@ public class InfoPanel extends JPanel {
      * Inventory (an array with 8 pos) so it'll be 8 labels that can have
      * an image drawn over them
      */
-    public InfoPanel(Main game) {
-        this.game = game;
+    public InfoPanel(MainFrame frame) {
+        this.frame = frame;
+        Main game = frame.getGame();
         inventory = game.getPlayer().getInventory();
 
-        setLayout(new GridLayout(4,1));
+        setLayout(new GridLayout(5,1));
 
         level = new JLabel("Level: " + game.getLevelBoard().getTitle());
-        timeRemaining = new JLabel("Time Remaining: " + game.getLevelBoard().getTimeLimit()); // FIXME Only gets the total time NOT current time
-        chipsRemaining = new JLabel("Chips Remaining: " + game.getLevelBoard().getTotalChips()); // FIXME Only gets the total chips NOT current chips
+        timeRemaining = new JLabel("Time Remaining: " + game.getLevelBoard().getTimeLimit());
+        timeLeft = game.getLevelBoard().getTimeLimit();
+        chipsRemaining = new JLabel("Chips Remaining: " + game.getLevelBoard().getTotalChips());
+        chipsLeft = game.getLevelBoard().getTotalChips();
 
         inventoryPanel = new JPanel(new GridLayout(2, 4));
         invPanels = new TilePanel[inventory.length];
+
+        replayPanel = new ReplayPanel(frame);
+
         redraw();
+    }
+
+    public InfoPanel(MainFrame frame, ReplayPanel replayPanel) {
+        this.frame = frame;
+        Main game = frame.getGame();
+        inventory = game.getPlayer().getInventory();
+
+        setLayout(new GridLayout(5,1));
+
+        level = new JLabel("Level: " + game.getLevelBoard().getTitle());
+        timeRemaining = new JLabel("Time Remaining: " + game.getLevelBoard().getTimeLimit());
+        timeLeft = game.getLevelBoard().getTimeLimit();
+        chipsRemaining = new JLabel("Chips Remaining: " + game.getLevelBoard().getTotalChips());
+        chipsLeft = game.getLevelBoard().getTotalChips();
+
+        inventoryPanel = new JPanel(new GridLayout(2, 4));
+        invPanels = new TilePanel[inventory.length];
+
+        this.replayPanel = replayPanel;
+        redraw();
+    }
+
+    /**
+     * Reduces the timeLeft by one second
+     */
+    public void decrementTimeRemaining() {
+        timeRemaining.setText("Time Remaining: " + --timeLeft);
+    }
+
+    public MainFrame getFrame() {
+        return frame;
+    }
+
+    /**
+     * Reduces the chips left by one
+     */
+    public void decrementChipsRemaining() {
+        chipsRemaining.setText("Chips Remaining: " + --chipsLeft);
+    }
+
+    public void setChipsLeft(int chips) {
+        chipsLeft = chips;
+        chipsRemaining.setText("Chips Remaining: " + chipsLeft);
+    }
+
+    public void setTimeLeft(int time) {
+        timeLeft = time;
+        timeRemaining.setText("Time Remaining: " + timeLeft);
+    }
+
+    public void setInventory(Item[] inventory) {
+        this.inventory = inventory;
     }
 
     /**
      * Only redraws the inventory
      */
     public void redraw() {
-        removeAll();
         inventoryPanel.removeAll();
+
         for (int i = 0; i < inventory.length; i++) {
             int row = i / 4 >= 1 ? 1 : 0;
             int col = i % 4;
             invPanels[i] = new TilePanel(new FreeTile(row, col));
-            invPanels[i].getTile().addItem(inventory[i]); // FIXME I shouldn't be adding new tiles
-//            invPanels[i].removeAll();
+            invPanels[i].getTile().addItem(inventory[i]);
             inventoryPanel.add(invPanels[i]);
         }
-//        add(new JLabel(new ImageIcon(new FreeTile(0,0).getImage())));
+
+        JPanel outerInvPanel = new JPanel(new FlowLayout());
+        outerInvPanel.add(inventoryPanel);
+
         add(level);
         add(timeRemaining);
         add(chipsRemaining);
-        add(inventoryPanel);
+        add(outerInvPanel);
 
         for (TilePanel tp : invPanels) {
-            tp.redraw();
+            tp.repaint();
         }
+
+        add(replayPanel);
+
+        revalidate();
+        repaint();
+    }
+
+    public ReplayPanel getReplayPanel() {
+        return replayPanel;
     }
 }
