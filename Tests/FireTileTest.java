@@ -8,8 +8,8 @@ class FireTileTest {
 
     @Test
     void isWalkable() {
-        Player p = new Player(0, 0);
-        p.set
+//        Player p = new Player(0, 0);
+//        p.set
 
 
     }
