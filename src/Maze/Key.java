@@ -23,7 +23,8 @@ public class Key extends Item {
     }
 
     /**
-     * Checks if the door and key is a macthign colour
+     * Checks if the door and key is a matching colour
+     * @param d the door tile
      * @return true if matches, false if doesn't match
      */
     public boolean isMatchingColour(DoorTile d){

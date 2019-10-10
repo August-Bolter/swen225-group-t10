@@ -3,19 +3,32 @@ package Render;
 import javax.swing.border.AbstractBorder;
 import java.awt.*;
 
+/**
+ * The border for the panel window
+ */
 public class GameBorder extends AbstractBorder {
     private Color wallColor = Color.gray;
 
     private int thickness = 10;
 
+    /**
+     * @param thickness the thickness of the border
+     */
     public GameBorder(int thickness) {
         this.thickness = thickness;
     }
 
+    /**
+     * @param wall the color of the wall
+     */
     public GameBorder(Color wall) {
         this.wallColor = wall;
     }
 
+    /**
+     * @param thickness the border thickness
+     * @param wall the border colour
+     */
     public GameBorder(int thickness, Color wall) {
         this.thickness = thickness;
         this.wallColor = wall;
@@ -52,10 +65,16 @@ public class GameBorder extends AbstractBorder {
         return true;
     }
 
+    /**
+     * @return the thickness
+     */
     public int getThickness() {
         return thickness;
     }
 
+    /**
+     * @return the colour
+     */
     public Color getWallColor() {
         return wallColor;
     }

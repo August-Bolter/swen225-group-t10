@@ -11,6 +11,7 @@ public class SaveJSON {
 
     /**
      * Saves the current game state to a .JSON file
+     * @param levelBoard the level board to save
      */
     public static void SaveGame(LevelBoard levelBoard) {
         Tile[][] levelArray = levelBoard.getBoard();
@@ -88,6 +89,11 @@ public class SaveJSON {
     }
 
     /**
+     * @param type the class
+     * @param extra extra descriptor
+     * @param itemString item class and descriptor
+     * @param row the row
+     * @param col the col
      * @return A tile's information as a JSON object string
      */
     public static String tileAsJSON(String type, String extra, String itemString, int row, int col) {

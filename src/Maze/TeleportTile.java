@@ -1,5 +1,8 @@
 package Maze;
 
+/**
+ * CA Teleport tile that moves the player to a destination tile when stepped on
+ */
 public class TeleportTile extends Tile {
     private int destinationRow, destinationCol;
 
@@ -29,6 +32,7 @@ public class TeleportTile extends Tile {
 
     /**
      * Return destination as a string
+     * @return the destination descriptor
      */
     public String getDestDescription() {
         return destinationRow + "," + destinationCol;
