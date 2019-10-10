@@ -101,7 +101,7 @@ public class Main {
      */
     public void setup() {
         //setting up the correct level
-        initialiseMaps();
+        //initialiseMaps();
         levelBoard = LoadJSON.loadLevelFromJSON(level);
         levelBoard.setMain(this);
 

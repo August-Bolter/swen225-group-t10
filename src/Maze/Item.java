@@ -120,6 +120,7 @@ public abstract class Item implements Comparable<Item> {
      * */
     @Override
     public boolean equals(Object o) {
+    	if (o == null) return false;
         if (this == o) return true;
         if (o.getClass() != this.getClass()) return false;
         Item i = (Item) o;
