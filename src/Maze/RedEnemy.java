@@ -1,5 +1,7 @@
 package Maze;
 
+import java.util.Optional;
+
 /**
  * Type of enemy.
  * Shoots fireblasts every 3 seconds.
@@ -18,7 +20,7 @@ public class RedEnemy extends Enemy {
     @Override
     public void interact() {
         main.getFrame().displayInfo("Watch out for Charizards!");
-        main.restartLevel();
+        main.restartLevel(Optional.empty());
     }
 
     /**

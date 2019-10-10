@@ -208,14 +208,22 @@ public class Main {
         }
 
         frame.displayInfo("Out of time");
-        restartLevel();
+        restartLevel(Optional.empty());
     }
 
     /**
      * Method used to restart the level. Will occur when the user pressed the restart button
      */
-    public void restartLevel() {
+    public void restartLevel(Optional<Integer> lvl) {
+        int level;
+        if (lvl.isPresent()) {
+            level = lvl.get();
+        } else {
+            level = this.level;
+        }
+
         System.out.println("RESTART CALLED");
+        this.level = level;
         levelBoard = LoadJSON.loadLevelFromJSON(level);
         levelBoard.setMain(this);
         player = levelBoard.getPlayer();
@@ -239,7 +247,7 @@ public class Main {
     public void nextLevel() {
         if (level ==1) {
             level = 2;
-            restartLevel();
+            restartLevel(Optional.empty());
         } else {
             System.out.println("CREDITS SCREEN");
         }

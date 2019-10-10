@@ -2,6 +2,8 @@ package Maze;
 
 import Application.Main;
 
+import java.util.Optional;
+
 /**
  * Fireblast class.
  * Fireblasts are shot by the red enemies.
@@ -40,6 +42,6 @@ public class Fireblast extends RedEnemy {
      */
     public void interact() {
         main.getFrame().displayInfo("Watch out for Fire Blasts!");
-        main.restartLevel();
+        main.restartLevel(Optional.empty());
     }
 }
