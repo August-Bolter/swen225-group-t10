@@ -57,7 +57,6 @@ public class SaveJSON {
 
                             String[] itemComposition = itemObj.getClass().getName().split("\\.");
                             item = (itemComposition.length == 2) ? itemComposition[1] : itemComposition[0];
-
                             itemExtra = (itemObj.getExtra() == null) ? "_" : itemObj.getExtra();
                             if (itemObj instanceof Player) {
                                 itemExtra = "";

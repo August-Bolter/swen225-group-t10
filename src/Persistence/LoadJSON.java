@@ -191,7 +191,6 @@ public class LoadJSON {
             URL classURL = new File("src/Utility/Level-" + level + "/Classes").toURI().toURL();
             URL[] classURLs = {classURL};
             URLClassLoader classLoader = new URLClassLoader(classURLs);
-            System.out.println("src/Utility/Level-" + level + "/Classes");
             Class clazz = classLoader.loadClass(className);
 
             return clazz;

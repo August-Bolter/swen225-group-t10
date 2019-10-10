@@ -12,7 +12,7 @@ public abstract class Enemy extends Item {
     private int row, col;
 
     public Enemy(int row, int col, String direction){
-        super(row, col);
+        super(row, col, direction);
         this.row = row;
         this.col = col;
         this.direction = LevelBoard.Direction.DOWN;
