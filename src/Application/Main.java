@@ -4,20 +4,13 @@ import Maze.*;
 import Persistence.LoadJSON;
 import Render.MainFrame;
 import Render.TitleFrame;
+import jdk.swing.interop.SwingInterOpUtils;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
 import java.io.File;
 import java.io.IOException;
-import java.nio.BufferOverflowException;
-import java.text.AttributedCharacterIterator;
 import java.util.*;
 import java.util.List;
 import java.awt.Graphics2D;
@@ -31,7 +24,7 @@ import java.util.Timer;
  *
  */
 public class Main{
-   //start of fields
+    //start of fields
     private int timeRemaining; //Level timer
     private Timer gameloop; //Timer object to ensure the game updates at a constant rate, regardless of the computer the game is running on
     private boolean gameover = false; //boolean the checks if the player has lost 3 levels
@@ -64,13 +57,11 @@ public class Main{
      */
     public final Map<String, BufferedImage> itemImages = new HashMap<>();
 
-    //START OF JUSTINA'S STUFF
-   private JFrame startFrame;
-   private static BufferedImage b = new BufferedImage(100, 100, BufferedImage.TYPE_3BYTE_BGR);
-   private static Graphics2D g2D = b.createGraphics();
-   private TitleFrame titleFrame;
+//    private TitleFrame titleFrame;
 
-
+    public Main(int level) {
+        setup(level);
+    }
     /**
      * Used to initialise the maps with the correct .png files
      */
@@ -127,11 +118,15 @@ public class Main{
      * Method that setups the actual playing board
      * CHECKTHIS
      */
-    public void setup() {
+    public void setup(int levelX) {
         //setting up the correct level
+        System.out.println("IN HERE "+ levelX);
         initialiseMaps();
-        levelBoard = LoadJSON.loadLevelFromJSON(level);
+        levelBoard = LoadJSON.loadLevelFromJSON(levelX);
+        System.out.println(levelBoard == null);
         levelBoard.setMain(this);
+
+        System.out.println("PAST LEVEL BOARD");
 
         //setting up players
         player = levelBoard.getPlayer();
@@ -139,8 +134,10 @@ public class Main{
 
         //setting up enemies
         enemies = levelBoard.getEnemies();
+        System.out.println("PAST BEFORE ENEMY LOOP");
         for (Enemy e : enemies){
             e.setCurrentPos();
+            System.out.println("IN THE ENEMY LOOP");
         }
         levelBoard.setMain(this);
         frame = new MainFrame(this);
@@ -151,6 +148,7 @@ public class Main{
 
         seed = System.currentTimeMillis();
         generator.setSeed(seed);
+        System.out.println("At the end of the setup method ");
     }
 
 
@@ -364,50 +362,18 @@ public class Main{
         }
     }
 
-//    public void startScreen(Graphics g){
-//        JFrame f = new JFrame();
-//
-//
-//        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        JLabel background = new JLabel(new ImageIcon("Resources/levels/startscreen.jpg"));
-//        f.setContentPane(background);
-//        background.setLayout(new FlowLayout());
-//        f.pack();
-//       // f.addKeyListener();
-//        f.setVisible(true);
-//    }
-
     public void startScreen(){
-        titleFrame = new TitleFrame(this);
+        //titleFrame = new TitleFrame(this);
     }
-
-
-//
-//    public void drawStartScreen(Graphics2D g){
-//        int row = 1;
-//        try {
-//            BufferedImage startScreen = ImageIO.read(new File("levels/start-screen.jpg"));
-//            g.drawImage(startScreen, 0, 0, null);
-//            // BufferedImage selectIcon = new BufferedImage(80, 80, "yellowDoor.png");
-//       //     g.drawImage(selectIcon, 375, row*70+440, null);
-//        } catch (IOException e) {
-//            System.out.println("Not working");
-//            e.printStackTrace();
-//        }
-//
-//    }
 
     /**
      * Main method
      * @param args none
      */
     public static void main(String[] args) {
-        Main game = new Main();
-        //game.startScreen();
-        // game.startScreen(g2D);
-        game.setup();
+        Main game = new Main(1);
+//        game.startScreen();
+//        game.setup(2);
+        //new Main();
     }
-
-
-
 }
