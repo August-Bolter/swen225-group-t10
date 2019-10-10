@@ -79,28 +79,24 @@ public class InfoPanel extends JPanel {
         recordButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(e.getSource() == recordButton) {
-                    if (!record.isRecording()) {
+                if (!record.isRecording()) {
                         recordButton.setText("Stop recording");
                         game.setRecord(record);
                         record.record();
                         replayButton.setEnabled(false);
                     }
-                    else {
+                else {
                         recordButton.setText("Record");
                         record.stopRecording();
                         replayButton.setEnabled(true);
                     }
-                }
             }
         });
 
         replayButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(e.getSource() == replayButton) {
                     replay.replay();
-                }
             }
         });
         redraw();
@@ -198,7 +194,6 @@ public class InfoPanel extends JPanel {
         recordButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (e.getSource() == recordButton) {
                     if (recordButton.getText().equals("Play")) {
                         game.setFrameRate(1);
                         recordButton.setText("Stop");
@@ -212,7 +207,6 @@ public class InfoPanel extends JPanel {
                         nextStepButton.setEnabled(true);
                         previousStepButton.setEnabled(true);
                     }
-                }
             }
         });
 
@@ -221,9 +215,7 @@ public class InfoPanel extends JPanel {
         replayButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (e.getSource() == replayButton) {
                     mainFrame.createChangeSpeedWindow();
-                }
             }
         });
     }
@@ -235,9 +227,7 @@ public class InfoPanel extends JPanel {
         nextStepButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (e.getSource() == nextStepButton) {
                     game.nextStep();
-                }
             }
         });
         stepPanel.add(nextStepButton);
@@ -246,9 +236,7 @@ public class InfoPanel extends JPanel {
         previousStepButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (e.getSource() == previousStepButton) {
                     game.reverseStep();
-                }
             }
         });
         stepPanel.add(previousStepButton);
@@ -257,10 +245,8 @@ public class InfoPanel extends JPanel {
         exitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (e.getSource() == exitButton) {
                     game.setReplayMode(false);
                     //Needs to take user back to title screen
-                }
             }
         });
         add(stepPanel);

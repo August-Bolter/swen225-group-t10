@@ -136,7 +136,7 @@ public class Main {
      * Keeps track of the time left and is used to control enemies
      */
     public void timer(){
-        frameRate = 1;
+        frameRate = 6;
         replaySpeed = 1;
         boolean firstTime = true;
         boolean beenPausedPerm = false;
@@ -149,6 +149,7 @@ public class Main {
         long unpauseTime = 0;
         long totalPauseTime = 0;
         totalStepTime = 0;
+        int tick = 0;
         lastDiff = 0;
         long diff = 0;
         while (timeRemaining > 0) {
@@ -162,6 +163,7 @@ public class Main {
                 setLastDiff(diff);
                 pauseTime = System.nanoTime();
             }
+
             long now = System.nanoTime();
             if (replayMode) {
                 if (beenPaused) {
@@ -186,15 +188,21 @@ public class Main {
             }
 
             if (now - lastTick > (1000000000/replaySpeed)/frameRate) {
-                frame.getInfoPanel().decrementTimeRemaining();
+                lastTick = now;
+                tick++;
 
-                for (int i = 0; i < enemies.size(); i++){
-                    enemies.get(i).onTick();
+                if (tick % frameRate == 0) {
+                    frame.getInfoPanel().decrementTimeRemaining();
+
+                    for (int i = 0; i < enemies.size(); i++) {
+                        enemies.get(i).onTick();
+                    }
+                    timeRemaining--;
+                    levelBoard.updateFields();
                 }
-                timeRemaining--;
-                levelBoard.updateFields();
+                frame.redraw();
             }
-            frame.redraw();
+
         }
 
         frame.displayInfo("Out of time");
