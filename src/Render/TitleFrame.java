@@ -9,16 +9,18 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Optional;
 
+/**
+ * Class to handle the title screen.
+ */
 public class TitleFrame extends JFrame implements MouseListener {
 
-    private static Main game;
     private MainFrame frame;
     private JLabel background;
-    //private int level;
 
     /**
      * Constructor for Title Frame
      * the Main game that is currently being used
+     * @param frame the frame this title is a part of.
      */
     public TitleFrame(MainFrame frame) {
         this.frame = frame;
@@ -53,11 +55,9 @@ public class TitleFrame extends JFrame implements MouseListener {
     public void mousePressed(MouseEvent e) {
         //Level one button clicked
         if((e.getX() >= 163 && e.getX() <= 291) && (e.getY() >= 324 && e.getY() <= 369)){
-            //game.restartLevel(Optional.of(1));
             frame.restart(1);
             frame.showFrame();
             dispose();
-            //createNewLevel(levelUserClicked);
         }
         //level two button clicked
         if((e.getX() >= 331 && e.getX() <= 460) && (e.getY() >= 324 && e.getY() <= 370)){
@@ -77,16 +77,4 @@ public class TitleFrame extends JFrame implements MouseListener {
 
     @Override
     public void mouseExited(MouseEvent e) {}
-
-    /**
-     * Close the current frame with the starting screen on it.
-     * Then, it creates a whole new level with the correct level
-     */
-    public void createNewLevel(int l){
-        dispose();
-        //creating a new game
-        game.setup(l);
-//        game.tester();
-    }
-
 }

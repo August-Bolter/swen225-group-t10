@@ -34,6 +34,7 @@ public class InfoPanel extends JPanel {
      * Chips left
      * Inventory (an array with 8 pos) so it'll be 8 labels that can have
      * an image drawn over them
+     * @param frame the frame this panel is a part of
      */
     public InfoPanel(MainFrame frame) {
         this.frame = frame;
@@ -110,6 +111,10 @@ public class InfoPanel extends JPanel {
         repaint();
     }
 
+    /**
+     * Adds a replay panel.
+     * @param replayPanel the replay panel to add.
+     */
     public void addReplayPanel(ReplayPanel replayPanel) {
         setLayout(new GridLayout(5,1));
 

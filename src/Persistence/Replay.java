@@ -9,15 +9,27 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Class to handle replaying recordings.
+ */
 public class Replay {
     ReplayPanel replayPanel;
     Main game;
     HashMap<Long, ArrayList<String>> tickToMovesMap;
+
+    /**
+     * Replays a given game
+     * @param game the game to replay
+     * @param panel the panel to use
+     */
     public Replay(Main game, ReplayPanel panel) {
         this.game = game;
         replayPanel = panel;
     }
 
+    /**
+     * Method to actually replay the game
+     */
     public void replay() {
         game.setFrameRate(0000000000000000.1); //Stopping the game
         game.setReplay(this);
@@ -30,32 +42,23 @@ public class Replay {
         game.setChipsRemaining(replayBoard.getTotalChips());
         game.setTimeRemaining(replayBoard.getTimeLimit());
 
-        // FIXME We shouldn't set the chips twice the UI should update itself
-//        replayPanel.setChipsLeft(replayBoard.getTotalChips());
-//        replayPanel.setTimeLeft(replayBoard.getTimeLimit());
-
         Player p = replayBoard.getPlayer();
         p.setCurrentPos();
         game.setPlayer(p);
-//        replayPanel.getMainFrame().getBoardPanel().setPlayer(p);
-
-//        replayPanel.getMainFrame().getBoardPanel().setBoard(replayBoard.getBoard());
-//        infoPanel.getMainFrame().getBoardPanel().updateBoard();
-//        replayPanel.getMainFrame().getBoardPanel().redraw();
-
-//        replayPanel.setInventory(p.getInventory());
 
         game.getFrame().removeKeyListener(game.getFrame());
 
         replayPanel.changeButtons();
         replayPanel.addReplayButtons();
-//        replayPanel.redraw();
 
         tickToMovesMap = LoadJSON.loadMoves(selectedReplay);
         game.getFrame().redraw();
-//        infoPanel.getMainFrame().getBoardPanel().updateBoard();
+
     }
 
+    /**
+     * @return the map of ticks to moves
+     */
     public HashMap<Long, ArrayList<String>> getTickToMovesMap() {
         return tickToMovesMap;
     }
