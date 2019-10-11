@@ -29,4 +29,12 @@ is done in the Replay and loadJSON class and controlling the replay is done in M
 <p>I'm fucked</p>
 
 <h4>Using the Record and Play feature</h4>
-<p>There are many features of R&P, here is a guide to use these features</p>
+<p>There are many features of R&P, here is a guide to use these features:
+
+-To start recording press the record button and to stop recording press the record button again
+<br> <br>
+-To replay a file press the replay button. Once this button is pressed a file chooser will open.
+Please choose a file that starts with "record-". 
+<br> <br>
+-To
+</p>

@@ -6,7 +6,8 @@ public class FireTile extends Tile {
     }
 
     public boolean isWalkable() {
-        return this.main.getPlayer().isInInventory(new Boots(0, 0));
+        return true;
+        //return this.main.getPlayer().isInInventory(new Boots(0, 0));
     }
 
     public void interact() {
