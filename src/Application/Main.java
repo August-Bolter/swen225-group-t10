@@ -338,7 +338,8 @@ public class Main{
         } else {
             System.out.println("CREDITS SCREEN");
             new TitleFrame(frame);
-            paused = true;
+            //paused = true;
+            restartLevel(Optional.of(2));
             frame.setVisible(false);
         }
     }

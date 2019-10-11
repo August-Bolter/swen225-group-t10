@@ -1,7 +1,7 @@
 {
 	"title": "Lesson 1",
 	"chips": 11,
-	"timeLimit" : 148,
+	"timeLimit" : 143,
 	"tiles" : [
 		{
 			"type" : "WallTile",
@@ -666,10 +666,7 @@
 		{
 			"type" : "FreeTile",
 			"row" : 4,
-			"col" : 4,
-			"item" : {
-				"descriptor" : "Player|_>_>_>_>_>_>_>_"
-			}
+			"col" : 4
 		},
 		{
 			"type" : "InfoTile",
@@ -1586,7 +1583,10 @@
 		{
 			"type" : "FreeTile",
 			"row" : 9,
-			"col" : 23
+			"col" : 23,
+			"item" : {
+				"descriptor" : "Fireblast|DOWN"
+			}
 		},
 		{
 			"type" : "FreeTile",
@@ -1651,7 +1651,10 @@
 		{
 			"type" : "FreeTile",
 			"row" : 10,
-			"col" : 4
+			"col" : 4,
+			"item" : {
+				"descriptor" : "Player|_>_>_>_>_>_>_>_"
+			}
 		},
 		{
 			"type" : "FreeTile",
@@ -1744,15 +1747,15 @@
 		{
 			"type" : "FreeTile",
 			"row" : 10,
-			"col" : 22
+			"col" : 22,
+			"item" : {
+				"descriptor" : "Fireblast|DOWN"
+			}
 		},
 		{
 			"type" : "FreeTile",
 			"row" : 10,
-			"col" : 23,
-			"item" : {
-				"descriptor" : "Fireblast|DOWN"
-			}
+			"col" : 23
 		},
 		{
 			"type" : "FreeTile",
@@ -1913,10 +1916,7 @@
 		{
 			"type" : "FreeTile",
 			"row" : 11,
-			"col" : 22,
-			"item" : {
-				"descriptor" : "Fireblast|DOWN"
-			}
+			"col" : 22
 		},
 		{
 			"type" : "FreeTile",
@@ -2084,7 +2084,10 @@
 		{
 			"type" : "FreeTile",
 			"row" : 12,
-			"col" : 23
+			"col" : 23,
+			"item" : {
+				"descriptor" : "Fireblast|DOWN"
+			}
 		},
 		{
 			"type" : "DoorTile",
@@ -2240,7 +2243,10 @@
 		{
 			"type" : "FreeTile",
 			"row" : 13,
-			"col" : 22
+			"col" : 22,
+			"item" : {
+				"descriptor" : "Fireblast|DOWN"
+			}
 		},
 		{
 			"type" : "FreeTile",
@@ -2992,7 +2998,10 @@
 		{
 			"type" : "FreeTile",
 			"row" : 18,
-			"col" : 8
+			"col" : 8,
+			"item" : {
+				"descriptor" : "BlueEnemy|DOWN"
+			}
 		},
 		{
 			"type" : "FreeTile",
@@ -3090,7 +3099,10 @@
 		{
 			"type" : "FreeTile",
 			"row" : 18,
-			"col" : 27
+			"col" : 27,
+			"item" : {
+				"descriptor" : "BlueEnemy|DOWN"
+			}
 		},
 		{
 			"type" : "WallTile",
@@ -3135,10 +3147,7 @@
 		{
 			"type" : "FreeTile",
 			"row" : 19,
-			"col" : 4,
-			"item" : {
-				"descriptor" : "BlueEnemy|DOWN"
-			}
+			"col" : 4
 		},
 		{
 			"type" : "FreeTile",
@@ -3183,7 +3192,10 @@
 		{
 			"type" : "FreeTile",
 			"row" : 19,
-			"col" : 13
+			"col" : 13,
+			"item" : {
+				"descriptor" : "BlueEnemy|DOWN"
+			}
 		},
 		{
 			"type" : "WallTile",
@@ -3346,10 +3358,7 @@
 		{
 			"type" : "FreeTile",
 			"row" : 20,
-			"col" : 13,
-			"item" : {
-				"descriptor" : "BlueEnemy|DOWN"
-			}
+			"col" : 13
 		},
 		{
 			"type" : "WallTile",
@@ -3405,7 +3414,10 @@
 		{
 			"type" : "FreeTile",
 			"row" : 20,
-			"col" : 24
+			"col" : 24,
+			"item" : {
+				"descriptor" : "BlueEnemy|DOWN"
+			}
 		},
 		{
 			"type" : "FreeTile",
@@ -3422,7 +3434,7 @@
 			"row" : 20,
 			"col" : 27,
 			"item" : {
-				"descriptor" : "BlueEnemy|DOWN,Chip|_"
+				"descriptor" : "Chip|_"
 			}
 		},
 		{
@@ -3969,10 +3981,7 @@
 		{
 			"type" : "FreeTile",
 			"row" : 24,
-			"col" : 7,
-			"item" : {
-				"descriptor" : "BlueEnemy|DOWN"
-			}
+			"col" : 7
 		},
 		{
 			"type" : "FreeTile",
@@ -4135,7 +4144,10 @@
 		{
 			"type" : "FreeTile",
 			"row" : 25,
-			"col" : 7
+			"col" : 7,
+			"item" : {
+				"descriptor" : "BlueEnemy|DOWN"
+			}
 		},
 		{
 			"type" : "WallTile",
@@ -4211,7 +4223,10 @@
 		{
 			"type" : "FreeTile",
 			"row" : 25,
-			"col" : 22
+			"col" : 22,
+			"item" : {
+				"descriptor" : "BlueEnemy|DOWN"
+			}
 		},
 		{
 			"type" : "FreeTile",
@@ -4221,18 +4236,12 @@
 		{
 			"type" : "FreeTile",
 			"row" : 25,
-			"col" : 24,
-			"item" : {
-				"descriptor" : "BlueEnemy|DOWN"
-			}
+			"col" : 24
 		},
 		{
 			"type" : "FreeTile",
 			"row" : 25,
-			"col" : 25,
-			"item" : {
-				"descriptor" : "BlueEnemy|DOWN"
-			}
+			"col" : 25
 		},
 		{
 			"type" : "FreeTile",
@@ -4390,7 +4399,10 @@
 		{
 			"type" : "FreeTile",
 			"row" : 26,
-			"col" : 24
+			"col" : 24,
+			"item" : {
+				"descriptor" : "BlueEnemy|DOWN"
+			}
 		},
 		{
 			"type" : "WallTile",
@@ -4451,7 +4463,10 @@
 		{
 			"type" : "FreeTile",
 			"row" : 27,
-			"col" : 4
+			"col" : 4,
+			"item" : {
+				"descriptor" : "BlueEnemy|DOWN"
+			}
 		},
 		{
 			"type" : "FreeTile",
@@ -4466,10 +4481,7 @@
 		{
 			"type" : "FreeTile",
 			"row" : 27,
-			"col" : 7,
-			"item" : {
-				"descriptor" : "BlueEnemy|DOWN"
-			}
+			"col" : 7
 		},
 		{
 			"type" : "WallTile",
@@ -4517,10 +4529,7 @@
 		{
 			"type" : "FreeTile",
 			"row" : 27,
-			"col" : 16,
-			"item" : {
-				"descriptor" : "BlueEnemy|DOWN"
-			}
+			"col" : 16
 		},
 		{
 			"type" : "FreeTile",
@@ -4545,15 +4554,15 @@
 		{
 			"type" : "FreeTile",
 			"row" : 27,
-			"col" : 21
+			"col" : 21,
+			"item" : {
+				"descriptor" : "BlueEnemy|DOWN"
+			}
 		},
 		{
 			"type" : "FreeTile",
 			"row" : 27,
-			"col" : 22,
-			"item" : {
-				"descriptor" : "BlueEnemy|DOWN"
-			}
+			"col" : 22
 		},
 		{
 			"type" : "FreeTile",
@@ -5244,38 +5253,123 @@
 	"moves" : [
 		{
 			"type" : "playerMove",
-			"direction" : "DOWN",
-			"time" : 4766278900
+			"direction" : "RIGHT",
+			"time" : 8522583471
+		},
+		{
+			"type" : "playerMove",
+			"direction" : "RIGHT",
+			"time" : 8714130696
+		},
+		{
+			"type" : "playerMove",
+			"direction" : "RIGHT",
+			"time" : 8872780397
+		},
+		{
+			"type" : "playerMove",
+			"direction" : "RIGHT",
+			"time" : 9014974585
+		},
+		{
+			"type" : "playerMove",
+			"direction" : "RIGHT",
+			"time" : 9165031922
+		},
+		{
+			"type" : "playerMove",
+			"direction" : "RIGHT",
+			"time" : 9310636706
+		},
+		{
+			"type" : "playerMove",
+			"direction" : "LEFT",
+			"time" : 9539936146
+		},
+		{
+			"type" : "playerMove",
+			"direction" : "LEFT",
+			"time" : 9720981975
+		},
+		{
+			"type" : "playerMove",
+			"direction" : "LEFT",
+			"time" : 9878316760
+		},
+		{
+			"type" : "playerMove",
+			"direction" : "LEFT",
+			"time" : 10041098365
+		},
+		{
+			"type" : "playerMove",
+			"direction" : "LEFT",
+			"time" : 10192054652
+		},
+		{
+			"type" : "playerMove",
+			"direction" : "LEFT",
+			"time" : 10340010660
 		},
 		{
 			"type" : "playerMove",
 			"direction" : "DOWN",
-			"time" : 4934489700
+			"time" : 10543985155
 		},
 		{
 			"type" : "playerMove",
 			"direction" : "DOWN",
-			"time" : 5079236000
+			"time" : 10717022078
+		},
+		{
+			"type" : "playerMove",
+			"direction" : "RIGHT",
+			"time" : 10908585627
+		},
+		{
+			"type" : "playerMove",
+			"direction" : "LEFT",
+			"time" : 11117127937
 		},
 		{
 			"type" : "playerMove",
 			"direction" : "DOWN",
-			"time" : 5245568500
+			"time" : 11330985417
 		},
 		{
 			"type" : "playerMove",
 			"direction" : "DOWN",
-			"time" : 5394867500
+			"time" : 11508052651
 		},
 		{
 			"type" : "playerMove",
 			"direction" : "DOWN",
-			"time" : 5562311700
+			"time" : 11656447222
 		},
 		{
 			"type" : "playerMove",
-			"direction" : "DOWN",
-			"time" : 5755319800
+			"direction" : "RIGHT",
+			"time" : 11846954945
+		},
+		{
+			"type" : "playerMove",
+			"direction" : "RIGHT",
+			"time" : 11999573775
+		},
+		{
+			"type" : "playerMove",
+			"direction" : "RIGHT",
+			"time" : 12141380438
+		},
+		{
+			"type" : "playerMove",
+			"direction" : "RIGHT",
+			"time" : 12296366397
+		},
+		{
+			"type" : "playerMove",
+			"direction" : "UP",
+			"time" : 12494967771
 		}
 	]
 }
