@@ -24,7 +24,7 @@ public class ReplayPanel extends JPanel implements ActionListener {
         this.frame = frame;
         this.game = frame.getGame();
         replayJPanel = new JPanel();
-        replayJPanel.setLayout(new GridLayout(1, 2));
+        replayJPanel.setLayout(new GridLayout(2, 2));
 
         replayButton = new JButton("Replay");
         recordButton = new JButton("Record");
