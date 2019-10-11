@@ -33,7 +33,7 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
     public MainFrame(Main game){
         super("Chip's Challenge");
 
-        TitleFrame title = new TitleFrame(this);
+        new TitleFrame(this);
 
         setVisible(false);
         this.game = game;
@@ -63,6 +63,45 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
         pack();
         setLocationRelativeTo(null);
         repaint();
+
+        pressedKeys = new HashSet<>();
+    }
+
+    /**
+     * Constructor for the test cases
+     * @param game
+     */
+    public MainFrame(Main game, String tester){
+        super("Chip's Challenge");
+
+        //TitleFrame title = new TitleFrame(this);
+
+        setVisible(true);
+        this.game = game;
+
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); // Makes the program have exit dialogue instead
+        addWindowListener(this);
+
+        outerpanel = new JPanel();
+
+        setContentPane(outerpanel);
+        addBoardPanel();
+        addInfoPanel();
+
+        // Setup key listener
+       addKeyListener(this);
+        setFocusable(true);
+        requestFocus();
+
+        createMenuBar();
+
+        outerpanel.setLayout(new GridBagLayout());
+        outerpanel.setBorder(new GameBorder(Color.BLUE));
+
+        pack();
+        setLocationRelativeTo(null);
+        repaint();
+        setResizable(false);
 
         pressedKeys = new HashSet<>();
     }
@@ -200,6 +239,7 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
         outerpanel.remove(boardpanel);
         outerpanel.remove(infoPanel);
         boardpanel = new BoardPanel(game.getLevelBoard().getBoard(), game.getPlayer());
+        infoPanel = new InfoPanel(this);
 
 
         outerpanel.add(boardpanel);
@@ -276,6 +316,9 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
         game.setPaused();
     }
 
+    /**
+     * Sets the fra,e as visible so it is shown.
+     */
     public void showFrame() {
         setVisible(true);
     }
@@ -320,6 +363,9 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
         }
     }
 
+    /**
+     * Creates the interface for changing the speed of the replay.
+     */
     public void createChangeSpeedWindow() {
         JDialog changeSpeedWindow = new JDialog();
         JPanel changeSpeedPanel = new JPanel();
@@ -346,6 +392,9 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
         changeSpeedWindow.pack();
     }
 
+    /**
+     * @return the game this frame is a part of
+     */
     public Main getGame() {
         return game;
     }

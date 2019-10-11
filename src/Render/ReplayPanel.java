@@ -9,7 +9,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.Optional;
 
+/**
+ * Panel to handle the interface for the replay system.
+ */
 public class ReplayPanel extends JPanel implements ActionListener {
     private JButton replayButton, recordButton, nextStepButton, exitButton;
 
@@ -20,11 +24,15 @@ public class ReplayPanel extends JPanel implements ActionListener {
     private Main game;
     private JPanel replayJPanel;
 
+    /**
+     * Creates a new replay panel in a frame.
+     * @param frame the frame this replay panel is a part of
+     */
     public ReplayPanel(MainFrame frame) {
         this.frame = frame;
         this.game = frame.getGame();
         replayJPanel = new JPanel();
-        replayJPanel.setLayout(new GridLayout(1, 2));
+        replayJPanel.setLayout(new GridLayout(2, 2));
 
         replayButton = new JButton("Replay");
         recordButton = new JButton("Record");
@@ -45,6 +53,10 @@ public class ReplayPanel extends JPanel implements ActionListener {
         add(replayJPanel);
     }
 
+    /**
+     * Lets the user select a replay.
+     * @return the file they selected
+     */
     public File openFileChooser() {
         JFileChooser chooseFile = new JFileChooser("src/Utility");
         chooseFile.setDialogTitle("Please select a replay file (.json format)");
@@ -57,11 +69,17 @@ public class ReplayPanel extends JPanel implements ActionListener {
         }
     }
 
+    /**
+     * Changes the buttons when the user starts a replay.
+     */
     public void changeButtons() {
         recordButton.setText("Play");
         replayButton.setText("Change speed");
     }
 
+    /**
+     * Adds the control buttons.
+     */
     public void addReplayButtons() {
         nextStepButton.setVisible(true);
         nextStepButton.addActionListener(this);
@@ -80,6 +98,7 @@ public class ReplayPanel extends JPanel implements ActionListener {
             if (recordButton.getText().equals("Record")) {
                 recordButton.setText("Stop recording");
                 game.setRecord(record);
+                game.setFirstMove(true);
                 game.setStartTime(System.nanoTime());
                 record.record();
                 replayButton.setEnabled(false);
@@ -88,6 +107,7 @@ public class ReplayPanel extends JPanel implements ActionListener {
                 recordButton.setText("Record");
                 record.stopRecording();
                 replayButton.setEnabled(true);
+                game.getCurrentRecord().setFinalTime(System.nanoTime()-game.getStartTime());
             }
             else if (recordButton.getText().equals("Play")) {
                 game.setFrameRate(1);
@@ -118,6 +138,14 @@ public class ReplayPanel extends JPanel implements ActionListener {
 
         else if (e.getSource() == exitButton) {
             game.setReplayMode(false);
+            new TitleFrame(game.getFrame());
+            if (game.getLevel() == 1) {
+                game.restartLevel(Optional.of(1));
+            }
+            else {
+                game.restartLevel(Optional.of(2));
+            }
+            game.getFrame().redraw();
         }
     }
 }

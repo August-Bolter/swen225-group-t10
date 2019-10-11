@@ -234,7 +234,6 @@ public class LoadJSON {
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
-            System.out.println("Trying to create " + itemClassName + ", " + row + ", " + col);
             e.printStackTrace();
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
@@ -245,6 +244,11 @@ public class LoadJSON {
         return item;
     }
 
+    /**
+     * Loads the moves from a replay file.
+     * @param selectedReplay the file to load
+     * @return A map from the time to the move
+     */
     public static HashMap<Long, ArrayList<String>> loadMoves(File selectedReplay) {
         HashMap<Long, ArrayList<String>> tickAndMoves = new HashMap<Long, ArrayList<String>>();
         try {

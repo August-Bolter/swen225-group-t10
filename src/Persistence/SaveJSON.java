@@ -15,6 +15,8 @@ public class SaveJSON {
     /**
      * Saves the current game state to a .JSON file
      * @param levelBoard the level board to save
+     * @param fileName the name of the file ot save
+     * @param endFile if the end of the file should be written
      */
     public static void SaveGame(LevelBoard levelBoard, String fileName, boolean endFile) {
         Tile[][] levelArray = levelBoard.getBoard();
@@ -90,7 +92,7 @@ public class SaveJSON {
                 builder.append("\n\t]\n}");
             }
             else {
-                builder.append("\n\t],\n");
+                builder.append("\n\t]");
             }
             out.print(builder.toString());
 
@@ -131,13 +133,21 @@ public class SaveJSON {
         return builder.toString();
     }
 
+    /**
+     * Saves a move the player makes.
+     * Used when recording.
+     * @param fileName the name of the file
+     * @param direction the direction the player moved
+     * @param time the time the move was made
+     * @param firstMove true if this is the first recorded move
+     */
     public static void SaveMove(String fileName, LevelBoard.Direction direction, long time, boolean firstMove) {
         try {
             StringBuilder move = new StringBuilder();
             FileWriter fileWriter = new FileWriter(fileName, true);
             BufferedWriter out = new BufferedWriter(fileWriter);
             if (firstMove) {
-                move.append("\t\"moves\" : [\n");
+                move.append(",\n\t\"moves\" : [\n");
             }
             String type = "playerMove";
             String directionText = "";
@@ -171,12 +181,22 @@ public class SaveJSON {
         }
     }
 
-    public static void endRecord(String fileName) {
+    /**
+     * Method to write the end of the file at the end of the recording.
+     * @param fileName the name of the file
+     * @param firstMove
+     */
+    public static void endRecord(String fileName, boolean firstMove) {
         try {
             StringBuilder move = new StringBuilder();
             FileWriter fileWriter = new FileWriter(fileName, true);
             BufferedWriter out = new BufferedWriter(fileWriter);
-            move.append("\n\t]\n}");
+            if (firstMove) {
+                move.append("\n}");
+            }
+            else {
+                move.append("\n\t]\n}");
+            }
             out.append(move.toString());
             out.close();
             fileWriter.close();

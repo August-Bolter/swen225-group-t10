@@ -15,11 +15,7 @@ import java.io.IOException;
 import java.util.*;
 
 /**
- * Main Class: This contains the methods
- * setup() - setting up the game
- * domove()
- * getPlayer()
- *
+ * Main class responsible for running the game.
  */
 public class Main{
     //start of fields
@@ -68,8 +64,44 @@ public class Main{
      */
     public final Map<String, BufferedImage> itemImages = new HashMap<>();
 
+    /**
+     * Constructor used to create levels for the testcases
+     * @param tester
+     * @param level
+     */
+    public Main(String tester, int level){
+        //setting up the correct level
+        initialiseMaps();
+        levelBoard = LoadJSON.loadLevelFromJSON(level, null);
+        levelBoard.setMain(this);
+
+        //setting up players
+        player = levelBoard.getPlayer();
+        player.setCurrentPos();
+
+        //setting up enemies
+        enemies = levelBoard.getEnemies();
+        for (Enemy e : enemies){
+            e.setCurrentPos();
+        }
+        levelBoard.setMain(this);
+
+        chipsRemaining = levelBoard.getTotalChips();
+        timeRemaining = levelBoard.getTimeLimit();      //level must be completed before this time limit runs out
+
+        frame = new MainFrame(this, "Tester");
+        timer();
+
+        seed = System.currentTimeMillis();
+        generator.setSeed(seed);
+    }
+
 //    private TitleFrame titleFrame;
 
+    /**
+     * Creates a new main and sets up a level
+     * @param level the number of the level to setup
+     */
     public Main(int level) {
         setup(level);
     }
@@ -106,11 +138,11 @@ public class Main{
     }
 
     /**
-     * Method that setups the actual playing board
-     * CHECKTHIS
+     * Method that setups the actual playing board for a level
+     * @param levelX the level to setup
      */
     public void setup(int levelX) {
-        //setting up the correct level
+        // Setting up the correct level
         initialiseMaps();
         levelBoard = LoadJSON.loadLevelFromJSON(levelX, null);
         levelBoard.setMain(this);
@@ -119,17 +151,10 @@ public class Main{
         player = levelBoard.getPlayer();
         player.setCurrentPos();
 
-        for (int i = 0; i < levelBoard.getBoard().length; i++) {
-            System.out.println(levelBoard.getBoard()[i][i]);
-        }
-
-        //setting up enemies
+        // Setting up enemies
         enemies = levelBoard.getEnemies();
-//        System.out.println("PAST BEFORE ENEMY LOOP");
-        System.out.println("enemies no. : " + enemies.size());
         for (Enemy e : enemies){
             e.setCurrentPos();
-//            System.out.println("IN THE ENEMY LOOP");
         }
         levelBoard.setMain(this);
 
@@ -141,7 +166,6 @@ public class Main{
 
         seed = System.currentTimeMillis();
         generator.setSeed(seed);
-        System.out.println("At the end of the setup method ");
     }
 
 
@@ -170,11 +194,8 @@ public class Main{
                 item.interact();
             }
             if (recordMoves && !replayMode) {
-                /* Need an if clause which doesn't record the move if the move doesn't change players direction or tile
-                *  e.g. walking into a wall */
                 String fileName = "src/Utility/record-" + currentRecord.getCount() + ".json";
                 long time = System.nanoTime()-startTime;
-                System.out.println(startTime);
                 SaveJSON.SaveMove(fileName, direction, time, firstMove);
                 firstMove = false;
             }
@@ -219,11 +240,11 @@ public class Main{
 
             long now = System.nanoTime();
 
-
-
-
             if (replayMode) { //If we are replaying a record, (play button has been pressed)
                 /* In the first iteration get the time of when the unpause happened and calculate the totalPauseTime from this */
+                if (diff >= currentRecord.getFinalTime()) {
+                    frameRate = 0000000000000000.1;
+                }
                 if (beenPaused) {
                     unpauseTime = System.nanoTime();
                     totalPauseTime = totalPauseTime + (unpauseTime - pauseTime);
@@ -238,14 +259,16 @@ public class Main{
                 }
                 beenPaused = false;
                 /* Iterate through the player moves map */
-                for (Map.Entry<Long, ArrayList<String>> entry: currentReplay.getTickToMovesMap().entrySet()) {
-                    /*Check if the time the move happened is less than the diff (time elapsed), i.e. the move should be executed
-                      and don't execute moves that have already been executed */
-                    if (diff > entry.getKey() && !executedTimes.contains(entry.getKey())) {
-                        for (String s : entry.getValue()) {
-                            replayMove(s); //Execute the move
+                if (!firstMove) {
+                    for (Map.Entry<Long, ArrayList<String>> entry : currentReplay.getTickToMovesMap().entrySet()) {
+                        /*Check if the time the move happened is less than the diff (time elapsed), i.e. the move should be executed
+                          and don't execute moves that have already been executed */
+                        if (diff > entry.getKey() && !executedTimes.contains(entry.getKey())) {
+                            for (String s : entry.getValue()) {
+                                replayMove(s); //Execute the move
+                            }
+                            executedTimes.add(entry.getKey()); //And register that this move has been executed
                         }
-                        executedTimes.add(entry.getKey()); //And register that this move has been executed
                     }
                 }
             }
@@ -312,6 +335,7 @@ public class Main{
 
     /**
      * Method used to restart the level. Will occur when the user pressed the restart button
+     * @param lvl the level number to restart. If not present the level in the level field is restarte
      */
     public void restartLevel(Optional<Integer> lvl) {
         int level;
@@ -321,7 +345,6 @@ public class Main{
             level = this.level;
         }
 
-        System.out.println("RESTART CALLED");
         this.level = level;
 
         waitForRestart = true;
@@ -336,20 +359,13 @@ public class Main{
             level = 2;
             restartLevel(Optional.empty());
         } else {
-            System.out.println("CREDITS SCREEN");
             new TitleFrame(frame);
-            //paused = true;
             restartLevel(Optional.of(2));
             frame.setVisible(false);
         }
     }
 
     //start of getter and setters
-
-    /**
-     * Getter method: Fetches the current frame
-     * @return current frame
-     */
     private void replayMove(String dir) {
         /* Execute a move with a direction corresponding to the string passed in */
         if (dir.equals("LEFT")) {
@@ -365,6 +381,9 @@ public class Main{
         frame.redraw();
     }
 
+    /**
+     * @return the current main frame
+     */
     public MainFrame getFrame() {
         return frame;
     }
@@ -387,7 +406,7 @@ public class Main{
 
     /**
      * Getter method: fetches the time left - level must be completed before time runs out
-     * @return levelboard we are on
+     * @return the time remaining
      */
     public int getTimeRemaining() {
         return timeRemaining;
@@ -425,19 +444,35 @@ public class Main{
 
     }
 
+    /**
+     * Sets the chips left
+     * @param chipsLeft the number of chips left
+     */
     public void setChipsRemaining(int chipsLeft) {
         chipsRemaining = chipsLeft;
     }
 
+    /**
+     * Sets the time left
+     * @param timeLeft the time left in seconds
+     */
     public void setTimeRemaining(int timeLeft) {
         timeRemaining = timeLeft;
     }
 
+    /**
+     * Sets the player
+     * @param p the player
+     */
     public void setPlayer(Player p) {
         player = p;
     }
 
 
+    /**
+     * Sets the framerate of the game
+     * @param frameRate the framerate in frames per second
+     */
     public void setFrameRate(double frameRate) {
         this.frameRate = frameRate;
     }
@@ -487,42 +522,76 @@ public class Main{
      * @param args none
      */
     public static void main(String[] args) {
-        Main game = new Main(1);
+        new Main(1);
     }
 
+    /**
+     * @param b true if recording moves
+     */
     public void recordMoves(boolean b) {
         recordMoves = b;
     }
 
+    /**
+     * Sets the record object.
+     * @param record the object
+     */
     public void setRecord(Record record) {
         currentRecord = record;
     }
 
+    /**
+     * Sets the replay object.
+     * @param replay the object
+     */
     public void setReplay(Replay replay) {
         currentReplay = replay;
     }
 
+    /**
+     * Sets the level board.
+     * @param board the level board object
+     */
     public void setLevelBoard(LevelBoard board) {
         levelBoard = board;
     }
 
+    /**
+     * Sets replay mode to true or false.
+     * @param replayMode true if in replay mode
+     */
     public void setReplayMode(boolean replayMode) {
         this.replayMode = replayMode;
     }
 
+    /**
+     * Sets the replay speed.
+     * @param replaySpeed the replay speed.
+     */
     public void setReplaySpeed(double replaySpeed) {
         this.replaySpeed = replaySpeed;
     }
 
+    /**
+     * Sets the step time.
+     * @param stepTime the time for each step
+     */
     public void addStepTime(long stepTime) {
         long amountToAdd = stepTime - lastDiff;
         totalStepTime = totalStepTime + amountToAdd;
     }
 
+    /**
+     * Sets the difference.
+     * @param diff the difference
+     */
     public void setLastDiff(long diff) {
         lastDiff = diff;
     }
 
+    /**
+     * Moves to the next step of the replay.
+     */
     public void nextStep() {
         SortedSet<Long> sortedMoves = new TreeSet<Long>(currentReplay.getTickToMovesMap().keySet());
         for (long l : sortedMoves) {
@@ -535,7 +604,27 @@ public class Main{
         }
     }
 
+    /**
+     * Sets the start time in nanoseconds.
+     * @param nanoTime the time in nanoseconds.
+     */
     public void setStartTime(long nanoTime) {
         startTime = nanoTime;
+    }
+
+    public Record getCurrentRecord() {
+        return currentRecord;
+    }
+
+    public long getStartTime() {
+        return startTime;
+    }
+
+    public void setFirstMove(boolean fMove) {
+        firstMove = fMove;
+    }
+
+    public boolean getFirstMove() {
+        return firstMove;
     }
 }

@@ -82,10 +82,18 @@ public class BoardPanel extends JPanel {
         repaint();
     }
 
+    /**
+     * Sets the player.
+     * @param p the player
+     */
     public void setPlayer(Player p) {
         player = p;
     }
 
+    /**
+     * Sets the board.
+     * @param board the board
+     */
     public void setBoard(Tile[][] board) {
         this.board = board;
     }

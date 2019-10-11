@@ -17,7 +17,7 @@ public class InfoPanel extends JPanel {
     private JLabel timeRemaining;
     private JLabel chipsRemaining;
     private JPanel inventoryPanel;
-//    private ReplayPanel replayPanel;
+    private ReplayPanel replayPanel;
 
     private int timeLeft, chipsLeft;
 
@@ -34,6 +34,7 @@ public class InfoPanel extends JPanel {
      * Chips left
      * Inventory (an array with 8 pos) so it'll be 8 labels that can have
      * an image drawn over them
+     * @param frame the frame this panel is a part of
      */
     public InfoPanel(MainFrame frame) {
         this.frame = frame;
@@ -59,7 +60,7 @@ public class InfoPanel extends JPanel {
         inventoryPanel = new JPanel(new GridLayout(2, 4));
         invPanels = new TilePanel[inventory.length];
 
-//        replayPanel = new ReplayPanel(frame);
+        replayPanel = new ReplayPanel(frame);
 
         etched = BorderFactory.createEtchedBorder(EtchedBorder.RAISED);
 
@@ -110,6 +111,10 @@ public class InfoPanel extends JPanel {
         repaint();
     }
 
+    /**
+     * Adds a replay panel.
+     * @param replayPanel the replay panel to add.
+     */
     public void addReplayPanel(ReplayPanel replayPanel) {
         setLayout(new GridLayout(5,1));
 
