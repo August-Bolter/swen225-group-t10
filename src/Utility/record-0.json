@@ -1,7 +1,7 @@
 {
 	"title": "Lesson 1",
 	"chips": 11,
-	"timeLimit" : 143,
+	"timeLimit" : 144,
 	"tiles" : [
 		{
 			"type" : "WallTile",
@@ -1583,10 +1583,7 @@
 		{
 			"type" : "FreeTile",
 			"row" : 9,
-			"col" : 23,
-			"item" : {
-				"descriptor" : "Fireblast|DOWN"
-			}
+			"col" : 23
 		},
 		{
 			"type" : "FreeTile",
@@ -1651,10 +1648,7 @@
 		{
 			"type" : "FreeTile",
 			"row" : 10,
-			"col" : 4,
-			"item" : {
-				"descriptor" : "Player|_>_>_>_>_>_>_>_"
-			}
+			"col" : 4
 		},
 		{
 			"type" : "FreeTile",
@@ -1669,7 +1663,10 @@
 		{
 			"type" : "FreeTile",
 			"row" : 10,
-			"col" : 7
+			"col" : 7,
+			"item" : {
+				"descriptor" : "Player|Gloves/_>_>_>_>_>_>_>_"
+			}
 		},
 		{
 			"type" : "FreeTile",
@@ -1684,10 +1681,7 @@
 		{
 			"type" : "FreeTile",
 			"row" : 10,
-			"col" : 10,
-			"item" : {
-				"descriptor" : "Gloves|_"
-			}
+			"col" : 10
 		},
 		{
 			"type" : "WallTile",
@@ -1747,10 +1741,7 @@
 		{
 			"type" : "FreeTile",
 			"row" : 10,
-			"col" : 22,
-			"item" : {
-				"descriptor" : "Fireblast|DOWN"
-			}
+			"col" : 22
 		},
 		{
 			"type" : "FreeTile",
@@ -1921,7 +1912,10 @@
 		{
 			"type" : "FreeTile",
 			"row" : 11,
-			"col" : 23
+			"col" : 23,
+			"item" : {
+				"descriptor" : "Fireblast|DOWN"
+			}
 		},
 		{
 			"type" : "WallTile",
@@ -2079,15 +2073,15 @@
 		{
 			"type" : "FreeTile",
 			"row" : 12,
-			"col" : 22
+			"col" : 22,
+			"item" : {
+				"descriptor" : "Fireblast|DOWN"
+			}
 		},
 		{
 			"type" : "FreeTile",
 			"row" : 12,
-			"col" : 23,
-			"item" : {
-				"descriptor" : "Fireblast|DOWN"
-			}
+			"col" : 23
 		},
 		{
 			"type" : "DoorTile",
@@ -2243,10 +2237,7 @@
 		{
 			"type" : "FreeTile",
 			"row" : 13,
-			"col" : 22,
-			"item" : {
-				"descriptor" : "Fireblast|DOWN"
-			}
+			"col" : 22
 		},
 		{
 			"type" : "FreeTile",
@@ -2427,7 +2418,10 @@
 		{
 			"type" : "FreeTile",
 			"row" : 14,
-			"col" : 23
+			"col" : 23,
+			"item" : {
+				"descriptor" : "Fireblast|DOWN"
+			}
 		},
 		{
 			"type" : "FreeTile",
@@ -2998,10 +2992,7 @@
 		{
 			"type" : "FreeTile",
 			"row" : 18,
-			"col" : 8,
-			"item" : {
-				"descriptor" : "BlueEnemy|DOWN"
-			}
+			"col" : 8
 		},
 		{
 			"type" : "FreeTile",
@@ -3099,10 +3090,7 @@
 		{
 			"type" : "FreeTile",
 			"row" : 18,
-			"col" : 27,
-			"item" : {
-				"descriptor" : "BlueEnemy|DOWN"
-			}
+			"col" : 27
 		},
 		{
 			"type" : "WallTile",
@@ -3192,10 +3180,7 @@
 		{
 			"type" : "FreeTile",
 			"row" : 19,
-			"col" : 13,
-			"item" : {
-				"descriptor" : "BlueEnemy|DOWN"
-			}
+			"col" : 13
 		},
 		{
 			"type" : "WallTile",
@@ -3338,7 +3323,10 @@
 		{
 			"type" : "FreeTile",
 			"row" : 20,
-			"col" : 9
+			"col" : 9,
+			"item" : {
+				"descriptor" : "BlueEnemy|DOWN,BlueEnemy|DOWN"
+			}
 		},
 		{
 			"type" : "FreeTile",
@@ -3414,10 +3402,7 @@
 		{
 			"type" : "FreeTile",
 			"row" : 20,
-			"col" : 24,
-			"item" : {
-				"descriptor" : "BlueEnemy|DOWN"
-			}
+			"col" : 24
 		},
 		{
 			"type" : "FreeTile",
@@ -3586,7 +3571,10 @@
 		{
 			"type" : "FreeTile",
 			"row" : 21,
-			"col" : 24
+			"col" : 24,
+			"item" : {
+				"descriptor" : "BlueEnemy|DOWN"
+			}
 		},
 		{
 			"type" : "FreeTile",
@@ -4084,7 +4072,10 @@
 		{
 			"type" : "FreeTile",
 			"row" : 24,
-			"col" : 27
+			"col" : 27,
+			"item" : {
+				"descriptor" : "BlueEnemy|DOWN"
+			}
 		},
 		{
 			"type" : "WallTile",
@@ -4144,10 +4135,7 @@
 		{
 			"type" : "FreeTile",
 			"row" : 25,
-			"col" : 7,
-			"item" : {
-				"descriptor" : "BlueEnemy|DOWN"
-			}
+			"col" : 7
 		},
 		{
 			"type" : "WallTile",
@@ -4218,12 +4206,7 @@
 		{
 			"type" : "FreeTile",
 			"row" : 25,
-			"col" : 21
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 25,
-			"col" : 22,
+			"col" : 21,
 			"item" : {
 				"descriptor" : "BlueEnemy|DOWN"
 			}
@@ -4231,7 +4214,15 @@
 		{
 			"type" : "FreeTile",
 			"row" : 25,
-			"col" : 23
+			"col" : 22
+		},
+		{
+			"type" : "FreeTile",
+			"row" : 25,
+			"col" : 23,
+			"item" : {
+				"descriptor" : "BlueEnemy|DOWN"
+			}
 		},
 		{
 			"type" : "FreeTile",
@@ -4251,10 +4242,7 @@
 		{
 			"type" : "FreeTile",
 			"row" : 25,
-			"col" : 27,
-			"item" : {
-				"descriptor" : "BlueEnemy|DOWN"
-			}
+			"col" : 27
 		},
 		{
 			"type" : "WallTile",
@@ -4314,7 +4302,10 @@
 		{
 			"type" : "FreeTile",
 			"row" : 26,
-			"col" : 7
+			"col" : 7,
+			"item" : {
+				"descriptor" : "BlueEnemy|DOWN"
+			}
 		},
 		{
 			"type" : "WallTile",
@@ -4344,7 +4335,10 @@
 		{
 			"type" : "FreeTile",
 			"row" : 26,
-			"col" : 13
+			"col" : 13,
+			"item" : {
+				"descriptor" : "BlueEnemy|DOWN"
+			}
 		},
 		{
 			"type" : "FreeTile",
@@ -4399,10 +4393,7 @@
 		{
 			"type" : "FreeTile",
 			"row" : 26,
-			"col" : 24,
-			"item" : {
-				"descriptor" : "BlueEnemy|DOWN"
-			}
+			"col" : 24
 		},
 		{
 			"type" : "WallTile",
@@ -4463,15 +4454,15 @@
 		{
 			"type" : "FreeTile",
 			"row" : 27,
-			"col" : 4,
-			"item" : {
-				"descriptor" : "BlueEnemy|DOWN"
-			}
+			"col" : 4
 		},
 		{
 			"type" : "FreeTile",
 			"row" : 27,
-			"col" : 5
+			"col" : 5,
+			"item" : {
+				"descriptor" : "BlueEnemy|DOWN"
+			}
 		},
 		{
 			"type" : "FreeTile",
@@ -4539,7 +4530,10 @@
 		{
 			"type" : "FreeTile",
 			"row" : 27,
-			"col" : 18
+			"col" : 18,
+			"item" : {
+				"descriptor" : "BlueEnemy|DOWN"
+			}
 		},
 		{
 			"type" : "FreeTile",
@@ -4554,10 +4548,7 @@
 		{
 			"type" : "FreeTile",
 			"row" : 27,
-			"col" : 21,
-			"item" : {
-				"descriptor" : "BlueEnemy|DOWN"
-			}
+			"col" : 21
 		},
 		{
 			"type" : "FreeTile",
@@ -5253,123 +5244,88 @@
 	"moves" : [
 		{
 			"type" : "playerMove",
-			"direction" : "RIGHT",
-			"time" : 8522583471
-		},
-		{
-			"type" : "playerMove",
-			"direction" : "RIGHT",
-			"time" : 8714130696
-		},
-		{
-			"type" : "playerMove",
-			"direction" : "RIGHT",
-			"time" : 8872780397
-		},
-		{
-			"type" : "playerMove",
-			"direction" : "RIGHT",
-			"time" : 9014974585
-		},
-		{
-			"type" : "playerMove",
-			"direction" : "RIGHT",
-			"time" : 9165031922
-		},
-		{
-			"type" : "playerMove",
-			"direction" : "RIGHT",
-			"time" : 9310636706
+			"direction" : "LEFT",
+			"time" : 588115252
 		},
 		{
 			"type" : "playerMove",
 			"direction" : "LEFT",
-			"time" : 9539936146
+			"time" : 748602871
 		},
 		{
 			"type" : "playerMove",
 			"direction" : "LEFT",
-			"time" : 9720981975
-		},
-		{
-			"type" : "playerMove",
-			"direction" : "LEFT",
-			"time" : 9878316760
-		},
-		{
-			"type" : "playerMove",
-			"direction" : "LEFT",
-			"time" : 10041098365
-		},
-		{
-			"type" : "playerMove",
-			"direction" : "LEFT",
-			"time" : 10192054652
-		},
-		{
-			"type" : "playerMove",
-			"direction" : "LEFT",
-			"time" : 10340010660
+			"time" : 882331769
 		},
 		{
 			"type" : "playerMove",
 			"direction" : "DOWN",
-			"time" : 10543985155
+			"time" : 1062261172
 		},
 		{
 			"type" : "playerMove",
 			"direction" : "DOWN",
-			"time" : 10717022078
+			"time" : 1186792233
 		},
 		{
 			"type" : "playerMove",
 			"direction" : "RIGHT",
-			"time" : 10908585627
+			"time" : 1387151018
+		},
+		{
+			"type" : "playerMove",
+			"direction" : "RIGHT",
+			"time" : 1540561132
 		},
 		{
 			"type" : "playerMove",
 			"direction" : "LEFT",
-			"time" : 11117127937
+			"time" : 1696911728
+		},
+		{
+			"type" : "playerMove",
+			"direction" : "LEFT",
+			"time" : 1876654227
 		},
 		{
 			"type" : "playerMove",
 			"direction" : "DOWN",
-			"time" : 11330985417
+			"time" : 2106040537
 		},
 		{
 			"type" : "playerMove",
 			"direction" : "DOWN",
-			"time" : 11508052651
+			"time" : 2284764755
 		},
 		{
 			"type" : "playerMove",
 			"direction" : "DOWN",
-			"time" : 11656447222
+			"time" : 2418263838
 		},
 		{
 			"type" : "playerMove",
 			"direction" : "RIGHT",
-			"time" : 11846954945
+			"time" : 2558976472
 		},
 		{
 			"type" : "playerMove",
 			"direction" : "RIGHT",
-			"time" : 11999573775
+			"time" : 2704607884
 		},
 		{
 			"type" : "playerMove",
 			"direction" : "RIGHT",
-			"time" : 12141380438
+			"time" : 2843795830
 		},
 		{
 			"type" : "playerMove",
 			"direction" : "RIGHT",
-			"time" : 12296366397
+			"time" : 2983476525
 		},
 		{
 			"type" : "playerMove",
 			"direction" : "UP",
-			"time" : 12494967771
+			"time" : 3224710329
 		}
 	]
 }
