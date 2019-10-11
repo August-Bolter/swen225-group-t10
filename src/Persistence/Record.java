@@ -33,6 +33,10 @@ public class Record {
         finalTime = time;
     }
 
+    public long getFinalTime() {
+        return finalTime;
+    }
+
     public void record() {
         count++;
         setRecording(true);

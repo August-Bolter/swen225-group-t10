@@ -4292,10 +4292,7 @@
 		{
 			"type" : "FreeTile",
 			"row" : 26,
-			"col" : 5,
-			"item" : {
-				"descriptor" : "BlueEnemy|DOWN"
-			}
+			"col" : 5
 		},
 		{
 			"type" : "FreeTile",
@@ -4464,7 +4461,10 @@
 		{
 			"type" : "FreeTile",
 			"row" : 27,
-			"col" : 6
+			"col" : 6,
+			"item" : {
+				"descriptor" : "BlueEnemy|DOWN"
+			}
 		},
 		{
 			"type" : "FreeTile",
@@ -5245,77 +5245,82 @@
 		{
 			"type" : "playerMove",
 			"direction" : "DOWN",
-			"time" : 832860100
+			"time" : 745233800
 		},
 		{
 			"type" : "playerMove",
 			"direction" : "DOWN",
-			"time" : 1019427300
+			"time" : 905679400
 		},
 		{
 			"type" : "playerMove",
 			"direction" : "DOWN",
-			"time" : 1197509100
+			"time" : 1036375100
 		},
 		{
 			"type" : "playerMove",
 			"direction" : "DOWN",
-			"time" : 1361021900
+			"time" : 1198308600
 		},
 		{
 			"type" : "playerMove",
 			"direction" : "DOWN",
-			"time" : 1544920300
+			"time" : 1317830800
 		},
 		{
 			"type" : "playerMove",
 			"direction" : "DOWN",
-			"time" : 1903855800
+			"time" : 1476042500
 		},
 		{
 			"type" : "playerMove",
 			"direction" : "DOWN",
-			"time" : 2114494600
+			"time" : 1622443400
 		},
 		{
 			"type" : "playerMove",
 			"direction" : "DOWN",
-			"time" : 2373112400
+			"time" : 1787299000
 		},
 		{
 			"type" : "playerMove",
 			"direction" : "DOWN",
-			"time" : 2785968400
+			"time" : 1949959500
 		},
 		{
 			"type" : "playerMove",
 			"direction" : "DOWN",
-			"time" : 2986758000
+			"time" : 2080629500
 		},
 		{
 			"type" : "playerMove",
 			"direction" : "DOWN",
-			"time" : 3198860600
+			"time" : 2209922800
+		},
+		{
+			"type" : "playerMove",
+			"direction" : "DOWN",
+			"time" : 2361860100
 		},
 		{
 			"type" : "playerMove",
 			"direction" : "RIGHT",
-			"time" : 3882796800
+			"time" : 2522233100
 		},
 		{
 			"type" : "playerMove",
 			"direction" : "RIGHT",
-			"time" : 4203541800
+			"time" : 2692957600
 		},
 		{
 			"type" : "playerMove",
 			"direction" : "RIGHT",
-			"time" : 4653882800
+			"time" : 2845504300
 		},
 		{
 			"type" : "playerMove",
 			"direction" : "RIGHT",
-			"time" : 5013785400
+			"time" : 2985289000
 		}
 	]
 }

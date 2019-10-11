@@ -256,11 +256,11 @@ public class Main{
 
             long now = System.nanoTime();
 
-
-
-
             if (replayMode) { //If we are replaying a record, (play button has been pressed)
                 /* In the first iteration get the time of when the unpause happened and calculate the totalPauseTime from this */
+                if (diff >= currentRecord.getFinalTime()) {
+                    frameRate = 0000000000000000.1;
+                }
                 if (beenPaused) {
                     unpauseTime = System.nanoTime();
                     totalPauseTime = totalPauseTime + (unpauseTime - pauseTime);
@@ -565,9 +565,6 @@ public class Main{
         for (long l : sortedMoves) {
             if (!executedTimes.contains(l)) {
                 replayMove(currentReplay.getTickToMovesMap().get(l).get(0));
-                if (executedTimes.size() == currentReplay.getTickToMovesMap().keySet().size()) {
-                    frame.getInfoPanel().getReplayPanel().disablePlayButton();
-                }
                 executedTimes.add(l);
                 addStepTime(l);
                 break;
@@ -581,5 +578,9 @@ public class Main{
 
     public Record getCurrentRecord() {
         return currentRecord;
+    }
+
+    public long getStartTime() {
+        return startTime;
     }
 }

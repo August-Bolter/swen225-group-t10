@@ -89,7 +89,7 @@ public class ReplayPanel extends JPanel implements ActionListener {
                 recordButton.setText("Record");
                 record.stopRecording();
                 replayButton.setEnabled(true);
-                game.getCurrentRecord().setFinalTime(System.nanoTime());
+                game.getCurrentRecord().setFinalTime(System.nanoTime()-game.getStartTime());
             }
             else if (recordButton.getText().equals("Play")) {
                 game.setFrameRate(1);
@@ -129,11 +129,5 @@ public class ReplayPanel extends JPanel implements ActionListener {
             }
             game.getFrame().redraw();
         }
-    }
-
-    public void disablePlayButton() {
-        replayButton.setText("Play");
-        replayButton.setEnabled(false);
-        game.setFrameRate(0000000000000000.1);
     }
 }

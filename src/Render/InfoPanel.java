@@ -115,8 +115,4 @@ public class InfoPanel extends JPanel {
 
         add(replayPanel);
     }
-
-    public ReplayPanel getReplayPanel() {
-        return replayPanel;
-    }
 }
