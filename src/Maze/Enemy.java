@@ -35,7 +35,6 @@ public abstract class Enemy extends Item {
     @Override
     public void interact() {}
 
-
     /**
      * Describes what the enemy should do each tick.
      * This method will be called each tick in Application.

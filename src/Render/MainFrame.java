@@ -89,6 +89,7 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
         setContentPane(outerpanel);
         addBoardPanel();
         addInfoPanel();
+        addReplayPanel();
 
         // Setup key listener
        addKeyListener(this);
@@ -284,7 +285,7 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
      * Saves the game.
      */
     public void save() {
-        SaveJSON.SaveGame(game.getLevelBoard(), "src/Utility/save.json", true);
+        SaveJSON.saveGame(game.getLevelBoard(), "src/Utility/save.json", true);
     }
 
     /**

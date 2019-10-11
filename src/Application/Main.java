@@ -79,7 +79,7 @@ public class Main{
         initialiseMaps();
         levelBoard = LoadJSON.loadLevelFromJSON(level, null);
         levelBoard.setMain(this);
-
+        this.level = level;
         //setting up players
         player = levelBoard.getPlayer();
         player.setCurrentPos();
@@ -201,7 +201,7 @@ public class Main{
             if (recordMoves && !replayMode) {
                 String fileName = "src/Utility/record-" + currentRecord.getCount() + ".json";
                 long time = System.nanoTime()-startTime;
-                SaveJSON.SaveMove(fileName, direction, time, firstMove);
+                SaveJSON.saveMove(fileName, direction, time, firstMove);
                 firstMove = false;
             }
             return true;
@@ -617,18 +617,28 @@ public class Main{
         startTime = nanoTime;
     }
 
+    /** Gets the last record made from the game
+     * */
     public Record getCurrentRecord() {
         return currentRecord;
     }
 
+    /** Gets the start time of the recording
+     * @return the start time
+     * */
     public long getStartTime() {
         return startTime;
     }
 
+    /** Sets the boolean 'firstMove'
+     * @param fMove whether the player has made a move when recording
+     *  */
     public void setFirstMove(boolean fMove) {
         firstMove = fMove;
     }
 
+    /** Gets the variable 'firstMove'
+     * @return firstMove*/
     public boolean getFirstMove() {
         return firstMove;
     }

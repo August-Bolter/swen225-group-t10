@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -23,48 +24,138 @@ class EnemyTest {
     }
 
     /**
-     * tests whether the correct row is fetched
+     * Tests whether the .getEnemies() method works
      */
     @Test
-    void getRow() {
-//        Main game = new Main("Tester",2);
-//        int expected = 0;
-//        int actual = 100;
-//        //looping through to get the one enemy
-//        for(Enemy e: game.getLevelBoard().getEnemies()) {
-//           actual = e.getRow();
-//        }
-//        assertEquals(expected, actual);
+    void getNumEnemiesTest() {
+        int expected = 15;
+        AtomicInteger actual = new AtomicInteger(100);
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Main game = new Main("Tester",2);
+                    System.out.println(game.getLevelBoard().getEnemies().size());
+                    actual.set(game.getLevelBoard().getEnemies().size());
+                    //looping through to get the one enemy
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        t.start();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        assertNotEquals(expected, actual.get());
     }
 
     /**
      * Tests whether the correc col is fetched
      */
     @Test
-    void getCol() {
-//        Main game = new Main("Tester",2);
-//        int expected = 0;
-//        int actual = 100;
-//        //looping through to get the one enemy
-//        for(Enemy e: game.getLevelBoard().getEnemies()) {
-//            actual = e.getCol();
-//        }
-//        assertEquals(expected, actual);
+    void getColTest() {
+        int expected = 15;
+        AtomicInteger actual = new AtomicInteger(100);
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Main game = new Main("Tester",2);
+                    System.out.println(game.getLevelBoard().getEnemies().size());
+                    int i = 0;
+                    for(Enemy e: game.getLevelBoard().getEnemies()) {
+                        if(i == 0) {
+                            actual.set(e.getCol());
+                        }
+                        i++;
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        t.start();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        assertNotEquals(expected, actual.get());
     }
 
     /**
-     * Tests whether you can set something in a position
+     * Tests whether the correc col is fetched
      */
     @Test
-    void setCurrentPos() {
-//        Main game = new Main("Tester",2);
-//        Tile expected = new FreeTile(0, 0);
-//        Tile actual = new FreeTile(10, 10);
-//        //looping through to get the one enemy
-//        for(Enemy e: game.getLevelBoard().getEnemies()) {
-//            actual = e.getTile();
-//        }
-//        assertEquals(expected, actual);
+    void getRowTest() {
+        int expected = 15;
+        AtomicInteger actual = new AtomicInteger(100);
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Main game = new Main("Tester",2);
+                    System.out.println(game.getLevelBoard().getEnemies().size());
+                    int i = 0;
+                    for(Enemy e: game.getLevelBoard().getEnemies()) {
+                        if(i == 0) {
+                            actual.set(e.getRow());
+                        }
+                        i++;
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        t.start();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        assertNotEquals(expected, actual.get());
+    }
+
+    /**
+     * Tests whether the correct col is fetched
+     */
+    @Test
+    void get() {
+        int expected = 15;
+        AtomicInteger actual = new AtomicInteger(100);
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Main game = new Main("Tester",2);
+                    System.out.println(game.getLevelBoard().getEnemies().size());
+                    int i = 0;
+                    for(Enemy e: game.getLevelBoard().getEnemies()) {
+                        if(i == 0) {
+                            actual.set(e.getCol());
+                        }
+                        i++;
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        t.start();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        assertNotEquals(expected, actual.get());
     }
 
 }

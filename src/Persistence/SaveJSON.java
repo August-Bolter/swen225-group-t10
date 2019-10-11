@@ -20,7 +20,7 @@ public class SaveJSON {
      * @param fileName the name of the file ot save
      * @param endFile if the end of the file should be written
      */
-    public static void SaveGame(LevelBoard levelBoard, String fileName, boolean endFile) {
+    public static void saveGame(LevelBoard levelBoard, String fileName, boolean endFile) {
         Tile[][] levelArray = levelBoard.getBoard();
         File jsonFile;
         jsonFile = new File(fileName);
@@ -143,7 +143,7 @@ public class SaveJSON {
      * @param time the time the move was made
      * @param firstMove true if this is the first recorded move
      */
-    public static void SaveMove(String fileName, LevelBoard.Direction direction, long time, boolean firstMove) {
+    public static void saveMove(String fileName, LevelBoard.Direction direction, long time, boolean firstMove) {
         try {
             StringBuilder move = new StringBuilder();
             FileWriter fileWriter = new FileWriter(fileName, true);

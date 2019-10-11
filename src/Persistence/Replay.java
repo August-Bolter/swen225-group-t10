@@ -35,8 +35,10 @@ public class Replay {
         game.setFrameRate(0000000000000000.1); //Stopping the game
         game.setReplay(this);
 
-        File selectedReplay = replayPanel.openFileChooser(); //
-        LevelBoard replayBoard = LoadJSON.loadLevelFromJSON(game.getLevel(), selectedReplay);
+        File selectedReplay = replayPanel.openFileChooser(); //Opens a file chooser, so the user can pick the replay file
+        LevelBoard replayBoard = LoadJSON.loadLevelFromJSON(game.getLevel(), selectedReplay); //Loads the initial board state
+
+        /* Replacing the current game info with the replay file info */
         game.setLevelBoard(replayBoard);
         game.getLevelBoard().setMain(game);
 
@@ -47,6 +49,7 @@ public class Replay {
         p.setCurrentPos();
         game.setPlayer(p);
 
+        /* The player can't move the character while in replay mode */
         game.getFrame().removeKeyListener(game.getFrame());
 
         replayPanel.changeButtons();
@@ -58,7 +61,7 @@ public class Replay {
 
     }
 
-    /**
+    /** Gets the moves map
      * @return the map of ticks to moves
      */
     public HashMap<Long, ArrayList<String>> getTickToMovesMap() {
