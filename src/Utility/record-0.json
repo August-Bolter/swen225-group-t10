@@ -1,7 +1,7 @@
 {
 	"title": "Lesson 1",
-	"chips": 11,
-	"timeLimit" : 100,
+	"chips": 9,
+	"timeLimit" : 94,
 	"tiles" : [
 		{
 			"type" : "FreeTile",
@@ -1979,10 +1979,7 @@
 		{
 			"type" : "FreeTile",
 			"row" : 12,
-			"col" : 9,
-			"item" : {
-				"descriptor" : "Key|yellow"
-			}
+			"col" : 9
 		},
 		{
 			"type" : "FreeTile",
@@ -1990,10 +1987,9 @@
 			"col" : 10
 		},
 		{
-			"type" : "DoorTile",
+			"type" : "FreeTile",
 			"row" : 12,
-			"col" : 11,
-			"extra" : "blue"
+			"col" : 11
 		},
 		{
 			"type" : "FreeTile",
@@ -2149,7 +2145,7 @@
 			"row" : 13,
 			"col" : 9,
 			"item" : {
-				"descriptor" : "Chip|_"
+				"descriptor" : "Player|Key/yellow>_>_>_>_>_>_>_"
 			}
 		},
 		{
@@ -2165,10 +2161,7 @@
 		{
 			"type" : "FreeTile",
 			"row" : 13,
-			"col" : 12,
-			"item" : {
-				"descriptor" : "Key|blue"
-			}
+			"col" : 12
 		},
 		{
 			"type" : "FreeTile",
@@ -2335,10 +2328,7 @@
 		{
 			"type" : "FreeTile",
 			"row" : 14,
-			"col" : 12,
-			"item" : {
-				"descriptor" : "Chip|_"
-			}
+			"col" : 12
 		},
 		{
 			"type" : "FreeTile",
@@ -2348,10 +2338,7 @@
 		{
 			"type" : "FreeTile",
 			"row" : 14,
-			"col" : 14,
-			"item" : {
-				"descriptor" : "Player|_>_>_>_>_>_>_>_"
-			}
+			"col" : 14
 		},
 		{
 			"type" : "FreeTile",

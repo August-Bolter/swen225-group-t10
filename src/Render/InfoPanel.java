@@ -17,12 +17,11 @@ public class InfoPanel extends JPanel {
     private JLabel timeRemaining;
     private JLabel chipsRemaining;
     private JPanel inventoryPanel;
-//    private ReplayPanel replayPanel;
+    private ReplayPanel replayPanel;
 
     private int timeLeft, chipsLeft;
 
     private MainFrame frame;
-    private Border etched;
 
     private TilePanel[] invPanels;
     private Item[] inventory;
@@ -34,35 +33,55 @@ public class InfoPanel extends JPanel {
      * Chips left
      * Inventory (an array with 8 pos) so it'll be 8 labels that can have
      * an image drawn over them
+     * @param game the game whose info to display
      */
     public InfoPanel(MainFrame frame) {
         this.frame = frame;
         Main game = frame.getGame();
         inventory = game.getPlayer().getInventory();
 
-        setLayout(new GridLayout(4,1));
+        setLayout(new GridLayout(5,1));
 
-        float fontSize = 20;
         level = new JLabel("Level: " + game.getLevelBoard().getTitle());
-        level.setHorizontalAlignment(JLabel.CENTER);
-        level.setFont(level.getFont().deriveFont(fontSize));
         timeRemaining = new JLabel("Time Remaining: " + game.getLevelBoard().getTimeLimit());
-        timeRemaining.setFont(timeRemaining.getFont().deriveFont(fontSize));
-        timeRemaining.setHorizontalAlignment(JLabel.CENTER);
         timeLeft = game.getLevelBoard().getTimeLimit();
         chipsRemaining = new JLabel("Chips Remaining: " + game.getLevelBoard().getTotalChips());
-        chipsRemaining.setHorizontalAlignment(JLabel.CENTER);
-        chipsRemaining.setFont(chipsRemaining.getFont().deriveFont(fontSize));
         chipsLeft = game.getLevelBoard().getTotalChips();
-
 
         inventoryPanel = new JPanel(new GridLayout(2, 4));
         invPanels = new TilePanel[inventory.length];
 
-//        replayPanel = new ReplayPanel(frame);
+        replayPanel = new ReplayPanel(frame);
 
-        etched = BorderFactory.createEtchedBorder(EtchedBorder.RAISED);
+        redraw();
+    }
 
+
+    /**
+     * Creates a border
+     */
+    public void createBorder() {
+        Border blackline = BorderFactory.createEtchedBorder(EtchedBorder.RAISED);
+        setBorder(blackline);
+    }
+
+    public InfoPanel(MainFrame frame, ReplayPanel replayPanel) {
+        this.frame = frame;
+        Main game = frame.getGame();
+        inventory = game.getPlayer().getInventory();
+
+        setLayout(new GridLayout(5,1));
+
+        level = new JLabel("Level: " + game.getLevelBoard().getTitle());
+        timeRemaining = new JLabel("Time Remaining: " + game.getLevelBoard().getTimeLimit());
+        timeLeft = game.getLevelBoard().getTimeLimit();
+        chipsRemaining = new JLabel("Chips Remaining: " + game.getLevelBoard().getTotalChips());
+        chipsLeft = game.getLevelBoard().getTotalChips();
+
+        inventoryPanel = new JPanel(new GridLayout(2, 4));
+        invPanels = new TilePanel[inventory.length];
+
+        this.replayPanel = replayPanel;
         redraw();
     }
 
@@ -73,11 +92,29 @@ public class InfoPanel extends JPanel {
         timeRemaining.setText("Time Remaining: " + --timeLeft);
     }
 
+    public MainFrame getFrame() {
+        return frame;
+    }
+
     /**
      * Reduces the chips left by one
      */
     public void decrementChipsRemaining() {
         chipsRemaining.setText("Chips Remaining: " + --chipsLeft);
+    }
+
+    public void setChipsLeft(int chips) {
+        chipsLeft = chips;
+        chipsRemaining.setText("Chips Remaining: " + chipsLeft);
+    }
+
+    public void setTimeLeft(int time) {
+        timeLeft = time;
+        timeRemaining.setText("Time Remaining: " + timeLeft);
+    }
+
+    public void setInventory(Item[] inventory) {
+        this.inventory = inventory;
     }
 
     /**
@@ -106,13 +143,13 @@ public class InfoPanel extends JPanel {
             tp.repaint();
         }
 
+        add(replayPanel);
+
         revalidate();
         repaint();
     }
 
-    public void addReplayPanel(ReplayPanel replayPanel) {
-        setLayout(new GridLayout(5,1));
-
-        add(replayPanel);
+    public ReplayPanel getReplayPanel() {
+        return replayPanel;
     }
 }
