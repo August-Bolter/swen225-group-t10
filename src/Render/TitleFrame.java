@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Optional;
 
 public class TitleFrame extends JFrame implements MouseListener {
 
@@ -52,6 +53,7 @@ public class TitleFrame extends JFrame implements MouseListener {
     public void mousePressed(MouseEvent e) {
         //Level one button clicked
         if((e.getX() >= 163 && e.getX() <= 291) && (e.getY() >= 324 && e.getY() <= 369)){
+            //game.restartLevel(Optional.of(1));
             frame.restart(1);
             frame.showFrame();
             dispose();
@@ -59,6 +61,7 @@ public class TitleFrame extends JFrame implements MouseListener {
         }
         //level two button clicked
         if((e.getX() >= 331 && e.getX() <= 460) && (e.getY() >= 324 && e.getY() <= 370)){
+            //game.restartLevel(Optional.of(2));
             frame.restart(2);
             frame.showFrame();
             dispose();
