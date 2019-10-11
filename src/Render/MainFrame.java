@@ -2,6 +2,7 @@ package Render;
 
 import Application.Main;
 import Maze.LevelBoard;
+import Persistence.Replay;
 import Persistence.SaveJSON;
 
 import javax.swing.*;
@@ -55,6 +56,7 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
 
         outerpanel.setLayout(new GridBagLayout());
         outerpanel.setBorder(new GameBorder(Color.BLUE));
+
         pack();
         setLocationRelativeTo(null);
         repaint();
@@ -99,7 +101,7 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
     }
 
     private void addInfoPanel() {
-        infoPanel = new InfoPanel(game);
+        infoPanel = new InfoPanel(this);
         outerpanel.add(infoPanel);
     }
 
@@ -191,7 +193,8 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
         outerpanel.remove(boardpanel);
         outerpanel.remove(infoPanel);
         boardpanel = new BoardPanel(game.getLevelBoard().getBoard(), game.getPlayer());
-        infoPanel = new InfoPanel(game);
+        ReplayPanel copyOfReplay = infoPanel.getReplayPanel();
+        infoPanel = new InfoPanel(this, copyOfReplay);
 
         outerpanel.add(boardpanel);
         outerpanel.add(infoPanel);
@@ -231,7 +234,7 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
      * Saves the game.
      */
     public void save() {
-        SaveJSON.SaveGame(game.getLevelBoard());
+        SaveJSON.SaveGame(game.getLevelBoard(), "save.json", true);
     }
 
     /**
@@ -308,5 +311,35 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
         } else if (e.getSource().equals(resume)) {
             resume();
         }
+    }
+
+    public void createChangeSpeedWindow() {
+        JDialog changeSpeedWindow = new JDialog();
+        JPanel changeSpeedPanel = new JPanel();
+        changeSpeedPanel.setLayout(new GridLayout(3, 1));
+        JLabel info = new JLabel("Please select a replay speed");
+        String[] speeds = {"0.25", "0.5", "1.0", "2.0", "4.0"};
+        JComboBox<String> speedOptions = new JComboBox<String>(speeds);
+        JButton submitButton = new JButton("Submit");
+        submitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == submitButton) {
+                    String selectedSpeedString = (String) speedOptions.getSelectedItem();
+                    game.setReplaySpeed(Double.parseDouble(selectedSpeedString));
+                    changeSpeedWindow.dispose();
+                }
+            }
+        });
+        changeSpeedPanel.add(info);
+        changeSpeedPanel.add(speedOptions);
+        changeSpeedPanel.add(submitButton);
+        changeSpeedWindow.add(changeSpeedPanel);
+        changeSpeedWindow.setVisible(true);
+        changeSpeedWindow.pack();
+    }
+
+    public Main getGame() {
+        return game;
     }
 }

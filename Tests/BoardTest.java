@@ -30,7 +30,7 @@ public class BoardTest {
     /**
      * Test that launches the start screen for 1 second
      */
-    @Test
+    /*@Test
     public void testStartScreen() throws InterruptedException{
         Thread t = new Thread(new Runnable(){
             @Override
@@ -47,5 +47,5 @@ public class BoardTest {
         t.start();
         Thread.sleep(10000);
 
-    }
+    }*/
 }

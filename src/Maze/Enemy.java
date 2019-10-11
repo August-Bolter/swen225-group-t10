@@ -6,11 +6,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-/**
- * Enemy class: this is a parent class for all enemies: blueEnemy, greenEnemy and redEnemy
- */
-public class Enemy extends Item {
-    //start of fields
+public abstract class Enemy extends Item {
     protected Tile currentPos;
     protected Maze.LevelBoard.Direction direction;  //direction enemy is travelling in
     private int row, col;       //location of the enemy
@@ -32,6 +28,13 @@ public class Enemy extends Item {
 
     @Override
     public void interact() {}
+
+
+    /**
+     * Describes what the enemy should do each tick.
+     * This method will be called each tick in Application.
+     */
+    public abstract void onTick();
 
     /**
      * Makes the enemy move from one tile to another tile
@@ -61,7 +64,12 @@ public class Enemy extends Item {
         try {
             return ImageIO.read(new File(path));
         } catch (IOException e) {
-            throw new Error(path+"\nThe file failed to load: " + e);
+            // If the image is not part of the default resources look in the level plugin specific resources
+            try {
+                return ImageIO.read(new File("src/Utility/Level-" + main.getLevel() + "/Resources/" + getClass().getName() + dir + ".png"));  // TODO remove level 3 hardcode
+            } catch (IOException ex) {
+                throw new Error(PATH + getClass().getName() + dir + ".png \nThe image failed to load: " + e);
+            }
         }
     }
 
