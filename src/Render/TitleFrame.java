@@ -86,7 +86,4 @@ public class TitleFrame extends JFrame implements MouseListener {
 //        game.tester();
     }
 
-    public static void main(String[] args) {
-//        new TitleFrame();
-    }
 }

@@ -1,17 +1,9 @@
 import Maze.Tile;
 
-/**
- * CA Teleport tile that moves the player to a destination tile when stepped on
- */
 public class TeleportTile extends Tile {
-    private int destinationRow, destinationCol;
+    private int destinationRow;
+    private int destinationCol;
 
-    /**
-     * Constructor
-     * @param row the row
-     * @param col the col
-     * @param destination a String describing the destination, in the form row,col
-     */
     public TeleportTile(int row, int col, String destination) {
         super(row, col, destination);
         String[] destinationInfo = destination.split(">");
@@ -19,22 +11,15 @@ public class TeleportTile extends Tile {
         this.destinationCol = Integer.valueOf(destinationInfo[1]);
     }
 
-    @Override
     public boolean isWalkable() {
         return true;
     }
 
-    @Override
     public void interact() {
-        // Move the player to the destination
-        main.getPlayer().move(main.getLevelBoard().getBoard()[destinationRow][destinationCol]);
+        this.main.getPlayer().move(this.main.getLevelBoard().getBoard()[this.destinationRow][this.destinationCol]);
     }
 
-    /**
-     * Return destination as a string
-     * @return the destination descriptor
-     */
     public String getDestDescription() {
-        return destinationRow + "," + destinationCol;
+        return this.destinationRow + "," + this.destinationCol;
     }
 }

@@ -1,89 +1,58 @@
-import Maze.*;
-
+import Maze.Enemy;
+import Maze.FreeTile;
+import Maze.InfoTile;
+import Maze.Tile;
+import Maze.LevelBoard.Direction;
 import java.util.Optional;
 
-/**
- * Class for blueEnemy - this is a type of enemy that moves and the player must avoid.
- * It can't be 'defeated'
- */
 public class BlueEnemy extends Enemy {
-    /**
-     * Constructor for blueenemy
-     * @param row where blueenemy is located
-     * @param col where blueenemy is located
-     * @param direction blueenemy is moving
-     */
     public BlueEnemy(int row, int col, String direction) {
         super(row, col, direction);
     }
 
-    /**
-     * Method that gets a random direction exlcusively for the blueEnemy to move in
-     * @return random direction
-     */
-    private LevelBoard.Direction getRandomDirection(){
-        int x = main.getRandomInt() % 4;
-        if (x == 1){
-            return LevelBoard.Direction.LEFT;
-        } else if (x == 2){
-            return LevelBoard.Direction.RIGHT;
-        } else if (x == 3){
-            return LevelBoard.Direction.UP;
+    private Direction getRandomDirection() {
+        int x = this.main.getRandomInt() % 4;
+        if (x == 1) {
+            return Direction.LEFT;
+        } else if (x == 2) {
+            return Direction.RIGHT;
         } else {
-            return LevelBoard.Direction.DOWN;
+            return x == 3 ? Direction.UP : Direction.DOWN;
         }
     }
 
-    /**
-     * Method that moves the blueEnemy in the direction
-     *
-     */
-    public void moveEnemy(){
-        //tile moving to
-        Tile desiredTile = main.getLevelBoard().getTileAtPosition(currentPos, direction);
+    public void moveEnemy() {
+        Tile desiredTile;
+        for(desiredTile = this.main.getLevelBoard().getTileAtPosition(this.currentPos, this.direction); !(desiredTile instanceof FreeTile) && !(desiredTile instanceof InfoTile); desiredTile = this.main.getLevelBoard().getTileAtPosition(this.currentPos, this.direction)) {
+            this.setDirection(this.getRandomDirection());
+        }
 
-        //check to make sure that blueEnemy can move onto the tile
-        while (!(desiredTile instanceof FreeTile) && (!(desiredTile instanceof InfoTile))) {
-            setDirection(getRandomDirection());     //fetches a new direction to move in
-            desiredTile = main.getLevelBoard().getTileAtPosition(currentPos, direction);
+        this.doMove(desiredTile);
+        if (this.currentPos.getItems().contains(this.main.getPlayer())) {
+            this.interact();
         }
-        doMove(desiredTile);
-        //if player is already there then they need to interact/kill the player
-        if (currentPos.getItems().contains(main.getPlayer())) {
-            interact();
-        }
+
     }
 
-    /**
-     * Method used to 'interact' (when the player steps on a square the blueEnemy is on
-     * Note: the level will restart if this occurs
-     */
     public void interact() {
-        main.getFrame().displayInfo("Watch out for moving Blastoise!");
-        main.restartLevel(Optional.empty());
+        this.main.getFrame().displayInfo("Watch out for moving Blastoise!");
+        this.main.restartLevel(Optional.empty());
     }
 
-    @Override
     public void onTick() {
-        moveEnemy();
+        this.moveEnemy();
     }
 
-    /**
-     * Setter method: sets the direction which the blueEnemy is going to be moving in
-     * @param d direction blueEnemy is moving in
-     */
-    private void setDirection(LevelBoard.Direction d) {
-        if (d == LevelBoard.Direction.LEFT) {
-            direction = LevelBoard.Direction.LEFT;
+    private void setDirection(Direction d) {
+        if (d == Direction.LEFT) {
+            this.direction = Direction.LEFT;
+        } else if (d == Direction.RIGHT) {
+            this.direction = Direction.RIGHT;
+        } else if (d == Direction.UP) {
+            this.direction = Direction.UP;
+        } else if (d == Direction.DOWN) {
+            this.direction = Direction.DOWN;
         }
-        else if (d == LevelBoard.Direction.RIGHT) {
-            direction = LevelBoard.Direction.RIGHT;
-        }
-        else if (d == LevelBoard.Direction.UP) {
-            direction = LevelBoard.Direction.UP;
-        }
-        else if (d == LevelBoard.Direction.DOWN) {
-            direction = LevelBoard.Direction.DOWN;
-        }
+
     }
 }

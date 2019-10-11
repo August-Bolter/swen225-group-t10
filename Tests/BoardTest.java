@@ -1,12 +1,16 @@
 import Application.Main;
+import Maze.LevelBoard;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+/**
+ * Class for testing whether the board will be set up
+ */
 
 public class BoardTest {
 
     /**
      * Test that launches the start screen for 1 second
+     * For Level 1
      */
     @Test
     public void testBoardSetUp() throws InterruptedException{
@@ -23,12 +27,13 @@ public class BoardTest {
             }
         });
         t.start();
-        Thread.sleep(10000);
+        Thread.sleep(1000);
 
     }
 
     /**
      * Test that launches the start screen for 1 second
+     * For Level 2
      */
     /*@Test
     public void testStartScreen() throws InterruptedException{
@@ -36,8 +41,8 @@ public class BoardTest {
             @Override
             public void run() {
                 try{
-                    Main m = new Main(1);
-                    m.startScreen();
+                    Main m = new Main(2);
+                    m.setup(1);
                 }
                 catch(Exception e){
                     e.printStackTrace();
@@ -45,7 +50,7 @@ public class BoardTest {
             }
         });
         t.start();
-        Thread.sleep(10000);
+        Thread.sleep(1000);
 
     }*/
 }
