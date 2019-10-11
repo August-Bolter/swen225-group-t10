@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class BoardTest {
 
     /**
-     * Test that launches the start screen for 1 second
+     * Test that launches the start screen for 1 second on level 1
      */
     @Test
     public void testBoardSetUp() throws InterruptedException{
@@ -33,7 +33,7 @@ public class BoardTest {
     }
 
     /**
-     * Test that launches the start screen for 1 second
+     * Test that launches the start screen for 1 second on level 2
      */
     @Test
     public void testStartScreen() throws InterruptedException {
@@ -41,8 +41,8 @@ public class BoardTest {
             @Override
             public void run() {
                 try {
-                    Main m = new Main("Test", 1);
-                    m.setup(1);
+                    Main m = new Main("Test", 2);
+                    m.setup(2);
                     // m.startScreen();
                 } catch (Exception e) {
                     e.printStackTrace();
