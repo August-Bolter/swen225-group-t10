@@ -9,7 +9,6 @@ import java.io.File;
  */
 public class Record {
     private boolean isRecording;
-    private int startTime, endTime;
     private int count = -1;
     private Main game;
     private String fileName;
@@ -51,7 +50,6 @@ public class Record {
     public void record() {
         count++;
         setRecording(true);
-        startTime = game.getTimeRemaining();
         fileName = "src/Utility/record-" + count + ".json";
         game.recordMoves(true);
         SaveJSON.SaveGame(game.getLevelBoard(), fileName, false);
@@ -70,7 +68,6 @@ public class Record {
      */
     public void stopRecording() {
         setRecording(false);
-        endTime = game.getTimeRemaining();
         game.recordMoves(false);
         SaveJSON.endRecord(fileName, game.getFirstMove());
     }
