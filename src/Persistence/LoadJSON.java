@@ -19,6 +19,8 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 /**
+ * @author Hugh Lockwood - wrote the class initially and wrote levels as plugins code
+ * @author August Bolter - Added code for the replay system
  * Class for loading information from JSON files
  */
 public class LoadJSON {
@@ -26,7 +28,7 @@ public class LoadJSON {
     /**
      * Creates a new LevelBoard from information in a JSON file
      * @param level the level number to load
-     * @param selectedReplay
+     * @param selectedReplay the file of the replay to load
      * @return a new LevelBoard representing that level
      */
     public static LevelBoard loadLevelFromJSON(int level, File selectedReplay) {
@@ -40,7 +42,7 @@ public class LoadJSON {
                 levelArray[i][j] = new FreeTile(i,j);
 
         // Read the zip file
-        if (level != 1 && selectedReplay == null) {
+        if (level > 0 && level != 1 && selectedReplay == null) {
             readFilesInZip(level);
         }
 
@@ -61,6 +63,9 @@ public class LoadJSON {
             else {
                 in = new BufferedReader(new FileReader(selectedReplay));
             }
+
+            if (level < 1) level = 2;
+
             JsonReader reader = Json.createReader(in);
 
             JsonObject levelObject = reader.readObject();
@@ -158,6 +163,7 @@ public class LoadJSON {
     }
 
     private static void readFilesInZip(int level) {
+
         try {
             ZipFile zipFile = new ZipFile("levels/Level-" + level + ".zip");
             Enumeration<? extends ZipEntry> entries = zipFile.entries();
@@ -184,7 +190,14 @@ public class LoadJSON {
         }
     }
 
-    private static Class loadClassFromZip(String className, int level) {
+    private static Class loadClassFromZip(String className, int lvl) {
+        int level;
+        if (lvl < 0) {
+            level = 2;
+        } else {
+            level = lvl;
+        }
+
         try {
             // Load the class file from the new folder
             URL classURL = new File("src/Utility/Level-" + level + "/Classes").toURI().toURL();

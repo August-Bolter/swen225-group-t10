@@ -10,6 +10,9 @@ import java.awt.event.MouseListener;
 import java.util.Optional;
 
 /**
+ * @author Justina Koh
+ * @author Daniel Pullon
+ * @author Ahad Rahman
  * Class to handle the title screen.
  */
 public class TitleFrame extends JFrame implements MouseListener {

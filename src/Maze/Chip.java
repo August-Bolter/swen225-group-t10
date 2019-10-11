@@ -6,9 +6,12 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-/** Represents a treasure (chip) in the game. This item can be picked up by the player. Once they have all the chips in the
- * level they can pass through the GateTile and finish the level by reaching the ExitTile. */
-
+/**
+ * @author Ahad Rahman - Interaction
+ * @author August Bolter - Initial structure
+ * Represents a treasure (chip) in the game. This item can be picked up by the player. Once they have all the chips in the
+ * level they can pass through the GateTile and finish the level by reaching the ExitTile.
+ */
 public class Chip extends Item {
     private static final String POKEBALL = "pokeball";
 

@@ -7,6 +7,8 @@ import java.io.File;
 import java.io.IOException;
 
 /**
+ * @author Ahad Rahman - Wrote the initial class
+ * @author Hugh Lockwood - Converted to abstract class and wrote onTick
  * Represents an enemy or other actor.
  * Items that do an action on each tick should extend this class.
  */
@@ -70,7 +72,8 @@ public abstract class Enemy extends Item {
         } catch (IOException e) {
             // If the image is not part of the default resources look in the level plugin specific resources
             try {
-                return ImageIO.read(new File("src/Utility/Level-" + main.getLevel() + "/Resources/" + getClass().getName() + dir + ".png"));  // TODO remove level 3 hardcode
+                int level = (main.getLevel() < 0) ? 2 : main.getLevel();
+                return ImageIO.read(new File("src/Utility/Level-" + level + "/Resources/" + getClass().getName() + dir + ".png"));
             } catch (IOException ex) {
                 throw new Error(PATH + getClass().getName() + dir + ".png \nThe image failed to load: " + e);
             }

@@ -12,6 +12,8 @@ import java.util.Optional;
 import java.util.Set;
 
 /**
+ * @author Daniel Pullon
+ * @author August Bolter
  * The main frame that contains other panels.
  */
 public class MainFrame extends JFrame implements KeyListener, WindowListener, ActionListener {
@@ -69,7 +71,7 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
 
     /**
      * Constructor for the test cases
-     * @param game
+     * @param game the main game
      */
     public MainFrame(Main game, String tester){
         super("Chip's Challenge");
@@ -190,10 +192,9 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
                 }
                 return;
             case KeyEvent.VK_R:
-                // Resumes the game
+                // Resumes a saved game
                 if (pressedKeys.contains(KeyEvent.VK_CONTROL)) {
-                    resume();
-                    paused = false;
+                    restart(-1);
                 }
                 return;
             case KeyEvent.VK_P:
@@ -218,10 +219,12 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
                 // Pauses the game
                 pause();
                 paused = true;
+                displayInfo("Paused. Press esc to resume.");
                 return;
             case KeyEvent.VK_ESCAPE:
                 // Closes the pause dialog
                 resume();
+                paused = false;
                 return;
 
             default:
@@ -281,7 +284,7 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
      * Saves the game.
      */
     public void save() {
-        SaveJSON.SaveGame(game.getLevelBoard(), "save.json", true);
+        SaveJSON.SaveGame(game.getLevelBoard(), "src/Utility/save.json", true);
     }
 
     /**

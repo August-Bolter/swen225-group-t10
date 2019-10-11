@@ -15,6 +15,11 @@ import java.io.IOException;
 import java.util.*;
 
 /**
+ * @author Ahad Rahman
+ * @author August Bolter
+ * @author Justinia Koh
+ * @author Hugh Lockwood
+ * @author Daniel Pullon
  * Main class responsible for running the game.
  */
 public class Main{
@@ -66,8 +71,8 @@ public class Main{
 
     /**
      * Constructor used to create levels for the testcases
-     * @param tester
-     * @param level
+     * @param tester the tester to use
+     * @param level the level to load
      */
     public Main(String tester, int level){
         //setting up the correct level
@@ -171,7 +176,7 @@ public class Main{
 
     /**
      * Method that is called when you want to move in a direction
-     * @param direction
+     * @param direction the direction to move
      * @return true is move is valid else false
      */
     public boolean doMove(LevelBoard.Direction direction){

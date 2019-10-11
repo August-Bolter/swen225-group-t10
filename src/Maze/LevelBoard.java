@@ -7,12 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * @author Hugh Lockwood
+ * @author Ahad Rahman -
+ * @author August Bolter
+ * @author Daniel Pullon
  * Class for the levelBoard
  */
 public class LevelBoard {
     private static final int SIZE = 32;
-
-    //these used to public and I changed them to private and used getter and setter methods  - is this okay?
     private final String title;
 
     /**
@@ -43,7 +45,6 @@ public class LevelBoard {
         this.totalChips = totalChips;
         this.timeLimit = timeLimit;
         this.board = board;
-        System.out.println(title + " " + totalChips + " " + timeLimit);
     }
 
     /**
@@ -145,7 +146,7 @@ public class LevelBoard {
     }
 
     /**
-     * @param main
+     * @param main the main game
      */
     public void setMain(Main main) {
         this.main = main;
