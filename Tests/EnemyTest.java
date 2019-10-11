@@ -14,11 +14,17 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class EnemyTest {
 
+    /**
+     * Test the tests whether interact works when an enemy encounters the player
+     */
     @Test
     void interact() {
         Main game = new Main("Tester",1);
     }
 
+    /**
+     * tests whether the correct row is fetched
+     */
     @Test
     void getRow() {
         Main game = new Main("Tester",2);
@@ -31,6 +37,9 @@ class EnemyTest {
         assertEquals(expected, actual);
     }
 
+    /**
+     * Tests whether the correc col is fetched
+     */
     @Test
     void getCol() {
         Main game = new Main("Tester",2);
@@ -43,6 +52,9 @@ class EnemyTest {
         assertEquals(expected, actual);
     }
 
+    /**
+     * Tests whether you can set something in a position
+     */
     @Test
     void setCurrentPos() {
         Main game = new Main("Tester",2);
