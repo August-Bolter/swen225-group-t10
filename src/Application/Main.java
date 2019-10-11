@@ -207,8 +207,6 @@ public class Main{
                 item.interact();
             }
             if (recordMoves && !replayMode) {
-                /* Need an if clause which doesn't record the move if the move doesn't change players direction or tile
-                *  e.g. walking into a wall */
                 String fileName = "src/Utility/record-" + currentRecord.getCount() + ".json";
                 long time = System.nanoTime()-startTime;
                 System.out.println(startTime);
