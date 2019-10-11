@@ -528,6 +528,9 @@ public class Main{
         for (long l : sortedMoves) {
             if (!executedTimes.contains(l)) {
                 replayMove(currentReplay.getTickToMovesMap().get(l).get(0));
+                if (executedTimes.size() == currentReplay.getTickToMovesMap().keySet().size()) {
+                    frame.getInfoPanel().getReplayPanel().disablePlayButton();
+                }
                 executedTimes.add(l);
                 addStepTime(l);
                 break;
@@ -537,5 +540,9 @@ public class Main{
 
     public void setStartTime(long nanoTime) {
         startTime = nanoTime;
+    }
+
+    public Record getCurrentRecord() {
+        return currentRecord;
     }
 }

@@ -17,7 +17,7 @@ public class InfoPanel extends JPanel {
     private JLabel timeRemaining;
     private JLabel chipsRemaining;
     private JPanel inventoryPanel;
-//    private ReplayPanel replayPanel;
+    private ReplayPanel replayPanel;
 
     private int timeLeft, chipsLeft;
 
@@ -59,7 +59,7 @@ public class InfoPanel extends JPanel {
         inventoryPanel = new JPanel(new GridLayout(2, 4));
         invPanels = new TilePanel[inventory.length];
 
-//        replayPanel = new ReplayPanel(frame);
+        replayPanel = new ReplayPanel(frame);
 
         etched = BorderFactory.createEtchedBorder(EtchedBorder.RAISED);
 
@@ -114,5 +114,9 @@ public class InfoPanel extends JPanel {
         setLayout(new GridLayout(5,1));
 
         add(replayPanel);
+    }
+
+    public ReplayPanel getReplayPanel() {
+        return replayPanel;
     }
 }

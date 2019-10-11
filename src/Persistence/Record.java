@@ -8,7 +8,7 @@ public class Record {
     boolean isRecording;
     int startTime, endTime;
     int count = -1;
-    File moves;
+    long finalTime;
     Main game;
     String fileName;
 
@@ -25,12 +25,12 @@ public class Record {
         return isRecording;
     }
 
-    public File getMoves() {
-        return moves;
-    }
-
     public void setRecording(boolean recording) {
         isRecording = recording;
+    }
+
+    public void setFinalTime(long time) {
+        finalTime = time;
     }
 
     public void record() {
