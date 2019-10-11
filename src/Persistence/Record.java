@@ -13,6 +13,7 @@ public class Record {
     private int count = -1;
     private Main game;
     private String fileName;
+    private long finalTime;
 
     /**
      * Creates a new recording for a given game.
@@ -54,6 +55,14 @@ public class Record {
         fileName = "src/Utility/record-" + count + ".json";
         game.recordMoves(true);
         SaveJSON.SaveGame(game.getLevelBoard(), fileName, false);
+    }
+
+    public void setFinalTime(long time) {
+        finalTime = time;
+    }
+
+    public long getFinalTime() {
+        return finalTime;
     }
 
     /**
