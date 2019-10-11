@@ -30,10 +30,10 @@ GUI is done in replayPanel</p>
 tasks such as Macro recording. Macro recording is "playing back" the same actions by 
 executing the same commands again in sequence. The record and play feature does this as well, it saves 
 the actions (player moves) using SaveJSON and Main. It "plays back" these moves by calling the same command
-(doMove()) with the same parameter (String direction), in the same order (the moves are ordered by the nanosecond they are made)
+(doMove()) with the same parameter (String direction), in the same order (the moves are ordered by the nanosecond they are made) </p>
 
 <h4>Using the Record and Play feature</h4>
-<p>There are many features of R&P, here is a guide to use these features:
+<p>There are many features of R&P, here is a guide to use these features: </p>
 <ul><li>
 To start recording press the record button and to stop recording press the record button again.</li>
 
@@ -42,5 +42,4 @@ To start recording press the record button and to stop recording press the recor
 
 <li>Once you have chosen a file you will have four replay control buttons. One button is a play/stop button
 used for playing/stopping the replay, the change speed button allows you to change the speed of the recording
-(speed ranges from 25% to 100%). The next step button is used to execute/advance one move. The exit button takes you back to the title screen </li></ul>
-</p>
+(the options are 25%, 50% or 100%). The next step button is used to execute/advance one move. The exit button takes you back to the title screen </li></ul>

@@ -156,7 +156,13 @@ public abstract class Item implements Comparable<Item> {
         } catch (IOException e) {
             // If the image is not part of the default resources look in the level plugin specific resources
             try {
-                int level = (main.getLevel() < 0) ? 2 : main.getLevel();
+                int level;
+                if (main == null) {
+                    level = 2;
+                }
+                else {
+                    level = (main.getLevel() < 0) ? 2 : main.getLevel();
+                }
                 return ImageIO.read(new File("src/Utility/Level-" + level + "/Resources/" + getClass().getName() + ".png"));
             } catch (IOException ex) {
                 throw new Error("src/Utility/Level-" + main.getLevel() + "/Resources/" + getClass().getName() + ".png" + e);
