@@ -68,6 +68,43 @@ public class Main{
      */
     public final Map<String, BufferedImage> itemImages = new HashMap<>();
 
+    /**
+     * Constructor used to create levels for the testcases
+     * @param tester
+     * @param level
+     */
+    public Main(String tester, int level){
+        //setting up the correct level
+        initialiseMaps();
+        levelBoard = LoadJSON.loadLevelFromJSON(level, null);
+        levelBoard.setMain(this);
+
+        //setting up players
+        player = levelBoard.getPlayer();
+        player.setCurrentPos();
+
+        for (int i = 0; i < levelBoard.getBoard().length; i++) {
+            System.out.println(levelBoard.getBoard()[i][i]);
+        }
+
+        //setting up enemies
+        enemies = levelBoard.getEnemies();
+        System.out.println("enemies no. : " + enemies.size());
+        for (Enemy e : enemies){
+            e.setCurrentPos();
+        }
+        levelBoard.setMain(this);
+
+        chipsRemaining = levelBoard.getTotalChips();
+        timeRemaining = levelBoard.getTimeLimit();      //level must be completed before this time limit runs out
+
+        frame = new MainFrame(this, "Tester");
+        timer();
+
+        seed = System.currentTimeMillis();
+        generator.setSeed(seed);
+    }
+
 //    private TitleFrame titleFrame;
 
     public Main(int level) {
