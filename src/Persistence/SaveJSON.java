@@ -15,6 +15,8 @@ public class SaveJSON {
     /**
      * Saves the current game state to a .JSON file
      * @param levelBoard the level board to save
+     * @param fileName the name of the file ot save
+     * @param endFile if the end of the file should be written
      */
     public static void SaveGame(LevelBoard levelBoard, String fileName, boolean endFile) {
         Tile[][] levelArray = levelBoard.getBoard();
@@ -131,6 +133,14 @@ public class SaveJSON {
         return builder.toString();
     }
 
+    /**
+     * Saves a move the player makes.
+     * Used when recording.
+     * @param fileName the name of the file
+     * @param direction the direction the player moved
+     * @param time the time the move was made
+     * @param firstMove true if this is the first recorded move
+     */
     public static void SaveMove(String fileName, LevelBoard.Direction direction, long time, boolean firstMove) {
         try {
             StringBuilder move = new StringBuilder();
@@ -171,6 +181,10 @@ public class SaveJSON {
         }
     }
 
+    /**
+     * Method to write the end of the file at the end of the recording.
+     * @param fileName the name of the file
+     */
     public static void endRecord(String fileName) {
         try {
             StringBuilder move = new StringBuilder();

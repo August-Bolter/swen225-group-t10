@@ -33,7 +33,7 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
     public MainFrame(Main game){
         super("Chip's Challenge");
 
-        TitleFrame title = new TitleFrame(this);
+        new TitleFrame(this);
 
         setVisible(false);
         this.game = game;
@@ -315,6 +315,9 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
         game.setPaused();
     }
 
+    /**
+     * Sets the fra,e as visible so it is shown.
+     */
     public void showFrame() {
         setVisible(true);
     }
@@ -359,6 +362,9 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
         }
     }
 
+    /**
+     * Creates the interface for changing the speed of the replay.
+     */
     public void createChangeSpeedWindow() {
         JDialog changeSpeedWindow = new JDialog();
         JPanel changeSpeedPanel = new JPanel();
@@ -385,6 +391,9 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
         changeSpeedWindow.pack();
     }
 
+    /**
+     * @return the game this frame is a part of
+     */
     public Main getGame() {
         return game;
     }

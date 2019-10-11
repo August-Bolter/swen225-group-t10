@@ -6,6 +6,10 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Represents an enemy or other actor.
+ * Items that do an action on each tick should extend this class.
+ */
 public abstract class Enemy extends Item {
     protected Tile currentPos;
     protected Maze.LevelBoard.Direction direction;  //direction enemy is travelling in
