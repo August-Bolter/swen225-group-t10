@@ -201,7 +201,7 @@ public class Main{
             if (recordMoves && !replayMode) {
                 String fileName = "src/Utility/record-" + currentRecord.getCount() + ".json";
                 long time = System.nanoTime()-startTime;
-                SaveJSON.SaveMove(fileName, direction, time, firstMove);
+                SaveJSON.saveMove(fileName, direction, time, firstMove);
                 firstMove = false;
             }
             return true;

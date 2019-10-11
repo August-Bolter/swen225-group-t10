@@ -2,8 +2,6 @@ package Persistence;
 
 import Application.Main;
 
-import java.io.File;
-
 /**
  * @author August Bolter
  * Class to record gameplay.
@@ -55,7 +53,7 @@ public class Record {
         startTime = game.getTimeRemaining();
         fileName = "src/Utility/record-" + count + ".json";
         game.recordMoves(true);
-        SaveJSON.SaveGame(game.getLevelBoard(), fileName, false);
+        SaveJSON.saveGame(game.getLevelBoard(), fileName, false);
     }
 
     public void setFinalTime(long time) {
