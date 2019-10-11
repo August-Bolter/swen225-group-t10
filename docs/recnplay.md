@@ -19,6 +19,7 @@ method in loadJSON. Main also controls the replay in the timer() method. It uses
 to control the replay speed, and executes the next move when the next step button is clicked.
 It also manipulates the frameRate based on whether the replay is paused or playing. </p>
 
+
 <p> So overall, recording is done in the Record, Main and saveJSON class, loading the record 
 is done in the Replay and loadJSON class, controlling the replay is done in Main and showing the
 GUI is done in replayPanel</p>
