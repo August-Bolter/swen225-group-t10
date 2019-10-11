@@ -274,7 +274,9 @@ public class Main{
                     timeRemaining--;
                     levelBoard.updateFields();
                 }
-                frame.redraw();
+                if (!replayMode) {
+                    frame.redraw();
+                }
             }
 
         }
@@ -336,7 +338,8 @@ public class Main{
         } else {
             System.out.println("CREDITS SCREEN");
             new TitleFrame(frame);
-            paused = true;
+            //paused = true;
+            restartLevel(Optional.of(2));
             frame.setVisible(false);
         }
     }
@@ -359,8 +362,7 @@ public class Main{
             doMove(LevelBoard.Direction.DOWN);
         }
         /* Update the board */
-        //frame.getBoardPanel().redraw();
-        //frame.getInfoPanel().redraw();
+        frame.redraw();
     }
 
     public MainFrame getFrame() {
