@@ -631,4 +631,8 @@ public class Main{
     public long getStartTime() {
         return startTime;
     }
+
+    public void setFirstMove(boolean fMove) {
+        firstMove = fMove;
+    }
 }
