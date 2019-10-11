@@ -43,7 +43,6 @@ public class LevelBoard {
         this.totalChips = totalChips;
         this.timeLimit = timeLimit;
         this.board = board;
-        System.out.println(title + " " + totalChips + " " + timeLimit);
     }
 
     /**
