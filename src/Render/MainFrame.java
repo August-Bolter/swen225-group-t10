@@ -89,6 +89,7 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
         setContentPane(outerpanel);
         addBoardPanel();
         addInfoPanel();
+        addReplayPanel();
 
         // Setup key listener
        addKeyListener(this);

@@ -22,21 +22,21 @@ public class Record {
         isRecording = false;
     }
 
-    /**
+    /** Returns the count (used for naming the record file)
      * @return the count
      */
     public int getCount() {
         return count;
     }
 
-    /**
+    /** If the game is being recorded
      * @return true if recording, false otherwise
      */
     public boolean isRecording() {
         return isRecording;
     }
 
-    /**
+    /** Sets if the game is being recorded
      * @param recording sets recording to true or false
      */
     public void setRecording(boolean recording) {
@@ -54,10 +54,14 @@ public class Record {
         SaveJSON.saveGame(game.getLevelBoard(), fileName, false);
     }
 
+    /** Sets the end time of the recording
+     * @param time the end time */
     public void setFinalTime(long time) {
         finalTime = time;
     }
 
+    /** Gets the end time of the recording
+     * @return the end time */
     public long getFinalTime() {
         return finalTime;
     }
