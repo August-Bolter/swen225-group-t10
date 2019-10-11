@@ -36,8 +36,8 @@ the actions (player moves) using SaveJSON and Main. It "plays back" these moves 
 <ul><li>
 To start recording press the record button and to stop recording press the record button again.</li>
 
-<li>To replay a record press the replay button. Once this button is pressed a file chooser will open.</li>
-Please choose a file that starts with "record-". 
+<li>To replay a record press the replay button. Once this button is pressed a file chooser will open. Please choose a file that starts with "record-".</li>
+
 
 <li>Once you have chosen a file you will have four replay control buttons. One button is a play/stop button
 used for playing/stopping the replay, the change speed button allows you to change the speed of the recording
