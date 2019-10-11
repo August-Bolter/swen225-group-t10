@@ -239,6 +239,7 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
         outerpanel.remove(boardpanel);
         outerpanel.remove(infoPanel);
         boardpanel = new BoardPanel(game.getLevelBoard().getBoard(), game.getPlayer());
+        infoPanel = new InfoPanel(this);
 
 
         outerpanel.add(boardpanel);
