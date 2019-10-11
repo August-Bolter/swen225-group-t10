@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.Optional;
 
 /**
  * Panel to handle the interface for the replay system.
@@ -31,7 +32,7 @@ public class ReplayPanel extends JPanel implements ActionListener {
         this.frame = frame;
         this.game = frame.getGame();
         replayJPanel = new JPanel();
-        replayJPanel.setLayout(new GridLayout(1, 2));
+        replayJPanel.setLayout(new GridLayout(2, 2));
 
         replayButton = new JButton("Replay");
         recordButton = new JButton("Record");
@@ -105,6 +106,7 @@ public class ReplayPanel extends JPanel implements ActionListener {
                 recordButton.setText("Record");
                 record.stopRecording();
                 replayButton.setEnabled(true);
+                game.getCurrentRecord().setFinalTime(System.nanoTime()-game.getStartTime());
             }
             else if (recordButton.getText().equals("Play")) {
                 game.setFrameRate(1);
@@ -135,6 +137,14 @@ public class ReplayPanel extends JPanel implements ActionListener {
 
         else if (e.getSource() == exitButton) {
             game.setReplayMode(false);
+            new TitleFrame(game.getFrame());
+            if (game.getLevel() == 1) {
+                game.restartLevel(Optional.of(1));
+            }
+            else {
+                game.restartLevel(Optional.of(2));
+            }
+            game.getFrame().redraw();
         }
     }
 }

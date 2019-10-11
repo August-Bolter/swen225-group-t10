@@ -64,6 +64,44 @@ public class Main{
      */
     public final Map<String, BufferedImage> itemImages = new HashMap<>();
 
+    /**
+     * Constructor used to create levels for the testcases
+     * @param tester
+     * @param level
+     */
+    public Main(String tester, int level){
+        //setting up the correct level
+        initialiseMaps();
+        levelBoard = LoadJSON.loadLevelFromJSON(level, null);
+        levelBoard.setMain(this);
+
+        //setting up players
+        player = levelBoard.getPlayer();
+        player.setCurrentPos();
+
+        for (int i = 0; i < levelBoard.getBoard().length; i++) {
+            System.out.println(levelBoard.getBoard()[i][i]);
+        }
+
+        //setting up enemies
+        enemies = levelBoard.getEnemies();
+        System.out.println("enemies no. : " + enemies.size());
+        for (Enemy e : enemies){
+            e.setCurrentPos();
+        }
+        levelBoard.setMain(this);
+
+        chipsRemaining = levelBoard.getTotalChips();
+        timeRemaining = levelBoard.getTimeLimit();      //level must be completed before this time limit runs out
+
+        frame = new MainFrame(this, "Tester");
+        timer();
+
+        seed = System.currentTimeMillis();
+        generator.setSeed(seed);
+    }
+
+//    private TitleFrame titleFrame;
 
     /**
      * Creates a new main and sets up a level
@@ -216,6 +254,9 @@ public class Main{
 
             if (replayMode) { //If we are replaying a record, (play button has been pressed)
                 /* In the first iteration get the time of when the unpause happened and calculate the totalPauseTime from this */
+                if (diff >= currentRecord.getFinalTime()) {
+                    frameRate = 0000000000000000.1;
+                }
                 if (beenPaused) {
                     unpauseTime = System.nanoTime();
                     totalPauseTime = totalPauseTime + (unpauseTime - pauseTime);
@@ -581,5 +622,13 @@ public class Main{
      */
     public void setStartTime(long nanoTime) {
         startTime = nanoTime;
+    }
+
+    public Record getCurrentRecord() {
+        return currentRecord;
+    }
+
+    public long getStartTime() {
+        return startTime;
     }
 }

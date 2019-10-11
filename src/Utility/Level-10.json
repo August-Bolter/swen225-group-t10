@@ -1,7 +1,7 @@
 {
 	"title": "Lesson 1",
 	"chips": 11,
-	"timeLimit" : 149,
+	"timeLimit" : 100,
 	"tiles" : [
 		{
 			"type" : "WallTile",
@@ -664,12 +664,9 @@
 			"col" : 3
 		},
 		{
-			"type" : "FreeTile",
+			"type" : "WallTile",
 			"row" : 4,
-			"col" : 4,
-			"item" : {
-				"descriptor" : "Player|_>_>_>_>_>_>_>_"
-			}
+			"col" : 4
 		},
 		{
 			"type" : "InfoTile",
@@ -689,26 +686,6 @@
 			"item" : {
 				"descriptor" : "Key|yellow"
 			}
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 4,
-			"col" : 8
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 4,
-			"col" : 9
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 4,
-			"col" : 10
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 4,
-			"col" : 11
 		},
 		{
 			"type" : "WallTile",
@@ -750,7 +727,7 @@
 			"row" : 4,
 			"col" : 19,
 			"item" : {
-				"descriptor" : "Chip|_"
+				"descriptor" : "Chip|null"
 			}
 		},
 		{
@@ -789,7 +766,7 @@
 			"col" : 26
 		},
 		{
-			"type" : "FireTile",
+			"type" : "FreeTile",
 			"row" : 4,
 			"col" : 27,
 			"item" : {
@@ -837,11 +814,6 @@
 			"col" : 3
 		},
 		{
-			"type" : "FreeTile",
-			"row" : 5,
-			"col" : 4
-		},
-		{
 			"type" : "WallTile",
 			"row" : 5,
 			"col" : 5
@@ -850,11 +822,6 @@
 			"type" : "WallTile",
 			"row" : 5,
 			"col" : 6
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 5,
-			"col" : 7
 		},
 		{
 			"type" : "WallTile",
@@ -869,52 +836,10 @@
 		{
 			"type" : "FreeTile",
 			"row" : 5,
-			"col" : 10
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 5,
-			"col" : 11
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 5,
-			"col" : 12
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 5,
-			"col" : 13
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 5,
-			"col" : 14
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 5,
-			"col" : 15
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 5,
-			"col" : 16
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 5,
-			"col" : 17
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 5,
-			"col" : 18
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 5,
-			"col" : 19
+			"col" : 19,
+			"item" : {
+				"descriptor" : "Player|null"
+			}
 		},
 		{
 			"type" : "FireTile",
@@ -997,11 +922,6 @@
 			"col" : 3
 		},
 		{
-			"type" : "FreeTile",
-			"row" : 6,
-			"col" : 4
-		},
-		{
 			"type" : "WallTile",
 			"row" : 6,
 			"col" : 5
@@ -1012,11 +932,6 @@
 			"col" : 6
 		},
 		{
-			"type" : "FreeTile",
-			"row" : 6,
-			"col" : 7
-		},
-		{
 			"type" : "WallTile",
 			"row" : 6,
 			"col" : 8
@@ -1025,16 +940,6 @@
 			"type" : "WallTile",
 			"row" : 6,
 			"col" : 9
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 6,
-			"col" : 10
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 6,
-			"col" : 11
 		},
 		{
 			"type" : "WallTile",
@@ -1157,24 +1062,9 @@
 			"col" : 3
 		},
 		{
-			"type" : "FreeTile",
-			"row" : 7,
-			"col" : 4
-		},
-		{
 			"type" : "WallTile",
 			"row" : 7,
 			"col" : 5
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 7,
-			"col" : 6
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 7,
-			"col" : 7
 		},
 		{
 			"type" : "WallTile",
@@ -1185,16 +1075,6 @@
 			"type" : "WallTile",
 			"row" : 7,
 			"col" : 9
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 7,
-			"col" : 10
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 7,
-			"col" : 11
 		},
 		{
 			"type" : "WallTile",
@@ -1230,26 +1110,6 @@
 			"type" : "WallTile",
 			"row" : 7,
 			"col" : 18
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 7,
-			"col" : 19
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 7,
-			"col" : 20
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 7,
-			"col" : 21
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 7,
-			"col" : 22
 		},
 		{
 			"type" : "FreeTile",
@@ -1260,26 +1120,6 @@
 			}
 		},
 		{
-			"type" : "FreeTile",
-			"row" : 7,
-			"col" : 24
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 7,
-			"col" : 25
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 7,
-			"col" : 26
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 7,
-			"col" : 27
-		},
-		{
 			"type" : "WallTile",
 			"row" : 7,
 			"col" : 28
@@ -1320,57 +1160,17 @@
 			"col" : 3
 		},
 		{
-			"type" : "FreeTile",
-			"row" : 8,
-			"col" : 4
-		},
-		{
 			"type" : "WallTile",
 			"row" : 8,
 			"col" : 5
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 8,
-			"col" : 6
 		},
 		{
 			"type" : "FreeTile",
 			"row" : 8,
 			"col" : 7,
 			"item" : {
-				"descriptor" : "Chip|_"
+				"descriptor" : "Chip|null"
 			}
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 8,
-			"col" : 8
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 8,
-			"col" : 9
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 8,
-			"col" : 10
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 8,
-			"col" : 11
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 8,
-			"col" : 12
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 8,
-			"col" : 13
 		},
 		{
 			"type" : "WallTile",
@@ -1385,35 +1185,10 @@
 		{
 			"type" : "FreeTile",
 			"row" : 8,
-			"col" : 16
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 8,
-			"col" : 17
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 8,
 			"col" : 18,
 			"item" : {
-				"descriptor" : "Chip|_"
+				"descriptor" : "Chip|null"
 			}
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 8,
-			"col" : 19
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 8,
-			"col" : 20
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 8,
-			"col" : 21
 		},
 		{
 			"type" : "FreeTile",
@@ -1424,31 +1199,6 @@
 			}
 		},
 		{
-			"type" : "FreeTile",
-			"row" : 8,
-			"col" : 23
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 8,
-			"col" : 24
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 8,
-			"col" : 25
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 8,
-			"col" : 26
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 8,
-			"col" : 27
-		},
-		{
 			"type" : "WallTile",
 			"row" : 8,
 			"col" : 28
@@ -1487,11 +1237,6 @@
 			"type" : "WallTile",
 			"row" : 9,
 			"col" : 3
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 9,
-			"col" : 4
 		},
 		{
 			"type" : "WallTile",
@@ -1529,89 +1274,6 @@
 			"col" : 11
 		},
 		{
-			"type" : "FreeTile",
-			"row" : 9,
-			"col" : 12
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 9,
-			"col" : 13
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 9,
-			"col" : 14
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 9,
-			"col" : 15
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 9,
-			"col" : 16
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 9,
-			"col" : 17
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 9,
-			"col" : 18
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 9,
-			"col" : 19
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 9,
-			"col" : 20
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 9,
-			"col" : 21
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 9,
-			"col" : 22
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 9,
-			"col" : 23,
-			"item" : {
-				"descriptor" : "Fireblast|DOWN"
-			}
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 9,
-			"col" : 24
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 9,
-			"col" : 25
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 9,
-			"col" : 26
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 9,
-			"col" : 27
-		},
-		{
 			"type" : "WallTile",
 			"row" : 9,
 			"col" : 28
@@ -1650,54 +1312,19 @@
 			"type" : "WallTile",
 			"row" : 10,
 			"col" : 3
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 10,
-			"col" : 4
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 10,
-			"col" : 5
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 10,
-			"col" : 6
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 10,
-			"col" : 7
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 10,
-			"col" : 8
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 10,
-			"col" : 9
 		},
 		{
 			"type" : "FreeTile",
 			"row" : 10,
 			"col" : 10,
 			"item" : {
-				"descriptor" : "Gloves|_"
+				"descriptor" : "Gloves|null"
 			}
 		},
 		{
 			"type" : "WallTile",
 			"row" : 10,
 			"col" : 11
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 10,
-			"col" : 12
 		},
 		{
 			"type" : "WallTile",
@@ -1742,42 +1369,9 @@
 		{
 			"type" : "FreeTile",
 			"row" : 10,
-			"col" : 21
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 10,
-			"col" : 22,
-			"item" : {
-				"descriptor" : "Fireblast|DOWN"
-			}
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 10,
-			"col" : 23
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 10,
-			"col" : 24
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 10,
-			"col" : 25
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 10,
-			"col" : 26
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 10,
 			"col" : 27,
 			"item" : {
-				"descriptor" : "Chip|_"
+				"descriptor" : "Chip|null"
 			}
 		},
 		{
@@ -1821,11 +1415,6 @@
 			"col" : 3
 		},
 		{
-			"type" : "FreeTile",
-			"row" : 11,
-			"col" : 4
-		},
-		{
 			"type" : "WallTile",
 			"row" : 11,
 			"col" : 5
@@ -1863,65 +1452,15 @@
 		{
 			"type" : "FreeTile",
 			"row" : 11,
-			"col" : 12
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 11,
-			"col" : 13
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 11,
-			"col" : 14
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 11,
-			"col" : 15
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 11,
-			"col" : 16
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 11,
 			"col" : 17,
 			"item" : {
-				"descriptor" : "Chip|_"
+				"descriptor" : "Chip|null"
 			}
 		},
 		{
 			"type" : "WallTile",
 			"row" : 11,
 			"col" : 18
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 11,
-			"col" : 19
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 11,
-			"col" : 20
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 11,
-			"col" : 21
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 11,
-			"col" : 22
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 11,
-			"col" : 23
 		},
 		{
 			"type" : "WallTile",
@@ -1986,14 +1525,9 @@
 		{
 			"type" : "FreeTile",
 			"row" : 12,
-			"col" : 4
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 12,
 			"col" : 5,
 			"item" : {
-				"descriptor" : "Chip|_"
+				"descriptor" : "Chip|null"
 			}
 		},
 		{
@@ -2027,11 +1561,6 @@
 			"col" : 11
 		},
 		{
-			"type" : "FreeTile",
-			"row" : 12,
-			"col" : 12
-		},
-		{
 			"type" : "WallTile",
 			"row" : 12,
 			"col" : 13
@@ -2062,29 +1591,9 @@
 			"col" : 18
 		},
 		{
-			"type" : "FreeTile",
-			"row" : 12,
-			"col" : 19
-		},
-		{
 			"type" : "WallTile",
 			"row" : 12,
 			"col" : 20
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 12,
-			"col" : 21
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 12,
-			"col" : 22
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 12,
-			"col" : 23
 		},
 		{
 			"type" : "DoorTile",
@@ -2148,11 +1657,6 @@
 			"col" : 3
 		},
 		{
-			"type" : "FreeTile",
-			"row" : 13,
-			"col" : 4
-		},
-		{
 			"type" : "WallTile",
 			"row" : 13,
 			"col" : 5
@@ -2166,11 +1670,6 @@
 			"type" : "WallTile",
 			"row" : 13,
 			"col" : 7
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 13,
-			"col" : 8
 		},
 		{
 			"type" : "WallTile",
@@ -2188,64 +1687,14 @@
 			"col" : 11
 		},
 		{
-			"type" : "FreeTile",
-			"row" : 13,
-			"col" : 12
-		},
-		{
 			"type" : "WallTile",
 			"row" : 13,
 			"col" : 13
 		},
 		{
-			"type" : "FreeTile",
-			"row" : 13,
-			"col" : 14
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 13,
-			"col" : 15
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 13,
-			"col" : 16
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 13,
-			"col" : 17
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 13,
-			"col" : 18
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 13,
-			"col" : 19
-		},
-		{
 			"type" : "WallTile",
 			"row" : 13,
 			"col" : 20
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 13,
-			"col" : 21
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 13,
-			"col" : 22
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 13,
-			"col" : 23
 		},
 		{
 			"type" : "FreeTile",
@@ -2260,16 +1709,6 @@
 			"row" : 13,
 			"col" : 25,
 			"extra" : "blue"
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 13,
-			"col" : 26
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 13,
-			"col" : 27
 		},
 		{
 			"type" : "WallTile",
@@ -2316,7 +1755,7 @@
 			"row" : 14,
 			"col" : 4,
 			"item" : {
-				"descriptor" : "Boots|_"
+				"descriptor" : "Boots|null"
 			}
 		},
 		{
@@ -2345,35 +1784,10 @@
 		{
 			"type" : "FreeTile",
 			"row" : 14,
-			"col" : 9
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 14,
 			"col" : 10,
 			"item" : {
-				"descriptor" : "Chip|_"
+				"descriptor" : "Chip|null"
 			}
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 14,
-			"col" : 11
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 14,
-			"col" : 12
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 14,
-			"col" : 13
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 14,
-			"col" : 14
 		},
 		{
 			"type" : "WallTile",
@@ -2409,34 +1823,9 @@
 			"col" : 20
 		},
 		{
-			"type" : "FreeTile",
-			"row" : 14,
-			"col" : 21
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 14,
-			"col" : 22
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 14,
-			"col" : 23
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 14,
-			"col" : 24
-		},
-		{
 			"type" : "WallTile",
 			"row" : 14,
 			"col" : 25
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 14,
-			"col" : 26
 		},
 		{
 			"type" : "TeleportTile",
@@ -2483,31 +1872,6 @@
 			"type" : "WallTile",
 			"row" : 15,
 			"col" : 3
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 15,
-			"col" : 4
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 15,
-			"col" : 5
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 15,
-			"col" : 6
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 15,
-			"col" : 7
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 15,
-			"col" : 8
 		},
 		{
 			"type" : "WallTile",
@@ -2709,7 +2073,7 @@
 			"row" : 16,
 			"col" : 16,
 			"item" : {
-				"descriptor" : "Chip|_"
+				"descriptor" : "Chip|null"
 			}
 		},
 		{
@@ -2717,51 +2081,6 @@
 			"row" : 16,
 			"col" : 17,
 			"extra" : "green"
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 16,
-			"col" : 18
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 16,
-			"col" : 19
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 16,
-			"col" : 20
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 16,
-			"col" : 21
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 16,
-			"col" : 22
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 16,
-			"col" : 23
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 16,
-			"col" : 24
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 16,
-			"col" : 25
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 16,
-			"col" : 26
 		},
 		{
 			"type" : "TeleportTile",
@@ -2870,11 +2189,6 @@
 			"col" : 15
 		},
 		{
-			"type" : "FreeTile",
-			"row" : 17,
-			"col" : 16
-		},
-		{
 			"type" : "WallTile",
 			"row" : 17,
 			"col" : 17
@@ -2968,46 +2282,6 @@
 			"type" : "WallTile",
 			"row" : 18,
 			"col" : 3
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 18,
-			"col" : 4
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 18,
-			"col" : 5
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 18,
-			"col" : 6
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 18,
-			"col" : 7
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 18,
-			"col" : 8
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 18,
-			"col" : 9
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 18,
-			"col" : 10
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 18,
-			"col" : 11
 		},
 		{
 			"type" : "FreeTile",
@@ -3020,77 +2294,18 @@
 		{
 			"type" : "FreeTile",
 			"row" : 18,
-			"col" : 13
+			"col" : 13,
+			"item" : {
+				"descriptor" : "BlueEnemy|DOWN"
+			}
 		},
 		{
 			"type" : "FreeTile",
 			"row" : 18,
-			"col" : 14
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 18,
-			"col" : 15
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 18,
-			"col" : 16
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 18,
-			"col" : 17
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 18,
-			"col" : 18
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 18,
-			"col" : 19
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 18,
-			"col" : 20
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 18,
-			"col" : 21
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 18,
-			"col" : 22
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 18,
-			"col" : 23
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 18,
-			"col" : 24
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 18,
-			"col" : 25
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 18,
-			"col" : 26
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 18,
-			"col" : 27
+			"col" : 27,
+			"item" : {
+				"descriptor" : "BlueEnemy|DOWN"
+			}
 		},
 		{
 			"type" : "WallTile",
@@ -3135,52 +2350,7 @@
 		{
 			"type" : "FreeTile",
 			"row" : 19,
-			"col" : 4
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 19,
-			"col" : 5
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 19,
-			"col" : 6
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 19,
-			"col" : 7
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 19,
-			"col" : 8
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 19,
-			"col" : 9
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 19,
-			"col" : 10
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 19,
-			"col" : 11
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 19,
-			"col" : 12
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 19,
-			"col" : 13,
+			"col" : 4,
 			"item" : {
 				"descriptor" : "BlueEnemy|DOWN"
 			}
@@ -3189,36 +2359,6 @@
 			"type" : "WallTile",
 			"row" : 19,
 			"col" : 14
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 19,
-			"col" : 15
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 19,
-			"col" : 16
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 19,
-			"col" : 17
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 19,
-			"col" : 18
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 19,
-			"col" : 19
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 19,
-			"col" : 20
 		},
 		{
 			"type" : "FreeTile",
@@ -3229,39 +2369,6 @@
 			}
 		},
 		{
-			"type" : "FreeTile",
-			"row" : 19,
-			"col" : 22
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 19,
-			"col" : 23
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 19,
-			"col" : 24
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 19,
-			"col" : 25
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 19,
-			"col" : 26
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 19,
-			"col" : 27,
-			"item" : {
-				"descriptor" : "BlueEnemy|DOWN"
-			}
-		},
-		{
 			"type" : "WallTile",
 			"row" : 19,
 			"col" : 28
@@ -3302,67 +2409,9 @@
 			"col" : 3
 		},
 		{
-			"type" : "FreeTile",
-			"row" : 20,
-			"col" : 4,
-			"item" : {
-				"descriptor" : "BlueEnemy|DOWN"
-			}
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 20,
-			"col" : 5
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 20,
-			"col" : 6
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 20,
-			"col" : 7
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 20,
-			"col" : 8
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 20,
-			"col" : 9
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 20,
-			"col" : 10
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 20,
-			"col" : 11
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 20,
-			"col" : 12
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 20,
-			"col" : 13
-		},
-		{
 			"type" : "WallTile",
 			"row" : 20,
 			"col" : 14
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 20,
-			"col" : 15
 		},
 		{
 			"type" : "WallTile",
@@ -3408,24 +2457,9 @@
 		{
 			"type" : "FreeTile",
 			"row" : 20,
-			"col" : 24
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 20,
-			"col" : 25
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 20,
-			"col" : 26
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 20,
 			"col" : 27,
 			"item" : {
-				"descriptor" : "Chip|_"
+				"descriptor" : "Chip|null"
 			}
 		},
 		{
@@ -3479,41 +2513,6 @@
 			"col" : 5
 		},
 		{
-			"type" : "FreeTile",
-			"row" : 21,
-			"col" : 6
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 21,
-			"col" : 7
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 21,
-			"col" : 8
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 21,
-			"col" : 9
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 21,
-			"col" : 10
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 21,
-			"col" : 11
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 21,
-			"col" : 12
-		},
-		{
 			"type" : "WallTile",
 			"row" : 21,
 			"col" : 13
@@ -3522,11 +2521,6 @@
 			"type" : "WallTile",
 			"row" : 21,
 			"col" : 14
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 21,
-			"col" : 15
 		},
 		{
 			"type" : "WallTile",
@@ -3538,28 +2532,8 @@
 			"row" : 21,
 			"col" : 17,
 			"item" : {
-				"descriptor" : "Chip|_"
+				"descriptor" : "Chip|null"
 			}
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 21,
-			"col" : 18
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 21,
-			"col" : 19
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 21,
-			"col" : 20
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 21,
-			"col" : 21
 		},
 		{
 			"type" : "FreeTile",
@@ -3575,26 +2549,6 @@
 			"col" : 23
 		},
 		{
-			"type" : "FreeTile",
-			"row" : 21,
-			"col" : 24
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 21,
-			"col" : 25
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 21,
-			"col" : 26
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 21,
-			"col" : 27
-		},
-		{
 			"type" : "WallTile",
 			"row" : 21,
 			"col" : 28
@@ -3637,285 +2591,113 @@
 		{
 			"type" : "FreeTile",
 			"row" : 22,
-			"col" : 4
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 22,
-			"col" : 5
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 22,
-			"col" : 6
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 22,
-			"col" : 7
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 22,
-			"col" : 8
-		},
-		{
-			"type" : "WallTile",
-			"row" : 22,
-			"col" : 9
-		},
-		{
-			"type" : "WallTile",
-			"row" : 22,
-			"col" : 10
-		},
-		{
-			"type" : "WallTile",
-			"row" : 22,
-			"col" : 11
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 22,
-			"col" : 12
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 22,
-			"col" : 13
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 22,
-			"col" : 14
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 22,
-			"col" : 15
-		},
-		{
-			"type" : "WallTile",
-			"row" : 22,
-			"col" : 16
-		},
-		{
-			"type" : "WallTile",
-			"row" : 22,
-			"col" : 17
-		},
-		{
-			"type" : "WallTile",
-			"row" : 22,
-			"col" : 18
-		},
-		{
-			"type" : "WallTile",
-			"row" : 22,
-			"col" : 19
-		},
-		{
-			"type" : "WallTile",
-			"row" : 22,
-			"col" : 20
-		},
-		{
-			"type" : "WallTile",
-			"row" : 22,
-			"col" : 21
-		},
-		{
-			"type" : "WallTile",
-			"row" : 22,
-			"col" : 22
-		},
-		{
-			"type" : "WallTile",
-			"row" : 22,
-			"col" : 23
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 22,
-			"col" : 24
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 22,
-			"col" : 25
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 22,
-			"col" : 26
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 22,
-			"col" : 27
-		},
-		{
-			"type" : "WallTile",
-			"row" : 22,
-			"col" : 28
-		},
-		{
-			"type" : "WallTile",
-			"row" : 22,
-			"col" : 29
-		},
-		{
-			"type" : "WallTile",
-			"row" : 22,
-			"col" : 30
-		},
-		{
-			"type" : "WallTile",
-			"row" : 22,
-			"col" : 31
-		},
-		{
-			"type" : "WallTile",
-			"row" : 23,
-			"col" : 0
-		},
-		{
-			"type" : "WallTile",
-			"row" : 23,
-			"col" : 1
-		},
-		{
-			"type" : "WallTile",
-			"row" : 23,
-			"col" : 2
-		},
-		{
-			"type" : "WallTile",
-			"row" : 23,
-			"col" : 3
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 23,
-			"col" : 4
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 23,
-			"col" : 5
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 23,
-			"col" : 6
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 23,
 			"col" : 7,
 			"item" : {
 				"descriptor" : "BlueEnemy|DOWN"
 			}
 		},
 		{
-			"type" : "FreeTile",
-			"row" : 23,
-			"col" : 8
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 23,
+			"type" : "WallTile",
+			"row" : 22,
 			"col" : 9
 		},
 		{
-			"type" : "FreeTile",
-			"row" : 23,
+			"type" : "WallTile",
+			"row" : 22,
 			"col" : 10
 		},
 		{
-			"type" : "FreeTile",
-			"row" : 23,
+			"type" : "WallTile",
+			"row" : 22,
 			"col" : 11
 		},
 		{
-			"type" : "FreeTile",
-			"row" : 23,
-			"col" : 12
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 23,
-			"col" : 13
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 23,
-			"col" : 14
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 23,
-			"col" : 15
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 23,
+			"type" : "WallTile",
+			"row" : 22,
 			"col" : 16
 		},
 		{
-			"type" : "FreeTile",
-			"row" : 23,
+			"type" : "WallTile",
+			"row" : 22,
 			"col" : 17
 		},
 		{
-			"type" : "FreeTile",
-			"row" : 23,
+			"type" : "WallTile",
+			"row" : 22,
 			"col" : 18
 		},
 		{
-			"type" : "FreeTile",
-			"row" : 23,
+			"type" : "WallTile",
+			"row" : 22,
 			"col" : 19
 		},
 		{
-			"type" : "FreeTile",
-			"row" : 23,
+			"type" : "WallTile",
+			"row" : 22,
 			"col" : 20
 		},
 		{
-			"type" : "FreeTile",
-			"row" : 23,
+			"type" : "WallTile",
+			"row" : 22,
 			"col" : 21
 		},
 		{
-			"type" : "FreeTile",
-			"row" : 23,
+			"type" : "WallTile",
+			"row" : 22,
 			"col" : 22
 		},
 		{
-			"type" : "FreeTile",
-			"row" : 23,
+			"type" : "WallTile",
+			"row" : 22,
 			"col" : 23
 		},
 		{
-			"type" : "FreeTile",
+			"type" : "WallTile",
+			"row" : 22,
+			"col" : 28
+		},
+		{
+			"type" : "WallTile",
+			"row" : 22,
+			"col" : 29
+		},
+		{
+			"type" : "WallTile",
+			"row" : 22,
+			"col" : 30
+		},
+		{
+			"type" : "WallTile",
+			"row" : 22,
+			"col" : 31
+		},
+		{
+			"type" : "WallTile",
 			"row" : 23,
-			"col" : 24
+			"col" : 0
+		},
+		{
+			"type" : "WallTile",
+			"row" : 23,
+			"col" : 1
+		},
+		{
+			"type" : "WallTile",
+			"row" : 23,
+			"col" : 2
+		},
+		{
+			"type" : "WallTile",
+			"row" : 23,
+			"col" : 3
 		},
 		{
 			"type" : "FreeTile",
 			"row" : 23,
-			"col" : 25
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 23,
-			"col" : 26
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 23,
-			"col" : 27
+			"col" : 27,
+			"item" : {
+				"descriptor" : "BlueEnemy|DOWN"
+			}
 		},
 		{
 			"type" : "WallTile",
@@ -3956,99 +2738,14 @@
 			"type" : "WallTile",
 			"row" : 24,
 			"col" : 3
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 24,
-			"col" : 4
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 24,
-			"col" : 5
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 24,
-			"col" : 6
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 24,
-			"col" : 7
 		},
 		{
 			"type" : "FreeTile",
 			"row" : 24,
 			"col" : 8,
 			"item" : {
-				"descriptor" : "Chip|_"
+				"descriptor" : "Chip|null"
 			}
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 24,
-			"col" : 9
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 24,
-			"col" : 10
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 24,
-			"col" : 11
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 24,
-			"col" : 12
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 24,
-			"col" : 13
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 24,
-			"col" : 14
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 24,
-			"col" : 15
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 24,
-			"col" : 16
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 24,
-			"col" : 17
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 24,
-			"col" : 18
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 24,
-			"col" : 19
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 24,
-			"col" : 20
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 24,
-			"col" : 21
 		},
 		{
 			"type" : "WallTile",
@@ -4059,29 +2756,6 @@
 			"type" : "WallTile",
 			"row" : 24,
 			"col" : 23
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 24,
-			"col" : 24
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 24,
-			"col" : 25
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 24,
-			"col" : 26
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 24,
-			"col" : 27,
-			"item" : {
-				"descriptor" : "BlueEnemy|DOWN,BlueEnemy|DOWN"
-			}
 		},
 		{
 			"type" : "WallTile",
@@ -4124,24 +2798,9 @@
 			"col" : 3
 		},
 		{
-			"type" : "FreeTile",
-			"row" : 25,
-			"col" : 4
-		},
-		{
 			"type" : "WallTile",
 			"row" : 25,
 			"col" : 5
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 25,
-			"col" : 6
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 25,
-			"col" : 7
 		},
 		{
 			"type" : "WallTile",
@@ -4170,26 +2829,6 @@
 			"col" : 12
 		},
 		{
-			"type" : "FreeTile",
-			"row" : 25,
-			"col" : 13
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 25,
-			"col" : 14
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 25,
-			"col" : 15
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 25,
-			"col" : 16
-		},
-		{
 			"type" : "WallTile",
 			"row" : 25,
 			"col" : 17
@@ -4207,42 +2846,18 @@
 		{
 			"type" : "FreeTile",
 			"row" : 25,
-			"col" : 20
+			"col" : 22,
+			"item" : {
+				"descriptor" : "BlueEnemy|DOWN"
+			}
 		},
 		{
 			"type" : "FreeTile",
 			"row" : 25,
-			"col" : 21
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 25,
-			"col" : 22
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 25,
-			"col" : 23
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 25,
-			"col" : 24
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 25,
-			"col" : 25
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 25,
-			"col" : 26
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 25,
-			"col" : 27
+			"col" : 27,
+			"item" : {
+				"descriptor" : "BlueEnemy|DOWN"
+			}
 		},
 		{
 			"type" : "WallTile",
@@ -4285,44 +2900,9 @@
 			"col" : 3
 		},
 		{
-			"type" : "FreeTile",
-			"row" : 26,
-			"col" : 4
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 26,
-			"col" : 5
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 26,
-			"col" : 6
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 26,
-			"col" : 7
-		},
-		{
 			"type" : "WallTile",
 			"row" : 26,
 			"col" : 8
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 26,
-			"col" : 9
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 26,
-			"col" : 10
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 26,
-			"col" : 11
 		},
 		{
 			"type" : "WallTile",
@@ -4330,67 +2910,9 @@
 			"col" : 12
 		},
 		{
-			"type" : "FreeTile",
-			"row" : 26,
-			"col" : 13
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 26,
-			"col" : 14
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 26,
-			"col" : 15
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 26,
-			"col" : 16
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 26,
-			"col" : 17
-		},
-		{
 			"type" : "WallTile",
 			"row" : 26,
 			"col" : 18
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 26,
-			"col" : 19
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 26,
-			"col" : 20
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 26,
-			"col" : 21
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 26,
-			"col" : 22,
-			"item" : {
-				"descriptor" : "BlueEnemy|DOWN"
-			}
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 26,
-			"col" : 23
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 26,
-			"col" : 24
 		},
 		{
 			"type" : "WallTile",
@@ -4451,35 +2973,15 @@
 		{
 			"type" : "FreeTile",
 			"row" : 27,
-			"col" : 4
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 27,
-			"col" : 5
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 27,
-			"col" : 6,
+			"col" : 5,
 			"item" : {
 				"descriptor" : "BlueEnemy|DOWN"
 			}
 		},
 		{
-			"type" : "FreeTile",
-			"row" : 27,
-			"col" : 7
-		},
-		{
 			"type" : "WallTile",
 			"row" : 27,
 			"col" : 8
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 27,
-			"col" : 9
 		},
 		{
 			"type" : "FreeTile",
@@ -4490,11 +2992,6 @@
 			}
 		},
 		{
-			"type" : "FreeTile",
-			"row" : 27,
-			"col" : 11
-		},
-		{
 			"type" : "WallTile",
 			"row" : 27,
 			"col" : 12
@@ -4502,37 +2999,7 @@
 		{
 			"type" : "FreeTile",
 			"row" : 27,
-			"col" : 13
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 27,
-			"col" : 14
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 27,
-			"col" : 15
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 27,
-			"col" : 16
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 27,
-			"col" : 17
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 27,
-			"col" : 18
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 27,
-			"col" : 19,
+			"col" : 18,
 			"item" : {
 				"descriptor" : "BlueEnemy|DOWN"
 			}
@@ -4540,30 +3007,10 @@
 		{
 			"type" : "FreeTile",
 			"row" : 27,
-			"col" : 20
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 27,
-			"col" : 21
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 27,
-			"col" : 22
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 27,
-			"col" : 23,
+			"col" : 24,
 			"item" : {
 				"descriptor" : "BlueEnemy|DOWN"
 			}
-		},
-		{
-			"type" : "FreeTile",
-			"row" : 27,
-			"col" : 24
 		},
 		{
 			"type" : "WallTile",
@@ -5239,88 +3686,6 @@
 			"type" : "WallTile",
 			"row" : 31,
 			"col" : 31
-		}
-	],
-	"moves" : [
-		{
-			"type" : "playerMove",
-			"direction" : "DOWN",
-			"time" : 745233800
-		},
-		{
-			"type" : "playerMove",
-			"direction" : "DOWN",
-			"time" : 905679400
-		},
-		{
-			"type" : "playerMove",
-			"direction" : "DOWN",
-			"time" : 1036375100
-		},
-		{
-			"type" : "playerMove",
-			"direction" : "DOWN",
-			"time" : 1198308600
-		},
-		{
-			"type" : "playerMove",
-			"direction" : "DOWN",
-			"time" : 1317830800
-		},
-		{
-			"type" : "playerMove",
-			"direction" : "DOWN",
-			"time" : 1476042500
-		},
-		{
-			"type" : "playerMove",
-			"direction" : "DOWN",
-			"time" : 1622443400
-		},
-		{
-			"type" : "playerMove",
-			"direction" : "DOWN",
-			"time" : 1787299000
-		},
-		{
-			"type" : "playerMove",
-			"direction" : "DOWN",
-			"time" : 1949959500
-		},
-		{
-			"type" : "playerMove",
-			"direction" : "DOWN",
-			"time" : 2080629500
-		},
-		{
-			"type" : "playerMove",
-			"direction" : "DOWN",
-			"time" : 2209922800
-		},
-		{
-			"type" : "playerMove",
-			"direction" : "DOWN",
-			"time" : 2361860100
-		},
-		{
-			"type" : "playerMove",
-			"direction" : "RIGHT",
-			"time" : 2522233100
-		},
-		{
-			"type" : "playerMove",
-			"direction" : "RIGHT",
-			"time" : 2692957600
-		},
-		{
-			"type" : "playerMove",
-			"direction" : "RIGHT",
-			"time" : 2845504300
-		},
-		{
-			"type" : "playerMove",
-			"direction" : "RIGHT",
-			"time" : 2985289000
 		}
 	]
 }

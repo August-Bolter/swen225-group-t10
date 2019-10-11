@@ -67,6 +67,45 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
         pressedKeys = new HashSet<>();
     }
 
+    /**
+     * Constructor for the test cases
+     * @param game
+     */
+    public MainFrame(Main game, String tester){
+        super("Chip's Challenge");
+
+        //TitleFrame title = new TitleFrame(this);
+
+        setVisible(true);
+        this.game = game;
+
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); // Makes the program have exit dialogue instead
+        addWindowListener(this);
+
+        outerpanel = new JPanel();
+
+        setContentPane(outerpanel);
+        addBoardPanel();
+        addInfoPanel();
+
+        // Setup key listener
+       // addKeyListener(this);
+        setFocusable(true);
+        requestFocus();
+
+        createMenuBar();
+
+        outerpanel.setLayout(new GridBagLayout());
+        outerpanel.setBorder(new GameBorder(Color.BLUE));
+
+        pack();
+        setLocationRelativeTo(null);
+        repaint();
+        setResizable(false);
+
+        pressedKeys = new HashSet<>();
+    }
+
     private void createMenuBar() {
         JMenuBar menu = new JMenuBar();
         JMenu gameMenu = new JMenu("Game");
