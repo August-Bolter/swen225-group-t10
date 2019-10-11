@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Tests for the enemy
+ * @author Justina
  */
 class EnemyTest {
 
