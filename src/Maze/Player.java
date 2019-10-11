@@ -8,6 +8,9 @@ import java.io.IOException;
 import java.util.logging.Level;
 
 /**
+ * @author Ahad Rahman
+ * @author Hugh Lockwood
+ * @author August Bolter
  * Player class: This is the main player which the user moves to play the game.
  */
 public class Player extends Item {
@@ -61,7 +64,7 @@ public class Player extends Item {
 
     /**
      * Sets the current position of the player.
-     * @param currentPos
+     * @param currentPos the player's current position
      */
     public void setCurrentPos(Tile currentPos) {
         this.currentPos = currentPos;
@@ -76,7 +79,7 @@ public class Player extends Item {
 
     /**
      * Adds a new item into the inventory (list)
-     * @param newItem
+     * @param newItem the item to add
      * @throws InventoryException thrown if the addInventory
      */
     public void addInventory(Item newItem) throws InventoryException {

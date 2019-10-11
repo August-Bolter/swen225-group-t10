@@ -10,6 +10,7 @@ import javax.swing.border.EtchedBorder;
 import java.awt.*;
 
 /**
+ * @author Daniel Pullon
  * Panel that display information about the game such as time left or chips left
  */
 public class InfoPanel extends JPanel {

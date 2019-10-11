@@ -6,8 +6,12 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-/** Represents a key in the game. The key has a color. The player can pick the key up and use it to unlock doors with the
- * same color. */
+/**
+ * @author Ahad Rahman - Interaction
+ * @author August Bolter - Initial structure
+ * Represents a key in the game. The key has a color. The player can pick the key up and use it to unlock doors with the
+ * same color.
+ */
 public class Key extends Item {
     private static final String KEY = "Key";
     private String color; //The key can be blue, red, green or yellow

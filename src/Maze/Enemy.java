@@ -7,6 +7,8 @@ import java.io.File;
 import java.io.IOException;
 
 /**
+ * @author Ahad Rahman - Wrote the initial class
+ * @author Hugh Lockwood - Converted to abstract class and wrote onTick
  * Represents an enemy or other actor.
  * Items that do an action on each tick should extend this class.
  */

@@ -4,6 +4,7 @@ import javax.swing.border.AbstractBorder;
 import java.awt.*;
 
 /**
+ * @author Daniel Pullon
  * The border for the panel window
  */
 public class GameBorder extends AbstractBorder {

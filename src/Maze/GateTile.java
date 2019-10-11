@@ -1,6 +1,9 @@
 package Maze;
 
-/** Represents a gate tile in the game. A gate tile (exit lock) behaves like a wall (player can't pass through it or interact
+/**
+ * @author Ahad Rahman - Interaction
+ * @author August Bolter - Initial structure
+ * Represents a gate tile in the game. A gate tile (exit lock) behaves like a wall (player can't pass through it or interact
  * with it) if the player doesn't have all the chips in the level. Once they have all the chips the player can pass through
  * it.
  */

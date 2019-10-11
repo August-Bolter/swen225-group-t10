@@ -6,7 +6,10 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-/** Represents a door in the game. Doors can be unlocked using a key with the same color as the door. By unlocking the door
+/**
+ * @author Ahad Rahman - Interaction
+ * @author August Bolter - Initial structure
+ * Represents a door in the game. Doors can be unlocked using a key with the same color as the door. By unlocking the door
  * the player can access other parts of the map. */
 
 public class DoorTile extends Tile {

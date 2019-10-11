@@ -1,7 +1,12 @@
 package Maze;
 
-/** Represents an info tile. An info tile is similar to a free tile but when a player steps onto it helpful information (help
- * text) will be displayed. */
+/**
+ * @author Hugh Lockwood - Interaction
+ * @author August Bolter - Initial structure
+ * Represents an info tile. An info tile is similar to a free tile but when a player steps onto it helpful information (help
+ * text) will be displayed.
+ *
+ */
 public class InfoTile extends Tile {
     private String info; //The helpful text
 

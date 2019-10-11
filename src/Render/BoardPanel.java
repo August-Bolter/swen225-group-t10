@@ -9,6 +9,7 @@ import javax.swing.border.EtchedBorder;
 import java.awt.*;
 
 /**
+ * @author Daniel Pullon
  * The panel that draws the game
  */
 public class BoardPanel extends JPanel {
