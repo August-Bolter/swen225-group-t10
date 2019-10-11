@@ -23,7 +23,7 @@ It also manipulates the frameRate based on whether the replay is paused or playi
 is done in the Replay and loadJSON class, controlling the replay is done in Main and showing the
 GUI is done in replayPanel</p>
 
-<h4>... Design Pattern</h4>
+<h4>Design Pattern</h4>
 
 <p>The record and play feature follows the Command pattern. The Command pattern can be used for
 tasks such as Macro recording. Macro recording is "playing back" the same actions by 
