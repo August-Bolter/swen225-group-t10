@@ -25,9 +25,11 @@ GUI is done in replayPanel</p>
 
 <h4>... Design Pattern</h4>
 
-<p>Lmao</p>
-
-<p>I'm fucked</p>
+<p>The record and play feature follows the Command pattern. The Command pattern can be used for
+tasks such as Macro recording. Macro recording is "playing back" the same actions by 
+executing the same commands again in sequence. The record and play feature does this as well, it saves 
+the actions (player moves) using SaveJSON and Main. It "plays back" these moves by calling the same command
+(doMove()) with the same parameter (String direction), in the same order (the moves are ordered by the nanosecond they are made)
 
 <h4>Using the Record and Play feature</h4>
 <p>There are many features of R&P, here is a guide to use these features:
