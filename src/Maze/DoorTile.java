@@ -98,7 +98,6 @@ public class DoorTile extends Tile {
         if (main != null) {
             BufferedImage img = main.tileImages.get(color+DOOR + ".png");
             if (img != null) {
-                System.out.println("Returned door");
                 return img;
             }
         }

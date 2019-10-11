@@ -79,13 +79,8 @@ public class Main{
         player = levelBoard.getPlayer();
         player.setCurrentPos();
 
-        for (int i = 0; i < levelBoard.getBoard().length; i++) {
-            System.out.println(levelBoard.getBoard()[i][i]);
-        }
-
         //setting up enemies
         enemies = levelBoard.getEnemies();
-        System.out.println("enemies no. : " + enemies.size());
         for (Enemy e : enemies){
             e.setCurrentPos();
         }
@@ -156,13 +151,8 @@ public class Main{
         player = levelBoard.getPlayer();
         player.setCurrentPos();
 
-        for (int i = 0; i < levelBoard.getBoard().length; i++) {
-            System.out.println(levelBoard.getBoard()[i][i]);
-        }
-
         // Setting up enemies
         enemies = levelBoard.getEnemies();
-        System.out.println("enemies no. : " + enemies.size());
         for (Enemy e : enemies){
             e.setCurrentPos();
         }
@@ -176,7 +166,6 @@ public class Main{
 
         seed = System.currentTimeMillis();
         generator.setSeed(seed);
-        System.out.println("At the end of the setup method ");
     }
 
 
@@ -207,7 +196,6 @@ public class Main{
             if (recordMoves && !replayMode) {
                 String fileName = "src/Utility/record-" + currentRecord.getCount() + ".json";
                 long time = System.nanoTime()-startTime;
-                System.out.println(startTime);
                 SaveJSON.SaveMove(fileName, direction, time, firstMove);
                 firstMove = false;
             }
@@ -355,7 +343,6 @@ public class Main{
             level = this.level;
         }
 
-        System.out.println("RESTART CALLED");
         this.level = level;
 
         waitForRestart = true;
@@ -370,7 +357,6 @@ public class Main{
             level = 2;
             restartLevel(Optional.empty());
         } else {
-            System.out.println("CREDITS SCREEN");
             new TitleFrame(frame);
             restartLevel(Optional.of(2));
             frame.setVisible(false);
