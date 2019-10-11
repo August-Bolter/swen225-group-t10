@@ -23,7 +23,7 @@ It also manipulates the frameRate based on whether the replay is paused or playi
 is done in the Replay and loadJSON class, controlling the replay is done in Main and showing the
 GUI is done in replayPanel</p>
 
-<h4>... Design Pattern</h4>
+<h4>Design Pattern</h4>
 
 <p>The record and play feature follows the Command pattern. The Command pattern can be used for
 tasks such as Macro recording. Macro recording is "playing back" the same actions by 
@@ -33,13 +33,13 @@ the actions (player moves) using SaveJSON and Main. It "plays back" these moves 
 
 <h4>Using the Record and Play feature</h4>
 <p>There are many features of R&P, here is a guide to use these features:
+<ul><li>
+To start recording press the record button and to stop recording press the record button again.</li>
 
--To start recording press the record button and to stop recording press the record button again
-<br> <br>
--To replay a record press the replay button. Once this button is pressed a file chooser will open.
-Please choose a file that starts with "record-". 
-<br> <br>
--Once you have chosen a file you will have four replay control buttons. One button is a play/stop button
+<li>To replay a record press the replay button. Once this button is pressed a file chooser will open. Please choose a file that starts with "record-".</li>
+
+
+<li>Once you have chosen a file you will have four replay control buttons. One button is a play/stop button
 used for playing/stopping the replay, the change speed button allows you to change the speed of the recording
-(speed ranges from 25% to 100%), the next step 
+(speed ranges from 25% to 100%). </li></ul>
 </p>
