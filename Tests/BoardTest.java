@@ -23,29 +23,29 @@ public class BoardTest {
             }
         });
         t.start();
-        Thread.sleep(10000);
+        Thread.sleep(1000);
 
     }
 
     /**
      * Test that launches the start screen for 1 second
      */
-    /*@Test
-    public void testStartScreen() throws InterruptedException{
-        Thread t = new Thread(new Runnable(){
+    @Test
+    public void testStartScreen() throws InterruptedException {
+        Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
-                try{
-                    Main m = new Main(1);
-                    m.startScreen();
-                }
-                catch(Exception e){
+                try {
+                    Main m = new Main("Test", 1);
+                    m.setup(1);
+                    // m.startScreen();
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         });
         t.start();
-        Thread.sleep(10000);
+        Thread.sleep(1000);
 
-    }*/
+    }
 }
