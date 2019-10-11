@@ -80,6 +80,7 @@ public class ReplayPanel extends JPanel implements ActionListener {
             if (recordButton.getText().equals("Record")) {
                 recordButton.setText("Stop recording");
                 game.setRecord(record);
+                game.setStartTime(System.nanoTime());
                 record.record();
                 replayButton.setEnabled(false);
             }

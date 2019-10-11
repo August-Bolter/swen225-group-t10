@@ -211,6 +211,7 @@ public class Main{
                 *  e.g. walking into a wall */
                 String fileName = "src/Utility/record-" + currentRecord.getCount() + ".json";
                 long time = System.nanoTime()-startTime;
+                System.out.println(startTime);
                 SaveJSON.SaveMove(fileName, direction, time, firstMove);
                 firstMove = false;
             }
@@ -230,7 +231,6 @@ public class Main{
         boolean beenPausedPerm = false; //Determines if the replay has been paused at least once
         boolean beenPaused = false; //Determines if the replay is currently paused
         long lastTick = System.nanoTime();
-        startTime = System.nanoTime(); //The start time of the game
         executedTimes = new ArrayList<Long>(); //A list of times (of moves) that have been already executed by the replay
         long startReplayTime = 0; //The start time that is determined when the replay is loaded
         long pauseTime = 0; //The start time of the replay pause
@@ -570,5 +570,9 @@ public class Main{
                 break;
             }
         }
+    }
+
+    public void setStartTime(long nanoTime) {
+        startTime = nanoTime;
     }
 }
