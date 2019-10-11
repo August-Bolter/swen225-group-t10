@@ -2,7 +2,6 @@ package Render;
 
 import Application.Main;
 import Maze.LevelBoard;
-import Persistence.Replay;
 import Persistence.SaveJSON;
 
 import javax.swing.*;
@@ -20,6 +19,7 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
     private JPanel outerpanel;
     private BoardPanel boardpanel;
     private InfoPanel infoPanel;
+    private ReplayPanel replayPanel;
 
     private Set<Integer> pressedKeys;
     private boolean paused = false;
@@ -46,6 +46,7 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
         setContentPane(outerpanel);
         addBoardPanel();
         addInfoPanel();
+        addReplayPanel();
 
         // Setup key listener
         addKeyListener(this);
@@ -55,12 +56,13 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
         createMenuBar();
 
         outerpanel.setLayout(new GridBagLayout());
-        outerpanel.setBorder(new GameBorder(Color.BLUE));
+        outerpanel.setBackground(new Color(0, 100, 0));
+
+        setPreferredSize(new Dimension(1000, 800));
 
         pack();
         setLocationRelativeTo(null);
         repaint();
-        setResizable(false);
 
         pressedKeys = new HashSet<>();
     }
@@ -103,6 +105,11 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
     private void addInfoPanel() {
         infoPanel = new InfoPanel(this);
         outerpanel.add(infoPanel);
+    }
+
+    private void addReplayPanel() {
+        replayPanel = new ReplayPanel(this);
+        infoPanel.addReplayPanel(replayPanel);
     }
 
     @Override
@@ -193,11 +200,11 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
         outerpanel.remove(boardpanel);
         outerpanel.remove(infoPanel);
         boardpanel = new BoardPanel(game.getLevelBoard().getBoard(), game.getPlayer());
-        ReplayPanel copyOfReplay = infoPanel.getReplayPanel();
-        infoPanel = new InfoPanel(this, copyOfReplay);
+
 
         outerpanel.add(boardpanel);
         outerpanel.add(infoPanel);
+        infoPanel.addReplayPanel(replayPanel);
 
         revalidate();
         repaint();
