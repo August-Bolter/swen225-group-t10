@@ -11,6 +11,10 @@ import java.util.Comparator;
 import java.util.Objects;
 
 /**
+ * @author Ahad Rahman - Interaction
+ * @author Daniel Pullon - Get image
+ * @author Hugh Lockwood - Make adjustments to get image
+ * @author August Bolter - Initial structure
  * Abstract class for Item - this will be implemented by all inventory items (keys, chips). Items are on top of tiles.
  */
 public abstract class Item implements Comparable<Item> {
@@ -51,8 +55,8 @@ public abstract class Item implements Comparable<Item> {
 
     /**
      * Changes the current location of the item
-     * @param newRow
-     * @param newCol
+     * @param newRow the row
+     * @param newCol the col
      */
     public void changeLocation(int newRow, int newCol){
         this.row = newRow;
@@ -82,13 +86,13 @@ public abstract class Item implements Comparable<Item> {
 
     /**
      * Sets the item's row number
-     * @param rowNum
+     * @param rowNum the row
      */
     public void setRow(int rowNum){ this.row = rowNum;}
 
     /**
      * Sets the item's col number
-     * @param colNum
+     * @param colNum the col
      */
     public void setCol(int colNum){this.col = colNum;}
 

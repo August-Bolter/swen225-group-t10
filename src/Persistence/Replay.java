@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
+ * @author August Bolter
  * Class to handle replaying recordings.
  */
 public class Replay {

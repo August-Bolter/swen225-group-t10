@@ -18,7 +18,6 @@ public class MainTest {
 
     /**
      * Tests a valid move
-     * @return
      */
     @Test
     public void doValidMove() {
@@ -34,7 +33,6 @@ public class MainTest {
 
     /**
      * Tests an invalid move
-     * @return
      */
 
     @Test

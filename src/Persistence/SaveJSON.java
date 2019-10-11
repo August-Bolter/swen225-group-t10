@@ -8,6 +8,8 @@ import Maze.Tile;
 import java.io.*;
 
 /**
+ * @author Hugh Lockwood - wrote the class initially
+ * @author August Bolter - Added code for the replay system
  * Class responsible for saving and loading the game
  */
 public class SaveJSON {
@@ -184,7 +186,7 @@ public class SaveJSON {
     /**
      * Method to write the end of the file at the end of the recording.
      * @param fileName the name of the file
-     * @param firstMove
+     * @param firstMove true if this is the first move
      */
     public static void endRecord(String fileName, boolean firstMove) {
         try {

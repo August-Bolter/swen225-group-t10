@@ -12,6 +12,8 @@ import java.io.File;
 import java.util.Optional;
 
 /**
+ * @author August Bolter
+ * @author Daniel Pullon
  * Panel to handle the interface for the replay system.
  */
 public class ReplayPanel extends JPanel implements ActionListener {

@@ -1,7 +1,10 @@
 package Maze;
 
-/** Represents a wall tile in the game. Players can never move onto/pass through wall tiles. Items can't be pushed onto wall
- * tiles either. Wall tiles are static */
+/**
+ * @author Ahad Rahman
+ * Represents a wall tile in the game. Players can never move onto/pass through wall tiles. Items can't be pushed onto wall
+ * tiles either. Wall tiles are static
+ */
 public class WallTile extends Tile {
     /** Creates a wall tile
      * @param row The row (in regards to the board) of the wall tile

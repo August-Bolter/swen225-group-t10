@@ -5,6 +5,7 @@ import Application.Main;
 import java.io.File;
 
 /**
+ * @author August Bolter
  * Class to record gameplay.
  */
 public class Record {

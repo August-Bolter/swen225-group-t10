@@ -12,8 +12,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/** An abstract class representing a tile in the game. This abstract class is extended by concrete classes like DoorTile,
- * ExitTile etc. The board is made up of tiles (with items on some of the tiles). */
+/**
+ * @author August Bolter
+ * @author Hugh Lockwood
+ * @author Ahad Rahman
+ * An abstract class representing a tile in the game. This abstract class is extended by concrete classes like DoorTile,
+ * ExitTile etc. The board is made up of tiles (with items on some of the tiles).
+ */
 public abstract class Tile {
     /**
      *  The path to Tile images

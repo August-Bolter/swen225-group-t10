@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
+ * @author Daniel Pullon
  * A panel representing an individual tile.
  */
 public class TilePanel extends JPanel {
