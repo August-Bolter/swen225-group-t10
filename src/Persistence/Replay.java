@@ -50,8 +50,9 @@ public class Replay {
 
         replayPanel.changeButtons();
         replayPanel.addReplayButtons();
-
-        tickToMovesMap = LoadJSON.loadMoves(selectedReplay);
+        if (!game.getFirstMove()) {
+            tickToMovesMap = LoadJSON.loadMoves(selectedReplay);
+        }
         game.getFrame().redraw();
 
     }

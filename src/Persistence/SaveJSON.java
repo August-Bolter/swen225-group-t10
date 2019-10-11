@@ -92,7 +92,7 @@ public class SaveJSON {
                 builder.append("\n\t]\n}");
             }
             else {
-                builder.append("\n\t],\n");
+                builder.append("\n\t]");
             }
             out.print(builder.toString());
 
@@ -147,7 +147,7 @@ public class SaveJSON {
             FileWriter fileWriter = new FileWriter(fileName, true);
             BufferedWriter out = new BufferedWriter(fileWriter);
             if (firstMove) {
-                move.append("\t\"moves\" : [\n");
+                move.append(",\n\t\"moves\" : [\n");
             }
             String type = "playerMove";
             String directionText = "";
@@ -184,13 +184,19 @@ public class SaveJSON {
     /**
      * Method to write the end of the file at the end of the recording.
      * @param fileName the name of the file
+     * @param firstMove
      */
-    public static void endRecord(String fileName) {
+    public static void endRecord(String fileName, boolean firstMove) {
         try {
             StringBuilder move = new StringBuilder();
             FileWriter fileWriter = new FileWriter(fileName, true);
             BufferedWriter out = new BufferedWriter(fileWriter);
-            move.append("\n\t]\n}");
+            if (firstMove) {
+                move.append("\n}");
+            }
+            else {
+                move.append("\n\t]\n}");
+            }
             out.append(move.toString());
             out.close();
             fileWriter.close();

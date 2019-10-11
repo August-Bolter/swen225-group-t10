@@ -207,7 +207,6 @@ public class Main{
             if (recordMoves && !replayMode) {
                 String fileName = "src/Utility/record-" + currentRecord.getCount() + ".json";
                 long time = System.nanoTime()-startTime;
-                System.out.println(startTime);
                 SaveJSON.SaveMove(fileName, direction, time, firstMove);
                 firstMove = false;
             }
@@ -271,14 +270,16 @@ public class Main{
                 }
                 beenPaused = false;
                 /* Iterate through the player moves map */
-                for (Map.Entry<Long, ArrayList<String>> entry: currentReplay.getTickToMovesMap().entrySet()) {
-                    /*Check if the time the move happened is less than the diff (time elapsed), i.e. the move should be executed
-                      and don't execute moves that have already been executed */
-                    if (diff > entry.getKey() && !executedTimes.contains(entry.getKey())) {
-                        for (String s : entry.getValue()) {
-                            replayMove(s); //Execute the move
+                if (!firstMove) {
+                    for (Map.Entry<Long, ArrayList<String>> entry : currentReplay.getTickToMovesMap().entrySet()) {
+                        /*Check if the time the move happened is less than the diff (time elapsed), i.e. the move should be executed
+                          and don't execute moves that have already been executed */
+                        if (diff > entry.getKey() && !executedTimes.contains(entry.getKey())) {
+                            for (String s : entry.getValue()) {
+                                replayMove(s); //Execute the move
+                            }
+                            executedTimes.add(entry.getKey()); //And register that this move has been executed
                         }
-                        executedTimes.add(entry.getKey()); //And register that this move has been executed
                     }
                 }
             }
@@ -634,5 +635,9 @@ public class Main{
 
     public void setFirstMove(boolean fMove) {
         firstMove = fMove;
+    }
+
+    public boolean getFirstMove() {
+        return firstMove;
     }
 }

@@ -72,6 +72,6 @@ public class Record {
         setRecording(false);
         endTime = game.getTimeRemaining();
         game.recordMoves(false);
-        SaveJSON.endRecord(fileName);
+        SaveJSON.endRecord(fileName, game.getFirstMove());
     }
 }
