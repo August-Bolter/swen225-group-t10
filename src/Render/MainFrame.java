@@ -375,7 +375,7 @@ public class MainFrame extends JFrame implements KeyListener, WindowListener, Ac
         JPanel changeSpeedPanel = new JPanel();
         changeSpeedPanel.setLayout(new GridLayout(3, 1));
         JLabel info = new JLabel("Please select a replay speed");
-        String[] speeds = {"0.25", "0.5", "1.0", "2.0", "4.0"};
+        String[] speeds = {"0.25", "0.5", "1.0"};
         JComboBox<String> speedOptions = new JComboBox<String>(speeds);
         JButton submitButton = new JButton("Submit");
         submitButton.addActionListener(new ActionListener() {

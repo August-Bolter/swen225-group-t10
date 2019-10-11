@@ -41,5 +41,5 @@ Please choose a file that starts with "record-".
 <br> <br>
 -Once you have chosen a file you will have four replay control buttons. One button is a play/stop button
 used for playing/stopping the replay, the change speed button allows you to change the speed of the recording
-(speed ranges from 25% to 400%), the next step 
+(speed ranges from 25% to 100%), the next step 
 </p>
