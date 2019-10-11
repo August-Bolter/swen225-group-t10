@@ -33,13 +33,13 @@ the actions (player moves) using SaveJSON and Main. It "plays back" these moves 
 
 <h4>Using the Record and Play feature</h4>
 <p>There are many features of R&P, here is a guide to use these features:
+<ul><li>
+To start recording press the record button and to stop recording press the record button again.</li>
 
--To start recording press the record button and to stop recording press the record button again
-<br> <br>
--To replay a record press the replay button. Once this button is pressed a file chooser will open.
+<li>To replay a record press the replay button. Once this button is pressed a file chooser will open.</li>
 Please choose a file that starts with "record-". 
-<br> <br>
--Once you have chosen a file you will have four replay control buttons. One button is a play/stop button
+
+<li>Once you have chosen a file you will have four replay control buttons. One button is a play/stop button
 used for playing/stopping the replay, the change speed button allows you to change the speed of the recording
-(speed ranges from 25% to 400%), the next step 
+(speed ranges from 25% to 400%). </li></ul>
 </p>
