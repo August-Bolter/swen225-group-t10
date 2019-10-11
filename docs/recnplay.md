@@ -41,5 +41,5 @@ To start recording press the record button and to stop recording press the recor
 
 <li>Once you have chosen a file you will have four replay control buttons. One button is a play/stop button
 used for playing/stopping the replay, the change speed button allows you to change the speed of the recording
-(speed ranges from 25% to 100%). </li></ul>
+(speed ranges from 25% to 100%). The next step button is used to execute/advance one move. The exit button takes you back to the title screen </li></ul>
 </p>
