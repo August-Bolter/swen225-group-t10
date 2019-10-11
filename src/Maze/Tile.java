@@ -124,6 +124,7 @@ public abstract class Tile {
             int level = (main.getLevel() < 0) ? 2 : main.getLevel();
             // If the image is not part of the default resources look in the level plugin specific resources
             try {
+                System.out.println("src/Utility/Level-" + level + "/Resources/" + getClass().getName() + ".png");
                 return ImageIO.read(new File("src/Utility/Level-" + level + "/Resources/" + getClass().getName() + ".png"));
             } catch (IOException ex) {
                throw new Error(PATH + getClass().getName() + "\nThe image failed to load:" + e);
