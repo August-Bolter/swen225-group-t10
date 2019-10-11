@@ -5,7 +5,8 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Test for testing the infotile
+ * Tests for infotile
+ * @author Justina
  */
 
 class InfoTileTest {

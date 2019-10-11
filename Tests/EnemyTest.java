@@ -12,16 +12,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Tests for the enemy
+ * @author Justina
  */
 class EnemyTest {
-
-    /**
-     * Test the tests whether interact works when an enemy encounters the player
-     */
-    @Test
-    void interact() {
-        //Main game = new Main("Tester",1);
-    }
 
     /**
      * Tests whether the .getEnemies() method works

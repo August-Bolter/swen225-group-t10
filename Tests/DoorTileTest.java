@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Tests for the DoorTile
+ * @author Justina
  */
 class DoorTileTest {
 

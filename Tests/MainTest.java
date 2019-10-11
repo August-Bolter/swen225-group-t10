@@ -3,18 +3,11 @@ import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Method;
 
-
+/**
+ * Class for testing main
+ * @author Justina
+ */
 public class MainTest {
-
-    /**
-     * Tests whether a board is made
-     */
-    @Test
-    public void createBoardTest(){
-   //     Main game = new Main(1);
-//        game.setup(2);
-
-    }
 
     /**
      * Tests a valid move
@@ -30,14 +23,5 @@ public class MainTest {
         }
     }
 
-
-    /**
-     * Tests an invalid move
-     */
-
-    @Test
-    public void doInValidMove() {
-
-    }
 
 }
