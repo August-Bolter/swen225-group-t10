@@ -14,13 +14,13 @@ import java.util.HashMap;
  * Class to handle replaying recordings.
  */
 public class Replay {
-    ReplayPanel replayPanel;
-    Main game;
-    HashMap<Long, ArrayList<String>> tickToMovesMap;
+    private ReplayPanel replayPanel; //A panel which holds all the replay buttons
+    private Main game;
+    private HashMap<Long, ArrayList<String>> tickToMovesMap; //A map linking the nanosecond a move occurs to the move itself
 
     /**
-     * Replays a given game
-     * @param game the game to replay
+     * Replays a given record
+     * @param game the record to replay
      * @param panel the panel to use
      */
     public Replay(Main game, ReplayPanel panel) {
@@ -35,7 +35,7 @@ public class Replay {
         game.setFrameRate(0000000000000000.1); //Stopping the game
         game.setReplay(this);
 
-        File selectedReplay = replayPanel.openFileChooser();
+        File selectedReplay = replayPanel.openFileChooser(); //
         LevelBoard replayBoard = LoadJSON.loadLevelFromJSON(game.getLevel(), selectedReplay);
         game.setLevelBoard(replayBoard);
         game.getLevelBoard().setMain(game);

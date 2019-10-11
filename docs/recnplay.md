@@ -3,7 +3,7 @@
 <p>The implementation of the Record and Play (R&P) feature is spread out 
 over several classes. </p>
 <p>The GUI for R&P is mainly in the InfoPanel class. 
-The record and replay buttons are in the InfoPanel. When the replay button
+The record and replay GUI is in the ReplayPanel. When the replay button
 is clicked on the record button changes to a play/stop button and the replay
 button changes to a change speed button. Additionally two new buttons, a next step button 
 and an exit button are added to the GUI. When the change speed button is clicked
@@ -20,7 +20,8 @@ to control the replay speed, and executes the next move when the next step butto
 It also manipulates the frameRate based on whether the replay is paused or playing. </p>
 
 <p> So overall, recording is done in the Record, Main and saveJSON class, loading the record 
-is done in the Replay and loadJSON class and controlling the replay is done in Main</p>
+is done in the Replay and loadJSON class, controlling the replay is done in Main and showing the
+GUI is done in replayPanel</p>
 
 <h4>... Design Pattern</h4>
 
@@ -33,8 +34,10 @@ is done in the Replay and loadJSON class and controlling the replay is done in M
 
 -To start recording press the record button and to stop recording press the record button again
 <br> <br>
--To replay a file press the replay button. Once this button is pressed a file chooser will open.
+-To replay a record press the replay button. Once this button is pressed a file chooser will open.
 Please choose a file that starts with "record-". 
 <br> <br>
--To
+-Once you have chosen a file you will have four replay control buttons. One button is a play/stop button
+used for playing/stopping the replay, the change speed button allows you to change the speed of the recording
+(speed ranges from 25% to 400%), the next step 
 </p>

@@ -80,6 +80,16 @@ public class ReplayPanel extends JPanel implements ActionListener {
     }
 
     /**
+     * Reverting the buttons back when the player clicks exit button
+     * */
+    public void revertReplayButtons() {
+        recordButton.setText("Record");
+        recordButton.setText("Replay");
+        nextStepButton.setVisible(false);
+        exitButton.setVisible(false);
+    }
+
+    /**
      * Adds the control buttons.
      */
     public void addReplayButtons() {
@@ -112,7 +122,7 @@ public class ReplayPanel extends JPanel implements ActionListener {
                 game.getCurrentRecord().setFinalTime(System.nanoTime()-game.getStartTime());
             }
             else if (recordButton.getText().equals("Play")) {
-                game.setFrameRate(1);
+                game.setFrameRate(6);
                 recordButton.setText("Stop");
                 game.setReplayMode(true);
                 nextStepButton.setEnabled(false);
@@ -148,6 +158,12 @@ public class ReplayPanel extends JPanel implements ActionListener {
                 game.restartLevel(Optional.of(2));
             }
             game.getFrame().redraw();
+            game.getFrame().setVisible(false);
+            revertReplayButtons();
+            game.setFrameRate(6);
+            game.getFrame().addKeyListener(game.getFrame());
+
+            //NOTE: Please wait on the main menu screen for six seconds at least before clicking the level (to avoid a bug)
         }
     }
 }
