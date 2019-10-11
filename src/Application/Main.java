@@ -3,6 +3,7 @@ package Application;
 import Maze.*;
 import Persistence.LoadJSON;
 import Render.MainFrame;
+import Render.TitleFrame;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -323,6 +324,9 @@ public class Main{
             restartLevel(Optional.empty());
         } else {
             System.out.println("CREDITS SCREEN");
+            new TitleFrame(frame);
+            paused = true;
+            frame.setVisible(false);
         }
     }
 
